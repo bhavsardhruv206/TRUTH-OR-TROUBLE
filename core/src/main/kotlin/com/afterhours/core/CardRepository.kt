@@ -14,14 +14,17 @@ class InMemoryCardRepository(private val cards: List<Card>) : CardRepository {
 
 /** Loads the bundled seed cards from the classpath JSON resource. */
 class BundledCardRepository(
-    private val resource: String = "cards_en.json",
+    private val resources: List<String> = listOf("cards_en.json", "cards_hinglish.json"),
 ) : CardRepository {
+    constructor(resource: String) : this(listOf(resource))
+
     private val cards: List<Card> by lazy {
-        val stream = checkNotNull(javaClass.classLoader?.getResourceAsStream(resource)) {
-            "Missing card resource $resource"
+        resources.flatMap { resource ->
+            val stream = checkNotNull(javaClass.classLoader?.getResourceAsStream(resource)) {
+                "Missing card resource $resource"
+            }
+            parseCards(stream.use { it.readBytes().toString(Charsets.UTF_8) })
         }
-        val text = stream.use { it.readBytes().toString(Charsets.UTF_8) }
-        parseCards(text)
     }
 
     override fun allCards(): List<Card> = cards

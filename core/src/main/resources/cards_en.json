@@ -1,7 +1,7 @@
 [
   {
     "id": "truth-001",
-    "text": "What is the most embarrassing song on your playlist?",
+    "text": "{name}, what is the most embarrassing song on your playlist?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -17,7 +17,7 @@
   },
   {
     "id": "truth-003",
-    "text": "What is the silliest thing you have ever been afraid of?",
+    "text": "{name}, what is the silliest thing you have ever been afraid of?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -33,7 +33,7 @@
   },
   {
     "id": "truth-005",
-    "text": "What was your worst haircut or fashion choice?",
+    "text": "{name}, what was your worst haircut or fashion choice?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -49,7 +49,7 @@
   },
   {
     "id": "truth-007",
-    "text": "What is the longest you have gone without washing a particular item of clothing?",
+    "text": "{name}, what is the longest you have gone without washing a particular item of clothing?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -65,7 +65,7 @@
   },
   {
     "id": "truth-009",
-    "text": "What is the most awkward first impression someone has had of you?",
+    "text": "{name}, what is the most awkward first impression someone has had of you?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -81,7 +81,7 @@
   },
   {
     "id": "truth-011",
-    "text": "Which person in this room would you trust most with a secret, and why?",
+    "text": "{name}, which person in this room would you trust most with a secret, and why?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -97,7 +97,7 @@
   },
   {
     "id": "truth-013",
-    "text": "What is something you pretended to like just to fit in?",
+    "text": "{name}, what is something you pretended to like just to fit in?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -113,7 +113,7 @@
   },
   {
     "id": "truth-015",
-    "text": "What is the pettiest reason you have stopped talking to someone?",
+    "text": "{name}, what is the pettiest reason you have stopped talking to someone?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -129,7 +129,7 @@
   },
   {
     "id": "truth-017",
-    "text": "What is the most cringe thing you did to impress someone?",
+    "text": "{name}, what is the most cringe thing you did to impress someone?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -145,7 +145,7 @@
   },
   {
     "id": "truth-019",
-    "text": "What is your most controversial opinion that you rarely share?",
+    "text": "{name}, what is your most controversial opinion that you rarely share?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -161,7 +161,7 @@
   },
   {
     "id": "dare-001",
-    "text": "Do your best impression of another player until your next turn.",
+    "text": "{name}, do your best impression of {other} until your next turn.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -181,7 +181,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-004",
@@ -193,7 +194,7 @@
   },
   {
     "id": "dare-005",
-    "text": "Invent a handshake with the player on your left and perform it.",
+    "text": "{name}, invent a handshake with {other} and perform it together.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -205,11 +206,12 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 10
   },
   {
     "id": "dare-007",
-    "text": "Let the group pick a nickname for you that you must use for the rest of the game.",
+    "text": "Everyone, give {name} a nickname they must use for the rest of the game.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -249,11 +251,12 @@
   },
   {
     "id": "dare-012",
-    "text": "Perform a one-minute stand-up comedy set about the person on your right (keep it kind).",
+    "text": "{name}, perform a one-minute stand-up set about {other} (keep it kind).",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-013",
@@ -273,7 +276,7 @@
   },
   {
     "id": "dare-015",
-    "text": "Let another player style your hair however they like.",
+    "text": "{other}, style {name}'s hair however you like.",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
@@ -297,7 +300,7 @@
   },
   {
     "id": "wyr-002",
-    "text": "Would you rather always be ten minutes late or twenty minutes early?",
+    "text": "{name}, would you rather always be ten minutes late or twenty minutes early?",
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
@@ -329,7 +332,7 @@
   },
   {
     "id": "wyr-006",
-    "text": "Would you rather sing everything you say or dance everywhere you walk?",
+    "text": "{name}, would you rather sing everything you say or dance everywhere you walk?",
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
@@ -377,7 +380,7 @@
   },
   {
     "id": "wyr-012",
-    "text": "Would you rather relive your worst day or skip your best day?",
+    "text": "{name}, would you rather relive your worst day or skip your best day?",
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
@@ -497,7 +500,7 @@
   },
   {
     "id": "truth-021",
-    "text": "What is the weirdest thing you have ever eaten and actually enjoyed?",
+    "text": "{name}, what is the weirdest thing you have ever eaten and actually enjoyed?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -513,7 +516,7 @@
   },
   {
     "id": "truth-023",
-    "text": "What is a childhood nickname you secretly liked?",
+    "text": "{name}, what is a childhood nickname you secretly liked?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -529,7 +532,7 @@
   },
   {
     "id": "truth-025",
-    "text": "What is a skill you wish you could learn overnight?",
+    "text": "{name}, what is a skill you wish you could learn overnight?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -545,7 +548,7 @@
   },
   {
     "id": "truth-027",
-    "text": "What is the worst gift you have ever received?",
+    "text": "{name}, what is the worst gift you have ever received?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -561,7 +564,7 @@
   },
   {
     "id": "truth-029",
-    "text": "What is your most-used emoji, and why?",
+    "text": "{name}, what is your most-used emoji, and why?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -577,7 +580,7 @@
   },
   {
     "id": "truth-031",
-    "text": "What is a food you refuse to share?",
+    "text": "{name}, what is a food you refuse to share?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -593,7 +596,7 @@
   },
   {
     "id": "truth-033",
-    "text": "What is the funniest thing you have said in your sleep, or been told you said?",
+    "text": "{name}, what is the funniest thing you have said in your sleep, or been told you said?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -609,7 +612,7 @@
   },
   {
     "id": "truth-035",
-    "text": "What is something small that instantly improves your mood?",
+    "text": "{name}, what is something small that instantly improves your mood?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -625,7 +628,7 @@
   },
   {
     "id": "truth-037",
-    "text": "What is a word you always mispronounce?",
+    "text": "{name}, what is a word you always mispronounce?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -641,7 +644,7 @@
   },
   {
     "id": "truth-039",
-    "text": "What is the laziest thing you have done lately?",
+    "text": "{name}, what is the laziest thing you have done lately?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -657,7 +660,7 @@
   },
   {
     "id": "truth-041",
-    "text": "What is your guilty-pleasure TV show?",
+    "text": "{name}, what is your guilty-pleasure TV show?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -673,7 +676,7 @@
   },
   {
     "id": "truth-043",
-    "text": "Which snack could you eat every day for a month?",
+    "text": "{name}, which snack could you eat every day for a month?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -689,7 +692,7 @@
   },
   {
     "id": "truth-045",
-    "text": "What is the most embarrassing thing in your camera roll that you are willing to describe?",
+    "text": "{name}, what is the most embarrassing thing in your camera roll that you are willing to describe?",
     "category": "truth",
     "intensity": "chill",
     "language": "en",
@@ -705,7 +708,7 @@
   },
   {
     "id": "truth-047",
-    "text": "Who in this room do you think would be the worst roommate, and why?",
+    "text": "{name}, who in this room do you think would be the worst roommate, and why?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -721,7 +724,7 @@
   },
   {
     "id": "truth-049",
-    "text": "What is the most embarrassing thing that has happened to you in public?",
+    "text": "{name}, what is the most embarrassing thing that has happened to you in public?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -737,7 +740,7 @@
   },
   {
     "id": "truth-051",
-    "text": "What is a trait of yours that annoys people the most?",
+    "text": "{name}, what is a trait of yours that annoys people the most?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -753,7 +756,7 @@
   },
   {
     "id": "truth-053",
-    "text": "What is the pettiest thing you have ever done to win an argument?",
+    "text": "{name}, what is the pettiest thing you have ever done to win an argument?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -769,7 +772,7 @@
   },
   {
     "id": "truth-055",
-    "text": "What is the worst excuse you have used to get out of plans?",
+    "text": "{name}, what is the worst excuse you have used to get out of plans?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -785,7 +788,7 @@
   },
   {
     "id": "truth-057",
-    "text": "Who here would you trust to plan a surprise party, and who would ruin it?",
+    "text": "{name}, who here would you trust to plan a surprise party, and who would ruin it?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -801,7 +804,7 @@
   },
   {
     "id": "truth-059",
-    "text": "What is the worst date or outing idea you have ever had or heard of?",
+    "text": "{name}, what is the worst date or outing idea you have ever had or heard of?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -817,7 +820,7 @@
   },
   {
     "id": "truth-061",
-    "text": "What is your biggest irrational fear, and how do you handle it?",
+    "text": "{name}, what is your biggest irrational fear, and how do you handle it?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -833,7 +836,7 @@
   },
   {
     "id": "truth-063",
-    "text": "Which of your habits would your closest friends roast you for?",
+    "text": "{name}, which of your habits would your closest friends roast you for?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -849,7 +852,7 @@
   },
   {
     "id": "truth-065",
-    "text": "What is the longest you have ever stalked someone's old posts by accident?",
+    "text": "{name}, what is the longest you have ever stalked someone's old posts by accident?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -865,7 +868,7 @@
   },
   {
     "id": "truth-067",
-    "text": "What is the most dramatic reaction you have had to a small problem?",
+    "text": "{name}, what is the most dramatic reaction you have had to a small problem?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -881,7 +884,7 @@
   },
   {
     "id": "truth-069",
-    "text": "What is the most unhinged thing you have done for a snack?",
+    "text": "{name}, what is the most unhinged thing you have done for a snack?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -897,7 +900,7 @@
   },
   {
     "id": "truth-071",
-    "text": "What would your search history title be if it were a movie?",
+    "text": "{name}, what would your search history title be if it were a movie?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -913,7 +916,7 @@
   },
   {
     "id": "truth-073",
-    "text": "What is the most overconfident moment you have ever had that went wrong?",
+    "text": "{name}, what is the most overconfident moment you have ever had that went wrong?",
     "category": "truth",
     "intensity": "bold",
     "language": "en",
@@ -929,7 +932,7 @@
   },
   {
     "id": "truth-075",
-    "text": "What is the most outrageous thing you have done on a dare?",
+    "text": "{name}, what is the most outrageous thing you have done on a dare?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -961,7 +964,7 @@
   },
   {
     "id": "truth-079",
-    "text": "What is the funniest way you have been caught lying?",
+    "text": "{name}, what is the funniest way you have been caught lying?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -977,7 +980,7 @@
   },
   {
     "id": "truth-081",
-    "text": "What is the wildest rumour you have heard about this group?",
+    "text": "{name}, what is the wildest rumour you have heard about this group?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -993,7 +996,7 @@
   },
   {
     "id": "truth-083",
-    "text": "What is the worst fashion disaster you have worn out of the house?",
+    "text": "{name}, what is the worst fashion disaster you have worn out of the house?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1009,7 +1012,7 @@
   },
   {
     "id": "truth-085",
-    "text": "What is the most chaotic thing you have ever done at a wedding or family function?",
+    "text": "{name}, what is the most chaotic thing you have ever done at a wedding or family function?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1025,7 +1028,7 @@
   },
   {
     "id": "truth-087",
-    "text": "What is the most embarrassing thing you have done while trying to look cool?",
+    "text": "{name}, what is the most embarrassing thing you have done while trying to look cool?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1041,7 +1044,7 @@
   },
   {
     "id": "truth-089",
-    "text": "What is the most ridiculous argument you have won?",
+    "text": "{name}, what is the most ridiculous argument you have won?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1057,7 +1060,7 @@
   },
   {
     "id": "truth-091",
-    "text": "What is the pettiest grudge you are still holding?",
+    "text": "{name}, what is the pettiest grudge you are still holding?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1073,7 +1076,7 @@
   },
   {
     "id": "truth-093",
-    "text": "What would you do if you were invisible for one hour, keeping it harmless?",
+    "text": "{name}, what would you do if you were invisible for one hour, keeping it harmless?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1089,7 +1092,7 @@
   },
   {
     "id": "truth-095",
-    "text": "What is your most unpopular food opinion that would start a fight in this room?",
+    "text": "{name}, what is your most unpopular food opinion that would start a fight in this room?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1105,7 +1108,7 @@
   },
   {
     "id": "truth-097",
-    "text": "What is the funniest way you have embarrassed yourself in front of a crush's friends?",
+    "text": "{name}, what is the funniest way you have embarrassed yourself in front of a crush's friends?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1121,7 +1124,7 @@
   },
   {
     "id": "truth-099",
-    "text": "What is the most ridiculous thing you have argued about at 3 a.m.?",
+    "text": "{name}, what is the most ridiculous thing you have argued about at 3 a.m.?",
     "category": "truth",
     "intensity": "wild",
     "language": "en",
@@ -1193,7 +1196,7 @@
   },
   {
     "id": "dare-024",
-    "text": "Make up a short poem about the person on your left.",
+    "text": "{name}, make up a short poem about {other}.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -1205,7 +1208,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 120
   },
   {
     "id": "dare-026",
@@ -1229,11 +1233,12 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 20
   },
   {
     "id": "dare-029",
-    "text": "Draw a portrait of another player with your eyes closed and show everyone.",
+    "text": "{name}, draw a portrait of {other} with your eyes closed and show everyone.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -1245,7 +1250,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-031",
@@ -1265,7 +1271,7 @@
   },
   {
     "id": "dare-033",
-    "text": "Let the group give you a new nickname for the rest of the game.",
+    "text": "Group, pick a new nickname for {name} for the rest of the game.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -1289,7 +1295,7 @@
   },
   {
     "id": "dare-036",
-    "text": "Pretend to be a waiter and take a drink order from every player.",
+    "text": "{name}, play the waiter and take a drink order from every player.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -1301,11 +1307,12 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-038",
-    "text": "Say something nice about every player in the room.",
+    "text": "{name}, say something nice about every player in the room.",
     "category": "dare",
     "intensity": "chill",
     "language": "en",
@@ -1365,7 +1372,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-046",
@@ -1377,7 +1385,7 @@
   },
   {
     "id": "dare-047",
-    "text": "Let another player draw a harmless doodle on your hand with a washable marker.",
+    "text": "{other}, draw a harmless doodle on {name}'s hand with a washable marker.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -1393,7 +1401,7 @@
   },
   {
     "id": "dare-049",
-    "text": "Do your best impression of every other player in the room.",
+    "text": "{name}, do your best impression of every other player in the room.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -1429,7 +1437,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-054",
@@ -1445,7 +1454,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 20
   },
   {
     "id": "dare-056",
@@ -1457,7 +1467,7 @@
   },
   {
     "id": "dare-057",
-    "text": "Be everyone's personal assistant for one round and fetch whatever they ask, within reason.",
+    "text": "{name}, be everyone's personal assistant for one round and fetch whatever they ask, within reason.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -1477,7 +1487,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-060",
@@ -1493,15 +1504,17 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 45
   },
   {
     "id": "dare-062",
-    "text": "Try to make another player laugh without touching them in thirty seconds.",
+    "text": "{name}, make {other} laugh without touching them in thirty seconds.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-063",
@@ -1513,7 +1526,7 @@
   },
   {
     "id": "dare-064",
-    "text": "Swap an item of clothing, such as a jacket or hat, with another player for two rounds.",
+    "text": "{name} and {other}, swap an item of clothing, such as a jacket or hat, for two rounds.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -1525,7 +1538,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-066",
@@ -1561,7 +1575,7 @@
   },
   {
     "id": "dare-070",
-    "text": "Compete in a staring contest with the player of your choice.",
+    "text": "{name} and {other}: staring contest. First to blink loses.",
     "category": "dare",
     "intensity": "bold",
     "language": "en",
@@ -1633,7 +1647,7 @@
   },
   {
     "id": "dare-079",
-    "text": "Do a lip sync battle against another player with a song picked by the group.",
+    "text": "{name} vs {other}: lip sync battle with a song picked by the group.",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
@@ -1645,7 +1659,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-081",
@@ -1661,7 +1676,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-083",
@@ -1673,7 +1689,7 @@
   },
   {
     "id": "dare-084",
-    "text": "Pretend to be a different player until someone guesses who you are.",
+    "text": "{name}, pretend to be {other} until someone guesses who you are.",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
@@ -1749,7 +1765,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-094",
@@ -1761,7 +1778,7 @@
   },
   {
     "id": "dare-095",
-    "text": "Do an over-the-top impression of a nature documentary host following another player around.",
+    "text": "{name}, follow {other} around like a nature documentary host, narrating everything.",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
@@ -1789,11 +1806,12 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-099",
-    "text": "Write a mock review of the person on your right and read it out loud, keeping it kind.",
+    "text": "{name}, write a mock review of {other} and read it out loud, keeping it kind.",
     "category": "dare",
     "intensity": "wild",
     "language": "en",
@@ -1817,7 +1835,7 @@
   },
   {
     "id": "wyr-016",
-    "text": "Would you rather be able to fly or be invisible?",
+    "text": "{name}, would you rather be able to fly or be invisible?",
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
@@ -1865,7 +1883,7 @@
   },
   {
     "id": "wyr-022",
-    "text": "Would you rather live in a treehouse or on a houseboat?",
+    "text": "{name}, would you rather live in a treehouse or on a houseboat?",
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
@@ -1897,7 +1915,7 @@
   },
   {
     "id": "wyr-026",
-    "text": "Would you rather be a famous singer or a famous actor?",
+    "text": "{name}, would you rather be a famous singer or a famous actor?",
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
@@ -1945,7 +1963,7 @@
   },
   {
     "id": "wyr-032",
-    "text": "Would you rather always have to sing instead of speaking or dance instead of walking?",
+    "text": "{name}, would you rather always have to sing instead of speaking or dance instead of walking?",
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
@@ -1977,7 +1995,7 @@
   },
   {
     "id": "wyr-036",
-    "text": "Would you rather have a loud laugh or a very squeaky voice forever?",
+    "text": "{name}, would you rather have a loud laugh or a very squeaky voice forever?",
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
@@ -2025,7 +2043,7 @@
   },
   {
     "id": "wyr-042",
-    "text": "Would you rather spend a year with no music or no colour?",
+    "text": "{name}, would you rather spend a year with no music or no colour?",
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
@@ -2057,7 +2075,7 @@
   },
   {
     "id": "wyr-046",
-    "text": "Would you rather give up all desserts for a year or all fried food for a year?",
+    "text": "{name}, would you rather give up all desserts for a year or all fried food for a year?",
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
@@ -2105,7 +2123,7 @@
   },
   {
     "id": "wyr-052",
-    "text": "Would you rather be trapped in a hotel with annoying people or alone in a cabin with no signal?",
+    "text": "{name}, would you rather be trapped in a hotel with annoying people or alone in a cabin with no signal?",
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
@@ -2137,7 +2155,7 @@
   },
   {
     "id": "wyr-056",
-    "text": "Would you rather have to pick everyone's outfits for a month or never choose your own?",
+    "text": "{name}, would you rather have to pick everyone's outfits for a month or never choose your own?",
     "category": "wyr",
     "intensity": "wild",
     "language": "en",

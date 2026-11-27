@@ -33,6 +33,33 @@ data class Card(
     val intensity: Intensity,
     val language: String = "en",
     val safety: SafetyClass = SafetyClass.SAFE,
+    /** When set, the card is a timed dare and the UI offers a countdown. */
+    val timerSeconds: Int? = null,
 )
 
+/** Card languages. Codes are BCP 47; Hinglish is Hindi written in Latin script. */
+enum class CardLanguage(val code: String, val label: String) {
+    ENGLISH("en", "English"),
+    HINGLISH("hi-Latn", "Hinglish"),
+}
+
 data class Player(val id: Int, val name: String, val score: Int = 0)
+
+/**
+ * Fills the personalisation placeholders in a card:
+ * `{name}` is the player whose turn it is, `{other}` is a different, randomly chosen player.
+ */
+object CardText {
+    const val NAME = "{name}"
+    const val OTHER = "{other}"
+
+    fun render(text: String, current: Player, players: List<Player>, random: kotlin.random.Random = kotlin.random.Random.Default): String {
+        var out = text.replace(NAME, current.name)
+        if (OTHER in out) {
+            val others = players.filter { it.id != current.id }
+            val other = if (others.isEmpty()) "someone" else others[random.nextInt(others.size)].name
+            out = out.replace(OTHER, other)
+        }
+        return out
+    }
+}
