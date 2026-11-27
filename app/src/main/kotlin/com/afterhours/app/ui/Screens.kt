@@ -28,44 +28,56 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.platform.LocalContext
 import com.afterhours.app.GameViewModel
+import com.afterhours.app.ads.AdManager
+import com.afterhours.app.ads.BannerAd
 import com.afterhours.core.*
 
 @Composable
-fun AfterHoursApp(vm: GameViewModel) {
+fun AfterHoursApp(vm: GameViewModel, ads: AdManager) {
     val age by vm.ageConfirmed.collectAsStateWithLifecycle()
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         when (age) {
             null -> Unit
             false -> AgeGateScreen(onConfirm = vm::confirmAge)
-            true -> AppNav(vm)
+            true -> AppNav(vm, ads)
         }
     }
 }
 
 @Composable
-private fun AppNav(vm: GameViewModel) {
+private fun AppNav(vm: GameViewModel, ads: AdManager) {
     val nav = rememberNavController()
+    val activity = LocalContext.current as android.app.Activity
     NavHost(nav, startDestination = "home") {
-        composable("home") { HomeScreen(onPlay = { nav.navigate("mode") }) }
+        composable("home") { WithBanner { HomeScreen(onPlay = { nav.navigate("mode") }) } }
         composable("mode") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            ModeScreen(s, vm::selectMode, vm::selectIntensity, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
+            WithBanner {
+                ModeScreen(s, vm::selectMode, vm::selectIntensity, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
+            }
         }
         composable("setup") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            SetupScreen(
-                s, vm::setName, vm::addPlayer, vm::removePlayer, vm::selectRounds,
-                onStart = { if (vm.startGame()) nav.navigate("game") },
-                onBack = { nav.popBackStack() },
-            )
+            WithBanner {
+                SetupScreen(
+                    s, vm::setName, vm::addPlayer, vm::removePlayer, vm::selectRounds,
+                    onStart = { if (vm.startGame()) nav.navigate("game") },
+                    onBack = { nav.popBackStack() },
+                )
+            }
         }
         composable("game") {
             val g by vm.game.collectAsStateWithLifecycle()
             val state = g
             if (state == null) return@composable
             LaunchedEffect(state.finished) {
-                if (state.finished) nav.navigate("results") { popUpTo("game") { inclusive = true } }
+                if (state.finished) {
+                    nav.navigate("results") { popUpTo("game") { inclusive = true } }
+                    // Natural break: the game just ended. Capped interstitial, never mid-card.
+                    ads.onSessionCompleted(activity)
+                }
             }
             if (!state.finished) GameScreen(state, vm::complete, vm::skip, onQuit = {
                 vm.endGame(); nav.popBackStack("home", false)
@@ -74,12 +86,27 @@ private fun AppNav(vm: GameViewModel) {
         composable("results") {
             val g by vm.game.collectAsStateWithLifecycle()
             val state = g ?: return@composable
+            val rewardedReady by ads.rewardedReady.collectAsStateWithLifecycle()
             ResultsScreen(
                 state,
+                onBonus = if (rewardedReady) ({
+                    ads.showRewarded(activity) {
+                        if (vm.playBonus()) nav.navigate("game") { popUpTo("results") { inclusive = true } }
+                    }
+                }) else null,
                 onAgain = { vm.playAgain(); nav.navigate("game") { popUpTo("results") { inclusive = true } } },
                 onHome = { vm.endGame(); nav.popBackStack("home", false) },
             )
         }
+    }
+}
+
+/** Content with an ad banner underneath. Only for non-gameplay screens. */
+@Composable
+private fun WithBanner(content: @Composable () -> Unit) {
+    Column(Modifier.fillMaxSize()) {
+        Box(Modifier.weight(1f)) { content() }
+        BannerAd()
     }
 }
 
@@ -364,7 +391,7 @@ private fun Scoreline(g: GameState) {
 }
 
 @Composable
-fun ResultsScreen(g: GameState, onAgain: () -> Unit, onHome: () -> Unit) {
+fun ResultsScreen(g: GameState, onAgain: () -> Unit, onHome: () -> Unit, onBonus: (() -> Unit)? = null) {
     Page(horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(24.dp))
         Text("GAME OVER", style = MaterialTheme.typography.headlineMedium, color = Cyan)
@@ -391,6 +418,9 @@ fun ResultsScreen(g: GameState, onAgain: () -> Unit, onHome: () -> Unit) {
         }
         Spacer(Modifier.height(16.dp))
         PrimaryButton("PLAY AGAIN", onAgain, Modifier.fillMaxWidth())
+        if (onBonus != null) OutlinedButton(onBonus, Modifier.fillMaxWidth().height(48.dp)) {
+            Text("Watch an ad: bonus game +5 rounds")
+        }
         TextButton(onHome) { Text("Home", color = MaterialTheme.colorScheme.onSurfaceVariant) }
     }
 }

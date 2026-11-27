@@ -72,4 +72,22 @@ class CoreTest {
         assertTrue(s.state.finished)
         assertTrue(s.state.winners.isEmpty())
     }
+
+    @Test fun interstitialIsFrequencyCapped() {
+        var now = 0L
+        val policy = AdPolicy(sessionsPerInterstitial = 2, minIntervalMs = 100, clock = { now })
+        assertFalse(policy.shouldShow(AdPlacement.SESSION_END_INTERSTITIAL)) // no session yet
+        policy.onSessionCompleted()
+        assertFalse(policy.shouldShow(AdPlacement.SESSION_END_INTERSTITIAL)) // 1st session
+        policy.onSessionCompleted()
+        assertTrue(policy.shouldShow(AdPlacement.SESSION_END_INTERSTITIAL)) // 2nd session
+        policy.onInterstitialShown()
+        policy.onSessionCompleted(); policy.onSessionCompleted() // 4th session, too soon
+        now = 50
+        assertFalse(policy.shouldShow(AdPlacement.SESSION_END_INTERSTITIAL))
+        now = 150
+        assertTrue(policy.shouldShow(AdPlacement.SESSION_END_INTERSTITIAL))
+        assertTrue(policy.shouldShow(AdPlacement.HOME_BANNER))
+        assertFalse(NoAds.shouldShow(AdPlacement.HOME_BANNER))
+    }
 }

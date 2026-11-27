@@ -7,4 +7,6 @@ Offline, pass-the-phone 18+ party game for Android. Truth, Dare, Would You Rathe
 
 Run engine tests: `gradle :core:test`. Build the app: open in Android Studio, or `gradle :app:assembleDebug` with the SDK installed (add a Gradle wrapper via `gradle wrapper`).
 
-Not included yet: online play (removed from scope), ads (`AdsProvider` seam in core; AdMob later), Room, help/report form.
+Ads: AdMob with Google's **sample/test** app and ad unit IDs only (`app/.../ads/AdIds.kt`, manifest meta-data). Home/mode/setup banner; one capped interstitial (every 2nd finished game, min 2 min apart, `AdPolicy` in core) as the game ends; optional rewarded ad on the results screen for a +5 round bonus game. No ads on the card screen. Swap in real IDs and add a consent flow before release.
+
+Not included yet: online play (removed from scope), Room, help/report form.
