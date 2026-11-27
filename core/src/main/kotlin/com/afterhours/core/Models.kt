@@ -9,6 +9,9 @@ enum class GameMode(val label: String) {
     @SerialName("dare") DARE("Dare"),
     @SerialName("wyr") WOULD_YOU_RATHER("Would You Rather"),
     @SerialName("couple") COUPLE("Couple"),
+    @SerialName("nhie") NEVER_HAVE_I_EVER("Never Have I Ever"),
+    @SerialName("mlt") MOST_LIKELY_TO("Most Likely To"),
+    @SerialName("hotseat") HOT_SEAT("Hot Seat"),
 }
 
 @Serializable

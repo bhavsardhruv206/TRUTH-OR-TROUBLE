@@ -38,6 +38,8 @@ data class GameState(
     val skips: Int,
     /** A whole-group moment shown before the current turn; null when none is pending. */
     val chaos: ChaosEvent? = null,
+    /** Spin-the-wheel game: a wheel picks the player and Truth or Dare each turn. */
+    val spin: Boolean = false,
 ) {
     val currentPlayer: Player get() = players[currentPlayerIndex]
     val scoreboard: List<Player> get() = players.sortedByDescending { it.score }
@@ -63,15 +65,19 @@ class GameSession(
     playedBefore: Set<String> = emptySet(),
     chaosEnabled: Boolean = true,
     language: String = CardLanguage.ENGLISH.code,
+    /** Spin the wheel: [mode] is ignored, each turn picks a random player and Truth or Dare. */
+    spin: Boolean = false,
 ) {
-    private val deck = CardDeck(cards, mode, intensity, random, language = language, playedBefore = playedBefore)
+    private val modes = if (spin) SPIN_MODES else listOf(mode)
+    private val decks = modes.associateWith { CardDeck(cards, it, intensity, random, language = language, playedBefore = playedBefore) }
+    private val picker = if (spin) FairPicker(playerNames.size, random) else null
     private val scheduler = ChaosScheduler(random, enabled = chaosEnabled)
     private val usedChaos = mutableSetOf<String>()
 
     /** Ids of cards drawn so far in this game, for remembering between games. */
-    val drawnCardIds: Set<String> get() = deck.drawnIds
+    val drawnCardIds: Set<String> get() = decks.values.flatMapTo(linkedSetOf()) { it.drawnIds }
     /** Ids of every card this game could draw. */
-    val eligibleCardIds: Set<String> get() = deck.eligibleIds
+    val eligibleCardIds: Set<String> get() = decks.values.flatMapTo(mutableSetOf()) { it.eligibleIds }
     private val textRandom = random
 
     var state: GameState
@@ -81,22 +87,26 @@ class GameSession(
         val valid = PlayerRules.validate(playerNames)
         require(valid is PlayerRules.Result.Valid) { (valid as PlayerRules.Result.Invalid).reason }
         require(totalRounds > 0) { "totalRounds must be positive" }
-        require(!deck.isEmpty) { "No cards for $mode / $intensity / $language" }
+        decks.forEach { (m, d) -> require(!d.isEmpty) { "No cards for $m / $intensity / $language" } }
         val players0 = valid.names.mapIndexed { i, n -> Player(i, n) }
-        val first = deck.draw()
+        val firstIndex = picker?.next() ?: 0
+        val first = drawCard()
         state = GameState(
             mode = mode,
             intensity = intensity,
             players = players0,
-            currentPlayerIndex = 0,
+            currentPlayerIndex = firstIndex,
             round = 1,
             totalRounds = totalRounds,
             card = first,
-            cardText = first?.let { CardText.render(it.text, players0[0], players0, textRandom) },
+            cardText = first?.let { CardText.render(it.text, players0[firstIndex], players0, textRandom) },
             finished = false,
             skips = 0,
+            spin = spin,
         )
     }
+
+    private fun drawCard(): Card? = decks.getValue(if (modes.size == 1) modes[0] else modes.random(textRandom)).draw()
 
     /** Current player did the truth/dare/choice: award points, move on. */
     fun complete() = advance(award = true)
@@ -120,8 +130,8 @@ class GameSession(
         state = if (s.round >= s.totalRounds) {
             s.copy(players = players, card = null, cardText = null, finished = true, skips = skips)
         } else {
-            val nextIndex = (s.currentPlayerIndex + 1) % players.size
-            val next = deck.draw()
+            val nextIndex = picker?.next() ?: ((s.currentPlayerIndex + 1) % players.size)
+            val next = drawCard()
             s.copy(
                 players = players,
                 currentPlayerIndex = nextIndex,
@@ -137,5 +147,7 @@ class GameSession(
     companion object {
         const val DEFAULT_ROUNDS = 10
         val ROUND_OPTIONS = listOf(8, 10, 15, 20)
+        /** The wheel chooses between these each turn. */
+        val SPIN_MODES = listOf(GameMode.TRUTH, GameMode.DARE)
     }
 }

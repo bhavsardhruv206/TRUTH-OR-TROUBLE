@@ -2416,5 +2416,755 @@
     "intensity": "wild",
     "language": "en",
     "safety": "safe"
+  },
+  {
+    "id": "nhie-001",
+    "text": "Never have I ever fallen asleep during a movie at the cinema.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-002",
+    "text": "Never have I ever pretended to know a song and mumbled the words.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-003",
+    "text": "Never have I ever waved back at someone who was waving at the person behind me.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-004",
+    "text": "Never have I ever eaten something that fell on the floor.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-005",
+    "text": "Never have I ever laughed so hard that something came out of my nose.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-006",
+    "text": "Never have I ever re-gifted a present.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-007",
+    "text": "Never have I ever walked into a glass door.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-008",
+    "text": "Never have I ever sent a message to the wrong group chat.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-009",
+    "text": "Never have I ever binge-watched a whole season in one day.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-010",
+    "text": "Never have I ever lied about my age to get a discount.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-011",
+    "text": "Never have I ever stalked an ex's profile late at night.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-012",
+    "text": "Never have I ever faked being sick to skip plans.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-013",
+    "text": "Never have I ever read someone's messages over their shoulder.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-014",
+    "text": "Never have I ever had a crush on a friend's sibling.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-015",
+    "text": "Never have I ever pretended my phone died to avoid replying.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-016",
+    "text": "Never have I ever said 'I'm on my way' before leaving home.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-017",
+    "text": "Never have I ever ghosted someone after a first date.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-018",
+    "text": "Never have I ever lied in this game already tonight.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-019",
+    "text": "Never have I ever kept a gift I promised to return.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-020",
+    "text": "Never have I ever blamed a smell on someone else.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "nhie-021",
+    "text": "Never have I ever had a crush on someone in this room.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-022",
+    "text": "Never have I ever sent a flirty text and instantly regretted it.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-023",
+    "text": "Never have I ever been on a date I wanted to leave within five minutes.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-024",
+    "text": "Never have I ever kissed someone and forgotten their name.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-025",
+    "text": "Never have I ever written a love letter I never sent.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-026",
+    "text": "Never have I ever practised a kiss on my hand or a pillow.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-027",
+    "text": "Never have I ever made a move on someone at a wedding.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-028",
+    "text": "Never have I ever pretended to be single when I wasn't.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-029",
+    "text": "Never have I ever had a dream about someone here.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "nhie-030",
+    "text": "Never have I ever had a secret relationship nobody knew about.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-001",
+    "text": "Who is most likely to forget their own birthday?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-002",
+    "text": "Who is most likely to become famous by accident?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-003",
+    "text": "Who is most likely to survive a zombie apocalypse?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-004",
+    "text": "Who is most likely to cry at an advert?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-005",
+    "text": "Who is most likely to get lost in their own neighbourhood?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-006",
+    "text": "Who is most likely to adopt ten pets?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-007",
+    "text": "Who is most likely to laugh at the worst moment?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-008",
+    "text": "Who is most likely to reply to a message three days later?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-009",
+    "text": "Who is most likely to win a reality show?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-010",
+    "text": "Who is most likely to start a business from their bedroom?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-011",
+    "text": "Who is most likely to text an ex tonight?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-012",
+    "text": "Who is most likely to have a secret social media account?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-013",
+    "text": "Who is most likely to cancel plans at the last minute?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-014",
+    "text": "Who is most likely to lie about where they are?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-015",
+    "text": "Who is most likely to fall for someone in one evening?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-016",
+    "text": "Who is most likely to read their partner's chats?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-017",
+    "text": "Who is most likely to spend a month's salary in one weekend?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-018",
+    "text": "Who is most likely to get into an argument with a stranger online?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-019",
+    "text": "Who is most likely to have the most embarrassing search history?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-020",
+    "text": "Who is most likely to be the first to get married?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "mlt-021",
+    "text": "Who is most likely to flirt their way out of trouble?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-022",
+    "text": "Who is most likely to have a crush on someone here right now?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-023",
+    "text": "Who is most likely to go on three dates in one week?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-024",
+    "text": "Who is most likely to slide into a celebrity's DMs?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-025",
+    "text": "Who is most likely to fall for their best friend?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-026",
+    "text": "Who is most likely to kiss someone at midnight on New Year's?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-027",
+    "text": "Who is most likely to have the wildest dating story?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-028",
+    "text": "Who is most likely to get back with an ex?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-029",
+    "text": "Who is most likely to elope without telling anyone?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mlt-030",
+    "text": "Who is most likely to break the most hearts?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hotseat-001",
+    "text": "Hot seat: {name}, the group asks you rapid-fire questions about your childhood. Answer fast, no thinking.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-002",
+    "text": "Hot seat: {name}, everyone asks you one 'this or that' question. You have two seconds per answer.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-003",
+    "text": "Hot seat: {name}, the group asks about your favourite foods, films and songs. No skipping allowed until time is up.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-004",
+    "text": "Hot seat: {name}, each player asks what you would do with a million rupees. Give a different answer every time.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-005",
+    "text": "Hot seat: {name}, the group fires questions about your school days. Keep it quick.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-006",
+    "text": "Hot seat: {name}, everyone asks you about your weirdest habits. Answer honestly.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-007",
+    "text": "Hot seat: {name}, the group asks about your dream holiday. Answer in one word each.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-008",
+    "text": "Hot seat: {name}, each player asks you a 'would you ever' question. Yes or no only.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-009",
+    "text": "Hot seat: {name}, {other} leads a mini interview about your perfect day.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-010",
+    "text": "Hot seat: {name}, the group asks about your biggest pet peeves. Rapid fire.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-011",
+    "text": "Hot seat: {name}, the group asks about your past relationships. Answer or say 'pass' at most twice.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-012",
+    "text": "Hot seat: {name}, everyone asks you about your most embarrassing moments.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-013",
+    "text": "Hot seat: {name}, each player asks what you really think of them. Be kind but honest.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-014",
+    "text": "Hot seat: {name}, the group asks about the last lie you told. Defend yourself.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-015",
+    "text": "Hot seat: {name}, {other} asks the questions and everyone else judges your answers.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-016",
+    "text": "Hot seat: {name}, the group asks about your worst date ever.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-017",
+    "text": "Hot seat: {name}, everyone asks about your secret talents and guilty pleasures.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-018",
+    "text": "Hot seat: {name}, the group asks about your screen time and most-used apps. Show the stats if you dare.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-019",
+    "text": "Hot seat: {name}, each player asks you who you would call in an emergency and why.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-020",
+    "text": "Hot seat: {name}, the group grills you about the last thing you got in trouble for.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-021",
+    "text": "Hot seat: {name}, the group asks about your crushes, past and present. Two passes allowed.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-022",
+    "text": "Hot seat: {name}, everyone asks about your ideal partner. Be specific.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-023",
+    "text": "Hot seat: {name}, {other} asks three flirty questions. Answer each with a straight face.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-024",
+    "text": "Hot seat: {name}, the group asks about your boldest move on a date.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-025",
+    "text": "Hot seat: {name}, each player asks a 'have you ever' about romance. Yes or no only.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-026",
+    "text": "Hot seat: {name}, the group asks about your most awkward kiss.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-027",
+    "text": "Hot seat: {name}, everyone asks who in this room you would date if you had to choose.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-028",
+    "text": "Hot seat: {name}, the group asks about the cheesiest pickup line you have used or heard.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-029",
+    "text": "Hot seat: {name}, each player asks about your dating red flags. Own them.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hotseat-030",
+    "text": "Hot seat: {name}, the group asks about your most romantic secret. Skip once if you need to.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
   }
 ]

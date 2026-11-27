@@ -20,6 +20,11 @@ class Feedback(private val haptic: HapticFeedback, private val tone: ToneGenerat
         if (soundOn) tone?.startTone(ToneGenerator.TONE_PROP_ACK, 60)
     }
 
+    /** The spinning wheel passed a slice. Haptic only, so a long spin stays quiet. */
+    fun tick() {
+        if (hapticsOn) haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+    }
+
     /** A choice was confirmed (done, skip, start). */
     fun tap() {
         if (hapticsOn) haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)

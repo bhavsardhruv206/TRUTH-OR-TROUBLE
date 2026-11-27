@@ -24,6 +24,9 @@ class CoreTest {
         assertEquals(100, counts[GameMode.DARE])
         assertEquals(60, counts[GameMode.WOULD_YOU_RATHER])
         assertEquals(40, counts[GameMode.COUPLE])
+        assertEquals(30, counts[GameMode.NEVER_HAVE_I_EVER])
+        assertEquals(30, counts[GameMode.MOST_LIKELY_TO])
+        assertEquals(30, counts[GameMode.HOT_SEAT])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -162,7 +165,7 @@ class CoreTest {
     @Test fun timedDaresHaveSaneTimers() {
         val timed = cards.filter { it.timerSeconds != null }
         assertTrue(timed.size >= 10)
-        assertTrue(timed.all { it.category == GameMode.DARE && it.timerSeconds!! in 5..120 })
+        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT) && it.timerSeconds!! in 5..120 })
     }
 
     @Test fun previouslyPlayedCardsComeLast() {
@@ -202,5 +205,58 @@ class CoreTest {
         assertEquals(setOf("x", "a"), SeenCardMemory.update(setOf("x"), setOf("a"), eligible))
         // pool fully seen: forget it, but keep the very last card so it is not first next time
         assertEquals(setOf("x", "c"), SeenCardMemory.update(setOf("x", "a", "b"), linkedSetOf("b", "c"), eligible))
+    }
+
+    @Test fun newModesFollowTheirFormat() {
+        allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
+        allCards.filter { it.category == GameMode.MOST_LIKELY_TO && it.language == "en" }.forEach { assertTrue(it.text.startsWith("Who is most likely to"), it.id) }
+        allCards.filter { it.category == GameMode.HOT_SEAT }.forEach {
+            assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
+            assertEquals(60, it.timerSeconds, it.id)
+        }
+    }
+
+    @Test fun wheelLandsOnRequestedSlice() {
+        val random = Random(11)
+        for (segments in 1..8) {
+            var rotation = 0f
+            repeat(50) {
+                val target = random.nextInt(segments)
+                val next = Wheel.targetRotation(rotation, segments, target, fullTurns = 3, offset = Wheel.randomOffset(random))
+                assertTrue(next - rotation >= 3 * 360f, "spins at least the full turns")
+                assertTrue(next - rotation < 4 * 360f, "never more than one extra turn")
+                assertEquals(target, Wheel.indexAt(next, segments), "segments=$segments")
+                rotation = next
+            }
+        }
+        assertEquals(0, Wheel.indexAt(0f, 4)) // slice 0 starts at the pointer
+        assertEquals(3, Wheel.indexAt(10f, 4)) // turning clockwise brings the last slice under it
+    }
+
+    @Test fun fairPickerSpreadsTurnsAndNeverRepeats() {
+        val picker = FairPicker(5, Random(4))
+        val picks = List(50) { picker.next() }
+        picks.zipWithNext().forEach { (a, b) -> assertNotEquals(a, b) }
+        assertTrue(picks.groupingBy { it }.eachCount().values.all { it == 10 })
+        assertEquals(listOf(0, 0, 0), FairPicker(1, Random(1)).let { p -> List(3) { p.next() } })
+    }
+
+    @Test fun spinSessionMixesTruthAndDareAndPicksPlayersFairly() {
+        val names = listOf("Ann", "Bo", "Cy")
+        val s = GameSession(cards, GameMode.COUPLE, Intensity.WILD, names, totalRounds = 30, random = Random(5), chaosEnabled = false, spin = true)
+        assertTrue(s.state.spin)
+        val categories = mutableListOf<GameMode>()
+        val turns = mutableListOf<Int>()
+        while (!s.state.finished) {
+            categories += s.state.card!!.category
+            turns += s.state.currentPlayerIndex
+            s.complete()
+        }
+        assertEquals(setOf(GameMode.TRUTH, GameMode.DARE), categories.toSet())
+        turns.zipWithNext().forEach { (a, b) -> assertNotEquals(a, b) }
+        assertEquals(listOf(10, 10, 10), names.indices.map { i -> turns.count { it == i } })
+        // points went to whoever the wheel picked
+        assertTrue(s.state.players.all { it.score > 0 })
+        assertTrue(s.drawnCardIds.all { id -> cards.first { it.id == id }.category in GameSession.SPIN_MODES })
     }
 }

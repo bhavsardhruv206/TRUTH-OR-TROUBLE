@@ -772,5 +772,230 @@
     "intensity": "wild",
     "language": "hi-Latn",
     "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-nhie-001",
+    "text": "Never have I ever mummy se jhooth bola ki homework ho gaya hai.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-002",
+    "text": "Never have I ever shaadi mein sirf khaane ke liye gaya.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-003",
+    "text": "Never have I ever auto wale se 10 rupaye ke liye 10 minute behas ki.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-004",
+    "text": "Never have I ever kisi ka message 'seen' karke ignore kiya.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-005",
+    "text": "Never have I ever ghar walon se chhupke party ki.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-006",
+    "text": "Never have I ever ex ki profile raat ko 2 baje dekhi.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-nhie-007",
+    "text": "Never have I ever is group mein kisi pe crush kiya.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-nhie-008",
+    "text": "Never have I ever date pe jaake bore hoke bahana banaya.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-nhie-009",
+    "text": "Never have I ever kisi ko flirty text bhejke turant delete kiya.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-mlt-001",
+    "text": "Kaun sabse zyada chance hai ki Maggi bhi jala de?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-002",
+    "text": "Kaun sabse zyada chance hai ki family WhatsApp group pe good morning bheje?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-003",
+    "text": "Kaun sabse zyada chance hai ki movie mein so jaaye?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-004",
+    "text": "Kaun sabse zyada chance hai ki aaj raat ex ko text kare?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-005",
+    "text": "Kaun sabse zyada chance hai ki 'bas paanch minute' bolke ek ghanta late aaye?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-006",
+    "text": "Kaun sabse zyada chance hai ki salary aate hi sab udaa de?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-mlt-007",
+    "text": "Kaun sabse zyada chance hai ki shaadi mein kisi pe line maare?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-mlt-008",
+    "text": "Kaun sabse zyada chance hai ki apne best friend pe hi fida ho jaaye?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-mlt-009",
+    "text": "Kaun sabse zyada chance hai ki sabse filmy proposal kare?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-hotseat-001",
+    "text": "Hot seat: {name}, sab tumse bachpan ke baare mein fatafat sawaal poochenge.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-002",
+    "text": "Hot seat: {name}, har player ek 'ye ya woh' poochega. Do second mein jawaab do.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-003",
+    "text": "Hot seat: {name}, {other} tumhara mini interview lega favourite khaane aur filmon pe.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-004",
+    "text": "Hot seat: {name}, sab tumse sabse embarrassing moments ke baare mein poochenge.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-005",
+    "text": "Hot seat: {name}, har player poochega tum unke baare mein sach mein kya sochte ho.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-006",
+    "text": "Hot seat: {name}, group tumse aakhri jhooth ke baare mein poochega.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-007",
+    "text": "Hot seat: {name}, group tumse crushes ke baare mein poochega. Do baar pass kar sakte ho.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-008",
+    "text": "Hot seat: {name}, sab poochenge tumhara ideal partner kaisa ho.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-hotseat-009",
+    "text": "Hot seat: {name}, {other} teen flirty sawaal poochega. Seedha chehra rakhna.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
   }
 ]
