@@ -93,8 +93,8 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     adsRemoved = adsRemoved,
                     removeAdsPrice = price,
                     privacyRequired = privacyRequired,
-                    onPlay = { feedback.tap(); nav.navigate("mode") },
-                    onSpin = { feedback.tap(); vm.selectSpin(); nav.navigate("mode") },
+                    onPlay = { feedback.tap(); nav.navigate("games") },
+                    onSpin = { feedback.tap(); vm.selectSpin(); nav.navigate("difficulty") },
                     onHowToPlay = { nav.navigate("tutorial") },
                     onSound = vm::setSound,
                     onHaptics = vm::setHaptics,
@@ -106,10 +106,20 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                 )
             }
         }
-        composable("mode") {
+        composable("games") {
             val s by vm.setup.collectAsStateWithLifecycle()
             WithBanner(showBanner) {
-                ModeScreen(s, vm::selectMode, vm::selectSpin, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
+                GamesScreen(
+                    s,
+                    onPick = { m -> feedback.tap(); if (m == null) vm.selectSpin() else vm.selectMode(m); nav.navigate("difficulty") },
+                    onBack = { nav.popBackStack() },
+                )
+            }
+        }
+        composable("difficulty") {
+            val s by vm.setup.collectAsStateWithLifecycle()
+            WithBanner(showBanner) {
+                DifficultyScreen(s, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
             }
         }
         composable("setup") {
@@ -341,7 +351,7 @@ private data class TutorialStep(val eyebrow: String, val title: String, val body
 
 private val tutorialSteps = listOf(
     TutorialStep("1 / 5", "Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
-    TutorialStep("2 / 5", "Pick your game", "Spin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
+    TutorialStep("2 / 5", "Pick your game", "Open Games and tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
     TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
     TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
     TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
@@ -399,7 +409,7 @@ fun HomeScreen(
         Spacer(Modifier.height(20.dp))
         Muted("8 games for 2 to 8 adults.", textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
-        PrimaryButton("Play", onPlay, Modifier.fillMaxWidth())
+        PrimaryButton("Games", onPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
         SecondaryButton("Spin the wheel", onSpin, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
@@ -500,18 +510,22 @@ private fun SwitchRow(label: String, checked: Boolean, onChange: (Boolean) -> Un
     }
 }
 
-private fun modeDescription(m: GameMode) = when (m) {
-    GameMode.TRUTH -> "Answer honestly"
-    GameMode.DARE -> "Do what the card says"
-    GameMode.WOULD_YOU_RATHER -> "Choose, then defend it"
-    GameMode.COUPLE -> "For partners"
-    GameMode.NEVER_HAVE_I_EVER -> "Hands up if you have done it"
-    GameMode.MOST_LIKELY_TO -> "Everyone points on three"
-    GameMode.HOT_SEAT -> "60 seconds of group questions"
-}
+/** One entry in the Games section. [mode] is null for Spin the Wheel, which mixes Truth and Dare. */
+private data class GameEntry(val key: String, val title: String, val blurb: String, val howTo: String, val mode: GameMode?, val group: String)
 
-private val classicModes = listOf(GameMode.TRUTH, GameMode.DARE, GameMode.WOULD_YOU_RATHER, GameMode.COUPLE)
-private val groupModes = GameMode.entries - classicModes.toSet()
+private val games = listOf(
+    GameEntry("spin", "Spin the Wheel", "The wheel decides", "Spin to pick who plays, then spin again for Truth or Dare. Everyone gets an even number of turns.", null, "Featured"),
+    GameEntry("truth", GameMode.TRUTH.label, "Answer honestly", "Read the question out loud and answer it truthfully. Skip if you'd rather not.", GameMode.TRUTH, "Classic"),
+    GameEntry("dare", GameMode.DARE.label, "Do what the card says", "Do the dare in front of the group. Some dares come with a timer.", GameMode.DARE, "Classic"),
+    GameEntry("wyr", GameMode.WOULD_YOU_RATHER.label, "Choose, then defend it", "Pick one of the two options and convince the group you chose right.", GameMode.WOULD_YOU_RATHER, "Classic"),
+    GameEntry("couple", GameMode.COUPLE.label, "For partners", "Questions and dares made for two people who know each other well.", GameMode.COUPLE, "Classic"),
+    GameEntry("nhie", GameMode.NEVER_HAVE_I_EVER.label, "Hands up if you have", "Read the line out. Everyone who has done it raises a hand and the group can ask for the story.", GameMode.NEVER_HAVE_I_EVER, "Whole group"),
+    GameEntry("mlt", GameMode.MOST_LIKELY_TO.label, "Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.", GameMode.MOST_LIKELY_TO, "Whole group"),
+    GameEntry("hot", GameMode.HOT_SEAT.label, "60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.", GameMode.HOT_SEAT, "Whole group"),
+)
+
+private fun selectedGame(s: SetupState): GameEntry =
+    if (s.spin) games.first() else games.firstOrNull { it.mode == s.mode } ?: games.first()
 
 private fun intensityDescription(i: Intensity) = when (i) {
     Intensity.CHILL -> "Light and easy"
@@ -519,31 +533,64 @@ private fun intensityDescription(i: Intensity) = when (i) {
     Intensity.WILD -> "Everything, including the boldest"
 }
 
+/** The Games section: every game as its own tile. Tapping one opens its difficulty choice. */
 @Composable
-fun ModeScreen(
+fun GamesScreen(s: SetupState, onPick: (GameMode?) -> Unit, onBack: () -> Unit) {
+    val current = selectedGame(s)
+    Page {
+        BackRow(onBack)
+        Text("Games", style = MaterialTheme.typography.headlineMedium)
+        Muted("${games.size} games · pick one to play", Modifier.padding(top = 4.dp, bottom = 12.dp))
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            games.groupBy { it.group }.forEach { (group, entries) ->
+                Eyebrow(group, modifier = Modifier.padding(top = 6.dp))
+                entries.chunked(2).forEach { pair ->
+                    Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        pair.forEach { g -> GameTile(g, g == current, Modifier.weight(1f).fillMaxHeight(), wide = pair.size == 1 && group == "Featured") { onPick(g.mode) } }
+                        if (pair.size == 1 && group != "Featured") Spacer(Modifier.weight(1f))
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(16.dp)
+    Column(
+        modifier.clip(shape)
+            .background(if (selected) GraphiteHigh else Graphite)
+            .border(1.dp, if (selected || wide) Champagne.copy(alpha = if (selected) 1f else .5f) else Hairline, shape)
+            .clickable(onClick = onClick)
+            .padding(16.dp),
+    ) {
+        if (wide) { Eyebrow("New"); Spacer(Modifier.height(6.dp)) }
+        Text(g.title, style = MaterialTheme.typography.titleLarge, color = Ivory)
+        Spacer(Modifier.height(4.dp))
+        Text(g.blurb, style = MaterialTheme.typography.bodyMedium, color = Stone)
+    }
+}
+
+/** Difficulty and language for the chosen game, with a one-line how-to. */
+@Composable
+fun DifficultyScreen(
     s: SetupState,
-    onMode: (GameMode) -> Unit,
-    onSpin: () -> Unit,
     onIntensity: (Intensity) -> Unit,
     onLanguage: (CardLanguage) -> Unit,
     onNext: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val g = selectedGame(s)
     Page {
         BackRow(onBack)
-        Text("Choose a game", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(16.dp))
+        Eyebrow(g.group)
+        Text(g.title, style = MaterialTheme.typography.headlineMedium)
+        Spacer(Modifier.height(8.dp))
+        Text(g.howTo, style = MaterialTheme.typography.bodyLarge, color = Stone)
+        Spacer(Modifier.height(20.dp))
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Eyebrow("Featured")
-            OptionRow("Spin the Wheel", "The wheel picks who plays, then Truth or Dare", s.spin, onSpin)
-            Spacer(Modifier.height(12.dp))
-            Eyebrow("Classic")
-            classicModes.forEach { m -> OptionRow(m.label, modeDescription(m), !s.spin && m == s.mode) { onMode(m) } }
-            Spacer(Modifier.height(12.dp))
-            Eyebrow("Whole group")
-            groupModes.forEach { m -> OptionRow(m.label, modeDescription(m), !s.spin && m == s.mode) { onMode(m) } }
-            Spacer(Modifier.height(12.dp))
-            Eyebrow("Intensity")
+            Eyebrow("Difficulty")
             Intensity.entries.forEach { i ->
                 OptionRow("${i.label}  ·  ${i.points} pt", intensityDescription(i), i == s.intensity) { onIntensity(i) }
             }
@@ -552,7 +599,7 @@ fun ModeScreen(
             Segmented(CardLanguage.entries, s.language, { it.label }, onLanguage)
         }
         Spacer(Modifier.height(16.dp))
-        PrimaryButton("Next", onNext, Modifier.fillMaxWidth())
+        PrimaryButton("Next: players", onNext, Modifier.fillMaxWidth())
     }
 }
 
