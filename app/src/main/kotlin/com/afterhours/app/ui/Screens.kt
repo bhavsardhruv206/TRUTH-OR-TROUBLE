@@ -1,24 +1,35 @@
 package com.afterhours.app.ui
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material3.Card
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -28,72 +39,125 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.ui.platform.LocalContext
+import com.afterhours.app.AppConfig
 import com.afterhours.app.GameViewModel
+import com.afterhours.app.SetupState
 import com.afterhours.app.ads.AdManager
 import com.afterhours.app.ads.BannerAd
+import com.afterhours.app.ads.ConsentManager
+import com.afterhours.app.billing.BillingManager
+import com.afterhours.app.data.Settings
 import com.afterhours.core.*
+import kotlinx.coroutines.delay
 
 @Composable
-fun AfterHoursApp(vm: GameViewModel, ads: AdManager) {
+fun AfterHoursApp(vm: GameViewModel, ads: AdManager, consent: ConsentManager, billing: BillingManager) {
     val age by vm.ageConfirmed.collectAsStateWithLifecycle()
+    val tutorial by vm.tutorialSeen.collectAsStateWithLifecycle()
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        when (age) {
-            null -> Unit
-            false -> AgeGateScreen(onConfirm = vm::confirmAge)
-            true -> AppNav(vm, ads)
+        when {
+            age == null || tutorial == null -> Unit
+            age == false -> AgeGateScreen(onConfirm = vm::confirmAge)
+            else -> AppNav(vm, ads, consent, billing, startWithTutorial = tutorial == false)
         }
     }
 }
 
 @Composable
-private fun AppNav(vm: GameViewModel, ads: AdManager) {
+private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, billing: BillingManager, startWithTutorial: Boolean) {
     val nav = rememberNavController()
-    val activity = LocalContext.current as android.app.Activity
-    NavHost(nav, startDestination = "home") {
-        composable("home") { WithBanner { HomeScreen(onPlay = { nav.navigate("mode") }) } }
+    val activity = LocalContext.current as Activity
+    val settings by vm.settings.collectAsStateWithLifecycle()
+    val adsRemoved by vm.adsRemoved.collectAsStateWithLifecycle()
+    val adsReady by ads.ready.collectAsStateWithLifecycle()
+    val feedback = rememberFeedback(settings.sound, settings.haptics)
+    val showBanner = adsReady && !adsRemoved
+
+    // Fixed at first composition: the start destination must not change once the graph exists.
+    val start = remember { if (startWithTutorial) "tutorial" else "home" }
+
+    NavHost(nav, startDestination = start) {
+        composable("tutorial") {
+            TutorialScreen(onDone = {
+                vm.finishTutorial()
+                if (nav.previousBackStackEntry != null) nav.popBackStack()
+                else nav.navigate("home") { popUpTo("tutorial") { inclusive = true } }
+            })
+        }
+        composable("home") {
+            val privacyRequired by consent.privacyOptionsRequired.collectAsStateWithLifecycle()
+            val price by billing.price.collectAsStateWithLifecycle()
+            WithBanner(showBanner) {
+                HomeScreen(
+                    settings = settings,
+                    adsRemoved = adsRemoved,
+                    removeAdsPrice = price,
+                    privacyRequired = privacyRequired,
+                    onPlay = { feedback.tap(); nav.navigate("mode") },
+                    onHowToPlay = { nav.navigate("tutorial") },
+                    onSound = vm::setSound,
+                    onHaptics = vm::setHaptics,
+                    onChaos = vm::setChaos,
+                    onResetSeen = vm::resetSeenCards,
+                    onPrivacy = { consent.showPrivacyOptions(activity) },
+                    onRemoveAds = { billing.buy(activity) },
+                    onRestore = { billing.refresh() },
+                )
+            }
+        }
         composable("mode") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            WithBanner {
-                ModeScreen(s, vm::selectMode, vm::selectIntensity, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
+            WithBanner(showBanner) {
+                ModeScreen(s, vm::selectMode, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
             }
         }
         composable("setup") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            WithBanner {
+            WithBanner(showBanner) {
                 SetupScreen(
                     s, vm::setName, vm::addPlayer, vm::removePlayer, vm::selectRounds,
-                    onStart = { if (vm.startGame()) nav.navigate("game") },
+                    onStart = { if (vm.startGame()) { feedback.tap(); nav.navigate("game") } },
                     onBack = { nav.popBackStack() },
                 )
             }
         }
         composable("game") {
             val g by vm.game.collectAsStateWithLifecycle()
-            val state = g
-            if (state == null) return@composable
+            val state = g ?: return@composable
             LaunchedEffect(state.finished) {
                 if (state.finished) {
+                    feedback.alert()
                     nav.navigate("results") { popUpTo("game") { inclusive = true } }
                     // Natural break: the game just ended. Capped interstitial, never mid-card.
                     ads.onSessionCompleted(activity)
                 }
             }
-            if (!state.finished) GameScreen(state, vm::complete, vm::skip, onQuit = {
-                vm.endGame(); nav.popBackStack("home", false)
-            })
+            if (!state.finished) GameScreen(
+                state, feedback,
+                onComplete = { feedback.tap(); vm.complete() },
+                onSkip = { feedback.tap(); vm.skip() },
+                onDismissChaos = vm::dismissChaos,
+                onReport = { reason ->
+                    val card = state.card
+                    if (card != null) sendReport(activity, card, reason)
+                    vm.reportCurrentCard()
+                },
+                onQuit = { vm.endGame(); nav.popBackStack("home", false) },
+            )
         }
         composable("results") {
             val g by vm.game.collectAsStateWithLifecycle()
             val state = g ?: return@composable
             val rewardedReady by ads.rewardedReady.collectAsStateWithLifecycle()
+            val startBonus: () -> Unit = { if (vm.playBonus()) nav.navigate("game") { popUpTo("results") { inclusive = true } } }
             ResultsScreen(
                 state,
-                onBonus = if (rewardedReady) ({
-                    ads.showRewarded(activity) {
-                        if (vm.playBonus()) nav.navigate("game") { popUpTo("results") { inclusive = true } }
-                    }
-                }) else null,
+                bonusLabel = when {
+                    adsRemoved -> "Bonus game, +5 rounds"
+                    rewardedReady -> "Watch an ad for a bonus game, +5 rounds"
+                    else -> null
+                },
+                onBonus = { if (adsRemoved) startBonus() else ads.showRewarded(activity) { startBonus() } },
                 onAgain = { vm.playAgain(); nav.navigate("game") { popUpTo("results") { inclusive = true } } },
                 onHome = { vm.endGame(); nav.popBackStack("home", false) },
             )
@@ -101,14 +165,30 @@ private fun AppNav(vm: GameViewModel, ads: AdManager) {
     }
 }
 
-/** Content with an ad banner underneath. Only for non-gameplay screens. */
-@Composable
-private fun WithBanner(content: @Composable () -> Unit) {
-    Column(Modifier.fillMaxSize()) {
-        Box(Modifier.weight(1f)) { content() }
-        BannerAd()
+/** Opens the mail app with a pre-filled report when a support address is configured. */
+private fun sendReport(activity: Activity, card: com.afterhours.core.Card, reason: String) {
+    if (AppConfig.SUPPORT_EMAIL.isBlank()) return
+    val body = "Card: ${card.id}\nReason: $reason\n\n${card.text}"
+    val uri = Uri.parse(
+        "mailto:${AppConfig.SUPPORT_EMAIL}?subject=" + Uri.encode("Card report: ${card.id}") + "&body=" + Uri.encode(body),
+    )
+    try {
+        activity.startActivity(Intent(Intent.ACTION_SENDTO, uri))
+    } catch (e: android.content.ActivityNotFoundException) {
+        // No mail app: the card is still hidden locally.
     }
 }
+
+/** Content with an ad banner underneath. Only for non-gameplay screens. */
+@Composable
+private fun WithBanner(show: Boolean, content: @Composable () -> Unit) {
+    Column(Modifier.fillMaxSize()) {
+        Box(Modifier.weight(1f)) { content() }
+        if (show) BannerAd()
+    }
+}
+
+// ---------- Building blocks ----------
 
 @Composable
 private fun Page(
@@ -118,176 +198,349 @@ private fun Page(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
-        modifier.fillMaxSize().background(NightBrush).statusBarsPadding().navigationBarsPadding().padding(24.dp),
+        modifier.fillMaxSize().background(BackdropBrush).statusBarsPadding().navigationBarsPadding()
+            .padding(horizontal = 24.dp, vertical = 20.dp),
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         content = content,
     )
 }
 
-/** Two-tone wordmark: cyan "TRUTH", small "or", hot-gradient "TROUBLE". */
+/** Serif wordmark with a hairline rule. */
 @Composable
-private fun Logo(modifier: Modifier = Modifier, horizontalAlignment: Alignment.Horizontal = Alignment.Start) {
-    Column(modifier, horizontalAlignment = horizontalAlignment) {
-        Text("TRUTH", style = MaterialTheme.typography.displayMedium, color = Cyan)
-        Text(
-            "or", fontSize = 18.sp, fontWeight = FontWeight.Bold, letterSpacing = 4.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Text(
-            "TROUBLE",
-            style = MaterialTheme.typography.displayMedium.copy(brush = HotBrush),
-        )
+private fun Wordmark(modifier: Modifier = Modifier) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("Truth", style = MaterialTheme.typography.displayMedium, color = MaterialTheme.colorScheme.onBackground)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.width(28.dp).height(1.dp).background(Champagne))
+            Text(
+                "OR", style = MaterialTheme.typography.labelSmall, color = Champagne,
+                modifier = Modifier.padding(horizontal = 12.dp),
+            )
+            Box(Modifier.width(28.dp).height(1.dp).background(Champagne))
+        }
+        Text("Trouble", style = MaterialTheme.typography.displayMedium, color = MaterialTheme.colorScheme.onBackground)
     }
 }
 
 @Composable
-private fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true, height: Int = 56) {
-    val shape = RoundedCornerShape(18.dp)
-    Box(
-        modifier.height(height.dp).clip(shape)
-            .background(if (enabled) HotBrush else Brush.horizontalGradient(listOf(PlumHigh, PlumHigh)))
-            .clickable(enabled = enabled, onClick = onClick),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text, style = MaterialTheme.typography.labelLarge, fontSize = 17.sp,
-            color = if (enabled) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
+private fun Eyebrow(text: String, color: Color = Champagne, modifier: Modifier = Modifier) =
+    Text(text.uppercase(), style = MaterialTheme.typography.labelSmall, color = color, modifier = modifier)
+
+@Composable
+private fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
+    Button(
+        onClick, modifier.height(54.dp), enabled = enabled,
+        shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Champagne, contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContainerColor = GraphiteHigh, disabledContentColor = Stone,
+        ),
+    ) { Text(text.uppercase(), style = MaterialTheme.typography.labelLarge) }
 }
+
+@Composable
+private fun SecondaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    OutlinedButton(
+        onClick, modifier.height(50.dp), shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, HairlineStrong),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = Ivory),
+    ) { Text(text, style = MaterialTheme.typography.bodyLarge) }
+}
+
+@Composable
+private fun QuietButton(text: String, onClick: () -> Unit, color: Color = Stone) =
+    TextButton(onClick) { Text(text, color = color, style = MaterialTheme.typography.bodyMedium) }
 
 @Composable
 private fun Muted(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null) =
-    Text(text, modifier, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = textAlign)
+    Text(text, modifier, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = textAlign, style = MaterialTheme.typography.bodyMedium)
 
 @Composable
-private fun Pill(text: String, color: Color) {
+private fun Tag(text: String, color: Color) {
     Text(
-        text, color = color, style = MaterialTheme.typography.labelLarge, fontSize = 12.sp,
-        modifier = Modifier.border(1.dp, color.copy(alpha = .7f), RoundedCornerShape(50)).padding(horizontal = 12.dp, vertical = 5.dp),
+        text.uppercase(), color = color, style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier.border(1.dp, color.copy(alpha = .5f), RoundedCornerShape(50)).padding(horizontal = 10.dp, vertical = 4.dp),
     )
 }
 
 @Composable
+private fun BackRow(onBack: () -> Unit) {
+    TextButton(onBack, contentPadding = PaddingValues(0.dp)) {
+        Text("‹  Back", color = Stone, style = MaterialTheme.typography.bodyMedium)
+    }
+}
+
+/** A selectable row: title, optional description, champagne edge when selected. */
+@Composable
+private fun OptionRow(title: String, description: String?, selected: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(12.dp)
+    Row(
+        Modifier.fillMaxWidth().clip(shape)
+            .background(if (selected) GraphiteHigh else Graphite)
+            .border(1.dp, if (selected) Champagne else Hairline, shape)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(title, style = MaterialTheme.typography.titleMedium, color = Ivory)
+            if (description != null) Text(description, style = MaterialTheme.typography.bodyMedium, color = Stone)
+        }
+        if (selected) Text("●", color = Champagne, fontSize = 10.sp)
+    }
+}
+
+/** A compact row of equal segments, for short choices like rounds or language. */
+@Composable
+private fun <T> Segmented(items: List<T>, selected: T, label: (T) -> String, onSelect: (T) -> Unit) {
+    val shape = RoundedCornerShape(12.dp)
+    Row(Modifier.fillMaxWidth().clip(shape).border(1.dp, Hairline, shape).background(Graphite)) {
+        items.forEach { item ->
+            val on = item == selected
+            Box(
+                Modifier.weight(1f).background(if (on) GraphiteHigh else Color.Transparent)
+                    .clickable { onSelect(item) }.padding(vertical = 12.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(label(item), color = if (on) Champagne else Stone, style = MaterialTheme.typography.titleMedium)
+            }
+        }
+    }
+}
+
+// ---------- Screens ----------
+
+@Composable
 fun AgeGateScreen(onConfirm: () -> Unit) {
     var checked by remember { mutableStateOf(false) }
-    Page(verticalArrangement = Arrangement.Center, modifier = Modifier) {
-        Logo()
-        Spacer(Modifier.height(24.dp))
-        Pill("18+ ONLY", Magenta)
+    Page(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Wordmark()
+        Spacer(Modifier.height(40.dp))
+        Eyebrow("Adults only · 18+")
         Spacer(Modifier.height(12.dp))
-        Text("This game is for adults only.", style = MaterialTheme.typography.titleLarge)
-        Spacer(Modifier.height(8.dp))
         Text(
-            "Truth or Trouble contains cheeky questions and dares meant for people aged 18 and over. " +
-                "You can skip anything, any time, with no penalty.",
-            style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            "Cheeky questions and dares for grown-ups. Skip anything, any time, with no penalty.",
+            style = MaterialTheme.typography.bodyLarge, color = Stone, textAlign = TextAlign.Center,
         )
-        Spacer(Modifier.height(24.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Spacer(Modifier.height(28.dp))
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.clickable { checked = !checked }) {
             Checkbox(
                 checked, { checked = it },
-                colors = CheckboxDefaults.colors(checkedColor = Magenta, uncheckedColor = MaterialTheme.colorScheme.outline),
+                colors = CheckboxDefaults.colors(checkedColor = Champagne, checkmarkColor = Charcoal, uncheckedColor = HairlineStrong),
             )
-            Text("I confirm that I am 18 years or older.")
+            Text("I am 18 years or older.", style = MaterialTheme.typography.bodyLarge)
         }
+        Spacer(Modifier.height(20.dp))
+        PrimaryButton("Enter", onConfirm, Modifier.fillMaxWidth(), enabled = checked)
+    }
+}
+
+private data class TutorialStep(val eyebrow: String, val title: String, val body: String)
+
+private val tutorialSteps = listOf(
+    TutorialStep("1 / 5", "Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
+    TutorialStep("2 / 5", "Pick your game", "Truth: answer honestly.\nDare: do it.\nWould You Rather: choose and explain.\nCouple: made for partners."),
+    TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
+    TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
+    TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
+)
+
+@Composable
+fun TutorialScreen(onDone: () -> Unit) {
+    var index by rememberSaveable { mutableIntStateOf(0) }
+    val step = tutorialSteps[index]
+    val last = index == tutorialSteps.lastIndex
+    Page {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { QuietButton("Skip", onDone) }
+        Spacer(Modifier.weight(1f))
+        Eyebrow(step.eyebrow)
+        Spacer(Modifier.height(12.dp))
+        Text(step.title, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(16.dp))
-        PrimaryButton("ENTER", onConfirm, Modifier.fillMaxWidth(), enabled = checked)
+        Text(step.body, style = MaterialTheme.typography.bodyLarge, color = Stone)
+        Spacer(Modifier.weight(1.4f))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            tutorialSteps.indices.forEach { i ->
+                Box(Modifier.weight(1f).height(2.dp).background(if (i <= index) Champagne else Hairline))
+            }
+        }
+        Spacer(Modifier.height(20.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            if (index > 0) SecondaryButton("Back", { index-- }, Modifier.weight(1f))
+            PrimaryButton(if (last) "Start playing" else "Next", { if (last) onDone() else index++ }, Modifier.weight(1f))
+        }
     }
 }
 
 @Composable
-fun HomeScreen(onPlay: () -> Unit) {
+fun HomeScreen(
+    settings: Settings,
+    adsRemoved: Boolean,
+    removeAdsPrice: String?,
+    privacyRequired: Boolean,
+    onPlay: () -> Unit,
+    onHowToPlay: () -> Unit,
+    onSound: (Boolean) -> Unit,
+    onHaptics: (Boolean) -> Unit,
+    onChaos: (Boolean) -> Unit,
+    onResetSeen: () -> Unit,
+    onPrivacy: () -> Unit,
+    onRemoveAds: () -> Unit,
+    onRestore: () -> Unit,
+) {
+    var showSettings by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
-    Page(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier) {
+    Page(horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.weight(1f))
-        Logo(horizontalAlignment = Alignment.CenterHorizontally)
+        Wordmark()
         Spacer(Modifier.height(20.dp))
-        Text("Truth. Dare. Chaos.", style = MaterialTheme.typography.titleMedium, color = Amber)
-        Spacer(Modifier.height(8.dp))
-        Muted("Pass the phone around. 2 to 8 players.", textAlign = TextAlign.Center)
+        Muted("A party game for 2 to 8 adults.", textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
-        PrimaryButton("PLAY", onPlay, Modifier.fillMaxWidth(), height = 64)
-        TextButton(onClick = { showHelp = true }) { Text("Help & safety", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        PrimaryButton("Play", onPlay, Modifier.fillMaxWidth())
+        Spacer(Modifier.height(10.dp))
+        SecondaryButton("How to play", onHowToPlay, Modifier.fillMaxWidth())
+        Spacer(Modifier.height(4.dp))
+        Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
+            QuietButton("Settings", { showSettings = true })
+            QuietButton("Help & safety", { showHelp = true })
+        }
     }
+    if (showSettings) SettingsDialog(
+        settings, adsRemoved, removeAdsPrice, privacyRequired,
+        onSound, onHaptics, onChaos, onResetSeen, onPrivacy, onRemoveAds, onRestore,
+        onDismiss = { showSettings = false },
+    )
     if (showHelp) AlertDialog(
         onDismissRequest = { showHelp = false },
-        confirmButton = { TextButton({ showHelp = false }) { Text("Got it") } },
-        title = { Text("Help & safety") },
+        containerColor = Graphite,
+        confirmButton = { TextButton({ showHelp = false }) { Text("Close", color = Champagne) } },
+        title = { Text("Help & safety", style = MaterialTheme.typography.titleLarge) },
         text = {
             Text(
                 "• Skip any card, any time, with no penalty.\n" +
                     "• Never share private info, contact strangers, share intimate media, drink anything you don't want to, or do anything unsafe.\n" +
-                    "• Scores are just for fun and have no value.\n" +
-                    "• Contact and in-app card reporting are coming in a later version."
+                    "• Use Report on a card to hide it for good.\n" +
+                    "• Scores are just for fun and have no value.",
+                style = MaterialTheme.typography.bodyMedium, color = Stone,
             )
         },
     )
 }
 
 @Composable
-private fun <T> ChoiceChips(items: List<T>, selected: T, label: (T) -> String, onSelect: (T) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        items.chunked(2).forEach { row ->
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                row.forEach { item ->
-                    FilterChip(
-                        selected = item == selected,
-                        onClick = { onSelect(item) },
-                        label = { Text(label(item), Modifier.padding(vertical = 8.dp), fontWeight = FontWeight.SemiBold) },
-                        shape = RoundedCornerShape(14.dp),
-                        colors = FilterChipDefaults.filterChipColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                            labelColor = MaterialTheme.colorScheme.onSurface,
-                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                            selectedLabelColor = Color.White,
-                        ),
-                        border = FilterChipDefaults.filterChipBorder(
-                            enabled = true, selected = item == selected,
-                            borderColor = MaterialTheme.colorScheme.outlineVariant,
-                            selectedBorderColor = Magenta, borderWidth = 1.dp, selectedBorderWidth = 2.dp,
-                        ),
-                    )
+private fun SettingsDialog(
+    settings: Settings,
+    adsRemoved: Boolean,
+    removeAdsPrice: String?,
+    privacyRequired: Boolean,
+    onSound: (Boolean) -> Unit,
+    onHaptics: (Boolean) -> Unit,
+    onChaos: (Boolean) -> Unit,
+    onResetSeen: () -> Unit,
+    onPrivacy: () -> Unit,
+    onRemoveAds: () -> Unit,
+    onRestore: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var resetDone by remember { mutableStateOf(false) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = Graphite,
+        confirmButton = { TextButton(onDismiss) { Text("Done", color = Champagne) } },
+        title = { Text("Settings", style = MaterialTheme.typography.titleLarge) },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                SwitchRow("Sound", settings.sound, onSound)
+                SwitchRow("Vibration", settings.haptics, onHaptics)
+                SwitchRow("Chaos moments", settings.chaos, onChaos, "Group events every few turns")
+                HorizontalDivider(Modifier.padding(vertical = 8.dp), color = Hairline)
+                TextButton({ onResetSeen(); resetDone = true }, contentPadding = PaddingValues(0.dp)) {
+                    Text(if (resetDone) "Played cards forgotten" else "Forget played cards", color = if (resetDone) Stone else Ivory)
+                }
+                if (privacyRequired) TextButton(onPrivacy, contentPadding = PaddingValues(0.dp)) { Text("Privacy choices", color = Ivory) }
+                HorizontalDivider(Modifier.padding(vertical = 8.dp), color = Hairline)
+                if (adsRemoved) {
+                    Text("Ads removed. Thank you.", color = Champagne, style = MaterialTheme.typography.bodyMedium)
+                } else {
+                    TextButton(onRemoveAds, enabled = removeAdsPrice != null, contentPadding = PaddingValues(0.dp)) {
+                        Text(
+                            if (removeAdsPrice != null) "Remove ads · $removeAdsPrice" else "Remove ads (unavailable)",
+                            color = if (removeAdsPrice != null) Champagne else Stone,
+                        )
+                    }
+                    TextButton(onRestore, contentPadding = PaddingValues(0.dp)) { Text("Restore purchase", color = Stone) }
                 }
             }
+        },
+    )
+}
+
+@Composable
+private fun SwitchRow(label: String, checked: Boolean, onChange: (Boolean) -> Unit, hint: String? = null) {
+    Row(
+        Modifier.fillMaxWidth().clickable { onChange(!checked) }.padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(label, style = MaterialTheme.typography.bodyLarge)
+            if (hint != null) Text(hint, style = MaterialTheme.typography.bodyMedium, color = Stone)
         }
+        Switch(
+            checked, onChange,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = Charcoal, checkedTrackColor = Champagne,
+                uncheckedThumbColor = Stone, uncheckedTrackColor = GraphiteHigh, uncheckedBorderColor = HairlineStrong,
+            ),
+        )
     }
+}
+
+private fun modeDescription(m: GameMode) = when (m) {
+    GameMode.TRUTH -> "Answer honestly"
+    GameMode.DARE -> "Do what the card says"
+    GameMode.WOULD_YOU_RATHER -> "Choose, then defend it"
+    GameMode.COUPLE -> "For partners"
+}
+
+private fun intensityDescription(i: Intensity) = when (i) {
+    Intensity.CHILL -> "Light and easy"
+    Intensity.BOLD -> "Cheekier, more personal"
+    Intensity.WILD -> "Everything, including the boldest"
 }
 
 @Composable
 fun ModeScreen(
-    s: com.afterhours.app.SetupState,
+    s: SetupState,
     onMode: (GameMode) -> Unit,
     onIntensity: (Intensity) -> Unit,
+    onLanguage: (CardLanguage) -> Unit,
     onNext: () -> Unit,
     onBack: () -> Unit,
 ) {
     Page {
-        TextButton(onBack) { Text("‹ Back", color = Amber) }
-        Text("Choose a mode", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-        Spacer(Modifier.height(12.dp))
-        ChoiceChips(GameMode.entries, s.mode, { it.label }, onMode)
-        Spacer(Modifier.height(24.dp))
-        Text("INTENSITY", style = MaterialTheme.typography.titleMedium, color = Amber)
-        Spacer(Modifier.height(8.dp))
-        ChoiceChips(Intensity.entries, s.intensity, { it.label }, onIntensity)
-        Text(
-            when (s.intensity) {
-                Intensity.CHILL -> "Light and silly."
-                Intensity.BOLD -> "Chill plus cheekier cards."
-                Intensity.WILD -> "Everything, including the boldest cards."
-            },
-            Modifier.padding(top = 8.dp), color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Spacer(Modifier.weight(1f))
-        PrimaryButton("NEXT", onNext, Modifier.fillMaxWidth())
+        BackRow(onBack)
+        Text("Choose a game", style = MaterialTheme.typography.headlineMedium)
+        Spacer(Modifier.height(16.dp))
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            GameMode.entries.forEach { m -> OptionRow(m.label, modeDescription(m), m == s.mode) { onMode(m) } }
+            Spacer(Modifier.height(12.dp))
+            Eyebrow("Intensity")
+            Intensity.entries.forEach { i ->
+                OptionRow("${i.label}  ·  ${i.points} pt", intensityDescription(i), i == s.intensity) { onIntensity(i) }
+            }
+            Spacer(Modifier.height(12.dp))
+            Eyebrow("Card language")
+            Segmented(CardLanguage.entries, s.language, { it.label }, onLanguage)
+        }
+        Spacer(Modifier.height(16.dp))
+        PrimaryButton("Next", onNext, Modifier.fillMaxWidth())
     }
 }
 
 @Composable
 fun SetupScreen(
-    s: com.afterhours.app.SetupState,
+    s: SetupState,
     onName: (Int, String) -> Unit,
     onAdd: () -> Unit,
     onRemove: (Int) -> Unit,
@@ -296,131 +549,243 @@ fun SetupScreen(
     onBack: () -> Unit,
 ) {
     Page {
-        TextButton(onBack) { Text("‹ Back", color = Amber) }
-        Text("Who's playing?", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-        Muted("${s.names.size} players (2 to 8)", Modifier.padding(bottom = 8.dp))
+        BackRow(onBack)
+        Text("Who's playing?", style = MaterialTheme.typography.headlineMedium)
+        Muted("${s.names.size} players · names are saved for next time", Modifier.padding(top = 4.dp, bottom = 12.dp))
         LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             itemsIndexed(s.names) { i, name ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
                         value = name, onValueChange = { onName(i, it) },
-                        label = { Text("Player ${i + 1}") }, singleLine = true,
+                        placeholder = { Text("Player ${i + 1}", color = Stone) }, singleLine = true,
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                         modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(14.dp),
+                        shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Magenta, focusedLabelColor = Magenta, cursorColor = Magenta,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                            focusedContainerColor = MaterialTheme.colorScheme.surface,
+                            focusedBorderColor = Champagne, cursorColor = Champagne,
+                            unfocusedBorderColor = Hairline,
+                            unfocusedContainerColor = Graphite, focusedContainerColor = Graphite,
                         ),
                     )
-                    if (s.names.size > PlayerRules.MIN_PLAYERS) TextButton({ onRemove(i) }) { Text("✕") }
+                    if (s.names.size > PlayerRules.MIN_PLAYERS) TextButton({ onRemove(i) }) { Text("Remove", color = Stone, style = MaterialTheme.typography.bodyMedium) }
                 }
             }
             item {
-                if (s.names.size < PlayerRules.MAX_PLAYERS) OutlinedButton(onAdd, border = BorderStroke(1.dp, Cyan)) { Text("+ Add player", color = Cyan) }
+                if (s.names.size < PlayerRules.MAX_PLAYERS) TextButton(onAdd, contentPadding = PaddingValues(0.dp)) {
+                    Text("+  Add player", color = Champagne, style = MaterialTheme.typography.bodyLarge)
+                }
                 Spacer(Modifier.height(16.dp))
-                Text("ROUNDS", style = MaterialTheme.typography.titleMedium, color = Amber)
+                Eyebrow("Rounds")
                 Spacer(Modifier.height(8.dp))
-                ChoiceChips(GameSession.ROUND_OPTIONS, s.rounds, { "$it" }, onRounds)
+                Segmented(GameSession.ROUND_OPTIONS, s.rounds, { "$it" }, onRounds)
             }
         }
         s.error?.let { Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(vertical = 8.dp)) }
-        PrimaryButton("START GAME", onStart, Modifier.fillMaxWidth())
+        PrimaryButton("Start game", onStart, Modifier.fillMaxWidth())
+    }
+}
+
+private val reportReasons = listOf("Offensive or hurtful", "Unsafe to do", "Too explicit", "Doesn't make sense")
+
+@Composable
+fun GameScreen(
+    g: GameState,
+    feedback: Feedback,
+    onComplete: () -> Unit,
+    onSkip: () -> Unit,
+    onDismissChaos: () -> Unit,
+    onReport: (String) -> Unit,
+    onQuit: () -> Unit,
+) {
+    var confirmQuit by remember { mutableStateOf(false) }
+    var reporting by remember { mutableStateOf(false) }
+    val card = g.card ?: return
+    // The system back gesture must never silently throw away a game.
+    BackHandler { confirmQuit = true }
+
+    // Flip the card in for every new turn.
+    val density = LocalDensity.current.density
+    val flip = remember(g.round) { Animatable(90f) }
+    LaunchedEffect(g.round, g.chaos == null) {
+        if (g.chaos == null) {
+            flip.animateTo(0f, tween(420, easing = FastOutSlowInEasing))
+            feedback.reveal()
+        }
+    }
+
+    Page {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+            Eyebrow("Round ${g.round} of ${g.totalRounds}", Stone)
+            QuietButton("End game", { confirmQuit = true })
+        }
+        Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
+        Muted("your turn")
+        Spacer(Modifier.height(16.dp))
+        Card(
+            Modifier.fillMaxWidth().weight(1f).graphicsLayer {
+                rotationY = flip.value
+                cameraDistance = 14f * density
+            },
+            shape = RoundedCornerShape(20.dp),
+            colors = CardDefaults.cardColors(containerColor = Graphite),
+            border = BorderStroke(1.dp, Hairline),
+        ) {
+            Column(Modifier.fillMaxSize().padding(24.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Tag(card.category.label, Ivory.copy(alpha = .8f))
+                    Tag(card.intensity.label, intensityColor(card.intensity))
+                }
+                Column(
+                    Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    Text(
+                        g.cardText ?: card.text,
+                        style = MaterialTheme.typography.headlineSmall, color = Ivory,
+                    )
+                }
+                card.timerSeconds?.let { secs -> DareTimer(key = g.round, seconds = secs, feedback = feedback) }
+                TextButton({ reporting = true }, contentPadding = PaddingValues(0.dp)) {
+                    Text("Report card", color = Stone.copy(alpha = .7f), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+        }
+        Spacer(Modifier.height(16.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            SecondaryButton("Skip", onSkip, Modifier.weight(1f))
+            PrimaryButton("Done  +${card.intensity.points}", onComplete, Modifier.weight(1.6f))
+        }
+        Spacer(Modifier.height(12.dp))
+        Scoreline(g)
+    }
+
+    g.chaos?.let { event -> ChaosDialog(event, feedback, onDismissChaos) }
+
+    if (confirmQuit) AlertDialog(
+        onDismissRequest = { confirmQuit = false },
+        containerColor = Graphite,
+        title = { Text("End this game?", style = MaterialTheme.typography.titleLarge) },
+        text = { Text("Scores will be lost.", color = Stone) },
+        confirmButton = { TextButton(onQuit) { Text("End game", color = MaterialTheme.colorScheme.error) } },
+        dismissButton = { TextButton({ confirmQuit = false }) { Text("Keep playing", color = Champagne) } },
+    )
+
+    if (reporting) AlertDialog(
+        onDismissRequest = { reporting = false },
+        containerColor = Graphite,
+        title = { Text("Report this card", style = MaterialTheme.typography.titleLarge) },
+        text = {
+            Column {
+                Text("It will be skipped and never shown on this phone again.", color = Stone, style = MaterialTheme.typography.bodyMedium)
+                Spacer(Modifier.height(8.dp))
+                reportReasons.forEach { reason ->
+                    TextButton({ reporting = false; onReport(reason) }, contentPadding = PaddingValues(0.dp)) {
+                        Text(reason, color = Ivory)
+                    }
+                }
+            }
+        },
+        confirmButton = {},
+        dismissButton = { TextButton({ reporting = false }) { Text("Cancel", color = Stone) } },
+    )
+}
+
+/** Optional countdown for timed dares. Starts on tap so the player can get ready. */
+@Composable
+private fun DareTimer(key: Int, seconds: Int, feedback: Feedback) {
+    var running by remember(key) { mutableStateOf(false) }
+    var left by remember(key) { mutableIntStateOf(seconds) }
+    LaunchedEffect(key, running) {
+        if (!running) return@LaunchedEffect
+        while (left > 0) { delay(1000); left-- }
+        running = false
+        feedback.alert()
+    }
+    Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            "%d:%02d".format(left / 60, left % 60),
+            style = MaterialTheme.typography.titleLarge,
+            color = if (left == 0) Wine else Champagne,
+            modifier = Modifier.weight(1f),
+        )
+        when {
+            left == 0 -> Text("Time", color = Wine, style = MaterialTheme.typography.labelLarge)
+            !running -> TextButton({ running = true }) { Text("Start timer", color = Champagne) }
+            else -> TextButton({ running = false }) { Text("Pause", color = Stone) }
+        }
     }
 }
 
 @Composable
-fun GameScreen(g: GameState, onComplete: () -> Unit, onSkip: () -> Unit, onQuit: () -> Unit) {
-    var confirmQuit by remember { mutableStateOf(false) }
-    val card = g.card ?: return
-    Page {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Pill("ROUND ${g.round} / ${g.totalRounds}", Amber)
-            TextButton({ confirmQuit = true }) { Text("Quit", color = MaterialTheme.colorScheme.onSurfaceVariant) }
-        }
-        Text("${g.currentPlayer.name}'s turn", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(16.dp))
-        Card(
-            Modifier.fillMaxWidth().weight(1f),
-            shape = RoundedCornerShape(28.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-            border = BorderStroke(2.dp, NeonBrush),
-        ) {
-            Column(
-                Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Pill("${card.category.label.uppercase()} · ${card.intensity.label.uppercase()}", Cyan)
-                Spacer(Modifier.height(20.dp))
-                Text(g.cardText ?: card.text, fontSize = 26.sp, lineHeight = 34.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.SemiBold)
+private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> Unit) {
+    LaunchedEffect(event.id) { feedback.alert() }
+    AlertDialog(
+        onDismissRequest = {},
+        containerColor = GraphiteHigh,
+        title = {
+            Column {
+                Eyebrow("Chaos moment", Wine)
+                Spacer(Modifier.height(6.dp))
+                Text(event.title, style = MaterialTheme.typography.headlineSmall)
             }
-        }
-        Spacer(Modifier.height(16.dp))
-        PrimaryButton("DONE  +${card.intensity.points}", onComplete, Modifier.fillMaxWidth())
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(
-            onSkip, Modifier.fillMaxWidth().height(48.dp), shape = RoundedCornerShape(18.dp),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        ) { Text("Skip (no penalty)", color = MaterialTheme.colorScheme.onSurfaceVariant) }
-        Spacer(Modifier.height(12.dp))
-        Scoreline(g)
-    }
-    if (confirmQuit) AlertDialog(
-        onDismissRequest = { confirmQuit = false },
-        title = { Text("Quit this game?") },
-        text = { Text("Scores will be lost.") },
-        confirmButton = { TextButton(onQuit) { Text("Quit") } },
-        dismissButton = { TextButton({ confirmQuit = false }) { Text("Keep playing") } },
+        },
+        text = {
+            Column {
+                Text(event.text, style = MaterialTheme.typography.bodyLarge, color = Ivory)
+                event.timerSeconds?.let { DareTimer(key = event.id.hashCode(), seconds = it, feedback = feedback) }
+            }
+        },
+        confirmButton = { TextButton(onDismiss) { Text("Continue", color = Champagne) } },
     )
 }
 
 @Composable
 private fun Scoreline(g: GameState) {
-    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         g.players.forEachIndexed { i, p ->
             val active = i == g.currentPlayerIndex
             Text(
-                "${p.name} ${p.score}",
-                color = if (active) Magenta else MaterialTheme.colorScheme.onSurfaceVariant,
-                fontWeight = if (active) FontWeight.Bold else FontWeight.Normal,
+                "${p.name}  ${p.score}",
+                color = if (active) Champagne else Stone,
+                fontWeight = if (active) FontWeight.Medium else FontWeight.Normal,
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }
 }
 
 @Composable
-fun ResultsScreen(g: GameState, onAgain: () -> Unit, onHome: () -> Unit, onBonus: (() -> Unit)? = null) {
+fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgain: () -> Unit, onHome: () -> Unit) {
     Page(horizontalAlignment = Alignment.CenterHorizontally) {
-        Spacer(Modifier.height(24.dp))
-        Text("GAME OVER", style = MaterialTheme.typography.headlineMedium, color = Cyan)
+        Spacer(Modifier.height(32.dp))
+        Eyebrow("Game over")
         val w = g.winners
         Text(
-            if (w.isEmpty()) "Nobody scored. Maximum chaos." else "🏆 ${w.joinToString(" & ") { it.name }}",
-            fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, color = Amber, textAlign = TextAlign.Center, modifier = Modifier.padding(vertical = 12.dp),
+            if (w.isEmpty()) "Nobody scored" else w.joinToString(" & ") { it.name },
+            style = MaterialTheme.typography.displayMedium.copy(fontSize = 36.sp, lineHeight = 42.sp),
+            textAlign = TextAlign.Center, modifier = Modifier.padding(vertical = 12.dp),
         )
-        Muted("${g.skips} skipped")
-        Spacer(Modifier.height(16.dp))
-        LazyColumn(Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Muted(if (w.isEmpty()) "Everyone played it safe." else if (w.size > 1) "Shared the win" else "takes the night", textAlign = TextAlign.Center)
+        Muted("${g.skips} skipped", Modifier.padding(top = 4.dp))
+        Spacer(Modifier.height(24.dp))
+        LazyColumn(Modifier.weight(1f).fillMaxWidth()) {
             itemsIndexed(g.scoreboard) { i, p ->
                 Row(
-                    Modifier.fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
-                        .border(if (i == 0) 2.dp else 1.dp, if (i == 0) Amber else MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
-                        .padding(16.dp),
+                    Modifier.fillMaxWidth().padding(vertical = 14.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    Text("${i + 1}. ${p.name}", fontWeight = FontWeight.SemiBold)
-                    Text("${p.score}", color = Amber, fontWeight = FontWeight.Bold)
+                    Text("${i + 1}   ${p.name}", style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Ivory)
+                    Text("${p.score}", style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Stone)
                 }
+                HorizontalDivider(color = Hairline)
             }
         }
         Spacer(Modifier.height(16.dp))
-        PrimaryButton("PLAY AGAIN", onAgain, Modifier.fillMaxWidth())
-        if (onBonus != null) OutlinedButton(onBonus, Modifier.fillMaxWidth().height(48.dp)) {
-            Text("Watch an ad: bonus game +5 rounds")
+        PrimaryButton("Play again", onAgain, Modifier.fillMaxWidth())
+        if (bonusLabel != null) {
+            Spacer(Modifier.height(10.dp))
+            SecondaryButton(bonusLabel, onBonus, Modifier.fillMaxWidth())
         }
-        TextButton(onHome) { Text("Home", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        QuietButton("Home", onHome)
     }
 }

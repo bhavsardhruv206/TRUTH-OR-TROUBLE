@@ -33,7 +33,15 @@ data class Card(
     val intensity: Intensity,
     val language: String = "en",
     val safety: SafetyClass = SafetyClass.SAFE,
+    /** When set, the card is a timed dare and the UI offers a countdown. */
+    val timerSeconds: Int? = null,
 )
+
+/** Card languages. Codes are BCP 47; Hinglish is Hindi written in Latin script. */
+enum class CardLanguage(val code: String, val label: String) {
+    ENGLISH("en", "English"),
+    HINGLISH("hi-Latn", "Hinglish"),
+}
 
 data class Player(val id: Int, val name: String, val score: Int = 0)
 

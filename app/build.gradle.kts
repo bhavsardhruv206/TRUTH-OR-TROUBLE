@@ -12,8 +12,8 @@ android {
         applicationId = "com.afterhours.app"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
     }
     buildTypes {
         release {
@@ -41,5 +41,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.4")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.android.gms:play-services-ads:23.6.0")
+    implementation("com.google.android.ump:user-messaging-platform:3.1.0")
+    implementation("com.android.billingclient:billing:7.1.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

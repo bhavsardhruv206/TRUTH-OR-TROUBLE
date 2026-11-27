@@ -36,6 +36,8 @@ data class GameState(
     val cardText: String?,
     val finished: Boolean,
     val skips: Int,
+    /** A whole-group moment shown before the current turn; null when none is pending. */
+    val chaos: ChaosEvent? = null,
 ) {
     val currentPlayer: Player get() = players[currentPlayerIndex]
     val scoreboard: List<Player> get() = players.sortedByDescending { it.score }
@@ -58,8 +60,18 @@ class GameSession(
     playerNames: List<String>,
     totalRounds: Int = DEFAULT_ROUNDS,
     random: Random = Random.Default,
+    playedBefore: Set<String> = emptySet(),
+    chaosEnabled: Boolean = true,
+    language: String = CardLanguage.ENGLISH.code,
 ) {
-    private val deck = CardDeck(cards, mode, intensity, random)
+    private val deck = CardDeck(cards, mode, intensity, random, language = language, playedBefore = playedBefore)
+    private val scheduler = ChaosScheduler(random, enabled = chaosEnabled)
+    private val usedChaos = mutableSetOf<String>()
+
+    /** Ids of cards drawn so far in this game, for remembering between games. */
+    val drawnCardIds: Set<String> get() = deck.drawnIds
+    /** Ids of every card this game could draw. */
+    val eligibleCardIds: Set<String> get() = deck.eligibleIds
     private val textRandom = random
 
     var state: GameState
@@ -69,7 +81,7 @@ class GameSession(
         val valid = PlayerRules.validate(playerNames)
         require(valid is PlayerRules.Result.Valid) { (valid as PlayerRules.Result.Invalid).reason }
         require(totalRounds > 0) { "totalRounds must be positive" }
-        require(!deck.isEmpty) { "No cards for $mode / $intensity" }
+        require(!deck.isEmpty) { "No cards for $mode / $intensity / $language" }
         val players0 = valid.names.mapIndexed { i, n -> Player(i, n) }
         val first = deck.draw()
         state = GameState(
@@ -92,9 +104,12 @@ class GameSession(
     /** Skip without any penalty. */
     fun skip() = advance(award = false)
 
+    /** Closes the pending chaos moment and goes on to the turn. */
+    fun dismissChaos() { if (state.chaos != null) state = state.copy(chaos = null) }
+
     private fun advance(award: Boolean) {
         val s = state
-        if (s.finished) return
+        if (s.finished || s.chaos != null) return
         val card = s.card
         val players = if (award && card != null) {
             s.players.mapIndexed { i, p ->
@@ -113,6 +128,7 @@ class GameSession(
                 round = s.round + 1,
                 card = next,
                 cardText = next?.let { CardText.render(it.text, players[nextIndex], players, textRandom) },
+                chaos = if (scheduler.tick()) ChaosEvents.pick(textRandom, usedChaos).also { usedChaos += it.id } else null,
                 skips = skips,
             )
         }

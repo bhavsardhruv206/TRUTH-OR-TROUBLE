@@ -29,7 +29,19 @@ class AdManager(context: Context, private val policy: AdPolicy = AdPolicy()) : A
     /** True when a rewarded ad is loaded and the bonus button can be offered. */
     val rewardedReady: StateFlow<Boolean> = _rewardedReady
 
+    private var initialized = false
+
+    private val _ready = MutableStateFlow(false)
+    /** True once the SDK was started after consent; banners wait for this. */
+    val ready: StateFlow<Boolean> = _ready
+
+    /** Set from the "Remove ads" purchase. Banners and interstitials stop; the optional rewarded bonus becomes free. */
+    @Volatile var adsRemoved: Boolean = false
+
+    /** Call only after consent has been gathered and [ConsentManager.canRequestAds] is true. */
     fun initialize() {
+        if (initialized) return
+        initialized = true
         // Adults-only app: never request child-directed or under-age treatment, cap content at mature.
         MobileAds.setRequestConfiguration(
             RequestConfiguration.Builder()
@@ -39,6 +51,7 @@ class AdManager(context: Context, private val policy: AdPolicy = AdPolicy()) : A
                 .build(),
         )
         MobileAds.initialize(appContext) {
+            _ready.value = true
             loadInterstitial()
             loadRewarded()
         }
@@ -70,6 +83,7 @@ class AdManager(context: Context, private val policy: AdPolicy = AdPolicy()) : A
      */
     fun onSessionCompleted(activity: Activity) {
         policy.onSessionCompleted()
+        if (adsRemoved || !initialized) return
         val ad = interstitial
         if (ad == null) { loadInterstitial(); return }
         if (!shouldShow(AdPlacement.SESSION_END_INTERSTITIAL)) return

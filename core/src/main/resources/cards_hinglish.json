@@ -1,0 +1,776 @@
+[
+  {
+    "id": "hi-truth-chill-01",
+    "text": "{name}, sach batao: phone mein sabse embarrassing song kaunsa hai?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-02",
+    "text": "Aakhri baar kab bina wajah mummy-papa se jhooth bola tha?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-03",
+    "text": "Kaunsa khaana tum chupke se akele kha jaate ho taaki share na karna pade?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-04",
+    "text": "{name}, school ka sabse funny nickname kya tha tumhara?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-05",
+    "text": "Kaunsi movie dekh ke tum sabse zyada roye ho?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-06",
+    "text": "Group mein sabse zyada late kaun aata hai, aur uska best bahana kya tha?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-07",
+    "text": "Kaunsi app pe sabse zyada time waste karte ho?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-08",
+    "text": "Tumhara sabse ajeeb khaane ka combination kya hai?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-09",
+    "text": "{name}, last Google search kya tha? Sach sach.",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-10",
+    "text": "Shaadi mein dance karne ka sabse bura moment kaunsa tha?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-chill-11",
+    "text": "Kaunsa celebrity tumhe secretly bilkul pasand nahi?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-01",
+    "text": "{name}, kis ex ko aaj bhi kabhi kabhi stalk karte ho?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-02",
+    "text": "Is group mein kiska message tum sabse der se reply karte ho, aur kyun?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-03",
+    "text": "Sabse bada jhooth jo tumne kisi date pe bola ho?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-04",
+    "text": "{name}, {other} ke baare mein tumhara pehla impression kya tha?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-05",
+    "text": "Kabhi kisi ka message galti se galat insaan ko bhej diya? Kya likha tha?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-06",
+    "text": "Office ya college mein kis pe crush tha jo kisi ko nahi pata?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-07",
+    "text": "Sabse cringe pickup line jo tumne actually use ki ho?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-08",
+    "text": "Kaunsi baat parents se ab tak chupa ke rakhi hai?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-09",
+    "text": "{name}, apni chat history mein se kaunsi chat delete karna chahoge?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-10",
+    "text": "Sabse awkward date kaisi gayi thi?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-bold-11",
+    "text": "Kis dost ki shaadi mein tum sirf khaane ke liye gaye the?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-truth-wild-01",
+    "text": "{name}, is room mein kis ke saath ek din life swap karoge aur kyun?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-02",
+    "text": "Sabse bold cheez jo tumne kisi crush ko impress karne ke liye ki?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-03",
+    "text": "Apni sabse badi galti batao jo tum dobara bhi karoge.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-04",
+    "text": "{name}, {other} ki kaunsi aadat tumhe secretly pasand hai?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-05",
+    "text": "Kabhi kisi ko ghost kiya hai? Kyun?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-06",
+    "text": "Sabse risky text jo tumne raat ko 2 baje bheja ho?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-07",
+    "text": "Agar kal sab ki chat history leak ho jaaye, to sabse zyada kis baat se daroge?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-08",
+    "text": "Tumhara sabse bada 'red flag' kya hai jo tum khud maante ho?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-09",
+    "text": "{name}, is group mein sabse zyada flirty kaun hai? Naam lo.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-truth-wild-10",
+    "text": "Kaunsa raaz hai jo sirf ek insaan ko pata hai?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-chill-01",
+    "text": "{name}, Bollywood villain ki tarah 30 second monologue do.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hi-dare-chill-02",
+    "text": "Kisi bhi ad jingle ko full emotion ke saath gaao.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-03",
+    "text": "{name}, {other} ki best mimicry karo jab tak koi guess na kare.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-04",
+    "text": "Agle do turn tak sirf shuddh Hindi mein baat karo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-05",
+    "text": "Ek kaalpanik chai ki dukaan ka ad banao aur pitch karo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-06",
+    "text": "{name}, apne pichhle weekend ko news anchor ki tarah report karo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-07",
+    "text": "Ek minute tak bina hase {other} ki aankhon mein dekho.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-dare-chill-08",
+    "text": "Room mein kisi bhi cheez ko Shark Tank pe pitch karo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-09",
+    "text": "Apna favourite Bollywood dialogue dramatic style mein bolo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-10",
+    "text": "Ten second mein apne aap ko ek shaadi ke DJ ki tarah introduce karo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-chill-11",
+    "text": "Group ke liye ek naya handshake banao aur sabko sikhao.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-01",
+    "text": "{name}, {other} ke liye ek filmy shayari sunao.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-02",
+    "text": "Apni last selfie group ko dikhao, ya skip karo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-03",
+    "text": "{name}, group jo gaana chune us pe 30 second naacho.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hi-dare-bold-04",
+    "text": "Apne crush ko imagine karke ek proposal scene act karo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-05",
+    "text": "Apne recent emojis mein se last teen se ek kahani banao aur sunao.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-06",
+    "text": "{name}, {other} ka Instagram bio naya likho aur padh ke sunao.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-07",
+    "text": "Agle teen turn tak har sentence 'Arre yaar' se shuru karo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-08",
+    "text": "Dramatic TV serial wali entry maaro, music ke saath.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-09",
+    "text": "{name}, sabko ek ek compliment do, bina repeat kiye.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-10",
+    "text": "Group ki choice ka filter laga ke selfie lo, sirf group ke liye.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-dare-bold-11",
+    "text": "Ek minute ke liye stand-up comedian bano, topic group dega.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-dare-wild-01",
+    "text": "{name}, {other} ke saath ek slow romantic Bollywood scene recreate karo.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-02",
+    "text": "Apne phone ka koi bhi purana message group ko padh ke sunao, choice tumhari.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-03",
+    "text": "{name}, group ke kisi ek insaan ko 30 second ka sincere roast do, pyaar se.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hi-dare-wild-04",
+    "text": "Agle round tak {other} jo bole wahi karo, safe cheez ho to.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-05",
+    "text": "Apni sabse cringe purani photo dikhao, ya skip karo.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-06",
+    "text": "{name}, apni dating profile ka bio bolo jaise abhi likh rahe ho.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-07",
+    "text": "Group decide karega tumhara naya nickname, game ke end tak wahi chalega.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-08",
+    "text": "{name}, {other} ko ek minute tak ek dum filmy style mein manao.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hi-dare-wild-09",
+    "text": "Ek item number ka hook step karo, poore josh ke saath.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-dare-wild-10",
+    "text": "Apni last voice note group ko sunao, ya skip karo.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-chill-01",
+    "text": "{name}, zindagi bhar biryani ya zindagi bhar pizza?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-02",
+    "text": "Hamesha 10 minute late ya hamesha 20 minute jaldi?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-03",
+    "text": "Bina AC ki garmi ya bina geyser ki sardi?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-04",
+    "text": "Ek saal bina phone ya ek saal bina chai?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-05",
+    "text": "Har shaadi mein dance karna padega ya har shaadi mein speech deni padegi?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-06",
+    "text": "Mummy tumhari chats padh le ya papa tumhari search history?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-chill-07",
+    "text": "Goa trip doston ke saath ya Europe trip family ke saath?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-01",
+    "text": "{name}, ex ke saath ek date ya boss ke saath ek holiday?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-02",
+    "text": "Tumhari saari chats viral ho jaayein ya saari photos?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-03",
+    "text": "Crush ko galti se 'love you' bhejna ya boss ko?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-04",
+    "text": "Shaadi arranged parents ki choice se ya dost ki choice se?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-05",
+    "text": "{name}, {other} ke saath ek hafta room share ya ek hafta phone share?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-06",
+    "text": "Har date pe tumhari mummy saath aaye ya har date live stream ho?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-bold-07",
+    "text": "Kabhi jhooth na bol paao ya kabhi sach na bol paao?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-wyr-wild-01",
+    "text": "{name}, apna sabse bada raaz family group pe ya office group pe?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-wild-02",
+    "text": "Crush tumhare saare purane messages padh le ya tumhari saari purani photos dekh le?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-wild-03",
+    "text": "Ek din ke liye {other} ban jao ya {other} ek din ke liye tum ban jaaye?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-wild-04",
+    "text": "Har baat pe sach bolna pade ya kabhi kisi ko na bata pao ki kya feel kar rahe ho?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-wild-05",
+    "text": "Ex ki shaadi mein dance karna pade ya speech deni pade?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-wyr-wild-06",
+    "text": "Apni search history sabko dikhao ya apni gallery?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-couple-chill-01",
+    "text": "Partner ki kaunsi chhoti si aadat tumhe sabse cute lagti hai?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-chill-02",
+    "text": "Pehli baar mile the to kya socha tha ek dusre ke baare mein?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-chill-03",
+    "text": "Ek dusre ke liye perfect Sunday plan karo, ek minute mein.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-chill-04",
+    "text": "Partner ka comfort food guess karo. Sahi hua to point.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-bold-01",
+    "text": "Partner ko ek filmy line mein propose karo, poore drama ke saath.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-bold-02",
+    "text": "Sabse funny ladai kis baat pe hui thi?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-bold-03",
+    "text": "Partner ka kaunsa outfit tumhe sabse zyada pasand hai?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-bold-04",
+    "text": "Ek dusre ki best mimicry karo aur group judge karega.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-couple-wild-01",
+    "text": "Bollywood ka koi romantic scene ek saath recreate karo, group direct karega.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-couple-wild-02",
+    "text": "Partner ke kaan mein kuch aisa bolo jo group ko nahi pata chalega.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-couple-wild-03",
+    "text": "30 second tak bina music ke slow dance karo.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hi-couple-wild-04",
+    "text": "Partner ki sabse attractive aadat batao, sabke saamne.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive"
+  }
+]

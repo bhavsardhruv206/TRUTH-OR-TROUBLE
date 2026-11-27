@@ -181,7 +181,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-004",
@@ -205,7 +206,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 10
   },
   {
     "id": "dare-007",
@@ -253,7 +255,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-013",
@@ -1205,7 +1208,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 120
   },
   {
     "id": "dare-026",
@@ -1229,7 +1233,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 20
   },
   {
     "id": "dare-029",
@@ -1245,7 +1250,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-031",
@@ -1301,7 +1307,8 @@
     "category": "dare",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-038",
@@ -1365,7 +1372,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-046",
@@ -1429,7 +1437,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-054",
@@ -1445,7 +1454,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 20
   },
   {
     "id": "dare-056",
@@ -1477,7 +1487,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-060",
@@ -1493,7 +1504,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 45
   },
   {
     "id": "dare-062",
@@ -1501,7 +1513,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-063",
@@ -1525,7 +1538,8 @@
     "category": "dare",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 15
   },
   {
     "id": "dare-066",
@@ -1645,7 +1659,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-081",
@@ -1661,7 +1676,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-083",
@@ -1749,7 +1765,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 30
   },
   {
     "id": "dare-094",
@@ -1789,7 +1806,8 @@
     "category": "dare",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "timerSeconds": 60
   },
   {
     "id": "dare-099",

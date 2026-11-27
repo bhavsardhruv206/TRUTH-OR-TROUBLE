@@ -4,7 +4,8 @@ import kotlin.random.Random
 import kotlin.test.*
 
 class CoreTest {
-    private val cards = BundledCardRepository().allCards()
+    private val allCards = BundledCardRepository().allCards()
+    private val cards = allCards.filter { it.language == "en" }
 
     @Test fun seedCardsAreValid() {
         assertTrue(cards.size >= 300)
@@ -119,9 +120,87 @@ class CoreTest {
                 val text = checkNotNull(s.state.cardText)
                 assertFalse(text.contains("{"), text)
                 if ("{name}" in s.state.card!!.text) assertTrue(text.contains(s.state.currentPlayer.name))
+                s.dismissChaos()
                 s.complete()
             }
             assertNull(s.state.cardText)
         }
+    }
+
+    @Test fun chaosAppearsPeriodicallyAndDoesNotScoreOrConsumeRounds() {
+        val s = GameSession(cards, GameMode.TRUTH, Intensity.CHILL, listOf("A", "B"), totalRounds = 30, random = Random(5))
+        var chaosCount = 0
+        while (!s.state.finished) {
+            val before = s.state
+            if (s.state.chaos != null) {
+                chaosCount++
+                s.complete() // blocked while chaos is pending
+                assertEquals(before, s.state)
+                s.dismissChaos()
+                assertNull(s.state.chaos)
+                assertEquals(before.round, s.state.round)
+                assertEquals(before.players, s.state.players)
+            }
+            s.complete()
+        }
+        assertTrue(chaosCount in 4..8, "chaos count $chaosCount")
+    }
+
+    @Test fun chaosCanBeDisabled() {
+        val s = GameSession(cards, GameMode.DARE, Intensity.WILD, listOf("A", "B"), totalRounds = 20, random = Random(6), chaosEnabled = false)
+        var guard = 0
+        while (!s.state.finished && guard++ < 100) { assertNull(s.state.chaos); s.skip() }
+        assertTrue(s.state.finished)
+    }
+
+    @Test fun chaosEventsAreValid() {
+        assertEquals(ChaosEvents.all.size, ChaosEvents.all.map { it.id }.toSet().size)
+        assertTrue(ChaosEvents.all.all { it.text.isNotBlank() && (it.timerSeconds ?: 1) > 0 })
+        assertFalse(ChaosScheduler(Random(1), enabled = false).tick())
+    }
+
+    @Test fun timedDaresHaveSaneTimers() {
+        val timed = cards.filter { it.timerSeconds != null }
+        assertTrue(timed.size >= 10)
+        assertTrue(timed.all { it.category == GameMode.DARE && it.timerSeconds!! in 5..120 })
+    }
+
+    @Test fun previouslyPlayedCardsComeLast() {
+        val eligible = cards.filter { it.category == GameMode.TRUTH && it.intensity == Intensity.CHILL }
+        val played = eligible.take(eligible.size / 2).map { it.id }.toSet()
+        val deck = CardDeck(cards, GameMode.TRUTH, Intensity.CHILL, Random(7), playedBefore = played)
+        val order = List(eligible.size) { deck.draw()!! }
+        val firstSeenIdx = order.indexOfFirst { it.id in played }
+        assertTrue(order.take(eligible.size - played.size).none { it.id in played }, "fresh cards first")
+        assertEquals(eligible.size - played.size, firstSeenIdx)
+        assertEquals(eligible.size, deck.drawnIds.size)
+    }
+
+    @Test fun hinglishPackCoversEveryModeAndIntensity() {
+        val hi = allCards.filter { it.language == CardLanguage.HINGLISH.code }
+        assertTrue(hi.size >= 90)
+        assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
+        assertEquals(hi.size, hi.map { it.text }.toSet().size)
+        hi.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
+        GameMode.entries.forEach { m ->
+            Intensity.entries.forEach { i -> assertTrue(hi.any { it.category == m && it.intensity == i }, "missing hinglish $m/$i") }
+        }
+    }
+
+    @Test fun sessionOnlyDrawsChosenLanguage() {
+        CardLanguage.entries.forEach { lang ->
+            val s = GameSession(allCards, GameMode.DARE, Intensity.WILD, listOf("A", "B"), totalRounds = 30, random = Random(8), language = lang.code)
+            while (!s.state.finished) {
+                assertEquals(lang.code, s.state.card!!.language)
+                s.dismissChaos(); s.skip()
+            }
+        }
+    }
+
+    @Test fun seenMemoryResetsWhenPoolExhausted() {
+        val eligible = setOf("a", "b", "c")
+        assertEquals(setOf("x", "a"), SeenCardMemory.update(setOf("x"), setOf("a"), eligible))
+        // pool fully seen: forget it, but keep the very last card so it is not first next time
+        assertEquals(setOf("x", "c"), SeenCardMemory.update(setOf("x", "a", "b"), linkedSetOf("b", "c"), eligible))
     }
 }
