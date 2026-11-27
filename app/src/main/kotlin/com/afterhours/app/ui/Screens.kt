@@ -407,7 +407,7 @@ fun HomeScreen(
         Spacer(Modifier.weight(1f))
         Wordmark()
         Spacer(Modifier.height(20.dp))
-        Muted("8 games for 2 to 8 adults.", textAlign = TextAlign.Center)
+        Muted("${games.size - 1} games for 2 to 8 adults.\nPlus Closer, just for couples.", textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
         PrimaryButton("Games", onPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
@@ -434,6 +434,7 @@ fun HomeScreen(
             Text(
                 "• Skip any card, any time, with no penalty.\n" +
                     "• Never share private info, contact strangers, share intimate media, drink anything you don't want to, or do anything unsafe.\n" +
+                    "• Closer is for two consenting adult partners. Ask before any touch or kiss, and either of you can stop at any time.\n" +
                     "• Use Report on a card to hide it for good.\n" +
                     "• Scores are just for fun and have no value.",
                 style = MaterialTheme.typography.bodyMedium, color = Stone,
@@ -522,6 +523,7 @@ private val games = listOf(
     GameEntry("nhie", GameMode.NEVER_HAVE_I_EVER.label, "Hands up if you have", "Read the line out. Everyone who has done it raises a hand and the group can ask for the story.", GameMode.NEVER_HAVE_I_EVER, "Whole group"),
     GameEntry("mlt", GameMode.MOST_LIKELY_TO.label, "Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.", GameMode.MOST_LIKELY_TO, "Whole group"),
     GameEntry("hot", GameMode.HOT_SEAT.label, "60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.", GameMode.HOT_SEAT, "Whole group"),
+    GameEntry("closer", GameMode.CLOSER.label, "Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.", GameMode.CLOSER, "For couples"),
 )
 
 private fun selectedGame(s: SetupState): GameEntry =
@@ -537,6 +539,9 @@ private fun intensityDescription(i: Intensity) = when (i) {
 @Composable
 fun GamesScreen(s: SetupState, onPick: (GameMode?) -> Unit, onBack: () -> Unit) {
     val current = selectedGame(s)
+    var gateFor by remember { mutableStateOf<GameMode?>(null) }
+    val pick: (GameMode?) -> Unit = { m -> if (m?.couplesOnly == true) gateFor = m else onPick(m) }
+    gateFor?.let { m -> CouplesGate(onAgree = { gateFor = null; onPick(m) }, onCancel = { gateFor = null }) }
     Page {
         BackRow(onBack)
         Text("Games", style = MaterialTheme.typography.headlineMedium)
@@ -546,13 +551,34 @@ fun GamesScreen(s: SetupState, onPick: (GameMode?) -> Unit, onBack: () -> Unit) 
                 Eyebrow(group, modifier = Modifier.padding(top = 6.dp))
                 entries.chunked(2).forEach { pair ->
                     Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        pair.forEach { g -> GameTile(g, g == current, Modifier.weight(1f).fillMaxHeight(), wide = pair.size == 1 && group == "Featured") { onPick(g.mode) } }
+                        pair.forEach { g -> GameTile(g, g == current, Modifier.weight(1f).fillMaxHeight(), wide = pair.size == 1 && group == "Featured") { pick(g.mode) } }
                         if (pair.size == 1 && group != "Featured") Spacer(Modifier.weight(1f))
                     }
                 }
             }
         }
     }
+}
+
+/** Short "for consenting couples" check before the couples-only game. */
+@Composable
+private fun CouplesGate(onAgree: () -> Unit, onCancel: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onCancel,
+        containerColor = Graphite,
+        title = { Text("For consenting couples", style = MaterialTheme.typography.titleLarge) },
+        text = {
+            Text(
+                "Closer is for two adult partners who both want to play.\n\n" +
+                    "• Ask before any touch or kiss.\n" +
+                    "• Either of you can skip a card or stop at any time, no reason needed.\n" +
+                    "• Nothing here involves undressing. Keep it sweet and romantic.",
+                style = MaterialTheme.typography.bodyMedium, color = Stone,
+            )
+        },
+        confirmButton = { TextButton(onAgree) { Text("We're both in", color = Champagne) } },
+        dismissButton = { TextButton(onCancel) { Text("Not now", color = Stone) } },
+    )
 }
 
 @Composable
@@ -616,13 +642,17 @@ fun SetupScreen(
     Page {
         BackRow(onBack)
         Text("Who's playing?", style = MaterialTheme.typography.headlineMedium)
-        Muted("${s.names.size} players · names are saved for next time", Modifier.padding(top = 4.dp, bottom = 12.dp))
+        val couples = !s.spin && s.mode.couplesOnly
+        Muted(
+            if (couples) "Just the two of you · enter both names" else "${s.names.size} players · names are saved for next time",
+            Modifier.padding(top = 4.dp, bottom = 12.dp),
+        )
         LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             itemsIndexed(s.names) { i, name ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
                         value = name, onValueChange = { onName(i, it) },
-                        placeholder = { Text("Player ${i + 1}", color = Stone) }, singleLine = true,
+                        placeholder = { Text(if (couples) "Partner ${i + 1}" else "Player ${i + 1}", color = Stone) }, singleLine = true,
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(12.dp),
@@ -636,7 +666,7 @@ fun SetupScreen(
                 }
             }
             item {
-                if (s.names.size < PlayerRules.MAX_PLAYERS) TextButton(onAdd, contentPadding = PaddingValues(0.dp)) {
+                if (!couples && s.names.size < PlayerRules.MAX_PLAYERS) TextButton(onAdd, contentPadding = PaddingValues(0.dp)) {
                     Text("+  Add player", color = Champagne, style = MaterialTheme.typography.bodyLarge)
                 }
                 Spacer(Modifier.height(16.dp))
@@ -712,6 +742,13 @@ fun GameScreen(
                     Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.Center,
                 ) {
+                    PoseLibrary.get(card.pose)?.let { pose ->
+                        PoseIllustration(pose, Modifier.padding(vertical = 8.dp))
+                        Text(pose.title, style = MaterialTheme.typography.titleLarge, color = Champagne)
+                        Text(pose.hint, style = MaterialTheme.typography.bodyMedium, color = Stone, modifier = Modifier.padding(top = 2.dp, bottom = 12.dp))
+                        Eyebrow("What to do", Stone)
+                        Spacer(Modifier.height(4.dp))
+                    }
                     Text(
                         g.cardText ?: card.text,
                         style = MaterialTheme.typography.headlineSmall, color = Ivory,

@@ -4,7 +4,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class GameMode(val label: String) {
+enum class GameMode(
+    val label: String,
+    /** Played by exactly two partners: the setup locks to 2 players and group chaos moments are off. */
+    val couplesOnly: Boolean = false,
+) {
     @SerialName("truth") TRUTH("Truth"),
     @SerialName("dare") DARE("Dare"),
     @SerialName("wyr") WOULD_YOU_RATHER("Would You Rather"),
@@ -12,6 +16,7 @@ enum class GameMode(val label: String) {
     @SerialName("nhie") NEVER_HAVE_I_EVER("Never Have I Ever"),
     @SerialName("mlt") MOST_LIKELY_TO("Most Likely To"),
     @SerialName("hotseat") HOT_SEAT("Hot Seat"),
+    @SerialName("closer") CLOSER("Closer", couplesOnly = true),
 }
 
 @Serializable
@@ -38,6 +43,8 @@ data class Card(
     val safety: SafetyClass = SafetyClass.SAFE,
     /** When set, the card is a timed dare and the UI offers a countdown. */
     val timerSeconds: Int? = null,
+    /** Id of a [Pose] illustration shown on the card (couples games). */
+    val pose: String? = null,
 )
 
 /** Card languages. Codes are BCP 47; Hinglish is Hindi written in Latin script. */

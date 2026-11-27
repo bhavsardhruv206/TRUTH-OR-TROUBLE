@@ -997,5 +997,117 @@
     "language": "hi-Latn",
     "safety": "mild_suggestive",
     "timerSeconds": 60
+  },
+  {
+    "id": "hi-closer-chill-01",
+    "text": "{name}, {other} ko batao kab pehli baar laga ki tum unhe pasand karte ho.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "hi-closer-chill-02",
+    "text": "Haath pakdo aur ek-doosre ki aankhon mein dekho. Hasna mana hai!",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "hands"
+  },
+  {
+    "id": "hi-closer-chill-03",
+    "text": "{name}, {other} ki teen tareefein karo, looks ke alawa.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "hi-closer-chill-04",
+    "text": "{name}, {other} ka favourite gaana gungunao aur saath mein dheere naacho.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "hi-closer-bold-01",
+    "text": "{name}, {other} ke kaan mein dheere se bolo ki unki kaunsi baat sabse attractive hai.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "hi-closer-bold-02",
+    "text": "{name}, {other} ko kandhe aur gardan ki massage do. {other} batayega kitna pressure.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "hi-closer-bold-03",
+    "text": "{name}, {other} ke saath aise flirt karo jaise pehli baar café mein mil rahe ho.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "hi-closer-bold-04",
+    "text": "Check-in: {name}, {other} se poocho ki aajkal unhe kaisa pyaar sabse achha lagta hai.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "hi-closer-wild-01",
+    "text": "{name}, pehle poocho, phir {other} ki gardan pe ek dheemi si kiss do.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "hi-closer-wild-02",
+    "text": "{other} ki aankhein band. {name} kitchen se teen cheezein khilaao, {other} guess karega.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "hi-closer-wild-03",
+    "text": "{name}, {other} ko aise kiss karo jaise romantic film ka last scene ho.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "hi-closer-wild-04",
+    "text": "Check-in: {name}, {other} se poocho ki abhi kaisa feel ho raha hai, aur heat badhaani hai ya kam karni hai.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "mild_suggestive",
+    "pose": "talk"
   }
 ]
