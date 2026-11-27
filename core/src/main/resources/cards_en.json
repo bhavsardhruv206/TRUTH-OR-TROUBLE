@@ -1,0 +1,498 @@
+[
+  {
+    "id": "truth-001",
+    "text": "What is the most embarrassing song on your playlist?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-002",
+    "text": "What is a food combination you love that others find weird?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-003",
+    "text": "What is the silliest thing you have ever been afraid of?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-004",
+    "text": "Which app do you waste the most time on?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-005",
+    "text": "What was your worst haircut or fashion choice?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-006",
+    "text": "What is a movie everyone loves that you secretly dislike?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-007",
+    "text": "What is the longest you have gone without washing a particular item of clothing?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-008",
+    "text": "What is your most useless talent?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-009",
+    "text": "What is the most awkward first impression someone has had of you?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-010",
+    "text": "What is the biggest lie you told to get out of plans?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-011",
+    "text": "Which person in this room would you trust most with a secret, and why?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-012",
+    "text": "What is the most embarrassing thing in your search history that you would admit to?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-013",
+    "text": "What is something you pretended to like just to fit in?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-014",
+    "text": "What is the worst gift you have ever given or received?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-015",
+    "text": "What is the pettiest reason you have stopped talking to someone?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-016",
+    "text": "What is one thing you would change about how this group hangs out?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-017",
+    "text": "What is the most cringe thing you did to impress someone?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-018",
+    "text": "Which friend in this room would survive longest in a disaster movie, and who would go first?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-019",
+    "text": "What is your most controversial opinion that you rarely share?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "truth-020",
+    "text": "What is a rule you break all the time and feel no guilt about?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-001",
+    "text": "Do your best impression of another player until your next turn.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-002",
+    "text": "Speak in a dramatic movie-trailer voice for the next two turns.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-003",
+    "text": "Do ten jumping jacks while reciting the alphabet.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-004",
+    "text": "Show the group the last photo in your gallery, or skip if you prefer.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-005",
+    "text": "Invent a handshake with the player on your left and perform it.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-006",
+    "text": "Balance a spoon on your nose for ten seconds.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-007",
+    "text": "Let the group pick a nickname for you that you must use for the rest of the game.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-008",
+    "text": "Sing the chorus of a song of the group's choice, with full emotion.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-009",
+    "text": "Walk like a runway model across the room and back.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-010",
+    "text": "Do an interpretive dance of your morning routine.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-011",
+    "text": "Talk without moving your lips until your next turn.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-012",
+    "text": "Perform a one-minute stand-up comedy set about the person on your right (keep it kind).",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-013",
+    "text": "Act out a famous movie scene and let the group guess it.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-014",
+    "text": "Make up a rap about everyone in the room, one line each.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-015",
+    "text": "Let another player style your hair however they like.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "dare-016",
+    "text": "Give a dramatic acceptance speech for an award you have not won.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-001",
+    "text": "Would you rather only eat pizza forever or never eat pizza again?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-002",
+    "text": "Would you rather always be ten minutes late or twenty minutes early?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-003",
+    "text": "Would you rather have no phone for a month or no friends' texts for a month?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-004",
+    "text": "Would you rather fight one horse-sized duck or a hundred duck-sized horses?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-005",
+    "text": "Would you rather have everyone read your messages or hear your thoughts for a day?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-006",
+    "text": "Would you rather sing everything you say or dance everywhere you walk?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-007",
+    "text": "Would you rather lose your phone or lose your wallet for a week?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-008",
+    "text": "Would you rather be famous for something embarrassing or unknown for something great?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-009",
+    "text": "Would you rather give up music forever or give up movies forever?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-010",
+    "text": "Would you rather know the date you will die or the way you will die?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-011",
+    "text": "Would you rather always say what you think or never speak your mind?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-012",
+    "text": "Would you rather relive your worst day or skip your best day?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-013",
+    "text": "Would you rather be the smartest person in the room or the funniest?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "wyr-014",
+    "text": "Would you rather have a rewind button or a pause button for your life?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-001",
+    "text": "What is your favourite small thing your partner does without noticing?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-002",
+    "text": "Plan your perfect lazy Sunday together in one minute.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-003",
+    "text": "What song reminds you most of your partner?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-004",
+    "text": "Recreate your first meeting as dramatically as possible.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-005",
+    "text": "What is one thing you want to try together this year?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-006",
+    "text": "What is a habit of your partner's you secretly find adorable?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-007",
+    "text": "Guess your partner's go-to comfort food. Score if you are right.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-008",
+    "text": "Give your partner a compliment that is not about looks.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-009",
+    "text": "What is one small thing your partner could do to make your week better?",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-010",
+    "text": "Describe your partner in exactly three words and explain each.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-011",
+    "text": "What is the funniest argument you two have ever had over nothing?",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "couple-012",
+    "text": "Plan a surprise date for your partner and pitch it in thirty seconds.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  }
+]
