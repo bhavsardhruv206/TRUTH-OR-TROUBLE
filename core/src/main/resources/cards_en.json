@@ -3166,5 +3166,564 @@
     "language": "en",
     "safety": "mild_suggestive",
     "timerSeconds": 60
+  },
+  {
+    "id": "closer-chill-01",
+    "text": "{name}, tell {other} the exact moment you first realised you liked them.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-02",
+    "text": "Hold hands and look into each other's eyes without talking or laughing until the timer ends.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "hands"
+  },
+  {
+    "id": "closer-chill-03",
+    "text": "{name}, give {other} three compliments that have nothing to do with looks.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-04",
+    "text": "{name}, describe your perfect lazy Sunday together, from wake-up to bedtime.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "cuddle"
+  },
+  {
+    "id": "closer-chill-05",
+    "text": "{name}, what is one small habit of {other}'s that you secretly adore?",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-06",
+    "text": "Slow dance together to a song {other} picks. No phones, just the two of you.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 90,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "closer-chill-07",
+    "text": "{name}, give {other} a gentle hand massage while telling them about your day.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "hand_touch"
+  },
+  {
+    "id": "closer-chill-08",
+    "text": "{name}, recreate the first hug you ever gave {other}.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "hug_behind"
+  },
+  {
+    "id": "closer-chill-09",
+    "text": "{name}, what song makes you think of {other}? Hum a bit of it.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-10",
+    "text": "{name}, write a three-line love note to {other} with your finger on their palm. They have to guess it.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "hand_touch"
+  },
+  {
+    "id": "closer-chill-11",
+    "text": "{name}, tell {other} one thing they did this month that made you feel loved.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-12",
+    "text": "Sit back to back and lean on each other. {name} describes {other}'s face from memory in detail.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "back_to_back"
+  },
+  {
+    "id": "closer-chill-13",
+    "text": "{name}, give {other} a forehead kiss and say one thing you are grateful for about them.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "foreheads"
+  },
+  {
+    "id": "closer-chill-14",
+    "text": "{name}, what is the most romantic thing {other} has ever done for you?",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-15",
+    "text": "Cuddle up on the couch together and decide your next date night before the timer ends.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "cuddle"
+  },
+  {
+    "id": "closer-chill-16",
+    "text": "{name}, brush {other}'s hair or gently play with it until the timer ends.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "massage"
+  },
+  {
+    "id": "closer-chill-17",
+    "text": "{name}, what is a place you would love to watch a sunset with {other}?",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "cuddle"
+  },
+  {
+    "id": "closer-chill-18",
+    "text": "{name}, tell {other} what you noticed first about them, and what you notice most now.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-19",
+    "text": "Check-in: {name}, ask {other} what kind of affection they love most right now, and really listen.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-chill-20",
+    "text": "{name}, wrap {other} in your arms from behind and sway gently together.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 30,
+    "pose": "hug_behind"
+  },
+  {
+    "id": "closer-bold-01",
+    "text": "{name}, give {other} a slow shoulder and neck massage. {other} says when to go softer or stronger.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "closer-bold-02",
+    "text": "{name}, whisper in {other}'s ear the thing you find most attractive about them.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "closer-bold-03",
+    "text": "{name}, kiss {other} somewhere other than the lips. Ask first, then let them guess where comes next.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "closer-bold-04",
+    "text": "{name}, what is the most attractive thing {other} has ever worn?",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-05",
+    "text": "{name}, describe your idea of a perfect romantic evening with {other} in five sentences.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-06",
+    "text": "Blindfold {name} with a scarf. {other} gives them three gentle touches on the hands and arms, and {name} guesses what touched them.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "hand_touch"
+  },
+  {
+    "id": "closer-bold-07",
+    "text": "{name}, slow dance with {other} with your foreheads touching the whole time.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60,
+    "pose": "foreheads"
+  },
+  {
+    "id": "closer-bold-08",
+    "text": "{name}, give {other} the best kiss on the cheek you have ever given anyone.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "closer-bold-09",
+    "text": "{name}, what is one thing {other} does that instantly puts you in a romantic mood?",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-10",
+    "text": "{name}, trace a heart on {other}'s back with your fingertip and then say what you love about them.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "massage"
+  },
+  {
+    "id": "closer-bold-11",
+    "text": "Lie down side by side and match your breathing. Whoever giggles first owes the other a back rub later.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60,
+    "pose": "lie_down"
+  },
+  {
+    "id": "closer-bold-12",
+    "text": "{name}, tell {other} about a daydream you've had about them. Keep it sweet, they can ask one follow-up.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "closer-bold-13",
+    "text": "{name}, flirt with {other} like you are meeting for the very first time at a café.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-14",
+    "text": "{name}, give {other} a foot rub while they tell you their favourite memory of you two.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "hand_touch"
+  },
+  {
+    "id": "closer-bold-15",
+    "text": "{name}, kiss the back of {other}'s hand like royalty and invite them to a dance.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "hand_kiss"
+  },
+  {
+    "id": "closer-bold-16",
+    "text": "{name}, what is one romantic thing you have always wanted to try together but never suggested?",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-17",
+    "text": "{name}, describe {other}'s smile as if you were writing a poem about it.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-18",
+    "text": "Sit facing each other, knees touching. {name} gets 30 seconds to make {other} blush without touching them.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30,
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-19",
+    "text": "Check-in: {name}, tell {other} one thing you would love more of, and one thing you would like less of. Gently.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-bold-20",
+    "text": "{name}, pick {other}'s favourite cuddle position and stay in it until the timer ends.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60,
+    "pose": "cuddle"
+  },
+  {
+    "id": "closer-wild-01",
+    "text": "{name}, give {other} a slow kiss on the neck. Ask first, and stop if they say so.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "closer-wild-02",
+    "text": "{name}, describe in a whisper how you would like your next date night to end. Keep it romantic, not graphic.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "closer-wild-03",
+    "text": "{name}, give {other} a full back massage over a T-shirt, with slow, steady strokes.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 120,
+    "pose": "massage"
+  },
+  {
+    "id": "closer-wild-04",
+    "text": "Blindfold {other}. {name} feeds them three treats from the kitchen and they guess each one.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "closer-wild-05",
+    "text": "{name}, kiss {other} like it is the last scene of a romance movie.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "closer-wild-06",
+    "text": "{name}, what is your favourite memory of a really romantic night together? Keep the details PG-13.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-wild-07",
+    "text": "{name}, give {other} a trail of three kisses from the wrist to the shoulder.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "hand_kiss"
+  },
+  {
+    "id": "closer-wild-08",
+    "text": "{name}, sit on {other}'s lap and tell them what you are planning for their next birthday.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "cuddle"
+  },
+  {
+    "id": "closer-wild-09",
+    "text": "Eyes closed. {name} uses only fingertips to trace {other}'s face, then says what they love most about it.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "hand_touch"
+  },
+  {
+    "id": "closer-wild-10",
+    "text": "{name}, tell {other} the most attractive thing they did today without realising it.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-wild-11",
+    "text": "{name}, pick a song and give {other} a playful, flirty dance just for them. Clothes stay on.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60,
+    "pose": "dance_solo"
+  },
+  {
+    "id": "closer-wild-12",
+    "text": "{name}, let {other} choose one place to be kissed: hand, cheek, forehead, neck or lips.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "closer-wild-13",
+    "text": "Hold each other close, cheek to cheek, and whisper one wish for your future together.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "foreheads"
+  },
+  {
+    "id": "closer-wild-14",
+    "text": "{name}, describe your ideal getaway with {other}: where, what you wear to dinner, and how you spend the morning after.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-wild-15",
+    "text": "{name}, give {other} a kiss that lasts exactly as long as the timer.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 10,
+    "pose": "foreheads"
+  },
+  {
+    "id": "closer-wild-16",
+    "text": "{name}, what is one thing about your chemistry with {other} that still surprises you?",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-wild-17",
+    "text": "{name}, write a flirty secret message on paper, fold it, and hand it to {other} to read later tonight.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "closer-wild-18",
+    "text": "{name}, pull {other} close and say the cheesiest pickup line you know with total confidence.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "closer-wild-19",
+    "text": "{name}, give {other} a slow scalp massage until they are totally relaxed.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "closer-wild-20",
+    "text": "Check-in: {name}, ask {other} how they are feeling right now and whether to keep the heat or turn it down. Either answer is great.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "pose": "talk"
   }
 ]

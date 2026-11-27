@@ -6,14 +6,18 @@ object PlayerRules {
     const val MIN_PLAYERS = 2
     const val MAX_PLAYERS = 8
     const val MAX_NAME_LENGTH = 16
+    /** Couples-only games are for exactly this many players. */
+    const val COUPLE_PLAYERS = 2
 
     sealed interface Result {
         data class Valid(val names: List<String>) : Result
         data class Invalid(val reason: String) : Result
     }
 
-    fun validate(rawNames: List<String>): Result {
+    /** [mode] adds that game's own player rules, such as exactly two players for couples-only games. */
+    fun validate(rawNames: List<String>, mode: GameMode? = null): Result {
         val names = rawNames.map { it.trim() }
+        if (mode?.couplesOnly == true && names.size != COUPLE_PLAYERS) return Result.Invalid("${mode.label} is for exactly $COUPLE_PLAYERS players: you and your partner.")
         if (names.size < MIN_PLAYERS) return Result.Invalid("Add at least $MIN_PLAYERS players.")
         if (names.size > MAX_PLAYERS) return Result.Invalid("At most $MAX_PLAYERS players can play.")
         if (names.any { it.isEmpty() }) return Result.Invalid("Every player needs a nickname.")
@@ -71,7 +75,8 @@ class GameSession(
     private val modes = if (spin) SPIN_MODES else listOf(mode)
     private val decks = modes.associateWith { CardDeck(cards, it, intensity, random, language = language, playedBefore = playedBefore) }
     private val picker = if (spin) FairPicker(playerNames.size, random) else null
-    private val scheduler = ChaosScheduler(random, enabled = chaosEnabled)
+    // Group chaos moments don't fit a game for two partners.
+    private val scheduler = ChaosScheduler(random, enabled = chaosEnabled && !(mode.couplesOnly && !spin))
     private val usedChaos = mutableSetOf<String>()
 
     /** Ids of cards drawn so far in this game, for remembering between games. */
@@ -84,7 +89,7 @@ class GameSession(
         private set
 
     init {
-        val valid = PlayerRules.validate(playerNames)
+        val valid = PlayerRules.validate(playerNames, if (spin) null else mode)
         require(valid is PlayerRules.Result.Valid) { (valid as PlayerRules.Result.Invalid).reason }
         require(totalRounds > 0) { "totalRounds must be positive" }
         decks.forEach { (m, d) -> require(!d.isEmpty) { "No cards for $m / $intensity / $language" } }

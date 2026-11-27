@@ -76,7 +76,12 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
-    fun selectMode(m: GameMode) = _setup.update { it.copy(mode = m, spin = false) }
+    fun selectMode(m: GameMode) = _setup.update {
+        // Couples-only games are for exactly two partners: keep the first two names.
+        val names = if (m.couplesOnly) (it.names + List(PlayerRules.COUPLE_PLAYERS) { "" }).take(PlayerRules.COUPLE_PLAYERS) else it.names
+        it.copy(mode = m, spin = false, names = names, error = null)
+    }
+    private val couplesOnly: Boolean get() = _setup.value.let { !it.spin && it.mode.couplesOnly }
     fun selectSpin() = _setup.update { it.copy(spin = true) }
     fun selectIntensity(i: Intensity) = _setup.update { it.copy(intensity = i) }
     fun selectRounds(r: Int) = _setup.update { it.copy(rounds = r) }
@@ -90,7 +95,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun addPlayer() = _setup.update { s ->
-        if (s.names.size < PlayerRules.MAX_PLAYERS) s.copy(names = s.names + "") else s
+        if (!couplesOnly && s.names.size < PlayerRules.MAX_PLAYERS) s.copy(names = s.names + "") else s
     }
 
     fun removePlayer(index: Int) = _setup.update { s ->
@@ -106,7 +111,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private fun startSession(rounds: Int): Boolean {
         rememberSeen()
         val s = _setup.value
-        return when (val v = PlayerRules.validate(s.names)) {
+        return when (val v = PlayerRules.validate(s.names, if (s.spin) null else s.mode)) {
             is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = v.reason) }; false }
             is PlayerRules.Result.Valid -> {
                 val pool = cards.filter { it.id !in reported }

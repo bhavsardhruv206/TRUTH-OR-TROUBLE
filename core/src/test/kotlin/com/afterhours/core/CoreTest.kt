@@ -27,6 +27,7 @@ class CoreTest {
         assertEquals(30, counts[GameMode.NEVER_HAVE_I_EVER])
         assertEquals(30, counts[GameMode.MOST_LIKELY_TO])
         assertEquals(30, counts[GameMode.HOT_SEAT])
+        assertEquals(60, counts[GameMode.CLOSER])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -118,7 +119,8 @@ class CoreTest {
 
     @Test fun sessionRendersCardTextForEveryTurn() {
         GameMode.entries.forEach { mode ->
-            val s = GameSession(cards, mode, Intensity.WILD, listOf("Ann", "Bo", "Cy"), totalRounds = 40, random = Random(9))
+            val names = if (mode.couplesOnly) listOf("Ann", "Bo") else listOf("Ann", "Bo", "Cy")
+            val s = GameSession(cards, mode, Intensity.WILD, names, totalRounds = 40, random = Random(9))
             while (!s.state.finished) {
                 val text = checkNotNull(s.state.cardText)
                 assertFalse(text.contains("{"), text)
@@ -165,7 +167,7 @@ class CoreTest {
     @Test fun timedDaresHaveSaneTimers() {
         val timed = cards.filter { it.timerSeconds != null }
         assertTrue(timed.size >= 10)
-        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT) && it.timerSeconds!! in 5..120 })
+        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT, GameMode.CLOSER) && it.timerSeconds!! in 5..120 })
     }
 
     @Test fun previouslyPlayedCardsComeLast() {
@@ -258,5 +260,56 @@ class CoreTest {
         // points went to whoever the wheel picked
         assertTrue(s.state.players.all { it.score > 0 })
         assertTrue(s.drawnCardIds.all { id -> cards.first { it.id == id }.category in GameSession.SPIN_MODES })
+    }
+
+    @Test fun closerIsForExactlyTwoPartners() {
+        assertEquals(listOf(GameMode.CLOSER), GameMode.entries.filter { it.couplesOnly })
+        assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A", "B", "C"), GameMode.CLOSER))
+        assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A"), GameMode.CLOSER))
+        assertIs<PlayerRules.Result.Valid>(PlayerRules.validate(listOf("A", "B"), GameMode.CLOSER))
+        assertIs<PlayerRules.Result.Valid>(PlayerRules.validate(listOf("A", "B", "C"), GameMode.TRUTH))
+        assertFailsWith<IllegalArgumentException> {
+            GameSession(cards, GameMode.CLOSER, Intensity.CHILL, listOf("A", "B", "C"))
+        }
+    }
+
+    @Test fun closerSessionAlternatesPartnersWithoutGroupChaos() {
+        CardLanguage.entries.forEach { lang ->
+            Intensity.entries.forEach { level ->
+                val s = GameSession(allCards, GameMode.CLOSER, level, listOf("Ann", "Bo"), totalRounds = 20, random = Random(3), language = lang.code)
+                var turn = 0
+                while (!s.state.finished) {
+                    assertNull(s.state.chaos, "no group chaos in a couples game")
+                    val card = s.state.card!!
+                    assertEquals(GameMode.CLOSER, card.category)
+                    assertTrue(card.intensity <= level)
+                    assertEquals(lang.code, card.language)
+                    assertEquals(turn % 2, s.state.currentPlayerIndex)
+                    assertFalse(s.state.cardText!!.contains("{"))
+                    s.complete(); turn++
+                }
+            }
+        }
+    }
+
+    @Test fun closerCardsArePerIntensityAndMarkedSuggestiveAboveChill() {
+        val closer = allCards.filter { it.category == GameMode.CLOSER }
+        Intensity.entries.forEach { i -> assertEquals(20, closer.count { it.language == "en" && it.intensity == i }, "en $i") }
+        assertTrue(closer.filter { it.intensity == Intensity.CHILL }.all { it.safety == SafetyClass.SAFE })
+        assertTrue(closer.filter { it.intensity != Intensity.CHILL }.all { it.safety == SafetyClass.MILD_SUGGESTIVE })
+    }
+
+    @Test fun everyCloserCardHasAValidPoseIllustration() {
+        val poses = PoseLibrary.all
+        assertEquals(poses.size, poses.map { it.id }.toSet().size)
+        poses.forEach { pose ->
+            assertTrue(pose.title.isNotBlank() && pose.hint.isNotBlank(), pose.id)
+            listOf(pose.pink, pose.blue).forEach { fig ->
+                assertEquals(Pose.JOINTS.toSet(), fig.keys, pose.id)
+                fig.values.forEach { (x, y) -> assertTrue(x in 0f..Pose.WIDTH && y in 0f..Pose.HEIGHT, "${pose.id} out of bounds") }
+            }
+        }
+        allCards.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose ${it.pose}") }
+        assertTrue(allCards.filter { it.category != GameMode.CLOSER }.all { it.pose == null })
     }
 }
