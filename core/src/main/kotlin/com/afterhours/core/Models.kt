@@ -36,3 +36,22 @@ data class Card(
 )
 
 data class Player(val id: Int, val name: String, val score: Int = 0)
+
+/**
+ * Fills the personalisation placeholders in a card:
+ * `{name}` is the player whose turn it is, `{other}` is a different, randomly chosen player.
+ */
+object CardText {
+    const val NAME = "{name}"
+    const val OTHER = "{other}"
+
+    fun render(text: String, current: Player, players: List<Player>, random: kotlin.random.Random = kotlin.random.Random.Default): String {
+        var out = text.replace(NAME, current.name)
+        if (OTHER in out) {
+            val others = players.filter { it.id != current.id }
+            val other = if (others.isEmpty()) "someone" else others[random.nextInt(others.size)].name
+            out = out.replace(OTHER, other)
+        }
+        return out
+    }
+}

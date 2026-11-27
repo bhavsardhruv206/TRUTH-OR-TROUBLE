@@ -32,6 +32,8 @@ data class GameState(
     val round: Int,
     val totalRounds: Int,
     val card: Card?,
+    /** The card text with `{name}` / `{other}` filled in for the current player. */
+    val cardText: String?,
     val finished: Boolean,
     val skips: Int,
 ) {
@@ -58,6 +60,7 @@ class GameSession(
     random: Random = Random.Default,
 ) {
     private val deck = CardDeck(cards, mode, intensity, random)
+    private val textRandom = random
 
     var state: GameState
         private set
@@ -67,14 +70,17 @@ class GameSession(
         require(valid is PlayerRules.Result.Valid) { (valid as PlayerRules.Result.Invalid).reason }
         require(totalRounds > 0) { "totalRounds must be positive" }
         require(!deck.isEmpty) { "No cards for $mode / $intensity" }
+        val players0 = valid.names.mapIndexed { i, n -> Player(i, n) }
+        val first = deck.draw()
         state = GameState(
             mode = mode,
             intensity = intensity,
-            players = valid.names.mapIndexed { i, n -> Player(i, n) },
+            players = players0,
             currentPlayerIndex = 0,
             round = 1,
             totalRounds = totalRounds,
-            card = deck.draw(),
+            card = first,
+            cardText = first?.let { CardText.render(it.text, players0[0], players0, textRandom) },
             finished = false,
             skips = 0,
         )
@@ -97,13 +103,16 @@ class GameSession(
         } else s.players
         val skips = if (award) s.skips else s.skips + 1
         state = if (s.round >= s.totalRounds) {
-            s.copy(players = players, card = null, finished = true, skips = skips)
+            s.copy(players = players, card = null, cardText = null, finished = true, skips = skips)
         } else {
+            val nextIndex = (s.currentPlayerIndex + 1) % players.size
+            val next = deck.draw()
             s.copy(
                 players = players,
-                currentPlayerIndex = (s.currentPlayerIndex + 1) % players.size,
+                currentPlayerIndex = nextIndex,
                 round = s.round + 1,
-                card = deck.draw(),
+                card = next,
+                cardText = next?.let { CardText.render(it.text, players[nextIndex], players, textRandom) },
                 skips = skips,
             )
         }

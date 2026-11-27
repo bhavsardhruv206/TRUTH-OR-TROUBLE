@@ -90,4 +90,38 @@ class CoreTest {
         assertTrue(policy.shouldShow(AdPlacement.HOME_BANNER))
         assertFalse(NoAds.shouldShow(AdPlacement.HOME_BANNER))
     }
+
+    @Test fun placeholdersAreFilledAndOtherDiffersFromCurrent() {
+        val players = listOf(Player(0, "Rahul"), Player(1, "Meera"), Player(2, "Sam"))
+        repeat(50) { seed ->
+            val out = CardText.render("{name} and {other}: go. {name}!", players[0], players, Random(seed))
+            assertFalse(out.contains("{"))
+            assertTrue(out.startsWith("Rahul and "))
+            assertFalse(out.startsWith("Rahul and Rahul"))
+        }
+        assertEquals("No placeholders", CardText.render("No placeholders", players[0], players))
+    }
+
+    @Test fun placeholdersAreWellFormedAndPersonalised() {
+        val allowed = setOf("{name}", "{other}")
+        cards.forEach { c ->
+            val found = Regex("\\{[^}]*\\}").findAll(c.text).map { it.value }.toSet()
+            assertTrue(allowed.containsAll(found), "bad placeholder in ${c.id}: ${c.text}")
+        }
+        assertTrue(cards.count { "{name}" in it.text } >= 50)
+        assertTrue(cards.count { "{other}" in it.text } >= 10)
+    }
+
+    @Test fun sessionRendersCardTextForEveryTurn() {
+        GameMode.entries.forEach { mode ->
+            val s = GameSession(cards, mode, Intensity.WILD, listOf("Ann", "Bo", "Cy"), totalRounds = 40, random = Random(9))
+            while (!s.state.finished) {
+                val text = checkNotNull(s.state.cardText)
+                assertFalse(text.contains("{"), text)
+                if ("{name}" in s.state.card!!.text) assertTrue(text.contains(s.state.currentPlayer.name))
+                s.complete()
+            }
+            assertNull(s.state.cardText)
+        }
+    }
 }

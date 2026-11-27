@@ -354,7 +354,7 @@ fun GameScreen(g: GameState, onComplete: () -> Unit, onSkip: () -> Unit, onQuit:
             ) {
                 Pill("${card.category.label.uppercase()} · ${card.intensity.label.uppercase()}", Cyan)
                 Spacer(Modifier.height(20.dp))
-                Text(card.text, fontSize = 26.sp, lineHeight = 34.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.SemiBold)
+                Text(g.cardText ?: card.text, fontSize = 26.sp, lineHeight = 34.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.SemiBold)
             }
         }
         Spacer(Modifier.height(16.dp))
