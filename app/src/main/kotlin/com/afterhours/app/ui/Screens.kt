@@ -94,6 +94,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     removeAdsPrice = price,
                     privacyRequired = privacyRequired,
                     onPlay = { feedback.tap(); nav.navigate("mode") },
+                    onSpin = { feedback.tap(); vm.selectSpin(); nav.navigate("mode") },
                     onHowToPlay = { nav.navigate("tutorial") },
                     onSound = vm::setSound,
                     onHaptics = vm::setHaptics,
@@ -108,7 +109,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
         composable("mode") {
             val s by vm.setup.collectAsStateWithLifecycle()
             WithBanner(showBanner) {
-                ModeScreen(s, vm::selectMode, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
+                ModeScreen(s, vm::selectMode, vm::selectSpin, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
             }
         }
         composable("setup") {
@@ -340,7 +341,7 @@ private data class TutorialStep(val eyebrow: String, val title: String, val body
 
 private val tutorialSteps = listOf(
     TutorialStep("1 / 5", "Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
-    TutorialStep("2 / 5", "Pick your game", "Truth: answer honestly.\nDare: do it.\nWould You Rather: choose and explain.\nCouple: made for partners."),
+    TutorialStep("2 / 5", "Pick your game", "Spin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
     TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
     TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
     TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
@@ -380,6 +381,7 @@ fun HomeScreen(
     removeAdsPrice: String?,
     privacyRequired: Boolean,
     onPlay: () -> Unit,
+    onSpin: () -> Unit,
     onHowToPlay: () -> Unit,
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
@@ -395,9 +397,11 @@ fun HomeScreen(
         Spacer(Modifier.weight(1f))
         Wordmark()
         Spacer(Modifier.height(20.dp))
-        Muted("A party game for 2 to 8 adults.", textAlign = TextAlign.Center)
+        Muted("8 games for 2 to 8 adults.", textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
         PrimaryButton("Play", onPlay, Modifier.fillMaxWidth())
+        Spacer(Modifier.height(10.dp))
+        SecondaryButton("Spin the wheel", onSpin, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
         SecondaryButton("How to play", onHowToPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(4.dp))
@@ -501,7 +505,13 @@ private fun modeDescription(m: GameMode) = when (m) {
     GameMode.DARE -> "Do what the card says"
     GameMode.WOULD_YOU_RATHER -> "Choose, then defend it"
     GameMode.COUPLE -> "For partners"
+    GameMode.NEVER_HAVE_I_EVER -> "Hands up if you have done it"
+    GameMode.MOST_LIKELY_TO -> "Everyone points on three"
+    GameMode.HOT_SEAT -> "60 seconds of group questions"
 }
+
+private val classicModes = listOf(GameMode.TRUTH, GameMode.DARE, GameMode.WOULD_YOU_RATHER, GameMode.COUPLE)
+private val groupModes = GameMode.entries - classicModes.toSet()
 
 private fun intensityDescription(i: Intensity) = when (i) {
     Intensity.CHILL -> "Light and easy"
@@ -513,6 +523,7 @@ private fun intensityDescription(i: Intensity) = when (i) {
 fun ModeScreen(
     s: SetupState,
     onMode: (GameMode) -> Unit,
+    onSpin: () -> Unit,
     onIntensity: (Intensity) -> Unit,
     onLanguage: (CardLanguage) -> Unit,
     onNext: () -> Unit,
@@ -523,7 +534,14 @@ fun ModeScreen(
         Text("Choose a game", style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(16.dp))
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            GameMode.entries.forEach { m -> OptionRow(m.label, modeDescription(m), m == s.mode) { onMode(m) } }
+            Eyebrow("Featured")
+            OptionRow("Spin the Wheel", "The wheel picks who plays, then Truth or Dare", s.spin, onSpin)
+            Spacer(Modifier.height(12.dp))
+            Eyebrow("Classic")
+            classicModes.forEach { m -> OptionRow(m.label, modeDescription(m), !s.spin && m == s.mode) { onMode(m) } }
+            Spacer(Modifier.height(12.dp))
+            Eyebrow("Whole group")
+            groupModes.forEach { m -> OptionRow(m.label, modeDescription(m), !s.spin && m == s.mode) { onMode(m) } }
             Spacer(Modifier.height(12.dp))
             Eyebrow("Intensity")
             Intensity.entries.forEach { i ->
@@ -606,8 +624,10 @@ fun GameScreen(
     // Flip the card in for every new turn.
     val density = LocalDensity.current.density
     val flip = remember(g.round) { Animatable(90f) }
-    LaunchedEffect(g.round, g.chaos == null) {
-        if (g.chaos == null) {
+    // Spin games show two wheels before the card: 0 = who plays, 1 = truth or dare, 2 = card.
+    var stage by rememberSaveable(g.round) { mutableIntStateOf(if (g.spin) 0 else 2) }
+    LaunchedEffect(g.round, g.chaos == null, stage) {
+        if (g.chaos == null && stage == 2) {
             flip.animateTo(0f, tween(420, easing = FastOutSlowInEasing))
             feedback.reveal()
         }
@@ -617,6 +637,12 @@ fun GameScreen(
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Eyebrow("Round ${g.round} of ${g.totalRounds}", Stone)
             QuietButton("End game", { confirmQuit = true })
+        }
+        if (stage < 2) {
+            SpinStage(g, stage, feedback, onNextStage = { stage++ })
+            Spacer(Modifier.height(12.dp))
+            Scoreline(g)
+            return@Page
         }
         Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
         Muted("your turn")
@@ -688,6 +714,48 @@ fun GameScreen(
         confirmButton = {},
         dismissButton = { TextButton({ reporting = false }) { Text("Cancel", color = Stone) } },
     )
+}
+
+/** The two wheels of a spin game: first who plays, then Truth or Dare. */
+@Composable
+private fun ColumnScope.SpinStage(g: GameState, stage: Int, feedback: Feedback, onNextStage: () -> Unit) {
+    val card = g.card ?: return
+    val choosingPlayer = stage == 0
+    val labels = if (choosingPlayer) g.players.map { it.name } else GameSession.SPIN_MODES.map { it.label }
+    val target = if (choosingPlayer) g.currentPlayerIndex else GameSession.SPIN_MODES.indexOf(card.category).coerceAtLeast(0)
+    var spinKey by remember(g.round, stage) { mutableStateOf<Int?>(null) }
+    var landed by remember(g.round, stage) { mutableStateOf(false) }
+
+    Text(
+        when {
+            choosingPlayer && landed -> g.currentPlayer.name
+            choosingPlayer -> "Who's next?"
+            landed -> card.category.label
+            else -> "${g.currentPlayer.name}, truth or dare?"
+        },
+        style = MaterialTheme.typography.headlineMedium,
+        color = if (landed) Champagne else Ivory,
+    )
+    Muted(if (choosingPlayer) "Spin to pick a player" else "Spin to find out")
+    Box(Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
+        // key() gives each wheel its own rotation state so the second wheel starts at rest.
+        key(stage) {
+            SpinWheel(
+                labels = labels,
+                target = target,
+                spinKey = spinKey,
+                onTick = feedback::tick,
+                onLanded = { landed = true; feedback.reveal() },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
+    Spacer(Modifier.height(16.dp))
+    when {
+        spinKey == null -> PrimaryButton("Spin", { feedback.tap(); spinKey = g.round * 10 + stage }, Modifier.fillMaxWidth())
+        !landed -> PrimaryButton("Spinning…", {}, Modifier.fillMaxWidth(), enabled = false)
+        else -> PrimaryButton(if (choosingPlayer) "Next: truth or dare" else "Show my card", { feedback.tap(); onNextStage() }, Modifier.fillMaxWidth())
+    }
 }
 
 /** Optional countdown for timed dares. Starts on tap so the player can get ready. */

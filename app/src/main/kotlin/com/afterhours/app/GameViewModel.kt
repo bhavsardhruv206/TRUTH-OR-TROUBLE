@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 data class SetupState(
     val mode: GameMode = GameMode.TRUTH,
+    /** Spin the wheel: a wheel picks the player and Truth or Dare each turn. */
+    val spin: Boolean = false,
     val intensity: Intensity = Intensity.CHILL,
     val language: CardLanguage = CardLanguage.ENGLISH,
     val names: List<String> = listOf("", ""),
@@ -74,7 +76,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
-    fun selectMode(m: GameMode) = _setup.update { it.copy(mode = m) }
+    fun selectMode(m: GameMode) = _setup.update { it.copy(mode = m, spin = false) }
+    fun selectSpin() = _setup.update { it.copy(spin = true) }
     fun selectIntensity(i: Intensity) = _setup.update { it.copy(intensity = i) }
     fun selectRounds(r: Int) = _setup.update { it.copy(rounds = r) }
     fun selectLanguage(l: CardLanguage) {
@@ -113,6 +116,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
                         playedBefore = seen,
                         chaosEnabled = settings.value.chaos,
                         language = s.language.code,
+                        spin = s.spin,
                     )
                 } catch (e: IllegalArgumentException) {
                     _setup.update { it.copy(error = "No cards left for this mode and intensity.") }
