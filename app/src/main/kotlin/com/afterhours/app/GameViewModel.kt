@@ -51,12 +51,17 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     /** Returns true when the game started. */
-    fun startGame(): Boolean {
+    fun startGame(): Boolean = startSession(_setup.value.rounds)
+
+    /** Rewarded-ad bonus: same players and settings, with extra rounds. */
+    fun playBonus(): Boolean = startSession(_setup.value.rounds + BONUS_ROUNDS)
+
+    private fun startSession(rounds: Int): Boolean {
         val s = _setup.value
         return when (val v = PlayerRules.validate(s.names)) {
             is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = v.reason) }; false }
             is PlayerRules.Result.Valid -> {
-                session = GameSession(cards, s.mode, s.intensity, v.names, s.rounds)
+                session = GameSession(cards, s.mode, s.intensity, v.names, rounds)
                 _game.value = session!!.state
                 true
             }
@@ -70,4 +75,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun playAgain() { startGame() }
 
     fun endGame() { session = null; _game.value = null }
+
+    private companion object { const val BONUS_ROUNDS = 5 }
 }
