@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.application") version "8.7.3"
-    kotlin("android") version "2.0.21"
-    kotlin("plugin.compose") version "2.0.21"
+    id("com.android.application")
+    kotlin("android")
+    kotlin("plugin.compose")
 }
 
 android {
@@ -24,7 +24,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
     buildFeatures { compose = true }
 }
 
