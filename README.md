@@ -1,4 +1,4 @@
-# AfterHours (working title)
+# Truth or Trouble (formerly AfterHours)
 
 Offline, pass-the-phone 18+ party game for Android. Truth, Dare, Would You Rather and Couple modes; 2–8 players; Chill/Bold/Wild intensity; skip with no penalty; session scoreboard.
 
