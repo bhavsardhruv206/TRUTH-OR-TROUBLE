@@ -7,7 +7,7 @@ class CoreTest {
     private val cards = BundledCardRepository().allCards()
 
     @Test fun seedCardsAreValid() {
-        assertTrue(cards.size >= 60)
+        assertTrue(cards.size >= 300)
         assertEquals(cards.size, cards.map { it.id }.toSet().size)
         assertTrue(cards.all { it.text.isNotBlank() && it.language == "en" })
         GameMode.entries.forEach { m ->
@@ -15,6 +15,15 @@ class CoreTest {
                 assertTrue(cards.any { it.category == m && it.intensity == i }, "missing $m/$i")
             }
         }
+    }
+
+    @Test fun deckHasTargetSizePerCategory() {
+        val counts = cards.groupingBy { it.category }.eachCount()
+        assertEquals(100, counts[GameMode.TRUTH])
+        assertEquals(100, counts[GameMode.DARE])
+        assertEquals(60, counts[GameMode.WOULD_YOU_RATHER])
+        assertEquals(40, counts[GameMode.COUPLE])
+        assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
     @Test fun deckFiltersAndNeverRepeatsUntilExhausted() {
