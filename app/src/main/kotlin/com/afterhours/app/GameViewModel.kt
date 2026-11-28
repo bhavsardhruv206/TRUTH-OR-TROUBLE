@@ -90,6 +90,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setHaptics(on: Boolean) = viewModelScope.launch { prefs.setHaptics(on) }
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
     fun setTheme(mode: ThemeMode) = viewModelScope.launch { prefs.setTheme(mode) }
+    fun setTurnClock(on: Boolean) = viewModelScope.launch { prefs.setTurnClock(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
     fun selectMode(m: GameMode) = _setup.update {
@@ -140,6 +141,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
                         chaosEnabled = settings.value.chaos,
                         language = s.language.code,
                         spin = s.spin,
+                        stakes = true,
                     )
                 } catch (e: IllegalArgumentException) {
                     _setup.update { it.copy(error = "No cards left for this mode and intensity.") }
@@ -154,6 +156,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun complete() { session?.let { it.complete(); publish(it) } }
     fun skip() { session?.let { it.skip(); publish(it) } }
+    /** The turn clock ran out on the current card. */
+    fun timeOut() { session?.let { it.timeOut(); publish(it) } }
     fun dismissChaos() { session?.let { it.dismissChaos(); _game.value = it.state } }
 
     /** Hides the current card on this device for good and skips it without penalty. */
@@ -161,7 +165,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         val id = session?.state?.card?.id ?: return
         reported = reported + id
         viewModelScope.launch { prefs.addReportedCard(id) }
-        skip()
+        // Reporting is never punished.
+        session?.let { it.skipFree(); publish(it) }
     }
 
     private fun publish(s: GameSession) {

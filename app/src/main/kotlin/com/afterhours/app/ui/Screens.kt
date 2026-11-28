@@ -102,6 +102,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     onHaptics = vm::setHaptics,
                     onChaos = vm::setChaos,
                     onTheme = vm::setTheme,
+                    onTurnClock = vm::setTurnClock,
                     onResetSeen = vm::resetSeenCards,
                     onPrivacy = { consent.showPrivacyOptions(activity) },
                     onRemoveAds = { billing.buy(activity) },
@@ -160,8 +161,10 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             val setupNow by vm.setup.collectAsStateWithLifecycle()
             if (!state.finished) CompositionLocalProvider(LocalAvatars provides setupNow.avatarsByName()) { GameScreen(
                 state, feedback,
+                turnClock = settings.turnClock,
                 onComplete = { feedback.tap(); vm.complete() },
                 onSkip = { feedback.tap(); vm.skip() },
+                onTimeout = { feedback.alert(); vm.timeOut() },
                 onDismissChaos = vm::dismissChaos,
                 onReport = { reason ->
                     val card = state.card
@@ -369,8 +372,8 @@ private val tutorialSteps = listOf(
     TutorialStep("1 / 5", "Choose your players", "Tap Play game and choose how many people are playing, from 2 to 8. Then type everyone's name. On each turn the phone goes to the person named at the top."),
     TutorialStep("2 / 5", "Pick your game", "Tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group.\nCloser is for couples, so it opens only when 2 are playing."),
     TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
-    TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
-    TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
+    TutorialStep("4 / 5", "Skip if you want", "Not comfortable? Skip, no questions asked. In party games a skip costs one point; in Closer skipping is always free. Reporting a card never costs anything, and it never shows again."),
+    TutorialStep("5 / 5", "Raise the stakes", "Complete cards in a row for streak bonuses. Skips cost a point, and the final rounds score double. Answers are on the clock, and chaos moments interrupt every few turns. Switch the clock or chaos off in Settings."),
 )
 
 @Composable
@@ -416,6 +419,7 @@ fun HomeScreen(
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
     onRestore: () -> Unit,
+    onTurnClock: (Boolean) -> Unit = {},
 ) {
     var showSettings by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
@@ -437,6 +441,7 @@ fun HomeScreen(
     if (showSettings) SettingsDialog(
         settings, adsRemoved, removeAdsPrice, privacyRequired,
         onSound, onHaptics, onChaos, onTheme, onResetSeen, onPrivacy, onRemoveAds, onRestore,
+        onTurnClock = onTurnClock,
         onDismiss = { showSettings = false },
     )
     if (showHelp) AlertDialog(
@@ -471,6 +476,7 @@ private fun SettingsDialog(
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
     onRestore: () -> Unit,
+    onTurnClock: (Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
     var resetDone by remember { mutableStateOf(false) }
@@ -490,6 +496,7 @@ private fun SettingsDialog(
                 SwitchRow("Sound", settings.sound, onSound)
                 SwitchRow("Vibration", settings.haptics, onHaptics)
                 SwitchRow("Chaos moments", settings.chaos, onChaos, "Group events every few turns")
+                SwitchRow("Turn clock", settings.turnClock, onTurnClock, "${TURN_CLOCK_SECONDS} seconds to answer, or it counts as a skip")
                 HorizontalDivider(Modifier.padding(vertical = 8.dp), color = Hairline)
                 TextButton({ onResetSeen(); resetDone = true }, contentPadding = PaddingValues(0.dp)) {
                     Text(if (resetDone) "Played cards forgotten" else "Forget played cards", color = if (resetDone) Stone else Ivory)
@@ -789,8 +796,10 @@ private val reportReasons = listOf("Offensive or hurtful", "Unsafe to do", "Too 
 fun GameScreen(
     g: GameState,
     feedback: Feedback,
+    turnClock: Boolean,
     onComplete: () -> Unit,
     onSkip: () -> Unit,
+    onTimeout: () -> Unit,
     onDismissChaos: () -> Unit,
     onReport: (String) -> Unit,
     onQuit: () -> Unit,
@@ -813,11 +822,17 @@ fun GameScreen(
         }
     }
 
+    // The showdown starts with a jolt.
+    LaunchedEffect(g.showdown) { if (g.showdown) feedback.alert() }
+    val clockSeconds = if (turnClock && clocked(card)) TURN_CLOCK_SECONDS else null
+    val clockPaused = g.chaos != null || stage < 2 || confirmQuit || reporting
+
     Page {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Eyebrow("Round ${g.round} of ${g.totalRounds}", Stone)
+            Eyebrow(if (g.showdown) "Showdown · double points" else "Round ${g.round} of ${g.totalRounds}", if (g.showdown) Wine else Stone)
             QuietButton("End game", { confirmQuit = true })
         }
+        g.lastTurn?.let { TurnCallout(it, Modifier.padding(bottom = 6.dp)) }
         if (stage < 2) {
             SpinStage(g, stage, feedback, onNextStage = { stage++ })
             Spacer(Modifier.height(12.dp))
@@ -829,7 +844,14 @@ fun GameScreen(
             Spacer(Modifier.width(12.dp))
             Column {
                 Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
-                Muted("your turn")
+                val streak = g.currentPlayer.streak
+                if (g.stakes && streak >= 1) {
+                    Text(
+                        "$streak in a row · next one +${Stakes.streakBonus(streak + 1)} bonus",
+                        color = if (Stakes.streakBonus(streak + 1) > 0) Champagne else Stone,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                } else Muted("your turn")
             }
         }
         Spacer(Modifier.height(16.dp))
@@ -840,9 +862,13 @@ fun GameScreen(
             },
             shape = RoundedCornerShape(20.dp),
             colors = CardDefaults.cardColors(containerColor = Graphite),
-            border = BorderStroke(1.dp, Hairline),
+            border = BorderStroke(if (g.showdown) 2.dp else 1.dp, if (g.showdown) Wine else Hairline),
         ) {
             Column(Modifier.fillMaxSize().padding(24.dp)) {
+                clockSeconds?.let { secs ->
+                    TurnClock(key = g.round, seconds = secs, paused = clockPaused, feedback = feedback, onTimeout = onTimeout)
+                    Spacer(Modifier.height(12.dp))
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Tag(card.category.label, Ivory.copy(alpha = .8f))
                     Tag(card.intensity.label, intensityColor(card.intensity))
@@ -871,8 +897,8 @@ fun GameScreen(
         }
         Spacer(Modifier.height(16.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            SecondaryButton("Skip", onSkip, Modifier.weight(1f))
-            PrimaryButton("Done  +${pointsLabel(card.intensity.points)}", onComplete, Modifier.weight(1.6f))
+            SecondaryButton(if (g.skipCost > 0) "Skip  −${pointsLabel(g.skipCost)}" else "Skip", onSkip, Modifier.weight(1f))
+            PrimaryButton("Done  +${pointsLabel(g.pointsOnOffer)}", onComplete, Modifier.weight(1.6f))
         }
         Spacer(Modifier.height(12.dp))
         Scoreline(g)
@@ -958,7 +984,10 @@ private fun DareTimer(key: Int, seconds: Int, feedback: Feedback) {
     var left by remember(key) { mutableIntStateOf(seconds) }
     LaunchedEffect(key, running) {
         if (!running) return@LaunchedEffect
-        while (left > 0) { delay(1000); left-- }
+        while (left > 0) {
+            delay(1000); left--
+            if (left in 1..HEARTBEAT_SECONDS) feedback.heartbeat()
+        }
         running = false
         feedback.alert()
     }
@@ -975,6 +1004,72 @@ private fun DareTimer(key: Int, seconds: Int, feedback: Feedback) {
             else -> TextButton({ running = false }) { Text("Pause", color = Stone) }
         }
     }
+}
+
+/** Seconds the turn clock gives to answer a card. */
+const val TURN_CLOCK_SECONDS = 30
+/** The last seconds of any countdown pulse with a heartbeat. */
+private const val HEARTBEAT_SECONDS = 5
+
+/** Answer-style cards are on the clock. Dares, timed cards and couples cards are not: they take as long as they take. */
+private fun clocked(card: com.afterhours.core.Card): Boolean =
+    card.timerSeconds == null && card.category in setOf(
+        GameMode.TRUTH, GameMode.WOULD_YOU_RATHER, GameMode.COUPLE, GameMode.NEVER_HAVE_I_EVER, GameMode.MOST_LIKELY_TO,
+    )
+
+/** Countdown that starts as soon as the card is shown. Running out counts as a skip. */
+@Composable
+private fun TurnClock(key: Int, seconds: Int, paused: Boolean, feedback: Feedback, onTimeout: () -> Unit) {
+    var left by remember(key) { mutableIntStateOf(seconds) }
+    val timeout by rememberUpdatedState(onTimeout)
+    LaunchedEffect(key, paused) {
+        if (paused) return@LaunchedEffect
+        while (left > 0) {
+            delay(1000); left--
+            if (left in 1..HEARTBEAT_SECONDS) feedback.heartbeat()
+        }
+        timeout()
+    }
+    val urgent = left <= HEARTBEAT_SECONDS
+    val pulse = remember(key) { Animatable(1f) }
+    LaunchedEffect(left) {
+        if (urgent && left > 0) { pulse.snapTo(1.15f); pulse.animateTo(1f, tween(400)) }
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        LinearProgressIndicator(
+            progress = { left / seconds.toFloat() },
+            modifier = Modifier.weight(1f).height(4.dp).clip(RoundedCornerShape(2.dp)),
+            color = if (urgent) Wine else Champagne,
+            trackColor = Hairline,
+        )
+        Spacer(Modifier.width(12.dp))
+        Text(
+            "$left",
+            color = if (urgent) Wine else Stone,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = if (urgent) FontWeight.Bold else FontWeight.Normal,
+            modifier = Modifier.graphicsLayer { scaleX = pulse.value; scaleY = pulse.value },
+        )
+    }
+}
+
+/** One line on how the previous turn went: points, streaks, penalties, a new leader. */
+@Composable
+private fun TurnCallout(t: TurnResult, modifier: Modifier = Modifier) {
+    val text = when {
+        t.timedOut -> "${t.playerName} ran out of time" + if (t.points < 0) "  ${t.points}" else ""
+        t.points < 0 -> "${t.playerName} chickened out  ${t.points}"
+        t.points == 0 -> "${t.playerName} skipped"
+        t.tookLead -> "${t.playerName} takes the lead  +${t.points}"
+        t.streak >= 3 -> "${t.playerName} is on fire, ${t.streak} in a row  +${t.points}"
+        else -> "${t.playerName}  +${t.points}"
+    }
+    val color = when {
+        t.points < 0 || t.timedOut -> Wine
+        t.tookLead || t.streak >= 3 -> Champagne
+        else -> Stone
+    }
+    Text(text, color = color, style = MaterialTheme.typography.labelLarge, modifier = modifier)
 }
 
 @Composable
@@ -1032,6 +1127,9 @@ fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgai
         )
         Muted(if (w.isEmpty()) "Everyone played it safe." else if (w.size > 1) "Shared the win" else "takes the night", textAlign = TextAlign.Center)
         Muted("${g.skips} skipped", Modifier.padding(top = 4.dp))
+        g.players.maxByOrNull { it.bestStreak }?.takeIf { g.stakes && it.bestStreak >= 2 }?.let { p ->
+            Muted("Longest streak: ${p.name}, ${p.bestStreak} in a row", Modifier.padding(top = 2.dp))
+        }
         Spacer(Modifier.height(24.dp))
         LazyColumn(Modifier.weight(1f).fillMaxWidth()) {
             itemsIndexed(g.scoreboard) { i, p ->

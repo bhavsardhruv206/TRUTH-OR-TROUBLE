@@ -1,6 +1,6 @@
 # Truth or Trouble (formerly AfterHours)
 
-Offline, pass-the-phone 18+ party game for Android. Spin the Wheel (picks the player, then Truth or Dare), plus Truth, Dare, Would You Rather, Couple, Never Have I Ever, Most Likely To and Hot Seat modes; 2–8 players; plus Closer, a romantic, non-explicit game for exactly two consenting partners, with a pink-and-blue pose illustration on every card; Chill/Bold/Wild intensity; skip with no penalty; session scoreboard.
+Offline, pass-the-phone 18+ party game for Android. Spin the Wheel (picks the player, then Truth or Dare), plus Truth, Dare, Would You Rather, Couple, Never Have I Ever, Most Likely To and Hot Seat modes; 2–8 players; plus Closer, a romantic, non-explicit game for exactly two consenting partners, with a pink-and-blue pose illustration on every card; Chill/Bold/Wild intensity; scoring with streak bonuses, a one-point skip penalty (never in Closer or when reporting a card), double-point final rounds and a 30-second turn clock on answer cards (can be switched off); session scoreboard.
 
 - `core/` pure Kotlin (JVM) game engine, models, card loader and cards. Unit tested.
   - `cards_en.json`: 300 English cards. `cards_hinglish.json`: 96 Hinglish cards (language `hi-Latn`).

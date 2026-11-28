@@ -22,6 +22,8 @@ data class Settings(
     val haptics: Boolean = true,
     val chaos: Boolean = true,
     val theme: ThemeMode = ThemeMode.SYSTEM,
+    /** Answer-style cards get a short countdown; running out counts as a skip. */
+    val turnClock: Boolean = true,
 )
 
 class Prefs(private val context: Context) {
@@ -33,6 +35,7 @@ class Prefs(private val context: Context) {
     private val soundKey = booleanPreferencesKey("sound")
     private val hapticsKey = booleanPreferencesKey("haptics")
     private val chaosKey = booleanPreferencesKey("chaos")
+    private val turnClockKey = booleanPreferencesKey("turn_clock")
     private val languageKey = stringPreferencesKey("card_language")
     private val adsRemovedKey = booleanPreferencesKey("ads_removed")
     private val themeKey = stringPreferencesKey("theme")
@@ -45,6 +48,7 @@ class Prefs(private val context: Context) {
             haptics = it[hapticsKey] ?: true,
             chaos = it[chaosKey] ?: true,
             theme = ThemeMode.entries.firstOrNull { m -> m.name == it[themeKey] } ?: ThemeMode.SYSTEM,
+            turnClock = it[turnClockKey] ?: true,
         )
     }
     /** Cached result of the last Play Billing check, so ads stay off while offline. */
@@ -57,6 +61,7 @@ class Prefs(private val context: Context) {
     suspend fun setHaptics(on: Boolean) = set(hapticsKey, on)
     suspend fun setChaos(on: Boolean) = set(chaosKey, on)
     suspend fun setTheme(mode: ThemeMode) = set(themeKey, mode.name)
+    suspend fun setTurnClock(on: Boolean) = set(turnClockKey, on)
     suspend fun setAdsRemoved(on: Boolean) = set(adsRemovedKey, on)
     suspend fun setLanguage(code: String) = set(languageKey, code)
     suspend fun language(): String? = context.dataStore.data.first()[languageKey]
