@@ -22,15 +22,17 @@ val PartnerBlue = Color(0xFF64B5F6)
  */
 @Composable
 fun PoseIllustration(pose: Pose, modifier: Modifier = Modifier) {
+    val ground = Hairline
+    val seat = HairlineStrong
     Canvas(
         modifier.fillMaxWidth().aspectRatio(Pose.WIDTH / Pose.HEIGHT)
             .semantics { contentDescription = "Illustration: ${pose.title}" },
     ) {
         val s = size.width / Pose.WIDTH
         fun pt(xy: List<Float>) = Offset(xy[0] * s, xy[1] * s)
-        drawLine(Hairline, Offset(20 * s, Pose.GROUND_Y * s), Offset(180 * s, Pose.GROUND_Y * s), strokeWidth = 1.5f * s)
+        drawLine(ground, Offset(20 * s, Pose.GROUND_Y * s), Offset(180 * s, Pose.GROUND_Y * s), strokeWidth = 1.5f * s)
         pose.seat?.let { (from, to, y) ->
-            drawLine(HairlineStrong, Offset(from * s, y * s), Offset(to * s, y * s), strokeWidth = 4f * s, cap = StrokeCap.Round)
+            drawLine(seat, Offset(from * s, y * s), Offset(to * s, y * s), strokeWidth = 4f * s, cap = StrokeCap.Round)
         }
         // Blue first so pink sits in front where they overlap.
         drawFigure(pose.blue, PartnerBlue, s) { pt(it) }

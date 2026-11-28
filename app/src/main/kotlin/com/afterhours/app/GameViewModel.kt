@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.afterhours.app.data.Prefs
 import com.afterhours.app.data.Settings
+import com.afterhours.app.data.ThemeMode
 import com.afterhours.core.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -74,6 +75,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setSound(on: Boolean) = viewModelScope.launch { prefs.setSound(on) }
     fun setHaptics(on: Boolean) = viewModelScope.launch { prefs.setHaptics(on) }
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
+    fun setTheme(mode: ThemeMode) = viewModelScope.launch { prefs.setTheme(mode) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
     fun selectMode(m: GameMode) = _setup.update {

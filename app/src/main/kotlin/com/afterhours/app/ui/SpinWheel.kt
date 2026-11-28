@@ -66,6 +66,7 @@ fun SpinWheel(
 
     val labelStyle = TextStyle(fontFamily = FontFamily.Serif, fontWeight = FontWeight.Medium, fontSize = if (segments > 5) 14.sp else 17.sp, color = Ivory)
 
+    val p = LocalPalette.current
     Box(modifier.aspectRatio(1f), contentAlignment = Alignment.Center) {
         Canvas(Modifier.fillMaxSize()) {
             val pointerRoom = 18.dp.toPx()
@@ -79,8 +80,8 @@ fun SpinWheel(
                 for (i in 0 until segments) {
                     // Slices run clockwise from 12 o'clock (-90 degrees in canvas terms).
                     val start = -90f + i * sweep
-                    drawArc(if (i % 2 == 0) GraphiteHigh else Graphite, start, sweep, useCenter = true, topLeft = topLeft, size = arcSize)
-                    drawArc(Hairline, start, sweep, useCenter = true, topLeft = topLeft, size = arcSize, style = Stroke(1.dp.toPx()))
+                    drawArc(if (i % 2 == 0) p.surfaceHigh else p.surface, start, sweep, useCenter = true, topLeft = topLeft, size = arcSize)
+                    drawArc(p.hairline, start, sweep, useCenter = true, topLeft = topLeft, size = arcSize, style = Stroke(1.dp.toPx()))
 
                     val mid = Math.toRadians((start + sweep / 2f).toDouble())
                     val labelRadius = radius * 0.62f
@@ -94,10 +95,10 @@ fun SpinWheel(
                 }
             }
             // Rim and hub
-            drawCircle(Champagne, radius, center, style = Stroke(2.dp.toPx()))
-            drawCircle(Charcoal, radius * 0.14f, center)
-            drawCircle(Champagne, radius * 0.14f, center, style = Stroke(1.5.dp.toPx()))
-            drawCircle(Champagne, radius * 0.04f, center)
+            drawCircle(p.accent, radius, center, style = Stroke(2.dp.toPx()))
+            drawCircle(p.background, radius * 0.14f, center)
+            drawCircle(p.accent, radius * 0.14f, center, style = Stroke(1.5.dp.toPx()))
+            drawCircle(p.accent, radius * 0.04f, center)
             // Pointer at 12 o'clock
             val tipY = center.y - radius + 10.dp.toPx()
             val half = 11.dp.toPx()
@@ -107,7 +108,7 @@ fun SpinWheel(
                 lineTo(center.x + half, center.y - radius - pointerRoom + 2.dp.toPx())
                 close()
             }
-            drawPath(pointer, Champagne)
+            drawPath(pointer, p.accent)
         }
     }
 }
