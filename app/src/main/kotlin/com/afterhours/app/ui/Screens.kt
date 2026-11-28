@@ -19,6 +19,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.material3.Card
 import androidx.compose.runtime.*
@@ -719,6 +722,14 @@ fun SetupScreen(
                     OutlinedTextField(
                         value = name, onValueChange = { onName(i, it) },
                         placeholder = { Text(if (couples) "Partner ${i + 1}" else "Player ${i + 1}", color = Stone) }, singleLine = true,
+                        leadingIcon = {
+                            // Heart for partners in a couples game, a person for everyone else.
+                            Icon(
+                                if (couples) Icons.Filled.Favorite else Icons.Filled.Person,
+                                contentDescription = null,
+                                tint = if (name.isBlank()) Stone else Champagne,
+                            )
+                        },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(12.dp),
