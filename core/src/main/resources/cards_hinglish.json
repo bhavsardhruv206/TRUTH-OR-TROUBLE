@@ -1109,5 +1109,77 @@
     "language": "hi-Latn",
     "safety": "mild_suggestive",
     "pose": "talk"
+  },
+  {
+    "id": "hi-knowme-001",
+    "text": "{name} ka favourite chai-time snack kya hai?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-002",
+    "text": "{name} weekend pe sabse zyada kya karna pasand karta hai?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-003",
+    "text": "{name} ka all-time favourite gaana kaunsa hai?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-004",
+    "text": "{name} ka pehla celebrity crush kaun tha?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-005",
+    "text": "{name} plans cancel karne ke liye sabse zyada kaunsa bahana deta hai?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-006",
+    "text": "{name} ke phone mein sabse embarrassing app kaunsi hai?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-007",
+    "text": "{name} ne crush ke liye sabse crazy cheez kya ki hai?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-008",
+    "text": "{name} kis rule ko todega agar pakde jaane ka dar na ho?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "safe"
+  },
+  {
+    "id": "hi-knowme-009",
+    "text": "{name} sabse late kab tak bahar raha hai?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "hi-Latn",
+    "safety": "safe"
   }
 ]

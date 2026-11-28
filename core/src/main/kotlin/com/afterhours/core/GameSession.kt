@@ -114,21 +114,29 @@ class GameSession(
     private fun drawCard(): Card? = decks.getValue(if (modes.size == 1) modes[0] else modes.random(textRandom)).draw()
 
     /** Current player did the truth/dare/choice: award points, move on. */
-    fun complete() = advance(award = true)
+    fun complete() = advance(award = true, scorers = setOf(state.currentPlayerIndex))
+
+    /**
+     * Guessing games: the current player revealed their secret answer.
+     * Each player in [correctGuessers] (by index) earns the card's points; the answerer can't score
+     * on their own card. An empty set means nobody got it: the turn counts as played, not skipped.
+     */
+    fun completeGuesses(correctGuessers: Set<Int>) =
+        advance(award = true, scorers = correctGuessers - state.currentPlayerIndex)
 
     /** Skip without any penalty. */
-    fun skip() = advance(award = false)
+    fun skip() = advance(award = false, scorers = emptySet())
 
     /** Closes the pending chaos moment and goes on to the turn. */
     fun dismissChaos() { if (state.chaos != null) state = state.copy(chaos = null) }
 
-    private fun advance(award: Boolean) {
+    private fun advance(award: Boolean, scorers: Set<Int>) {
         val s = state
         if (s.finished || s.chaos != null) return
         val card = s.card
         val players = if (award && card != null) {
             s.players.mapIndexed { i, p ->
-                if (i == s.currentPlayerIndex) p.copy(score = p.score + card.intensity.points) else p
+                if (i in scorers) p.copy(score = p.score + card.intensity.points) else p
             }
         } else s.players
         val skips = if (award) s.skips else s.skips + 1

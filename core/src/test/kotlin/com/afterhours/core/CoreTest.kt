@@ -28,6 +28,7 @@ class CoreTest {
         assertEquals(30, counts[GameMode.MOST_LIKELY_TO])
         assertEquals(30, counts[GameMode.HOT_SEAT])
         assertEquals(60, counts[GameMode.CLOSER])
+        assertEquals(45, counts[GameMode.KNOW_ME])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -216,6 +217,31 @@ class CoreTest {
             assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
             assertEquals(60, it.timerSeconds, it.id)
         }
+    }
+
+    @Test fun knowMeCardsAreAboutTheAnswerer() {
+        val knowMe = allCards.filter { it.category == GameMode.KNOW_ME }
+        knowMe.forEach { assertTrue("{name}" in it.text && "{other}" !in it.text && it.timerSeconds == null, it.id) }
+        Intensity.entries.forEach { i -> assertEquals(15, knowMe.count { it.language == "en" && it.intensity == i }, "en $i") }
+    }
+
+    @Test fun knowMePointsGoToEachCorrectGuesser() {
+        val s = GameSession(cards, GameMode.KNOW_ME, Intensity.BOLD, listOf("Ann", "Bo", "Cy"), totalRounds = 3, random = Random(5), chaosEnabled = false)
+        assertEquals(GameMode.KNOW_ME, s.state.card!!.category)
+        val pts = s.state.card!!.intensity.points
+        // Ann answers; Bo and Cy guess right. Ann's own index is ignored.
+        s.completeGuesses(setOf(0, 1, 2))
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Bo answers; nobody gets it: no points, but not a skip.
+        s.completeGuesses(emptySet())
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Cy answers; Ann guesses right.
+        val p3 = s.state.card!!.intensity.points
+        s.completeGuesses(setOf(0))
+        assertEquals(p3, s.state.players[0].score)
+        assertTrue(s.state.finished)
     }
 
     @Test fun wheelLandsOnRequestedSlice() {

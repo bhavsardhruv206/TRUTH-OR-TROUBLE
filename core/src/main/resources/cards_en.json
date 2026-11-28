@@ -3725,5 +3725,365 @@
     "language": "en",
     "safety": "mild_suggestive",
     "pose": "talk"
+  },
+  {
+    "id": "knowme-001",
+    "text": "What is {name}'s go-to comfort food after a long day?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-002",
+    "text": "Which emoji does {name} send the most?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-003",
+    "text": "What would {name} order first at a new café?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-004",
+    "text": "What is {name}'s dream holiday destination?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-005",
+    "text": "Which season does {name} love most?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-006",
+    "text": "What is {name}'s all-time favourite movie?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-007",
+    "text": "Is {name} a morning person or a night owl?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-008",
+    "text": "What song would {name} pick for karaoke?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-009",
+    "text": "What is {name}'s biggest pet peeve?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-010",
+    "text": "Which superpower would {name} choose?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-011",
+    "text": "What snack is {name} most likely to hide from everyone?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-012",
+    "text": "What did {name} want to be when they grew up?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-013",
+    "text": "Which app does {name} open first every morning?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-014",
+    "text": "Dogs, cats or neither: what does {name} pick?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-015",
+    "text": "What is the one thing {name} can't leave the house without?",
+    "category": "knowme",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-016",
+    "text": "Who was {name}'s first celebrity crush?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-017",
+    "text": "What is {name}'s most-used excuse to cancel plans?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-018",
+    "text": "What is the most money {name} has wasted on one thing?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-019",
+    "text": "What does {name} secretly think is their best feature?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-020",
+    "text": "What is {name}'s biggest red flag in a date?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-021",
+    "text": "Which person in this room would {name} call first in an emergency?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-022",
+    "text": "What is the longest {name} has gone without replying to a message on purpose?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-023",
+    "text": "What is {name}'s guilty-pleasure TV show?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-024",
+    "text": "What would {name} do with one totally free, phone-free day?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-025",
+    "text": "Which old habit is {name} most embarrassed about?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-026",
+    "text": "How many unread messages does {name} have right now: under 10, 10 to 100, or more?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-027",
+    "text": "What is {name}'s ideal first date?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-028",
+    "text": "What lie has {name} told most often?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-029",
+    "text": "Which of {name}'s friends knows the most secrets about them?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-030",
+    "text": "What would {name} rate their own cooking out of 10?",
+    "category": "knowme",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-031",
+    "text": "What is the most rebellious thing {name} did as a teenager?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-032",
+    "text": "Who in this room does {name} think would survive longest in a zombie movie?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-033",
+    "text": "What is the most awkward place {name} has fallen asleep?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-034",
+    "text": "What is {name}'s biggest turn-off?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-035",
+    "text": "How many times has {name} been in love?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-036",
+    "text": "What is the craziest thing {name} has done for a crush?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-037",
+    "text": "Which rule would {name} break if they knew they'd never get caught?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-038",
+    "text": "What would {name}'s friends say is their worst habit?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-039",
+    "text": "What is the boldest message {name} has ever sent?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-040",
+    "text": "Who in this room would {name} trust with their phone unlocked?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-041",
+    "text": "What is the latest {name} has ever stayed out?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-042",
+    "text": "What is {name}'s secret talent nobody here knows about?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-043",
+    "text": "Which past decision would {name} most like to undo?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-044",
+    "text": "What is the most spontaneous trip or plan {name} has ever said yes to?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "knowme-045",
+    "text": "What compliment would make {name} blush the most?",
+    "category": "knowme",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "safe"
   }
 ]

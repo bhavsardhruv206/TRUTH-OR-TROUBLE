@@ -8,6 +8,8 @@ enum class GameMode(
     val label: String,
     /** Played by exactly two partners: the setup locks to 2 players and group chaos moments are off. */
     val couplesOnly: Boolean = false,
+    /** The current player answers secretly and the others guess: points go to each correct guesser. */
+    val guessing: Boolean = false,
 ) {
     @SerialName("truth") TRUTH("Truth"),
     @SerialName("dare") DARE("Dare"),
@@ -17,6 +19,7 @@ enum class GameMode(
     @SerialName("mlt") MOST_LIKELY_TO("Most Likely To"),
     @SerialName("hotseat") HOT_SEAT("Hot Seat"),
     @SerialName("closer") CLOSER("Closer", couplesOnly = true),
+    @SerialName("knowme") KNOW_ME("How Well Do You Know Me", guessing = true),
 }
 
 @Serializable

@@ -135,6 +135,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun complete() { session?.let { it.complete(); publish(it) } }
+    fun completeGuesses(correct: Set<Int>) { session?.let { it.completeGuesses(correct); publish(it) } }
     fun skip() { session?.let { it.skip(); publish(it) } }
     fun dismissChaos() { session?.let { it.dismissChaos(); _game.value = it.state } }
 

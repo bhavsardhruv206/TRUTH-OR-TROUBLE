@@ -146,6 +146,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             if (!state.finished) GameScreen(
                 state, feedback,
                 onComplete = { feedback.tap(); vm.complete() },
+                onCompleteGuesses = { feedback.tap(); vm.completeGuesses(it) },
                 onSkip = { feedback.tap(); vm.skip() },
                 onDismissChaos = vm::dismissChaos,
                 onReport = { reason ->
@@ -351,7 +352,7 @@ private data class TutorialStep(val eyebrow: String, val title: String, val body
 
 private val tutorialSteps = listOf(
     TutorialStep("1 / 5", "Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
-    TutorialStep("2 / 5", "Pick your game", "Open Games and tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
+    TutorialStep("2 / 5", "Pick your game", "Open Games and tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To, Hot Seat and How Well Do You Know Me for the whole group."),
     TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
     TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
     TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
@@ -512,7 +513,7 @@ private fun SwitchRow(label: String, checked: Boolean, onChange: (Boolean) -> Un
 }
 
 /** One entry in the Games section. [mode] is null for Spin the Wheel, which mixes Truth and Dare. */
-private data class GameEntry(val key: String, val title: String, val blurb: String, val howTo: String, val mode: GameMode?, val group: String)
+private data class GameEntry(val key: String, val title: String, val blurb: String, val howTo: String, val mode: GameMode?, val group: String, val icon: String = "")
 
 private val games = listOf(
     GameEntry("spin", "Spin the Wheel", "The wheel decides", "Spin to pick who plays, then spin again for Truth or Dare. Everyone gets an even number of turns.", null, "Featured"),
@@ -523,6 +524,7 @@ private val games = listOf(
     GameEntry("nhie", GameMode.NEVER_HAVE_I_EVER.label, "Hands up if you have", "Read the line out. Everyone who has done it raises a hand and the group can ask for the story.", GameMode.NEVER_HAVE_I_EVER, "Whole group"),
     GameEntry("mlt", GameMode.MOST_LIKELY_TO.label, "Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.", GameMode.MOST_LIKELY_TO, "Whole group"),
     GameEntry("hot", GameMode.HOT_SEAT.label, "60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.", GameMode.HOT_SEAT, "Whole group"),
+    GameEntry("knowme", GameMode.KNOW_ME.label, "Guess their answer", "The named player secretly thinks of their answer about themselves. Everyone else guesses, then they reveal. Every correct guess scores the card's points.", GameMode.KNOW_ME, "Whole group", "🧠"),
     GameEntry("closer", GameMode.CLOSER.label, "Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.", GameMode.CLOSER, "For couples"),
 )
 
@@ -592,6 +594,7 @@ private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: 
             .padding(16.dp),
     ) {
         if (wide) { Eyebrow("New"); Spacer(Modifier.height(6.dp)) }
+        if (g.icon.isNotEmpty()) Text(g.icon, fontSize = 22.sp, modifier = Modifier.padding(bottom = 4.dp))
         Text(g.title, style = MaterialTheme.typography.titleLarge, color = Ivory)
         Spacer(Modifier.height(4.dp))
         Text(g.blurb, style = MaterialTheme.typography.bodyMedium, color = Stone)
@@ -687,6 +690,7 @@ fun GameScreen(
     g: GameState,
     feedback: Feedback,
     onComplete: () -> Unit,
+    onCompleteGuesses: (Set<Int>) -> Unit,
     onSkip: () -> Unit,
     onDismissChaos: () -> Unit,
     onReport: (String) -> Unit,
@@ -721,8 +725,12 @@ fun GameScreen(
             Scoreline(g)
             return@Page
         }
+        val guessing = card.category.guessing
+        // Guessing games: answer secretly first, then reveal and mark who guessed right.
+        var revealed by rememberSaveable(g.round) { mutableStateOf(false) }
+        var correct by remember(g.round) { mutableStateOf(setOf<Int>()) }
         Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
-        Muted("your turn")
+        Muted(if (guessing) "think of your answer, keep it secret" else "your turn")
         Spacer(Modifier.height(16.dp))
         Card(
             Modifier.fillMaxWidth().weight(1f).graphicsLayer {
@@ -754,6 +762,11 @@ fun GameScreen(
                         style = MaterialTheme.typography.headlineSmall, color = Ivory,
                     )
                 }
+                if (guessing) Text(
+                    if (revealed) "Say your answer out loud. Who got it right?"
+                    else "Everyone else, take turns guessing out loud. Then ${g.currentPlayer.name} reveals.",
+                    style = MaterialTheme.typography.bodyMedium, color = Stone, modifier = Modifier.padding(bottom = 4.dp),
+                )
                 card.timerSeconds?.let { secs -> DareTimer(key = g.round, seconds = secs, feedback = feedback) }
                 TextButton({ reporting = true }, contentPadding = PaddingValues(0.dp)) {
                     Text("Report card", color = Stone.copy(alpha = .7f), style = MaterialTheme.typography.bodyMedium)
@@ -761,9 +774,17 @@ fun GameScreen(
             }
         }
         Spacer(Modifier.height(16.dp))
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (guessing && revealed) {
+            GuesserPicker(g, correct) { i -> correct = if (i in correct) correct - i else correct + i }
+            Spacer(Modifier.height(10.dp))
+            PrimaryButton(
+                if (correct.isEmpty()) "Nobody got it" else "Score  +${card.intensity.points} each",
+                { onCompleteGuesses(correct) }, Modifier.fillMaxWidth(),
+            )
+        } else Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             SecondaryButton("Skip", onSkip, Modifier.weight(1f))
-            PrimaryButton("Done  +${card.intensity.points}", onComplete, Modifier.weight(1.6f))
+            if (guessing) PrimaryButton("Reveal answer", { revealed = true }, Modifier.weight(1.6f))
+            else PrimaryButton("Done  +${card.intensity.points}", onComplete, Modifier.weight(1.6f))
         }
         Spacer(Modifier.height(12.dp))
         Scoreline(g)
@@ -889,6 +910,28 @@ private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> 
         },
         confirmButton = { TextButton(onDismiss) { Text("Continue", color = Champagne) } },
     )
+}
+
+/** Tap every player who guessed the answer right. The answerer isn't listed. */
+@Composable
+private fun GuesserPicker(g: GameState, correct: Set<Int>, onToggle: (Int) -> Unit) {
+    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        g.players.forEachIndexed { i, p ->
+            if (i == g.currentPlayerIndex) return@forEachIndexed
+            val on = i in correct
+            val shape = RoundedCornerShape(50)
+            Text(
+                if (on) "✓  ${p.name}" else p.name,
+                color = if (on) Champagne else Ivory,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.clip(shape)
+                    .background(if (on) GraphiteHigh else Graphite)
+                    .border(1.dp, if (on) Champagne else HairlineStrong, shape)
+                    .clickable { onToggle(i) }
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+            )
+        }
+    }
 }
 
 @Composable
