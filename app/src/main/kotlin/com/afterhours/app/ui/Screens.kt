@@ -521,18 +521,18 @@ private fun SwitchRow(label: String, checked: Boolean, onChange: (Boolean) -> Un
 }
 
 /** One entry in the Games section. [mode] is null for Spin the Wheel, which mixes Truth and Dare. */
-private data class GameEntry(val key: String, val title: String, val blurb: String, val howTo: String, val mode: GameMode?, val group: String)
+private data class GameEntry(val key: String, val title: String, val blurb: String, val howTo: String, val mode: GameMode?, val group: String, val icon: String)
 
 private val games = listOf(
-    GameEntry("spin", "Spin the Wheel", "The wheel decides", "Spin to pick who plays, then spin again for Truth or Dare. Everyone gets an even number of turns.", null, "Featured"),
-    GameEntry("truth", GameMode.TRUTH.label, "Answer honestly", "Read the question out loud and answer it truthfully. Skip if you'd rather not.", GameMode.TRUTH, "Classic"),
-    GameEntry("dare", GameMode.DARE.label, "Do what the card says", "Do the dare in front of the group. Some dares come with a timer.", GameMode.DARE, "Classic"),
-    GameEntry("wyr", GameMode.WOULD_YOU_RATHER.label, "Choose, then defend it", "Pick one of the two options and convince the group you chose right.", GameMode.WOULD_YOU_RATHER, "Classic"),
-    GameEntry("couple", GameMode.COUPLE.label, "For partners", "Questions and dares made for two people who know each other well.", GameMode.COUPLE, "Classic"),
-    GameEntry("nhie", GameMode.NEVER_HAVE_I_EVER.label, "Hands up if you have", "Read the line out. Everyone who has done it raises a hand and the group can ask for the story.", GameMode.NEVER_HAVE_I_EVER, "Whole group"),
-    GameEntry("mlt", GameMode.MOST_LIKELY_TO.label, "Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.", GameMode.MOST_LIKELY_TO, "Whole group"),
-    GameEntry("hot", GameMode.HOT_SEAT.label, "60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.", GameMode.HOT_SEAT, "Whole group"),
-    GameEntry("closer", GameMode.CLOSER.label, "Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.", GameMode.CLOSER, "For couples"),
+    GameEntry("spin", "Spin the Wheel", "The wheel decides", "Spin to pick who plays, then spin again for Truth or Dare. Everyone gets an even number of turns.", null, "Featured", "🎡"),
+    GameEntry("truth", GameMode.TRUTH.label, "Answer honestly", "Read the question out loud and answer it truthfully. Skip if you'd rather not.", GameMode.TRUTH, "Classic", "💬"),
+    GameEntry("dare", GameMode.DARE.label, "Do what the card says", "Do the dare in front of the group. Some dares come with a timer.", GameMode.DARE, "Classic", "🔥"),
+    GameEntry("wyr", GameMode.WOULD_YOU_RATHER.label, "Choose, then defend it", "Pick one of the two options and convince the group you chose right.", GameMode.WOULD_YOU_RATHER, "Classic", "⚖️"),
+    GameEntry("couple", GameMode.COUPLE.label, "For partners", "Questions and dares made for two people who know each other well.", GameMode.COUPLE, "Classic", "💞"),
+    GameEntry("nhie", GameMode.NEVER_HAVE_I_EVER.label, "Hands up if you have", "Read the line out. Everyone who has done it raises a hand and the group can ask for the story.", GameMode.NEVER_HAVE_I_EVER, "Whole group", "✋"),
+    GameEntry("mlt", GameMode.MOST_LIKELY_TO.label, "Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.", GameMode.MOST_LIKELY_TO, "Whole group", "👉"),
+    GameEntry("hot", GameMode.HOT_SEAT.label, "60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.", GameMode.HOT_SEAT, "Whole group", "⏱️"),
+    GameEntry("closer", GameMode.CLOSER.label, "Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.", GameMode.CLOSER, "For couples", "🌹"),
 )
 
 private fun selectedGame(s: SetupState): GameEntry =
@@ -662,7 +662,11 @@ private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: 
             .padding(16.dp),
     ) {
         if (wide) { Eyebrow("New"); Spacer(Modifier.height(6.dp)) }
-        Text(g.title, style = MaterialTheme.typography.titleLarge, color = Ivory)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(g.icon, fontSize = 22.sp)
+            Spacer(Modifier.width(8.dp))
+            Text(g.title, style = MaterialTheme.typography.titleLarge, color = Ivory)
+        }
         Spacer(Modifier.height(4.dp))
         Text(g.blurb, style = MaterialTheme.typography.bodyMedium, color = Stone)
         if (locked) { Spacer(Modifier.height(6.dp)); Text("2 players only", style = MaterialTheme.typography.labelSmall, color = Champagne) }
@@ -682,7 +686,11 @@ fun DifficultyScreen(
     Page {
         BackRow(onBack)
         Eyebrow(g.group)
-        Text(g.title, style = MaterialTheme.typography.headlineMedium)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(g.icon, fontSize = 30.sp)
+            Spacer(Modifier.width(10.dp))
+            Text(g.title, style = MaterialTheme.typography.headlineMedium)
+        }
         Spacer(Modifier.height(8.dp))
         Text(g.howTo, style = MaterialTheme.typography.bodyLarge, color = Stone)
         Spacer(Modifier.height(20.dp))
