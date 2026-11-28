@@ -1,7 +1,8 @@
 <resources>
-    <style name="Theme.AfterHours" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowBackground">#0F0F11</item>
-        <item name="android:statusBarColor">#0F0F11</item>
-        <item name="android:navigationBarColor">#0F0F11</item>
+    <!-- Light launch theme. values-night holds the dark one; the app switches to the player's choice once it starts. -->
+    <style name="Theme.AfterHours" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#F6F2EC</item>
+        <item name="android:statusBarColor">#F6F2EC</item>
+        <item name="android:navigationBarColor">#F6F2EC</item>
     </style>
 </resources>

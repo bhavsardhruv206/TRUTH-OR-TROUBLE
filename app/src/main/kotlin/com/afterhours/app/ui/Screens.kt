@@ -48,6 +48,7 @@ import com.afterhours.app.ads.BannerAd
 import com.afterhours.app.ads.ConsentManager
 import com.afterhours.app.billing.BillingManager
 import com.afterhours.app.data.Settings
+import com.afterhours.app.data.ThemeMode
 import com.afterhours.core.*
 import kotlinx.coroutines.delay
 
@@ -99,6 +100,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     onSound = vm::setSound,
                     onHaptics = vm::setHaptics,
                     onChaos = vm::setChaos,
+                    onTheme = vm::setTheme,
                     onResetSeen = vm::resetSeenCards,
                     onPrivacy = { consent.showPrivacyOptions(activity) },
                     onRemoveAds = { billing.buy(activity) },
@@ -408,6 +410,7 @@ fun HomeScreen(
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
     onChaos: (Boolean) -> Unit,
+    onTheme: (ThemeMode) -> Unit,
     onResetSeen: () -> Unit,
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
@@ -432,7 +435,7 @@ fun HomeScreen(
     }
     if (showSettings) SettingsDialog(
         settings, adsRemoved, removeAdsPrice, privacyRequired,
-        onSound, onHaptics, onChaos, onResetSeen, onPrivacy, onRemoveAds, onRestore,
+        onSound, onHaptics, onChaos, onTheme, onResetSeen, onPrivacy, onRemoveAds, onRestore,
         onDismiss = { showSettings = false },
     )
     if (showHelp) AlertDialog(
@@ -462,6 +465,7 @@ private fun SettingsDialog(
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
     onChaos: (Boolean) -> Unit,
+    onTheme: (ThemeMode) -> Unit,
     onResetSeen: () -> Unit,
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
@@ -476,6 +480,12 @@ private fun SettingsDialog(
         title = { Text("Settings", style = MaterialTheme.typography.titleLarge) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text("Theme", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(bottom = 8.dp))
+                Segmented(ThemeMode.entries, settings.theme, { it.label }, onTheme)
+                Text(
+                    "Auto follows your phone's light or dark setting.",
+                    style = MaterialTheme.typography.bodyMedium, color = Stone, modifier = Modifier.padding(top = 6.dp, bottom = 8.dp),
+                )
                 SwitchRow("Sound", settings.sound, onSound)
                 SwitchRow("Vibration", settings.haptics, onHaptics)
                 SwitchRow("Chaos moments", settings.chaos, onChaos, "Group events every few turns")

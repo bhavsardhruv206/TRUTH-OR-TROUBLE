@@ -13,11 +13,15 @@ import kotlinx.coroutines.flow.map
 
 private val Context.dataStore by preferencesDataStore("afterhours_prefs")
 
+/** Light, dark, or follow the phone. */
+enum class ThemeMode(val label: String) { SYSTEM("Auto"), LIGHT("Light"), DARK("Dark") }
+
 /** Local settings only. No account; nothing here leaves the device. */
 data class Settings(
     val sound: Boolean = true,
     val haptics: Boolean = true,
     val chaos: Boolean = true,
+    val theme: ThemeMode = ThemeMode.SYSTEM,
 )
 
 class Prefs(private val context: Context) {
@@ -31,11 +35,17 @@ class Prefs(private val context: Context) {
     private val chaosKey = booleanPreferencesKey("chaos")
     private val languageKey = stringPreferencesKey("card_language")
     private val adsRemovedKey = booleanPreferencesKey("ads_removed")
+    private val themeKey = stringPreferencesKey("theme")
 
     val ageConfirmed: Flow<Boolean> = context.dataStore.data.map { it[ageKey] ?: false }
     val tutorialSeen: Flow<Boolean> = context.dataStore.data.map { it[tutorialKey] ?: false }
     val settings: Flow<Settings> = context.dataStore.data.map {
-        Settings(sound = it[soundKey] ?: true, haptics = it[hapticsKey] ?: true, chaos = it[chaosKey] ?: true)
+        Settings(
+            sound = it[soundKey] ?: true,
+            haptics = it[hapticsKey] ?: true,
+            chaos = it[chaosKey] ?: true,
+            theme = ThemeMode.entries.firstOrNull { m -> m.name == it[themeKey] } ?: ThemeMode.SYSTEM,
+        )
     }
     /** Cached result of the last Play Billing check, so ads stay off while offline. */
     val adsRemoved: Flow<Boolean> = context.dataStore.data.map { it[adsRemovedKey] ?: false }
@@ -46,6 +56,7 @@ class Prefs(private val context: Context) {
     suspend fun setSound(on: Boolean) = set(soundKey, on)
     suspend fun setHaptics(on: Boolean) = set(hapticsKey, on)
     suspend fun setChaos(on: Boolean) = set(chaosKey, on)
+    suspend fun setTheme(mode: ThemeMode) = set(themeKey, mode.name)
     suspend fun setAdsRemoved(on: Boolean) = set(adsRemovedKey, on)
     suspend fun setLanguage(code: String) = set(languageKey, code)
     suspend fun language(): String? = context.dataStore.data.first()[languageKey]
