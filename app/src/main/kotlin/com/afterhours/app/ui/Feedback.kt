@@ -30,6 +30,12 @@ class Feedback(private val haptic: HapticFeedback, private val tone: ToneGenerat
         if (hapticsOn) haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
     }
 
+    /** One beat of a countdown's final seconds. */
+    fun heartbeat() {
+        if (hapticsOn) haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+        if (soundOn) tone?.startTone(ToneGenerator.TONE_PROP_BEEP, 40)
+    }
+
     /** Something big: chaos moment, timer finished, winner. */
     fun alert() {
         if (hapticsOn) haptic.performHapticFeedback(HapticFeedbackType.LongPress)

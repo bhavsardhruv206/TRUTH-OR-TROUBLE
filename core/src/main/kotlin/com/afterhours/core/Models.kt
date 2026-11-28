@@ -53,7 +53,15 @@ enum class CardLanguage(val code: String, val label: String) {
     HINGLISH("hi-Latn", "Hinglish"),
 }
 
-data class Player(val id: Int, val name: String, val score: Int = 0)
+data class Player(
+    val id: Int,
+    val name: String,
+    val score: Int = 0,
+    /** Cards this player completed in a row; a skip or a timeout resets it. */
+    val streak: Int = 0,
+    /** Longest [streak] this game. */
+    val bestStreak: Int = 0,
+)
 
 /**
  * Fills the personalisation placeholders in a card:
