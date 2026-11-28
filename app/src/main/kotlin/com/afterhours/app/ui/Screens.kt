@@ -1354,6 +1354,3 @@ fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgai
         QuietButton(S.home, onHome)
     }
 }
-
-/** "1 Point", "2 Points" — from the `points` plurals resource so translations get correct plural forms. */
-@Composable
