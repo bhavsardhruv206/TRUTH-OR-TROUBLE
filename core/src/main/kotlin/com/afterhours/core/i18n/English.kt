@@ -173,6 +173,11 @@ val EnglishStrings = UiStrings(
     revealAnswer = "Reveal answer",
     nobodyGotIt = "Nobody got it",
     scoreEach = { n -> "Score  +${enPoints(n)} each" },
+    soundHint = "Beeps on new cards and timers",
+    readAloud = "Read cards aloud",
+    readAloudHint = "Or tap the speaker on any card",
+    stopReading = "Stop reading",
+    readCardAloud = "Read card aloud",
     mode = { it.label },
     intensity = { it.label },
     // English pose text comes straight from closer_poses.json.

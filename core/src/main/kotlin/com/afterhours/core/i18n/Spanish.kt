@@ -185,6 +185,11 @@ val SpanishStrings = UiStrings(
     revealAnswer = "Revelar respuesta",
     nobodyGotIt = "Nadie acertó",
     scoreEach = { n -> "+${esPoints(n)} cada uno" },
+    soundHint = "Pitidos con cartas nuevas y temporizadores",
+    readAloud = "Leer cartas en voz alta",
+    readAloudHint = "O toca el altavoz en cualquier carta",
+    stopReading = "Dejar de leer",
+    readCardAloud = "Leer carta en voz alta",
     mode = {
         when (it) {
             GameMode.TRUTH -> "Verdad"

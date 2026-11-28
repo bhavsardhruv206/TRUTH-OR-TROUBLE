@@ -183,6 +183,11 @@ val HindiStrings = UiStrings(
     revealAnswer = "जवाब बताओ",
     nobodyGotIt = "किसी ने नहीं बताया",
     scoreEach = { n -> "हर एक को  +$n पॉइंट" },
+    soundHint = "नए कार्ड और टाइमर पर बीप",
+    readAloud = "कार्ड ज़ोर से पढ़ें",
+    readAloudHint = "या किसी भी कार्ड पर स्पीकर दबाएँ",
+    stopReading = "पढ़ना बंद करें",
+    readCardAloud = "कार्ड ज़ोर से पढ़ें",
     mode = {
         when (it) {
             GameMode.TRUTH -> "सच"

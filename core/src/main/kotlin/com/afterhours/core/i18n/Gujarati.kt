@@ -183,6 +183,11 @@ val GujaratiStrings = UiStrings(
     revealAnswer = "જવાબ કહો",
     nobodyGotIt = "કોઈને ન આવડ્યું",
     scoreEach = { n -> "દરેકને  +$n પોઇન્ટ" },
+    soundHint = "નવા કાર્ડ અને ટાઇમર પર બીપ",
+    readAloud = "કાર્ડ મોટેથી વાંચો",
+    readAloudHint = "અથવા કોઈ પણ કાર્ડ પર સ્પીકર દબાવો",
+    stopReading = "વાંચવાનું બંધ કરો",
+    readCardAloud = "કાર્ડ મોટેથી વાંચો",
     mode = {
         when (it) {
             GameMode.TRUTH -> "સત્ય"

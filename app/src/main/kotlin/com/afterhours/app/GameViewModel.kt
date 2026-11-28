@@ -116,6 +116,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
     fun setTheme(mode: ThemeMode) = viewModelScope.launch { prefs.setTheme(mode) }
     fun setTurnClock(on: Boolean) = viewModelScope.launch { prefs.setTurnClock(on) }
+    fun setReadAloud(on: Boolean) = viewModelScope.launch { prefs.setReadAloud(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
     fun selectMode(m: GameMode) = _setup.update {

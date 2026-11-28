@@ -183,6 +183,11 @@ val MarathiStrings = UiStrings(
     revealAnswer = "उत्तर सांगा",
     nobodyGotIt = "कोणालाच जमलं नाही",
     scoreEach = { n -> "प्रत्येकी  +$n पॉइंट" },
+    soundHint = "नवीन कार्ड आणि टायमरवर बीप",
+    readAloud = "कार्ड मोठ्याने वाचा",
+    readAloudHint = "किंवा कोणत्याही कार्डवर स्पीकर दाबा",
+    stopReading = "वाचन थांबवा",
+    readCardAloud = "कार्ड मोठ्याने वाचा",
     mode = {
         when (it) {
             GameMode.TRUTH -> "सत्य"

@@ -167,6 +167,12 @@ class UiStrings(
     val revealAnswer: String,
     val nobodyGotIt: String,
     val scoreEach: (points: Int) -> String,
+    // Read aloud
+    val soundHint: String,
+    val readAloud: String,
+    val readAloudHint: String,
+    val stopReading: String,
+    val readCardAloud: String,
     // Content labels
     val mode: (GameMode) -> String,
     val intensity: (Intensity) -> String,
