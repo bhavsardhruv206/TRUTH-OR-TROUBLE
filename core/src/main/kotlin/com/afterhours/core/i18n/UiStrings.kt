@@ -160,6 +160,13 @@ class UiStrings(
     val showdown: String,
     val longestStreak: (name: String, streak: Int) -> String,
     val skipCost: (points: Int) -> String,
+    // How Well Do You Know Me
+    val keepItSecret: String,
+    val whoGotIt: String,
+    val guessThenReveal: (name: String) -> String,
+    val revealAnswer: String,
+    val nobodyGotIt: String,
+    val scoreEach: (points: Int) -> String,
     // Content labels
     val mode: (GameMode) -> String,
     val intensity: (Intensity) -> String,

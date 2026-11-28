@@ -68,6 +68,7 @@ val SpanishStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> GameText("Señalad a la de tres", "Lee la pregunta, contad hasta tres y todos señalan a quien encaje mejor. El más votado se explica.")
             GameMode.HOT_SEAT -> GameText("60 segundos de preguntas", "El jugador nombrado se sienta en la silla caliente y el grupo le hace preguntas rápidas hasta que acabe el tiempo.")
             GameMode.CLOSER -> GameText("Solo vosotros dos", "Un juego romántico para dos. Cada carta muestra la postura y dice qué hacer. Pregunta antes de cualquier caricia y salta lo que quieras.")
+            GameMode.KNOW_ME -> GameText("Adivina su respuesta", "El jugador nombrado piensa en secreto su respuesta sobre sí mismo. Los demás adivinan y luego la revela. Cada acierto suma los puntos de la carta.")
         }
     },
     couplesGateTitle = "Para parejas que están de acuerdo",
@@ -178,6 +179,12 @@ val SpanishStrings = UiStrings(
     showdown = "Duelo final · puntos dobles",
     longestStreak = { name, n -> "Mejor racha: $name, $n seguidas" },
     skipCost = { n -> "Saltar  −${esPoints(n)}" },
+    keepItSecret = "piensa tu respuesta y guárdala en secreto",
+    whoGotIt = "Di tu respuesta en voz alta. ¿Quién acertó?",
+    guessThenReveal = { name -> "Los demás, adivinad por turnos en voz alta. Luego $name lo revela." },
+    revealAnswer = "Revelar respuesta",
+    nobodyGotIt = "Nadie acertó",
+    scoreEach = { n -> "+${esPoints(n)} cada uno" },
     mode = {
         when (it) {
             GameMode.TRUTH -> "Verdad"
@@ -188,6 +195,7 @@ val SpanishStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> "¿Quién es más probable?"
             GameMode.HOT_SEAT -> "Silla caliente"
             GameMode.CLOSER -> "Closer"
+            GameMode.KNOW_ME -> "¿Cuánto me conoces?"
         }
     },
     intensity = {

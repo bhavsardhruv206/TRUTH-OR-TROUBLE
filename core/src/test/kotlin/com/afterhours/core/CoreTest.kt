@@ -3,6 +3,8 @@ package com.afterhours.core
 import kotlin.random.Random
 import kotlin.test.*
 
+private val ENGLISH_ONLY_MODES = setOf(GameMode.KNOW_ME)
+
 class CoreTest {
     private val allCards = BundledCardRepository().allCards()
     private val cards = allCards.filter { it.language == "en" }
@@ -28,6 +30,7 @@ class CoreTest {
         assertEquals(30, counts[GameMode.MOST_LIKELY_TO])
         assertEquals(30, counts[GameMode.HOT_SEAT])
         assertEquals(60, counts[GameMode.CLOSER])
+        assertEquals(45, counts[GameMode.KNOW_ME])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -209,6 +212,37 @@ class CoreTest {
         }
     }
 
+    @Test fun knowMeCardsAreAboutTheAnswerer() {
+        val knowMe = allCards.filter { it.category == GameMode.KNOW_ME }
+        knowMe.forEach { assertTrue("{name}" in it.text && "{other}" !in it.text && it.timerSeconds == null, it.id) }
+        Intensity.entries.forEach { i -> assertEquals(15, knowMe.count { it.language == "en" && it.intensity == i }, "en $i") }
+    }
+
+    @Test fun knowMeIsEnglishOnlyAndFallsBackFromHindi() {
+        assertTrue(allCards.none { it.category == GameMode.KNOW_ME && it.language != "en" })
+        val s = GameSession(allCards, GameMode.KNOW_ME, Intensity.WILD, listOf("A", "B"), random = Random(4), language = CardLanguage.HINDI.code)
+        assertEquals("en", s.state.card!!.language)
+    }
+
+    @Test fun knowMePointsGoToEachCorrectGuesser() {
+        val s = GameSession(cards, GameMode.KNOW_ME, Intensity.BOLD, listOf("Ann", "Bo", "Cy"), totalRounds = 3, random = Random(5), chaosEnabled = false)
+        assertEquals(GameMode.KNOW_ME, s.state.card!!.category)
+        val pts = s.state.card!!.intensity.points
+        // Ann answers; Bo and Cy guess right. Ann's own index is ignored.
+        s.completeGuesses(setOf(0, 1, 2))
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Bo answers; nobody gets it: no points, but not a skip.
+        s.completeGuesses(emptySet())
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Cy answers; Ann guesses right.
+        val p3 = s.state.card!!.intensity.points
+        s.completeGuesses(setOf(0))
+        assertEquals(p3, s.state.players[0].score)
+        assertTrue(s.state.finished)
+    }
+
     @Test fun wheelLandsOnRequestedSlice() {
         val random = Random(11)
         for (segments in 1..8) {
@@ -313,7 +347,8 @@ class CoreTest {
             assertEquals(pack.size, pack.map { it.text }.toSet().size, "${lang.code} texts unique")
             pack.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
             pack.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose") }
-            GameMode.entries.forEach { m ->
+            // Some games ship English cards only and play in English in every language.
+            GameMode.entries.filter { lang == CardLanguage.ENGLISH || it !in ENGLISH_ONLY_MODES }.forEach { m ->
                 Intensity.entries.forEach { i -> assertTrue(pack.any { it.category == m && it.intensity == i }, "missing ${lang.code} $m/$i") }
             }
         }

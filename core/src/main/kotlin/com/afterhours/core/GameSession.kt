@@ -129,7 +129,11 @@ class GameSession(
     stakes: Boolean = false,
 ) {
     private val modes = if (spin) SPIN_MODES else listOf(mode)
-    private val decks = modes.associateWith { CardDeck(cards, it, intensity, random, language = language, playedBefore = playedBefore) }
+    private val decks = modes.associateWith { m ->
+        // A game with no cards in the chosen language (How Well Do You Know Me is English only) plays in English.
+        val lang = if (cards.any { it.category == m && it.language == language }) language else CardLanguage.ENGLISH.code
+        CardDeck(cards, m, intensity, random, language = lang, playedBefore = playedBefore)
+    }
     private val picker = if (spin) FairPicker(playerNames.size, random) else null
     // Group chaos moments don't fit a game for two partners.
     private val scheduler = ChaosScheduler(random, enabled = chaosEnabled && !(mode.couplesOnly && !spin))
@@ -174,6 +178,15 @@ class GameSession(
     /** Current player did the truth/dare/choice: award points, move on. */
     fun complete() = advance(Outcome.DONE)
 
+    /**
+     * Guessing games: the current player revealed their secret answer.
+     * Each player in [correctGuessers] (by index) earns the card's points (doubled in the showdown);
+     * the answerer can't score on their own card. An empty set means nobody got it: the turn counts
+     * as played, not skipped.
+     */
+    fun completeGuesses(correctGuessers: Set<Int>) =
+        advance(Outcome.DONE, guessers = correctGuessers - state.currentPlayerIndex)
+
     /** Skip. Costs [GameState.skipCost] when stakes are on. */
     fun skip() = advance(Outcome.SKIP)
 
@@ -188,20 +201,28 @@ class GameSession(
 
     private enum class Outcome { DONE, SKIP, FREE_SKIP, TIMEOUT }
 
-    private fun advance(outcome: Outcome) {
+    private fun advance(outcome: Outcome, guessers: Set<Int>? = null) {
         val s = state
         if (s.finished || s.chaos != null) return
         val card = s.card
         val award = outcome == Outcome.DONE
         val me = s.currentPlayer
         val delta = when {
+            guessers != null -> 0
             award -> if (card != null) s.pointsOnOffer else 0
             outcome == Outcome.FREE_SKIP -> 0
             else -> -s.skipCost
         }
+        val guessPoints = if (card == null) 0 else card.intensity.points * (if (s.showdown) 2 else 1)
         val streak = if (award) me.streak + 1 else 0
         val updated = me.copy(score = me.score + delta, streak = streak, bestStreak = maxOf(me.bestStreak, streak))
-        val players = s.players.map { if (it.id == me.id) updated else it }
+        val players = s.players.mapIndexed { i, p ->
+            when {
+                p.id == me.id -> updated
+                guessers != null && i in guessers -> p.copy(score = p.score + guessPoints)
+                else -> p
+            }
+        }
         val leaderBefore = s.players.soleLeader()
         val leaderAfter = players.soleLeader()
         val result = TurnResult(

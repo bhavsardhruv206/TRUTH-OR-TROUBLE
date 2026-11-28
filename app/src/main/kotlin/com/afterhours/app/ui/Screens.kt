@@ -174,6 +174,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                 state, feedback,
                 turnClock = settings.turnClock,
                 onComplete = { feedback.tap(); vm.complete() },
+                onCompleteGuesses = { feedback.tap(); vm.completeGuesses(it) },
                 onSkip = { feedback.tap(); vm.skip() },
                 onTimeout = { feedback.alert(); vm.timeOut() },
                 onDismissChaos = vm::dismissChaos,
@@ -624,6 +625,7 @@ private val games = listOf(
     GameEntry(GameMode.NEVER_HAVE_I_EVER, GameGroup.WHOLE_GROUP, "✋"),
     GameEntry(GameMode.MOST_LIKELY_TO, GameGroup.WHOLE_GROUP, "👉"),
     GameEntry(GameMode.HOT_SEAT, GameGroup.WHOLE_GROUP, "⏱️"),
+    GameEntry(GameMode.KNOW_ME, GameGroup.WHOLE_GROUP, "🧠"),
     GameEntry(GameMode.CLOSER, GameGroup.COUPLES, "🌹"),
 )
 
@@ -883,6 +885,7 @@ fun GameScreen(
     feedback: Feedback,
     turnClock: Boolean,
     onComplete: () -> Unit,
+    onCompleteGuesses: (Set<Int>) -> Unit,
     onSkip: () -> Unit,
     onTimeout: () -> Unit,
     onDismissChaos: () -> Unit,
@@ -926,13 +929,18 @@ fun GameScreen(
             Scoreline(g)
             return@Page
         }
+        val guessing = card.category.guessing
+        // Guessing games: answer secretly first, then reveal and mark who guessed right.
+        var revealed by rememberSaveable(g.round) { mutableStateOf(false) }
+        var correct by remember(g.round) { mutableStateOf(setOf<Int>()) }
         Row(verticalAlignment = Alignment.CenterVertically) {
             AvatarBadge(LocalAvatars.current[g.currentPlayer.name], 48.dp, highlighted = true)
             Spacer(Modifier.width(12.dp))
             Column {
                 Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
                 val streak = g.currentPlayer.streak
-                if (g.stakes && streak >= 1) {
+                if (guessing) Muted(S.keepItSecret)
+                else if (g.stakes && streak >= 1) {
                     Text(
                         S.streakLine(streak, Stakes.streakBonus(streak + 1)),
                         color = if (Stakes.streakBonus(streak + 1) > 0) Champagne else Stone,
@@ -977,6 +985,10 @@ fun GameScreen(
                         style = MaterialTheme.typography.headlineSmall, color = Ivory,
                     )
                 }
+                if (guessing) Text(
+                    if (revealed) S.whoGotIt else S.guessThenReveal(g.currentPlayer.name),
+                    style = MaterialTheme.typography.bodyMedium, color = Stone, modifier = Modifier.padding(bottom = 4.dp),
+                )
                 card.timerSeconds?.let { secs -> DareTimer(key = g.round, seconds = secs, feedback = feedback) }
                 TextButton({ reporting = true }, contentPadding = PaddingValues(0.dp)) {
                     Text(S.reportCard, color = Stone.copy(alpha = .7f), style = MaterialTheme.typography.bodyMedium)
@@ -984,9 +996,17 @@ fun GameScreen(
             }
         }
         Spacer(Modifier.height(16.dp))
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (guessing && revealed) {
+            GuesserPicker(g, correct) { i -> correct = if (i in correct) correct - i else correct + i }
+            Spacer(Modifier.height(10.dp))
+            PrimaryButton(
+                if (correct.isEmpty()) S.nobodyGotIt else S.scoreEach(card.intensity.points * (if (g.showdown) 2 else 1)),
+                { onCompleteGuesses(correct) }, Modifier.fillMaxWidth(),
+            )
+        } else Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             SecondaryButton(if (g.skipCost > 0) S.skipCost(g.skipCost) else S.skip, onSkip, Modifier.weight(1f))
-            PrimaryButton(S.donePoints(g.pointsOnOffer), onComplete, Modifier.weight(1.6f))
+            if (guessing) PrimaryButton(S.revealAnswer, { revealed = true }, Modifier.weight(1.6f))
+            else PrimaryButton(S.donePoints(g.pointsOnOffer), onComplete, Modifier.weight(1.6f))
         }
         Spacer(Modifier.height(12.dp))
         Scoreline(g)
@@ -1185,6 +1205,28 @@ private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> 
         },
         confirmButton = { TextButton(onDismiss) { Text(S.continueLabel, color = Champagne) } },
     )
+}
+
+/** Tap every player who guessed the answer right. The answerer isn't listed. */
+@Composable
+private fun GuesserPicker(g: GameState, correct: Set<Int>, onToggle: (Int) -> Unit) {
+    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        g.players.forEachIndexed { i, p ->
+            if (i == g.currentPlayerIndex) return@forEachIndexed
+            val on = i in correct
+            val shape = RoundedCornerShape(50)
+            Text(
+                if (on) "✓  ${p.name}" else p.name,
+                color = if (on) Champagne else Ivory,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.clip(shape)
+                    .background(if (on) GraphiteHigh else Graphite)
+                    .border(1.dp, if (on) Champagne else HairlineStrong, shape)
+                    .clickable { onToggle(i) }
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+            )
+        }
+    }
 }
 
 @Composable

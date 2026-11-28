@@ -68,6 +68,7 @@ val EnglishStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> GameText("Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.")
             GameMode.HOT_SEAT -> GameText("60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.")
             GameMode.CLOSER -> GameText("Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.")
+            GameMode.KNOW_ME -> GameText("Guess their answer", "The named player secretly thinks of their answer about themselves. Everyone else guesses, then they reveal. Every correct guess scores the card's points.")
         }
     },
     couplesGateTitle = "For consenting couples",
@@ -166,6 +167,12 @@ val EnglishStrings = UiStrings(
     showdown = "Showdown · double points",
     longestStreak = { name, n -> "Longest streak: $name, $n in a row" },
     skipCost = { n -> "Skip  −${enPoints(n)}" },
+    keepItSecret = "think of your answer, keep it secret",
+    whoGotIt = "Say your answer out loud. Who got it right?",
+    guessThenReveal = { name -> "Everyone else, take turns guessing out loud. Then $name reveals." },
+    revealAnswer = "Reveal answer",
+    nobodyGotIt = "Nobody got it",
+    scoreEach = { n -> "Score  +${enPoints(n)} each" },
     mode = { it.label },
     intensity = { it.label },
     // English pose text comes straight from closer_poses.json.

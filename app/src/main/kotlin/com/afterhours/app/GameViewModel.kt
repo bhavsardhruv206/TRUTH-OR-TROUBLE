@@ -180,6 +180,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun complete() { session?.let { it.complete(); publish(it) } }
+    fun completeGuesses(correct: Set<Int>) { session?.let { it.completeGuesses(correct); publish(it) } }
     fun skip() { session?.let { it.skip(); publish(it) } }
     /** The turn clock ran out on the current card. */
     fun timeOut() { session?.let { it.timeOut(); publish(it) } }

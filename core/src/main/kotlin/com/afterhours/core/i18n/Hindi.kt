@@ -66,6 +66,7 @@ val HindiStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> GameText("तीन पर इशारा करो", "सवाल पढ़ें, तीन तक गिनें और सब उस पर इशारा करें जो सबसे सही बैठता है। सबसे ज़्यादा वोट वाला समझाए।")
             GameMode.HOT_SEAT -> GameText("60 सेकंड के सवाल", "जिसका नाम आया वो हॉट सीट पर बैठता है और ग्रुप टाइमर ख़त्म होने तक फटाफट सवाल पूछता है।")
             GameMode.CLOSER -> GameText("सिर्फ़ तुम दोनों", "दो पार्टनर्स के लिए एक रोमांटिक गेम। हर कार्ड पोज़ दिखाता है और बताता है क्या करना है। किसी भी छुअन से पहले पूछें, और कुछ भी स्किप करें।")
+            GameMode.KNOW_ME -> GameText("उनका जवाब बूझो", "जिसका नाम है वो अपने बारे में चुपचाप जवाब सोचता है। बाकी सब अंदाज़ा लगाते हैं, फिर वो जवाब बताता है। हर सही अंदाज़े पर कार्ड के पॉइंट मिलते हैं।")
         }
     },
     couplesGateTitle = "रज़ामंद कपल्स के लिए",
@@ -176,6 +177,12 @@ val HindiStrings = UiStrings(
     showdown = "शोडाउन · डबल पॉइंट",
     longestStreak = { name, n -> "सबसे लंबी लय: $name, लगातार $n" },
     skipCost = { n -> "स्किप  −$n पॉइंट" },
+    keepItSecret = "अपना जवाब सोचो, राज़ रखो",
+    whoGotIt = "अपना जवाब ज़ोर से बोलो। किसने सही अंदाज़ा लगाया?",
+    guessThenReveal = { name -> "बाकी सब बारी-बारी ज़ोर से अंदाज़ा लगाएँ। फिर $name जवाब बताएगा।" },
+    revealAnswer = "जवाब बताओ",
+    nobodyGotIt = "किसी ने नहीं बताया",
+    scoreEach = { n -> "हर एक को  +$n पॉइंट" },
     mode = {
         when (it) {
             GameMode.TRUTH -> "सच"
@@ -186,6 +193,7 @@ val HindiStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> "सबसे ज़्यादा चांस"
             GameMode.HOT_SEAT -> "हॉट सीट"
             GameMode.CLOSER -> "क्लोज़र"
+            GameMode.KNOW_ME -> "तुम मुझे कितना जानते हो"
         }
     },
     intensity = {
