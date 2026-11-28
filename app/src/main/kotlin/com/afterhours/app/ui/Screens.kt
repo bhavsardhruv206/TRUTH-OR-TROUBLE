@@ -71,6 +71,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
     val adsRemoved by vm.adsRemoved.collectAsStateWithLifecycle()
     val adsReady by ads.ready.collectAsStateWithLifecycle()
     val feedback = rememberFeedback(settings.sound, settings.haptics)
+    val speaker = rememberSpeaker()
     val showBanner = adsReady && !adsRemoved
 
     // Fixed at first composition: the start destination must not change once the graph exists.
@@ -99,6 +100,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     onSound = vm::setSound,
                     onHaptics = vm::setHaptics,
                     onChaos = vm::setChaos,
+                    onReadAloud = vm::setReadAloud,
                     onResetSeen = vm::resetSeenCards,
                     onPrivacy = { consent.showPrivacyOptions(activity) },
                     onRemoveAds = { billing.buy(activity) },
@@ -134,6 +136,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
         }
         composable("game") {
             val g by vm.game.collectAsStateWithLifecycle()
+            val s by vm.setup.collectAsStateWithLifecycle()
             val state = g ?: return@composable
             LaunchedEffect(state.finished) {
                 if (state.finished) {
@@ -145,6 +148,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             }
             if (!state.finished) GameScreen(
                 state, feedback,
+                voice = CardVoice(speaker, s.language.code, settings.readAloud),
                 onComplete = { feedback.tap(); vm.complete() },
                 onSkip = { feedback.tap(); vm.skip() },
                 onDismissChaos = vm::dismissChaos,
@@ -396,6 +400,7 @@ fun HomeScreen(
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
     onChaos: (Boolean) -> Unit,
+    onReadAloud: (Boolean) -> Unit,
     onResetSeen: () -> Unit,
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
@@ -422,7 +427,7 @@ fun HomeScreen(
     }
     if (showSettings) SettingsDialog(
         settings, adsRemoved, removeAdsPrice, privacyRequired,
-        onSound, onHaptics, onChaos, onResetSeen, onPrivacy, onRemoveAds, onRestore,
+        onSound, onHaptics, onChaos, onReadAloud, onResetSeen, onPrivacy, onRemoveAds, onRestore,
         onDismiss = { showSettings = false },
     )
     if (showHelp) AlertDialog(
@@ -452,6 +457,7 @@ private fun SettingsDialog(
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
     onChaos: (Boolean) -> Unit,
+    onReadAloud: (Boolean) -> Unit,
     onResetSeen: () -> Unit,
     onPrivacy: () -> Unit,
     onRemoveAds: () -> Unit,
@@ -466,7 +472,8 @@ private fun SettingsDialog(
         title = { Text("Settings", style = MaterialTheme.typography.titleLarge) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState())) {
-                SwitchRow("Sound", settings.sound, onSound)
+                SwitchRow("Sound effects", settings.sound, onSound, "Beeps on new cards and timers")
+                SwitchRow("Read cards aloud", settings.readAloud, onReadAloud, "Or tap the speaker on any card")
                 SwitchRow("Vibration", settings.haptics, onHaptics)
                 SwitchRow("Chaos moments", settings.chaos, onChaos, "Group events every few turns")
                 HorizontalDivider(Modifier.padding(vertical = 8.dp), color = Hairline)
@@ -686,6 +693,7 @@ private val reportReasons = listOf("Offensive or hurtful", "Unsafe to do", "Too 
 fun GameScreen(
     g: GameState,
     feedback: Feedback,
+    voice: CardVoice,
     onComplete: () -> Unit,
     onSkip: () -> Unit,
     onDismissChaos: () -> Unit,
@@ -698,6 +706,16 @@ fun GameScreen(
     // The system back gesture must never silently throw away a game.
     BackHandler { confirmQuit = true }
 
+    // Never keep reading a card that is gone, or after leaving the game.
+    DisposableEffect(Unit) { onDispose { voice.speaker.stop() } }
+    LaunchedEffect(g.round) { voice.speaker.stop() }
+    val spoken = buildString {
+        append(g.currentPlayer.name).append(". ")
+        PoseLibrary.get(card.pose)?.let { append(it.title).append(". ") }
+        append(g.cardText ?: card.text)
+    }
+    val spokenKey = "card-${g.round}-${card.id}"
+
     // Flip the card in for every new turn.
     val density = LocalDensity.current.density
     val flip = remember(g.round) { Animatable(90f) }
@@ -707,6 +725,7 @@ fun GameScreen(
         if (g.chaos == null && stage == 2) {
             flip.animateTo(0f, tween(420, easing = FastOutSlowInEasing))
             feedback.reveal()
+            if (voice.autoRead) voice.speaker.speak(spokenKey, spoken, voice.languageCode)
         }
     }
 
@@ -734,9 +753,11 @@ fun GameScreen(
             border = BorderStroke(1.dp, Hairline),
         ) {
             Column(Modifier.fillMaxSize().padding(24.dp)) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     Tag(card.category.label, Ivory.copy(alpha = .8f))
                     Tag(card.intensity.label, intensityColor(card.intensity))
+                    Spacer(Modifier.weight(1f))
+                    SpeakerButton(voice, spokenKey, spoken)
                 }
                 Column(
                     Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
@@ -769,7 +790,7 @@ fun GameScreen(
         Scoreline(g)
     }
 
-    g.chaos?.let { event -> ChaosDialog(event, feedback, onDismissChaos) }
+    g.chaos?.let { event -> ChaosDialog(event, feedback, voice, onDismissChaos) }
 
     if (confirmQuit) AlertDialog(
         onDismissRequest = { confirmQuit = false },
@@ -869,14 +890,22 @@ private fun DareTimer(key: Int, seconds: Int, feedback: Feedback) {
 }
 
 @Composable
-private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> Unit) {
-    LaunchedEffect(event.id) { feedback.alert() }
+private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, voice: CardVoice, onDismiss: () -> Unit) {
+    val spoken = "${event.title}. ${event.text}"
+    val spokenKey = "chaos-${event.id}"
+    LaunchedEffect(event.id) {
+        feedback.alert()
+        if (voice.autoRead) voice.speaker.speak(spokenKey, spoken, voice.languageCode)
+    }
     AlertDialog(
         onDismissRequest = {},
         containerColor = GraphiteHigh,
         title = {
             Column {
-                Eyebrow("Chaos moment", Wine)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Eyebrow("Chaos moment", Wine, Modifier.weight(1f))
+                    SpeakerButton(voice, spokenKey, spoken)
+                }
                 Spacer(Modifier.height(6.dp))
                 Text(event.title, style = MaterialTheme.typography.headlineSmall)
             }
@@ -887,7 +916,7 @@ private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> 
                 event.timerSeconds?.let { DareTimer(key = event.id.hashCode(), seconds = it, feedback = feedback) }
             }
         },
-        confirmButton = { TextButton(onDismiss) { Text("Continue", color = Champagne) } },
+        confirmButton = { TextButton({ voice.speaker.stop(); onDismiss() }) { Text("Continue", color = Champagne) } },
     )
 }
 

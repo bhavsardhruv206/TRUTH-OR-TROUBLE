@@ -74,6 +74,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setSound(on: Boolean) = viewModelScope.launch { prefs.setSound(on) }
     fun setHaptics(on: Boolean) = viewModelScope.launch { prefs.setHaptics(on) }
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
+    fun setReadAloud(on: Boolean) = viewModelScope.launch { prefs.setReadAloud(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
     fun selectMode(m: GameMode) = _setup.update {

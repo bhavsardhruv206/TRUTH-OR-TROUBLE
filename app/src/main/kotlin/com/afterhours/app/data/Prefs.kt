@@ -18,6 +18,8 @@ data class Settings(
     val sound: Boolean = true,
     val haptics: Boolean = true,
     val chaos: Boolean = true,
+    /** Read each new card out loud as it appears. The speaker button works either way. */
+    val readAloud: Boolean = false,
 )
 
 class Prefs(private val context: Context) {
@@ -29,13 +31,19 @@ class Prefs(private val context: Context) {
     private val soundKey = booleanPreferencesKey("sound")
     private val hapticsKey = booleanPreferencesKey("haptics")
     private val chaosKey = booleanPreferencesKey("chaos")
+    private val readAloudKey = booleanPreferencesKey("read_aloud")
     private val languageKey = stringPreferencesKey("card_language")
     private val adsRemovedKey = booleanPreferencesKey("ads_removed")
 
     val ageConfirmed: Flow<Boolean> = context.dataStore.data.map { it[ageKey] ?: false }
     val tutorialSeen: Flow<Boolean> = context.dataStore.data.map { it[tutorialKey] ?: false }
     val settings: Flow<Settings> = context.dataStore.data.map {
-        Settings(sound = it[soundKey] ?: true, haptics = it[hapticsKey] ?: true, chaos = it[chaosKey] ?: true)
+        Settings(
+            sound = it[soundKey] ?: true,
+            haptics = it[hapticsKey] ?: true,
+            chaos = it[chaosKey] ?: true,
+            readAloud = it[readAloudKey] ?: false,
+        )
     }
     /** Cached result of the last Play Billing check, so ads stay off while offline. */
     val adsRemoved: Flow<Boolean> = context.dataStore.data.map { it[adsRemovedKey] ?: false }
@@ -46,6 +54,7 @@ class Prefs(private val context: Context) {
     suspend fun setSound(on: Boolean) = set(soundKey, on)
     suspend fun setHaptics(on: Boolean) = set(hapticsKey, on)
     suspend fun setChaos(on: Boolean) = set(chaosKey, on)
+    suspend fun setReadAloud(on: Boolean) = set(readAloudKey, on)
     suspend fun setAdsRemoved(on: Boolean) = set(adsRemovedKey, on)
     suspend fun setLanguage(code: String) = set(languageKey, code)
     suspend fun language(): String? = context.dataStore.data.first()[languageKey]
