@@ -17,6 +17,8 @@ sealed interface Avatar {
 }
 
 data class SetupState(
+    /** The game picked on the Games screen or Home. */
+    val game: GameId = GameId.SPIN,
     val mode: GameMode = GameMode.TRUTH,
     /** Spin the wheel: a wheel picks the player and Truth or Dare each turn. */
     val spin: Boolean = false,
@@ -30,6 +32,9 @@ data class SetupState(
 ) {
     /** How many people are playing, chosen right after Play game. */
     val playerCount: Int get() = names.size
+
+    /** 18+ content: an 18+ Spicy game or Wild cards. No ads are shown next to it. */
+    val adult: Boolean get() = isAdultContent(game, intensity)
 
     /** Profile pictures keyed by the (trimmed) player name, as the game shows names. */
     fun avatarsByName(): Map<String, Avatar> =
@@ -126,6 +131,66 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
     private val couplesOnly: Boolean get() = _setup.value.let { !it.spin && it.mode.couplesOnly }
     fun selectSpin() = _setup.update { it.copy(spin = true) }
+
+    /** Picks a game from the catalog: its mode, Spin the Wheel, and a locked intensity for 18+ games. */
+    fun selectGame(g: GameId) {
+        g.mode?.let { selectMode(it) }
+        _setup.update { s ->
+            s.copy(
+                game = g,
+                spin = g.spin,
+                mode = g.mode ?: if (g.spin) GameMode.TRUTH else s.mode,
+                // Leaving an 18+ game drops back from its locked Wild level.
+                intensity = g.lockedIntensity ?: if (s.game.lockedIntensity != null) Intensity.CHILL else s.intensity,
+            )
+        }
+    }
+
+    /** Everyone playing confirmed they are 18+ for this run of the app. */
+    var spicyConfirmed: Boolean = false
+        private set
+    fun confirmSpicy() { spicyConfirmed = true }
+
+    /**
+     * One-tap start from Home: plays [g] right away with the names already on the phone, or
+     * placeholder names from [defaultName] (Player 1, Player 2...) when there are none yet.
+     * Returns false when the game could not start.
+     */
+    fun quickStart(g: GameId, defaultName: (Int) -> String): Boolean {
+        selectGame(g)
+        _setup.update { s ->
+            val count = if (g.couplesOnly) PlayerRules.COUPLE_PLAYERS else s.playerCount.coerceAtLeast(PlayerRules.MIN_PLAYERS)
+            val kept = (s.names + List(count) { "" }).take(count)
+            // Placeholder names are for this game only and are never saved as player names.
+            placeholderNames = kept.any { it.isBlank() }
+            val names = kept.mapIndexed { i, n -> n.ifBlank { defaultName(i + 1) } }
+            s.copy(
+                names = names,
+                intensity = g.lockedIntensity ?: Intensity.CHILL,
+                rounds = GameSession.DEFAULT_ROUNDS,
+                error = null,
+            )
+        }
+        return when {
+            g.quiz -> true
+            g.mode == GameMode.COUPLE_BINGO -> { newBingo(); true }
+            else -> startGame()
+        }
+    }
+
+    private var placeholderNames = false
+
+    private val _bingo = MutableStateFlow<BingoBoard?>(null)
+    /** The Couple Bingo board in play, or null when there are not enough squares. */
+    val bingo: StateFlow<BingoBoard?> = _bingo
+
+    /** Deals a fresh Couple Bingo board for the chosen level and card language. */
+    fun newBingo() {
+        val s = _setup.value
+        _bingo.value = BingoBoard.deal(cards.filter { it.id !in reported }, s.intensity, s.language.code)
+    }
+
+    fun toggleBingo(index: Int) = _bingo.update { it?.toggle(index) }
     fun selectIntensity(i: Intensity) = _setup.update { it.copy(intensity = i) }
     fun selectRounds(r: Int) = _setup.update { it.copy(rounds = r) }
     fun selectLanguage(l: CardLanguage) {
@@ -134,6 +199,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun setName(index: Int, name: String) = _setup.update { s ->
+        placeholderNames = false
         s.copy(names = s.names.toMutableList().also { it[index] = name.take(PlayerRules.MAX_NAME_LENGTH) }, error = null)
     }
 
@@ -168,13 +234,14 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
                         language = s.language.code,
                         spin = s.spin,
                         stakes = true,
+                        exactIntensity = s.game.lockedIntensity != null,
                     )
                 } catch (e: IllegalArgumentException) {
                     _setup.update { it.copy(error = SetupError.NoCards) }
                     return false
                 }
                 _game.value = session!!.state
-                viewModelScope.launch { prefs.saveNames(v.names) }
+                if (!placeholderNames) viewModelScope.launch { prefs.saveNames(v.names) }
                 true
             }
         }

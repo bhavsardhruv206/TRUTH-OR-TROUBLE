@@ -86,8 +86,17 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
     val speaker = rememberSpeaker()
     val showBanner = adsReady && !adsRemoved
 
-    // Fixed at first composition: the start destination must not change once the graph exists.
-    val start = remember { if (startWithTutorial) "tutorial" else "home" }
+    // First launch goes straight to Home so a group can start in one tap; How to play stays one tap away.
+    val firstLaunch = remember { startWithTutorial }
+    val start = "home"
+    val tonight = remember {
+        val now = java.util.Calendar.getInstance()
+        // Calendar counts Sunday = 1; Tonight wants ISO, Monday = 1.
+        val isoDay = (now.get(java.util.Calendar.DAY_OF_WEEK) + 5) % 7 + 1
+        val players = vm.setup.value.let { st -> st.playerCount.takeIf { st.names.any { it.isNotBlank() } } }
+        val day = (now.timeInMillis + now.get(java.util.Calendar.ZONE_OFFSET) + now.get(java.util.Calendar.DST_OFFSET)) / 86_400_000L
+        Tonight.suggest(isoDay, now.get(java.util.Calendar.HOUR_OF_DAY), players, day)
+    }
 
     NavHost(nav, startDestination = start) {
         composable("tutorial") {
@@ -107,6 +116,12 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     adsRemoved = adsRemoved,
                     removeAdsPrice = price,
                     privacyRequired = privacyRequired,
+                    tonight = tonight,
+                    firstLaunch = firstLaunch,
+                    onQuickStart = { g ->
+                        feedback.tap()
+                        if (vm.quickStart(g) { S.playerN(it) }) nav.navigate(routeFor(g))
+                    },
                     onPlay = { feedback.tap(); nav.navigate("players") },
                     onHowToPlay = { nav.navigate("tutorial") },
                     onSound = vm::setSound,
@@ -135,23 +150,43 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
         }
         composable("games") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            WithBanner(showBanner) {
-                GamesScreen(
-                    s,
-                    onPick = { m -> feedback.tap(); if (m == null) vm.selectSpin() else vm.selectMode(m); nav.navigate("difficulty") },
+            // No banner here: the 18+ Spicy section is on this screen, and ads never sit next to adult content.
+            GamesScreen(
+                s,
+                spicyConfirmed = { vm.spicyConfirmed },
+                onConfirmSpicy = vm::confirmSpicy,
+                onPick = { g ->
+                    feedback.tap()
+                    vm.selectGame(g)
+                    nav.navigate(if (g.quiz) "quiz" else "difficulty")
+                },
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable("difficulty") {
+            val s by vm.setup.collectAsStateWithLifecycle()
+            WithBanner(showBanner && !s.adult) {
+                DifficultyScreen(
+                    s, vm::selectIntensity, vm::selectLanguage,
+                    spicyConfirmed = { vm.spicyConfirmed },
+                    onConfirmSpicy = vm::confirmSpicy,
+                    onNext = {
+                        if (s.mode == GameMode.COUPLE_BINGO && !s.spin) { vm.newBingo(); nav.navigate("bingo") } else nav.navigate("setup")
+                    },
                     onBack = { nav.popBackStack() },
                 )
             }
         }
-        composable("difficulty") {
-            val s by vm.setup.collectAsStateWithLifecycle()
-            WithBanner(showBanner) {
-                DifficultyScreen(s, vm::selectIntensity, vm::selectLanguage, onNext = { nav.navigate("setup") }, onBack = { nav.popBackStack() })
-            }
+        composable("bingo") {
+            val board by vm.bingo.collectAsStateWithLifecycle()
+            BingoScreen(board, vm::toggleBingo, onNewBoard = { feedback.tap(); vm.newBingo() }, onBack = { nav.popBackStack() })
+        }
+        composable("quiz") {
+            QuizScreen(onBack = { nav.popBackStack() })
         }
         composable("setup") {
             val s by vm.setup.collectAsStateWithLifecycle()
-            WithBanner(showBanner) {
+            WithBanner(showBanner && !s.adult) {
                 SetupScreen(
                     s, vm::setName, vm::selectRounds,
                     onAvatar = vm::setAvatar,
@@ -168,8 +203,9 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                 if (state.finished) {
                     feedback.alert()
                     nav.navigate("results") { popUpTo("game") { inclusive = true } }
-                    // Natural break: the game just ended. Capped interstitial, never mid-card.
-                    ads.onSessionCompleted(activity)
+                    // Natural break: the game just ended. Capped interstitial, never mid-card,
+                    // and never right after 18+ content.
+                    if (!s.adult) ads.onSessionCompleted(activity)
                 }
             }
             val setupNow by vm.setup.collectAsStateWithLifecycle()
@@ -201,7 +237,8 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                 state,
                 bonusLabel = when {
                     adsRemoved -> S.bonusGame
-                    rewardedReady -> S.watchAdBonus
+                    // No ad offer after 18+ content.
+                    rewardedReady && !setupNow.adult -> S.watchAdBonus
                     else -> null
                 },
                 onBonus = { if (adsRemoved) startBonus() else ads.showRewarded(activity) { startBonus() } },
@@ -210,6 +247,13 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             ) }
         }
     }
+}
+
+/** Where a one-tap start lands: the card game, or the board and quiz screens. */
+private fun routeFor(g: GameId): String = when {
+    g.quiz -> "quiz"
+    g.mode == GameMode.COUPLE_BINGO -> "bingo"
+    else -> "game"
 }
 
 /** Opens the mail app with a pre-filled report when a support address is configured. */
@@ -238,7 +282,7 @@ private fun WithBanner(show: Boolean, content: @Composable () -> Unit) {
 // ---------- Building blocks ----------
 
 @Composable
-private fun Page(
+internal fun Page(
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
@@ -271,11 +315,11 @@ private fun Wordmark(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun Eyebrow(text: String, color: Color = Champagne, modifier: Modifier = Modifier) =
+internal fun Eyebrow(text: String, color: Color = Champagne, modifier: Modifier = Modifier) =
     Text(text.uppercase(), style = MaterialTheme.typography.labelSmall, color = color, modifier = modifier)
 
 @Composable
-private fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
+internal fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
     Button(
         onClick, modifier.height(54.dp), enabled = enabled,
         shape = RoundedCornerShape(12.dp),
@@ -287,7 +331,7 @@ private fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier 
 }
 
 @Composable
-private fun SecondaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+internal fun SecondaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick, modifier.height(50.dp), shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, HairlineStrong),
@@ -296,15 +340,15 @@ private fun SecondaryButton(text: String, onClick: () -> Unit, modifier: Modifie
 }
 
 @Composable
-private fun QuietButton(text: String, onClick: () -> Unit, color: Color = Stone) =
+internal fun QuietButton(text: String, onClick: () -> Unit, color: Color = Stone) =
     TextButton(onClick) { Text(text, color = color, style = MaterialTheme.typography.bodyMedium) }
 
 @Composable
-private fun Muted(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null) =
+internal fun Muted(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null) =
     Text(text, modifier, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = textAlign, style = MaterialTheme.typography.bodyMedium)
 
 @Composable
-private fun Tag(text: String, color: Color) {
+internal fun Tag(text: String, color: Color) {
     Text(
         text.uppercase(), color = color, style = MaterialTheme.typography.labelSmall,
         modifier = Modifier.border(1.dp, color.copy(alpha = .5f), RoundedCornerShape(50)).padding(horizontal = 10.dp, vertical = 4.dp),
@@ -312,7 +356,7 @@ private fun Tag(text: String, color: Color) {
 }
 
 @Composable
-private fun BackRow(onBack: () -> Unit) {
+internal fun BackRow(onBack: () -> Unit) {
     TextButton(onBack, contentPadding = PaddingValues(0.dp)) {
         Text("‹  ${LocalStrings.current.back}", color = Stone, style = MaterialTheme.typography.bodyMedium)
     }
@@ -320,7 +364,7 @@ private fun BackRow(onBack: () -> Unit) {
 
 /** A selectable row: title, optional description, champagne edge when selected. */
 @Composable
-private fun OptionRow(title: String, description: String?, selected: Boolean, onClick: () -> Unit) {
+internal fun OptionRow(title: String, description: String?, selected: Boolean, onClick: () -> Unit) {
     val shape = RoundedCornerShape(12.dp)
     Row(
         Modifier.fillMaxWidth().clip(shape)
@@ -420,6 +464,9 @@ fun HomeScreen(
     adsRemoved: Boolean,
     removeAdsPrice: String?,
     privacyRequired: Boolean,
+    tonight: List<GameId>,
+    firstLaunch: Boolean,
+    onQuickStart: (GameId) -> Unit,
     onPlay: () -> Unit,
     onHowToPlay: () -> Unit,
     onSound: (Boolean) -> Unit,
@@ -438,18 +485,22 @@ fun HomeScreen(
     var showSettings by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
     Page(horizontalAlignment = Alignment.CenterHorizontally) {
-        Spacer(Modifier.weight(1f))
+        Spacer(Modifier.weight(.6f))
         Wordmark()
-        Spacer(Modifier.height(20.dp))
-        Muted(S.homeTagline(games.size - 1), textAlign = TextAlign.Center)
+        Spacer(Modifier.height(16.dp))
+        Muted(S.homeTagline(GameId.entries.count { !it.spicy && !it.couplesOnly }), textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
+        // One tap starts a game: no player count, names or pictures needed first.
+        TonightRow(tonight, onQuickStart)
+        Spacer(Modifier.height(16.dp))
         PrimaryButton(S.playGame, onPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
-        SecondaryButton(S.howToPlay, onHowToPlay, Modifier.fillMaxWidth())
+        SecondaryButton(if (firstLaunch) S.newHere else S.howToPlay, onHowToPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(4.dp))
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
             QuietButton(S.settings, { showSettings = true })
             QuietButton(S.helpSafety, { showHelp = true })
+            if (!adsRemoved && removeAdsPrice != null) QuietButton(S.removeAds(removeAdsPrice), onRemoveAds, Champagne)
         }
     }
     if (showSettings) SettingsDialog(
@@ -618,77 +669,60 @@ private fun LanguageDialog(current: CardLanguage, onPick: (CardLanguage) -> Unit
     )
 }
 
-private enum class GameGroup { FEATURED, CLASSIC, WHOLE_GROUP, COUPLES }
-
-/** One entry in the Games section. [mode] is null for Spin the Wheel, which mixes Truth and Dare. */
-private data class GameEntry(val mode: GameMode?, val group: GameGroup, val icon: String)
-
-private val games = listOf(
-    GameEntry(null, GameGroup.FEATURED, "🎡"),
-    GameEntry(GameMode.TRUTH, GameGroup.CLASSIC, "💬"),
-    GameEntry(GameMode.DARE, GameGroup.CLASSIC, "🔥"),
-    GameEntry(GameMode.WOULD_YOU_RATHER, GameGroup.CLASSIC, "⚖️"),
-    GameEntry(GameMode.COUPLE, GameGroup.CLASSIC, "💞"),
-    GameEntry(GameMode.NEVER_HAVE_I_EVER, GameGroup.WHOLE_GROUP, "✋"),
-    GameEntry(GameMode.MOST_LIKELY_TO, GameGroup.WHOLE_GROUP, "👉"),
-    GameEntry(GameMode.HOT_SEAT, GameGroup.WHOLE_GROUP, "⏱️"),
-    GameEntry(GameMode.KNOW_ME, GameGroup.WHOLE_GROUP, "🧠"),
-    GameEntry(GameMode.CLOSER, GameGroup.COUPLES, "🌹"),
-)
-
-private fun UiStrings.title(g: GameEntry) = g.mode?.let(mode) ?: spinTheWheel
-
-private fun UiStrings.groupLabel(g: GameGroup) = when (g) {
-    GameGroup.FEATURED -> groupFeatured
-    GameGroup.CLASSIC -> groupClassic
-    GameGroup.WHOLE_GROUP -> groupWholeGroup
-    GameGroup.COUPLES -> groupCouples
-}
-
-private fun selectedGame(s: SetupState): GameEntry =
-    if (s.spin) games.first() else games.firstOrNull { it.mode == s.mode } ?: games.first()
-
-/** The Games section: every game as its own tile. Tapping one opens its difficulty choice. */
+/** The Games screen: every game in its mood section. Tapping one opens its difficulty choice. */
 @Composable
-fun GamesScreen(s: SetupState, onPick: (GameMode?) -> Unit, onBack: () -> Unit) {
+fun GamesScreen(
+    s: SetupState,
+    spicyConfirmed: () -> Boolean,
+    onConfirmSpicy: () -> Unit,
+    onPick: (GameId) -> Unit,
+    onBack: () -> Unit,
+) {
     val S = LocalStrings.current
-    val current = selectedGame(s)
-    var gateFor by remember { mutableStateOf<GameMode?>(null) }
+    var couplesGateFor by remember { mutableStateOf<GameId?>(null) }
+    var spicyGateFor by remember { mutableStateOf<GameId?>(null) }
     var lockedNote by remember { mutableStateOf<String?>(null) }
-    val pick: (GameMode?) -> Unit = { m ->
+    // Closer asks for the couples check; 18+ games ask everyone to confirm they're adults.
+    val afterSpicy: (GameId) -> Unit = { g -> if (g.mode == GameMode.CLOSER) couplesGateFor = g else onPick(g) }
+    val pick: (GameId) -> Unit = { g ->
         when {
-            m != null && !playableWith(m, s.playerCount) ->
-                lockedNote = "${m.label} is for exactly ${PlayerRules.COUPLE_PLAYERS} players. Go back and choose ${PlayerRules.COUPLE_PLAYERS} to play it."
-            m?.couplesOnly == true -> gateFor = m
-            else -> onPick(m)
+            !GameId.playableWith(g, s.playerCount) -> lockedNote = "${S.title(g)} · ${S.twoPlayersOnly}"
+            g.spicy && !spicyConfirmed() -> spicyGateFor = g
+            else -> afterSpicy(g)
         }
     }
-    gateFor?.let { m -> CouplesGate(onAgree = { gateFor = null; onPick(m) }, onCancel = { gateFor = null }) }
+    spicyGateFor?.let { g -> SpicyGate(onAgree = { spicyGateFor = null; onConfirmSpicy(); afterSpicy(g) }, onCancel = { spicyGateFor = null }) }
+    couplesGateFor?.let { g -> CouplesGate(onAgree = { couplesGateFor = null; onPick(g) }, onCancel = { couplesGateFor = null }) }
     Page {
         BackRow(onBack)
         Text(S.games, style = MaterialTheme.typography.headlineMedium)
-        Muted(S.pickAGame(s.playerCount), Modifier.padding(top = 4.dp, bottom = 12.dp))
+        Muted(S.pickAGame(s.playerCount), Modifier.padding(top = 4.dp, bottom = 4.dp))
+        lockedNote?.let { Text(it, color = Champagne, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(bottom = 4.dp)) }
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            games.groupBy { it.group }.forEach { (group, entries) ->
-                Eyebrow(S.groupLabel(group), modifier = Modifier.padding(top = 6.dp))
-                entries.chunked(2).forEach { pair ->
+            Mood.entries.forEach { mood ->
+                Column(Modifier.padding(top = 14.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(S.moodTitle(mood), style = MaterialTheme.typography.titleLarge, color = if (mood == Mood.SPICY) Wine else Ivory)
+                        if (mood == Mood.SPICY) { Spacer(Modifier.width(8.dp)); AdultBadge() }
+                    }
+                    Muted(S.moodBlurb(mood))
+                }
+                GameId.inMood(mood).chunked(2).forEach { pair ->
                     Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        pair.forEach { g -> GameTile(
-                            g, g == current, Modifier.weight(1f).fillMaxHeight(),
-                            wide = pair.size == 1 && group == GameGroup.FEATURED,
-                            locked = g.mode != null && !playableWith(g.mode, s.playerCount),
-                        ) { pick(g.mode) } }
-                        if (pair.size == 1 && group != GameGroup.FEATURED) Spacer(Modifier.weight(1f))
+                        pair.forEach { g ->
+                            CatalogTile(
+                                g, g == s.game, Modifier.weight(1f).fillMaxHeight(),
+                                locked = !GameId.playableWith(g, s.playerCount),
+                            ) { pick(g) }
+                        }
+                        if (pair.size == 1) Spacer(Modifier.weight(1f))
                     }
                 }
             }
+            Spacer(Modifier.height(8.dp))
         }
-        lockedNote?.let { Muted(it, Modifier.padding(top = 8.dp)) }
     }
 }
-
-/** Couples-only games need exactly two players; every other game takes any count. */
-private fun playableWith(mode: GameMode, count: Int) = !mode.couplesOnly || count == PlayerRules.COUPLE_PLAYERS
 
 /** Step after Play game: how many people are playing. Big number with minus and plus. */
 @Composable
@@ -754,55 +788,48 @@ private fun CouplesGate(onAgree: () -> Unit, onCancel: () -> Unit) {
     )
 }
 
-@Composable
-private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: Boolean, locked: Boolean = false, onClick: () -> Unit) {
-    val S = LocalStrings.current
-    val shape = RoundedCornerShape(16.dp)
-    Column(
-        modifier.graphicsLayer { alpha = if (locked) .45f else 1f }.clip(shape)
-            .background(if (selected) GraphiteHigh else Graphite)
-            .border(1.dp, if (selected || wide) Champagne.copy(alpha = if (selected) 1f else .5f) else Hairline, shape)
-            .clickable(onClick = onClick)
-            .padding(16.dp),
-    ) {
-        if (wide) { Eyebrow(S.newBadge); Spacer(Modifier.height(6.dp)) }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(g.icon, fontSize = 22.sp)
-            Spacer(Modifier.width(8.dp))
-            Text(S.title(g), style = MaterialTheme.typography.titleLarge, color = Ivory)
-        }
-        Spacer(Modifier.height(4.dp))
-        Text(S.game(g.mode).blurb, style = MaterialTheme.typography.bodyMedium, color = Stone)
-        if (locked) { Spacer(Modifier.height(6.dp)); Text(S.twoPlayersOnly, style = MaterialTheme.typography.labelSmall, color = Champagne) }
-    }
-}
-
 /** Difficulty and language for the chosen game, with a one-line how-to. */
 @Composable
 fun DifficultyScreen(
     s: SetupState,
     onIntensity: (Intensity) -> Unit,
     onLanguage: (CardLanguage) -> Unit,
+    spicyConfirmed: () -> Boolean,
+    onConfirmSpicy: () -> Unit,
     onNext: () -> Unit,
     onBack: () -> Unit,
 ) {
     val S = LocalStrings.current
-    val g = selectedGame(s)
+    val g = s.game
+    var wildGate by remember { mutableStateOf(false) }
+    if (wildGate) SpicyGate(
+        onAgree = { wildGate = false; onConfirmSpicy(); onIntensity(Intensity.WILD) },
+        onCancel = { wildGate = false },
+    )
     Page {
         BackRow(onBack)
-        Eyebrow(S.groupLabel(g.group))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Eyebrow(S.moodTitle(g.mood), if (g.spicy) Wine else Champagne)
+            if (g.spicy) { Spacer(Modifier.width(8.dp)); AdultBadge() }
+        }
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(g.icon, fontSize = 30.sp)
             Spacer(Modifier.width(10.dp))
             Text(S.title(g), style = MaterialTheme.typography.headlineMedium)
         }
         Spacer(Modifier.height(8.dp))
-        Text(S.game(g.mode).howTo, style = MaterialTheme.typography.bodyLarge, color = Stone)
+        Text(S.text(g).howTo, style = MaterialTheme.typography.bodyLarge, color = Stone)
         Spacer(Modifier.height(20.dp))
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Eyebrow(S.difficulty)
-            Intensity.entries.forEach { i ->
-                OptionRow("${S.intensity(i)}  ·  ${S.points(i.points)}", S.intensityDescription(i), i == s.intensity) { onIntensity(i) }
+            // 18+ Spicy games play Wild cards only; every other game offers all three levels.
+            (g.lockedIntensity?.let { listOf(it) } ?: Intensity.entries).forEach { i ->
+                val adult = i == Intensity.WILD
+                OptionRow(
+                    "${S.intensity(i)}  ·  ${S.points(i.points)}",
+                    if (adult) "${S.intensityDescription(i)}\n${S.wildAdultNote}" else S.intensityDescription(i),
+                    i == s.intensity,
+                ) { if (adult && !spicyConfirmed() && g.lockedIntensity == null) wildGate = true else onIntensity(i) }
             }
             Spacer(Modifier.height(12.dp))
             Eyebrow(S.cardLanguage)
@@ -812,7 +839,7 @@ fun DifficultyScreen(
             }
         }
         Spacer(Modifier.height(16.dp))
-        PrimaryButton(S.nextPlayers, onNext, Modifier.fillMaxWidth())
+        PrimaryButton(if (g.mode == GameMode.COUPLE_BINGO) S.next else S.nextPlayers, onNext, Modifier.fillMaxWidth())
     }
 }
 
@@ -960,6 +987,7 @@ fun GameScreen(
                 Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
                 val streak = g.currentPlayer.streak
                 if (guessing) Muted(S.keepItSecret)
+                else if (card.category == GameMode.CHARADES) Text(S.onlyYouLook(g.currentPlayer.name), color = Champagne, style = MaterialTheme.typography.bodyMedium)
                 else if (g.stakes && streak >= 1) {
                     Text(
                         S.streakLine(streak, Stakes.streakBonus(streak + 1)),
@@ -987,6 +1015,7 @@ fun GameScreen(
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     Tag(S.mode(card.category), Ivory.copy(alpha = .8f))
                     Tag(S.intensity(card.intensity), intensityColor(card.intensity))
+                    if (card.intensity == Intensity.WILD) AdultBadge()
                     Spacer(Modifier.weight(1f))
                     SpeakerButton(voice, spokenKey, spoken, card.language)
                 }
@@ -1006,6 +1035,8 @@ fun GameScreen(
                         g.cardText ?: card.text,
                         style = MaterialTheme.typography.headlineSmall, color = Ivory,
                     )
+                    // This or That and Would You Rather: pick, then see how players usually choose.
+                    if (card.isVote) VotePanel(card, key = g.round)
                 }
                 if (guessing) Text(
                     if (revealed) S.whoGotIt else S.guessThenReveal(g.currentPlayer.name),

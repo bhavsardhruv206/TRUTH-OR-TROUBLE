@@ -29,7 +29,8 @@ class MoreGamesTest {
             val picks = Tonight.suggest(day, hour, players, seed)
             assertEquals(Tonight.COUNT, picks.size, "$day $hour $players")
             assertEquals(picks.size, picks.toSet().size)
-            assertTrue(picks.none { it.spicy })
+            assertTrue(picks.none { it.spicy || it == GameId.CLOSER })
+            if (players == null) assertTrue(picks.none { it.couplesOnly })
             if (players != null) assertTrue(picks.all { GameId.playableWith(it, players) }, "$picks for $players")
         }
         assertTrue(Tonight.suggest(6, 21, 5, 0).first().mood == Mood.PARTY, "Saturday night leads with a party game")

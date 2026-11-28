@@ -67,7 +67,8 @@ fun isAdultContent(game: GameId?, intensity: Intensity): Boolean = game?.spicy =
 /**
  * The "Suggested tonight" row on Home: three games that fit the evening.
  * Weekend nights lean to party games, late nights to deep talk, two players to couples games.
- * Never suggests 18+ games, and the pick is stable for a given evening so it doesn't jump around.
+ * Never suggests 18+ games or Closer (which has its own consent step), and the pick is stable for a
+ * given evening so it doesn't jump around.
  */
 object Tonight {
     const val COUNT = 3
@@ -90,13 +91,15 @@ object Tonight {
             else -> listOf(Mood.PARTY, Mood.FUN, Mood.DEEP)
         }
         val picked = mutableListOf<GameId>()
+        // Unknown player count: leave out games that need exactly two.
+        fun fits(g: GameId) = !g.spicy && g != GameId.CLOSER && g !in picked &&
+            (if (players == null) !g.couplesOnly else GameId.playableWith(g, players))
         moods.forEachIndexed { slot, mood ->
-            val options = GameId.inMood(mood).filter { it !in picked && (players == null || GameId.playableWith(it, players)) }
+            val options = GameId.inMood(mood).filter(::fits)
             if (options.isNotEmpty()) picked += options[Math.floorMod(daySeed + slot * 7, options.size.toLong()).toInt()]
         }
         // Top up from light games if a mood had nothing left.
-        GameId.entries.filter { !it.spicy && it !in picked && (players == null || GameId.playableWith(it, players)) }
-            .forEach { if (picked.size < COUNT) picked += it }
+        GameId.entries.forEach { if (picked.size < COUNT && fits(it)) picked += it }
         return picked.take(COUNT)
     }
 }
