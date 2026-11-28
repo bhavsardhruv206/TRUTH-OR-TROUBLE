@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -708,7 +709,7 @@ fun DifficultyScreen(
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Eyebrow("Difficulty")
             Intensity.entries.forEach { i ->
-                OptionRow("${i.label}  ·  ${i.points} pt", intensityDescription(i), i == s.intensity) { onIntensity(i) }
+                OptionRow("${i.label}  ·  ${pointsLabel(i.points)}", intensityDescription(i), i == s.intensity) { onIntensity(i) }
             }
             Spacer(Modifier.height(12.dp))
             Eyebrow("Card language")
@@ -871,7 +872,7 @@ fun GameScreen(
         Spacer(Modifier.height(16.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             SecondaryButton("Skip", onSkip, Modifier.weight(1f))
-            PrimaryButton("Done  +${card.intensity.points}", onComplete, Modifier.weight(1.6f))
+            PrimaryButton("Done  +${pointsLabel(card.intensity.points)}", onComplete, Modifier.weight(1.6f))
         }
         Spacer(Modifier.height(12.dp))
         Scoreline(g)
@@ -1009,7 +1010,7 @@ private fun Scoreline(g: GameState) {
             val active = i == g.currentPlayerIndex
             LocalAvatars.current[p.name]?.let { AvatarBadge(it, 22.dp, highlighted = active) }
             Text(
-                "${p.name}  ${p.score}",
+                "${p.name}  ${pointsLabel(p.score)}",
                 color = if (active) Champagne else Stone,
                 fontWeight = if (active) FontWeight.Medium else FontWeight.Normal,
                 style = MaterialTheme.typography.bodyMedium,
@@ -1045,7 +1046,7 @@ fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgai
                         Spacer(Modifier.width(12.dp))
                         Text(p.name, style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Ivory)
                     }
-                    Text("${p.score}", style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Stone)
+                    Text(pointsLabel(p.score), style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Stone)
                 }
                 HorizontalDivider(color = Hairline)
             }
@@ -1059,3 +1060,7 @@ fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgai
         QuietButton("Home", onHome)
     }
 }
+
+/** "1 Point", "2 Points" — from the `points` plurals resource so translations get correct plural forms. */
+@Composable
+private fun pointsLabel(n: Int): String = pluralStringResource(com.afterhours.app.R.plurals.points, n, n)
