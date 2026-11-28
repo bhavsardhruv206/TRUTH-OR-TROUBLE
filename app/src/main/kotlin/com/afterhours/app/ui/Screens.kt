@@ -693,7 +693,7 @@ fun DifficultyScreen(
             Segmented(CardLanguage.entries, s.language, { it.label }, onLanguage)
         }
         Spacer(Modifier.height(16.dp))
-        PrimaryButton("Next: players", onNext, Modifier.fillMaxWidth())
+        PrimaryButton("Add players", onNext, Modifier.fillMaxWidth())
     }
 }
 
@@ -707,7 +707,7 @@ fun SetupScreen(
 ) {
     Page {
         BackRow(onBack)
-        Text("Who's playing?", style = MaterialTheme.typography.headlineMedium)
+        Text("Add players", style = MaterialTheme.typography.headlineMedium)
         val couples = !s.spin && s.mode.couplesOnly
         Muted(
             if (couples) "Just the two of you · enter both names" else "${s.playerCount} players · names are saved for next time",
