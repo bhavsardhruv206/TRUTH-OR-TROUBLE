@@ -21,6 +21,9 @@ object ChaosEvents {
         ChaosEvent("never-have", "Never have I ever", "Say one harmless 'never have I ever'. Everyone who has done it raises a hand.", 30),
         ChaosEvent("duel", "Quick-draw duel", "Two players stand back to back and turn on three. First to strike a silly pose wins the duel.", null),
         ChaosEvent("story", "One-word story", "Build a story together, one word each. Whoever ends it picks the next dare giver.", 40),
+        ChaosEvent("lightning", "Lightning round", "Go around the circle fast: everyone answers 'What is your biggest pet peeve?' in three words or fewer. Hesitate and you're out.", 20),
+        ChaosEvent("staring", "Staring contest", "The two players with the highest scores face off. First to blink or laugh reads the next card out loud.", 30),
+        ChaosEvent("hot-potato", "Hot potato", "Pass the phone around the circle until the timer ends. Whoever holds it at zero answers the next truth the group picks.", 15),
         ChaosEvent("hands-up", "Hands up", "Everyone hold both hands up. Lower one when someone says something you relate to. The group decides the topic.", 30),
     )
 

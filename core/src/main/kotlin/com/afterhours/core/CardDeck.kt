@@ -16,9 +16,12 @@ class CardDeck(
     val language: String = "en",
     /** Card ids shown in earlier games; unseen cards are served first. */
     private val playedBefore: Set<String> = emptySet(),
+    /** Only cards of exactly [intensity], for the 18+ Spicy games that play Wild cards only. */
+    val exactIntensity: Boolean = false,
 ) {
     private val eligible: List<Card> = cards.filter {
-        it.category == mode && it.intensity <= intensity && it.language == language
+        it.category == mode && it.language == language &&
+            (if (exactIntensity) it.intensity == intensity else it.intensity <= intensity)
     }
     private val remaining = ArrayDeque<Card>()
     private val seen = mutableSetOf<String>()

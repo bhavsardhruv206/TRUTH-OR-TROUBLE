@@ -1,0 +1,1451 @@
+[
+  {
+    "id": "gu-truth-chill-01",
+    "text": "{name}, સાચું કહો: ફોનમાં સૌથી શરમજનક ગીત કયું છે?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-02",
+    "text": "છેલ્લે ક્યારે કારણ વગર મમ્મી-પપ્પા સાથે ખોટું બોલ્યા હતા?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-03",
+    "text": "કઈ વાનગી તમે છુપાઈને એકલા ખાઈ જાઓ છો જેથી વહેંચવી ન પડે?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-04",
+    "text": "{name}, સ્કૂલમાં તમારું સૌથી મજેદાર હુલામણું નામ શું હતું?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-05",
+    "text": "કઈ ફિલ્મ જોઈને તમે સૌથી વધુ રડ્યા છો?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-06",
+    "text": "ગ્રુપમાં સૌથી મોડું કોણ આવે છે, અને એનું સૌથી સરસ બહાનું શું હતું?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-07",
+    "text": "કઈ એપ પર સૌથી વધુ સમય બગાડો છો?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-08",
+    "text": "તમારું સૌથી વિચિત્ર ખાવાનું કોમ્બિનેશન કયું છે?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-09",
+    "text": "{name}, છેલ્લું ગૂગલ સર્ચ શું હતું? સાચું સાચું કહેજો.",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-10",
+    "text": "લગ્નમાં નાચતી વખતે સૌથી ખરાબ પળ કઈ હતી?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-chill-11",
+    "text": "કયો સેલિબ્રિટી તમને મનમાં જરાય ગમતો નથી?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-01",
+    "text": "{name}, કયા એક્સની પ્રોફાઇલ હજી પણ ક્યારેક છુપાઈને જુઓ છો?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-02",
+    "text": "આ ગ્રુપમાં કોના મેસેજનો જવાબ તમે સૌથી મોડો આપો છો, અને કેમ?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-03",
+    "text": "કોઈ ડેટ પર બોલેલું સૌથી મોટું જૂઠ કયું?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-04",
+    "text": "{name}, {other} વિશે તમારી પહેલી છાપ શું હતી?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-05",
+    "text": "ક્યારેય કોઈનો મેસેજ ભૂલથી ખોટી વ્યક્તિને મોકલી દીધો છે? શું લખ્યું હતું?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-06",
+    "text": "ઓફિસ કે કોલેજમાં કોના પર ક્રશ હતો જે કોઈને ખબર નથી?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-07",
+    "text": "ખરેખર વાપરેલી સૌથી ખરાબ પિકઅપ લાઇન કઈ?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-08",
+    "text": "કઈ વાત મમ્મી-પપ્પાથી અત્યાર સુધી છુપાવી રાખી છે?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-09",
+    "text": "{name}, તમારી ચેટ હિસ્ટ્રીમાંથી કઈ ચેટ ડિલીટ કરવા માંગશો?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-10",
+    "text": "સૌથી અજીબ ડેટ કેવી રહી હતી?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-bold-11",
+    "text": "કયા મિત્રના લગ્નમાં તમે ફક્ત જમવા માટે ગયા હતા?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-truth-wild-01",
+    "text": "{name}, આ રૂમમાં કોની સાથે એક દિવસ માટે જીવન બદલશો અને કેમ?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-02",
+    "text": "કોઈ ક્રશને ઇમ્પ્રેસ કરવા કરેલું સૌથી હિંમતવાળું કામ કયું?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-03",
+    "text": "તમારી એવી સૌથી મોટી ભૂલ કહો જે તમે ફરીથી પણ કરશો.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-04",
+    "text": "{name}, {other}ની કઈ આદત તમને મનમાં ગમે છે?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-05",
+    "text": "ક્યારેય કોઈને અચાનક જવાબ આપવાનું બંધ કરીને ગાયબ થયા છો? કેમ?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-06",
+    "text": "રાતે 2 વાગ્યે મોકલેલો સૌથી જોખમી મેસેજ કયો?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-07",
+    "text": "જો કાલે બધાની ચેટ હિસ્ટ્રી લીક થઈ જાય, તો કઈ વાતથી સૌથી વધુ ડરશો?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-08",
+    "text": "તમે પોતે સ્વીકારો એવો તમારો સૌથી મોટો 'રેડ ફ્લેગ' કયો?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-09",
+    "text": "{name}, આ ગ્રુપમાં સૌથી વધુ ફ્લર્ટ કોણ કરે છે? નામ લો.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-truth-wild-10",
+    "text": "એવું કયું રહસ્ય છે જે ફક્ત એક જ વ્યક્તિને ખબર છે?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-chill-01",
+    "text": "{name}, ફિલ્મના વિલનની જેમ 30 સેકન્ડનો ડાયલોગ બોલો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "gu-dare-chill-02",
+    "text": "કોઈ પણ જાહેરાતનું જિંગલ પૂરી લાગણી સાથે ગાઓ.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-03",
+    "text": "{name}, કોઈ ઓળખી ન લે ત્યાં સુધી {other}ની સૌથી સરસ નકલ કરો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-04",
+    "text": "આગલા બે ટર્ન સુધી ફક્ત શુદ્ધ ગુજરાતીમાં બોલો, અંગ્રેજીનો એક પણ શબ્દ નહીં.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-05",
+    "text": "એક કાલ્પનિક ચાની કીટલીની જાહેરાત બનાવો અને પિચ કરો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-06",
+    "text": "{name}, તમારો છેલ્લો વીકેન્ડ ન્યૂઝ એન્કરની જેમ રિપોર્ટ કરો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-07",
+    "text": "એક મિનિટ સુધી હસ્યા વગર {other}ની આંખોમાં જુઓ.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-dare-chill-08",
+    "text": "રૂમની કોઈ પણ વસ્તુ શાર્ક ટેન્ક પર પિચ કરો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-09",
+    "text": "તમારો મનપસંદ ફિલ્મી ડાયલોગ નાટકીય અંદાજમાં બોલો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-10",
+    "text": "દસ સેકન્ડમાં પોતાનો પરિચય લગ્નના ડીજેની જેમ આપો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-chill-11",
+    "text": "ગ્રુપ માટે એક નવું હેન્ડશેક બનાવો અને બધાને શીખવો.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-01",
+    "text": "{name}, {other} માટે એક ફિલ્મી શાયરી સંભળાવો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-02",
+    "text": "તમારી છેલ્લી સેલ્ફી ગ્રુપને બતાવો, અથવા સ્કિપ કરો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-03",
+    "text": "{name}, ગ્રુપ જે ગીત પસંદ કરે તેના પર 30 સેકન્ડ નાચો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "gu-dare-bold-04",
+    "text": "તમારા ક્રશને યાદ કરીને એક પ્રપોઝલ સીન ભજવો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-05",
+    "text": "તમારા છેલ્લા ત્રણ ઇમોજી પરથી એક વાર્તા બનાવો અને સંભળાવો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-06",
+    "text": "{name}, {other}નો ઇન્સ્ટાગ્રામ બાયો નવો લખો અને વાંચી સંભળાવો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-07",
+    "text": "આગલા ત્રણ ટર્ન સુધી દરેક વાક્ય 'અરે યાર' થી શરૂ કરો.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-08",
+    "text": "નાટકીય ટીવી સિરિયલ જેવી એન્ટ્રી મારો, મ્યુઝિક સાથે.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-09",
+    "text": "{name}, બધાને એક એક વખાણ કરો, એક પણ દોહરાવ્યા વગર.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-10",
+    "text": "ગ્રુપની પસંદનું ફિલ્ટર લગાવીને સેલ્ફી લો, ફક્ત ગ્રુપ માટે.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-dare-bold-11",
+    "text": "એક મિનિટ માટે સ્ટેન્ડ-અપ કોમેડિયન બનો, વિષય ગ્રુપ આપશે.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-dare-wild-01",
+    "text": "{name}, {other} સાથે એક ધીમો રોમેન્ટિક ફિલ્મી સીન ફરીથી ભજવો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-02",
+    "text": "તમારા ફોનનો કોઈ પણ જૂનો મેસેજ ગ્રુપને વાંચી સંભળાવો, પસંદ તમારી.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-03",
+    "text": "{name}, ગ્રુપની કોઈ એક વ્યક્તિને 30 સેકન્ડ પ્રેમથી રોસ્ટ કરો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30
+  },
+  {
+    "id": "gu-dare-wild-04",
+    "text": "આગલા રાઉન્ડ સુધી {other} કહે તે કરો, જો તે સલામત હોય તો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-05",
+    "text": "તમારો સૌથી શરમજનક જૂનો ફોટો બતાવો, અથવા સ્કિપ કરો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-06",
+    "text": "{name}, તમારી ડેટિંગ પ્રોફાઇલનો બાયો એવી રીતે બોલો જાણે હમણાં લખી રહ્યા હો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-07",
+    "text": "ગ્રુપ તમારું નવું હુલામણું નામ નક્કી કરશે, રમત પૂરી થાય ત્યાં સુધી એ જ ચાલશે.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-08",
+    "text": "{name}, {other}ને એક મિનિટ સુધી એકદમ ફિલ્મી અંદાજમાં મનાવો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-dare-wild-09",
+    "text": "કોઈ આઇટમ સોંગનું હૂક સ્ટેપ કરો, પૂરા જોશ સાથે.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-dare-wild-10",
+    "text": "તમારી છેલ્લી વોઇસ નોટ ગ્રુપને સંભળાવો, અથવા સ્કિપ કરો.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-wyr-chill-01",
+    "text": "{name}, આખી જિંદગી બિરયાની કે આખી જિંદગી પિઝ્ઝા?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 52
+  },
+  {
+    "id": "gu-wyr-chill-02",
+    "text": "હંમેશા 10 મિનિટ મોડા કે હંમેશા 20 મિનિટ વહેલા?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 62
+  },
+  {
+    "id": "gu-wyr-chill-03",
+    "text": "એસી વગરનો ઉનાળો કે ગીઝર વગરનો શિયાળો?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 30
+  },
+  {
+    "id": "gu-wyr-chill-04",
+    "text": "એક વર્ષ ફોન વગર કે એક વર્ષ ચા વગર?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 65
+  },
+  {
+    "id": "gu-wyr-chill-05",
+    "text": "દરેક લગ્નમાં નાચવું પડે કે દરેક લગ્નમાં ભાષણ આપવું પડે?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 27
+  },
+  {
+    "id": "gu-wyr-chill-06",
+    "text": "મમ્મી તમારી ચેટ વાંચે કે પપ્પા તમારી સર્ચ હિસ્ટ્રી?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 39
+  },
+  {
+    "id": "gu-wyr-chill-07",
+    "text": "મિત્રો સાથે ગોવા ટ્રિપ કે પરિવાર સાથે યુરોપ ટ્રિપ?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 59
+  },
+  {
+    "id": "gu-wyr-bold-01",
+    "text": "{name}, એક્સ સાથે એક ડેટ કે બોસ સાથે એક રજા?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 49
+  },
+  {
+    "id": "gu-wyr-bold-02",
+    "text": "તમારી બધી ચેટ વાયરલ થઈ જાય કે બધા ફોટા?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 46
+  },
+  {
+    "id": "gu-wyr-bold-03",
+    "text": "ક્રશને ભૂલથી 'લવ યુ' મોકલવું કે બોસને?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 76
+  },
+  {
+    "id": "gu-wyr-bold-04",
+    "text": "ગોઠવેલાં લગ્ન મમ્મી-પપ્પાની પસંદથી કે મિત્રની પસંદથી?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 34
+  },
+  {
+    "id": "gu-wyr-bold-05",
+    "text": "{name}, {other} સાથે એક અઠવાડિયું રૂમ શેર કે એક અઠવાડિયું ફોન શેર?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 22
+  },
+  {
+    "id": "gu-wyr-bold-06",
+    "text": "દરેક ડેટ પર તમારી મમ્મી સાથે આવે કે દરેક ડેટ લાઇવ સ્ટ્રીમ થાય?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 77
+  },
+  {
+    "id": "gu-wyr-bold-07",
+    "text": "ક્યારેય જૂઠું ન બોલી શકો કે ક્યારેય સાચું ન બોલી શકો?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "pickA": 58
+  },
+  {
+    "id": "gu-wyr-wild-01",
+    "text": "{name}, તમારું સૌથી મોટું રહસ્ય ફેમિલી ગ્રુપ પર કે ઓફિસ ગ્રુપ પર?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 68
+  },
+  {
+    "id": "gu-wyr-wild-02",
+    "text": "ક્રશ તમારા બધા જૂના મેસેજ વાંચે કે તમારા બધા જૂના ફોટા જુએ?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 44
+  },
+  {
+    "id": "gu-wyr-wild-03",
+    "text": "એક દિવસ માટે તમે {other} બની જાઓ કે {other} એક દિવસ માટે તમે બની જાય?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 57
+  },
+  {
+    "id": "gu-wyr-wild-04",
+    "text": "દરેક વાતે સાચું બોલવું પડે કે તમને શું લાગે છે તે ક્યારેય કોઈને કહી ન શકો?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 30
+  },
+  {
+    "id": "gu-wyr-wild-05",
+    "text": "એક્સના લગ્નમાં નાચવું પડે કે ભાષણ આપવું પડે?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 77
+  },
+  {
+    "id": "gu-wyr-wild-06",
+    "text": "તમારી સર્ચ હિસ્ટ્રી બધાને બતાવો કે તમારી ગેલેરી?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pickA": 57
+  },
+  {
+    "id": "gu-couple-chill-01",
+    "text": "પાર્ટનરની કઈ નાનકડી આદત તમને સૌથી વહાલી લાગે છે?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-chill-02",
+    "text": "પહેલી વાર મળ્યા ત્યારે એકબીજા વિશે શું વિચાર્યું હતું?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-chill-03",
+    "text": "એકબીજા માટે એક પરફેક્ટ રવિવારનો પ્લાન બનાવો, એક મિનિટમાં.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-chill-04",
+    "text": "પાર્ટનરનું મનપસંદ કમ્ફર્ટ ફૂડ કહો. સાચું પડે તો પોઇન્ટ.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-bold-01",
+    "text": "પાર્ટનરને એક ફિલ્મી લાઇનમાં પ્રપોઝ કરો, પૂરા ડ્રામા સાથે.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-bold-02",
+    "text": "સૌથી મજેદાર ઝઘડો કઈ વાત પર થયો હતો?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-bold-03",
+    "text": "પાર્ટનરનો કયો આઉટફિટ તમને સૌથી વધુ ગમે છે?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-bold-04",
+    "text": "એકબીજાની સૌથી સરસ નકલ કરો અને ગ્રુપ નિર્ણય કરશે.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-couple-wild-01",
+    "text": "કોઈ રોમેન્ટિક ફિલ્મી સીન સાથે મળીને ભજવો, ગ્રુપ ડિરેક્ટ કરશે.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-couple-wild-02",
+    "text": "પાર્ટનરના કાનમાં કંઈક એવું કહો જે ગ્રુપને ખબર ન પડે.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-couple-wild-03",
+    "text": "30 સેકન્ડ સુધી મ્યુઝિક વગર ધીમો ડાન્સ કરો.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-couple-wild-04",
+    "text": "પાર્ટનરની સૌથી આકર્ષક આદત કહો, બધાની સામે.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-nhie-001",
+    "text": "મેં ક્યારેય મમ્મીને ખોટું નથી કહ્યું કે હોમવર્ક થઈ ગયું છે.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-002",
+    "text": "હું ક્યારેય કોઈ લગ્નમાં ફક્ત જમવા માટે નથી ગયો.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-003",
+    "text": "મેં ક્યારેય રિક્ષાવાળા સાથે 10 રૂપિયા માટે 10 મિનિટ દલીલ નથી કરી.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-004",
+    "text": "મેં ક્યારેય કોઈનો મેસેજ 'સીન' કરીને અવગણ્યો નથી.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-005",
+    "text": "મેં ક્યારેય ઘરવાળાથી છુપાઈને પાર્ટી નથી કરી.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-006",
+    "text": "મેં ક્યારેય રાતે 2 વાગ્યે એક્સની પ્રોફાઇલ નથી જોઈ.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-nhie-007",
+    "text": "મને ક્યારેય આ ગ્રુપમાં કોઈના પર ક્રશ નથી થયો.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-nhie-008",
+    "text": "મેં ક્યારેય ડેટ પર કંટાળીને નીકળવાનું બહાનું નથી બનાવ્યું.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-nhie-009",
+    "text": "મેં ક્યારેય કોઈને ફ્લર્ટી મેસેજ મોકલીને તરત ડિલીટ નથી કર્યો.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-mlt-001",
+    "text": "મેગી પણ બાળી નાખે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-002",
+    "text": "ફેમિલી વોટ્સએપ ગ્રુપ પર ગુડ મોર્નિંગ મોકલે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-003",
+    "text": "ફિલ્મ ચાલુ હોય ત્યારે ઊંઘી જાય એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-004",
+    "text": "આજે રાતે એક્સને મેસેજ કરે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-005",
+    "text": "'બસ પાંચ મિનિટ' કહીને એક કલાક મોડા આવે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-006",
+    "text": "પગાર આવતાં જ બધું ઉડાવી દે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-mlt-007",
+    "text": "લગ્નમાં કોઈના પર લાઇન મારે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-mlt-008",
+    "text": "પોતાના બેસ્ટ ફ્રેન્ડ પર જ ફિદા થઈ જાય એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-mlt-009",
+    "text": "સૌથી ફિલ્મી પ્રપોઝલ કરે એવી સૌથી વધુ શક્યતા કોની છે?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-hotseat-001",
+    "text": "હોટ સીટ: {name}, બધા તમને બાળપણ વિશે ઝટપટ સવાલ પૂછશે.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-002",
+    "text": "હોટ સીટ: {name}, દરેક ખેલાડી એક 'આ કે તે' પૂછશે. બે સેકન્ડમાં જવાબ આપો.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-003",
+    "text": "હોટ સીટ: {name}, {other} મનપસંદ ખાવા અને ફિલ્મો પર તમારો નાનો ઇન્ટરવ્યૂ લેશે.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-004",
+    "text": "હોટ સીટ: {name}, બધા તમને સૌથી શરમજનક પળો વિશે પૂછશે.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-005",
+    "text": "હોટ સીટ: {name}, દરેક ખેલાડી પૂછશે કે તમે ખરેખર એમના વિશે શું વિચારો છો.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-006",
+    "text": "હોટ સીટ: {name}, ગ્રુપ તમને તમારા છેલ્લા જૂઠ વિશે પૂછશે.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-007",
+    "text": "હોટ સીટ: {name}, ગ્રુપ તમને ક્રશ વિશે પૂછશે. બે વાર પાસ કરી શકો છો.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-008",
+    "text": "હોટ સીટ: {name}, બધા પૂછશે કે તમારો આદર્શ પાર્ટનર કેવો હોવો જોઈએ.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-hotseat-009",
+    "text": "હોટ સીટ: {name}, {other} ત્રણ ફ્લર્ટી સવાલ પૂછશે. ચહેરો ગંભીર રાખજો.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-closer-chill-01",
+    "text": "{name}, {other}ને કહો કે પહેલી વાર ક્યારે લાગ્યું કે તમે તેમને પસંદ કરો છો.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "gu-closer-chill-02",
+    "text": "હાથ પકડો અને એકબીજાની આંખોમાં જુઓ. હસવાનું નહીં!",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "hands"
+  },
+  {
+    "id": "gu-closer-chill-03",
+    "text": "{name}, {other}ના ત્રણ વખાણ કરો, દેખાવ સિવાય.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "gu-closer-chill-04",
+    "text": "{name}, {other}નું મનપસંદ ગીત ગણગણો અને સાથે ધીમે ધીમે નાચો.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "gu-closer-bold-01",
+    "text": "{name}, {other}ના કાનમાં ધીમેથી કહો કે તેમની કઈ વાત સૌથી આકર્ષક છે.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "gu-closer-bold-02",
+    "text": "{name}, {other}ને ખભા અને ગરદનની માલિશ આપો. કેટલું દબાણ જોઈએ તે {other} કહેશે.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "gu-closer-bold-03",
+    "text": "{name}, {other} સાથે એવી રીતે ફ્લર્ટ કરો જાણે પહેલી વાર કોઈ કેફેમાં મળી રહ્યા હો.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "gu-closer-bold-04",
+    "text": "ચેક-ઇન: {name}, {other}ને પૂછો કે આજકાલ તેમને કેવો પ્રેમ સૌથી વધુ ગમે છે.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "gu-closer-wild-01",
+    "text": "{name}, પહેલાં પૂછો, પછી {other}ની ગરદન પર એક હળવી કિસ આપો.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "gu-closer-wild-02",
+    "text": "{other}ની આંખો બંધ. {name}, રસોડામાંથી ત્રણ વસ્તુ ખવડાવો, {other} ઓળખશે.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "gu-closer-wild-03",
+    "text": "{name}, {other}ને એવી રીતે કિસ કરો જાણે રોમેન્ટિક ફિલ્મનો છેલ્લો સીન હોય.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "gu-closer-wild-04",
+    "text": "ચેક-ઇન: {name}, {other}ને પૂછો કે અત્યારે કેવું લાગે છે, અને માહોલ વધુ ગરમ કરવો છે કે ધીમો.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "gu-tot-chill-01",
+    "text": "ચા કે કોફી?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "ચા",
+      "કોફી"
+    ],
+    "pickA": 70
+  },
+  {
+    "id": "gu-tot-chill-02",
+    "text": "પહાડ કે દરિયો?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "પહાડ",
+      "દરિયો"
+    ],
+    "pickA": 51
+  },
+  {
+    "id": "gu-tot-chill-03",
+    "text": "ઢોકળા કે પિઝા?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "ઢોકળા",
+      "પિઝા"
+    ],
+    "pickA": 57
+  },
+  {
+    "id": "gu-charades-chill-01",
+    "text": "કરીને બતાવો: મગરના દાંત બ્રશ કરવા",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-chill-02",
+    "text": "કરીને બતાવો: રોટલી વણવી",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-chill-03",
+    "text": "કરીને બતાવો: રિક્ષાવાળા સાથે ભાવતાલ",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-chill-01",
+    "text": "સાથે મળીને રસોઈ બનાવી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-02",
+    "text": "આપણું પોતાનું એક ગીત છે",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-03",
+    "text": "આખી સિરીઝ સાથે જોઈ",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-04",
+    "text": "પિકનિક કરી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-05",
+    "text": "હસી હસીને આંખમાં પાણી આવી ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-06",
+    "text": "રોડ ટ્રિપ પર ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-07",
+    "text": "આપણો એક ખાસ જોક છે",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-08",
+    "text": "વીડિયો કૉલ પર સૂઈ ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-09",
+    "text": "એક જ મીઠાઈ વહેંચીને ખાધી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-tot-bold-01",
+    "text": "લવ મેરેજ કે એરેન્જ્ડ મેરેજ?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "લવ મેરેજ",
+      "એરેન્જ્ડ મેરેજ"
+    ],
+    "pickA": 58
+  },
+  {
+    "id": "gu-tot-bold-02",
+    "text": "મેસેજ પર પ્રપોઝ કે સામે પ્રપોઝ?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "મેસેજ પર પ્રપોઝ",
+      "સામે પ્રપોઝ"
+    ],
+    "pickA": 31
+  },
+  {
+    "id": "gu-tot-bold-03",
+    "text": "મોટાં લગ્ન કે નાનાં લગ્ન?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "મોટાં લગ્ન",
+      "નાનાં લગ્ન"
+    ],
+    "pickA": 46
+  },
+  {
+    "id": "gu-charades-bold-01",
+    "text": "કરીને બતાવો: સિરિયલ જેવો નાટકીય તમાચો",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-bold-02",
+    "text": "કરીને બતાવો: ગરબામાં ઝડપી ફૂદડી",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-bold-03",
+    "text": "કરીને બતાવો: અંધારામાં રમકડા પર પગ પડવો",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-bold-01",
+    "text": "આપણામાંથી કોઈએ પહેલાં \"આઈ લવ યુ\" કહ્યું",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-bold-02",
+    "text": "એકબીજાનાં મમ્મી-પપ્પાને મળ્યાં",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-bold-03",
+    "text": "સવાર સુધી વાતો કરી",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-tot-wild-01",
+    "text": "પહેલી ડેટ પર કિસ કે રાહ જોવી?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "પહેલી ડેટ પર કિસ",
+      "રાહ જોવી"
+    ],
+    "pickA": 39
+  },
+  {
+    "id": "gu-tot-wild-02",
+    "text": "ક્રશને હમણાં કહો કે હંમેશા ખાનગી રાખો?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "ક્રશને હમણાં કહો",
+      "હંમેશા ખાનગી રાખો"
+    ],
+    "pickA": 32
+  },
+  {
+    "id": "gu-tot-wild-03",
+    "text": "ફ્લર્ટી મેસેજ કે ફ્લર્ટી નજર?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "ફ્લર્ટી મેસેજ",
+      "ફ્લર્ટી નજર"
+    ],
+    "pickA": 45
+  },
+  {
+    "id": "gu-charades-wild-01",
+    "text": "કરીને બતાવો: સૌથી ખરાબ પહેલી ડેટ",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-wild-02",
+    "text": "કરીને બતાવો: પાર્ટીમાં ફ્લર્ટ કરવું",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-wild-03",
+    "text": "કરીને બતાવો: ક્રશનાં મમ્મી-પપ્પાને મળવું",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-wild-01",
+    "text": "વરસાદમાં કિસ કરી",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-bingo-wild-02",
+    "text": "બધાથી છુપાઈને ડેટ પર ગયાં",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-bingo-wild-03",
+    "text": "મ્યુઝિક વગર સ્લો ડાન્સ કર્યો",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  }
+]

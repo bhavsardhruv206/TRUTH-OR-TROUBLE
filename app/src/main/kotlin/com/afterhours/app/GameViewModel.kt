@@ -5,20 +5,47 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.afterhours.app.data.Prefs
 import com.afterhours.app.data.Settings
+import com.afterhours.app.data.ThemeMode
 import com.afterhours.core.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.Locale
+
+/** A player's profile picture: one of the avatars that come with the app. */
+sealed interface Avatar {
+    data class Emoji(val char: String) : Avatar
+}
 
 data class SetupState(
+    /** The game picked on the Games screen or Home. */
+    val game: GameId = GameId.SPIN,
     val mode: GameMode = GameMode.TRUTH,
     /** Spin the wheel: a wheel picks the player and Truth or Dare each turn. */
     val spin: Boolean = false,
     val intensity: Intensity = Intensity.CHILL,
     val language: CardLanguage = CardLanguage.ENGLISH,
     val names: List<String> = listOf("", ""),
+    /** Profile pictures by player slot. */
+    val avatars: Map<Int, Avatar> = emptyMap(),
     val rounds: Int = GameSession.DEFAULT_ROUNDS,
-    val error: String? = null,
-)
+    val error: SetupError? = null,
+) {
+    /** How many people are playing, chosen right after Play game. */
+    val playerCount: Int get() = names.size
+
+    /** 18+ content: an 18+ Spicy game or Wild cards. No ads are shown next to it. */
+    val adult: Boolean get() = isAdultContent(game, intensity)
+
+    /** Profile pictures keyed by the (trimmed) player name, as the game shows names. */
+    fun avatarsByName(): Map<String, Avatar> =
+        avatars.mapNotNull { (i, a) -> names.getOrNull(i)?.trim()?.takeIf { it.isNotEmpty() }?.let { it to a } }.toMap()
+}
+
+/** Why a game could not start. The screen words it in the player's language. */
+sealed interface SetupError {
+    data class Players(val problem: PlayerRules.Problem) : SetupError
+    data object NoCards : SetupError
+}
 
 class GameViewModel(app: Application) : AndroidViewModel(app) {
     private val prefs = Prefs(app)
@@ -38,6 +65,24 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         .map<Boolean, Boolean?> { it }
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+    /** null while loading, then whether a language was picked. The picker shows on first launch. */
+    val languageChosen: StateFlow<Boolean?> = prefs.appLanguage
+        .map<String?, Boolean?> { it != null }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    /** Language of menus and cards. Until one is picked, the phone's language when there is a pack for it. */
+    val appLanguage: StateFlow<CardLanguage> = prefs.appLanguage
+        .map { CardLanguage.fromCode(it) ?: phoneLanguage() }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, phoneLanguage())
+
+    private fun phoneLanguage() = CardLanguage.forLocale(Locale.getDefault().toLanguageTag())
+
+    /** Switches menus and cards to [l]. Cards can still be changed per game on the difficulty step. */
+    fun chooseLanguage(l: CardLanguage) {
+        _setup.update { it.copy(language = l) }
+        viewModelScope.launch { prefs.setAppLanguage(l.code) }
+    }
+
     val settings: StateFlow<Settings> = prefs.settings
         .stateIn(viewModelScope, SharingStarted.Eagerly, Settings())
 
@@ -56,7 +101,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     init {
         viewModelScope.launch {
             val names = prefs.savedNames()
-            val lang = CardLanguage.entries.firstOrNull { it.code == prefs.language() } ?: CardLanguage.ENGLISH
+            val lang = CardLanguage.fromCode(prefs.language()) ?: appLanguage.value
             seen = prefs.seenCards()
             _setup.update { s ->
                 s.copy(
@@ -74,15 +119,78 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun setSound(on: Boolean) = viewModelScope.launch { prefs.setSound(on) }
     fun setHaptics(on: Boolean) = viewModelScope.launch { prefs.setHaptics(on) }
     fun setChaos(on: Boolean) = viewModelScope.launch { prefs.setChaos(on) }
+    fun setTheme(mode: ThemeMode) = viewModelScope.launch { prefs.setTheme(mode) }
+    fun setTurnClock(on: Boolean) = viewModelScope.launch { prefs.setTurnClock(on) }
+    fun setReadAloud(on: Boolean) = viewModelScope.launch { prefs.setReadAloud(on) }
     fun resetSeenCards() = viewModelScope.launch { seen = emptySet(); prefs.clearSeenCards() }
 
     fun selectMode(m: GameMode) = _setup.update {
         // Couples-only games are for exactly two partners: keep the first two names.
         val names = if (m.couplesOnly) (it.names + List(PlayerRules.COUPLE_PLAYERS) { "" }).take(PlayerRules.COUPLE_PLAYERS) else it.names
-        it.copy(mode = m, spin = false, names = names, error = null)
+        it.copy(mode = m, spin = false, names = names, avatars = it.avatars.filterKeys { k -> k < names.size }, error = null)
     }
     private val couplesOnly: Boolean get() = _setup.value.let { !it.spin && it.mode.couplesOnly }
     fun selectSpin() = _setup.update { it.copy(spin = true) }
+
+    /** Picks a game from the catalog: its mode, Spin the Wheel, and a locked intensity for 18+ games. */
+    fun selectGame(g: GameId) {
+        g.mode?.let { selectMode(it) }
+        _setup.update { s ->
+            s.copy(
+                game = g,
+                spin = g.spin,
+                mode = g.mode ?: if (g.spin) GameMode.TRUTH else s.mode,
+                // Leaving an 18+ game drops back from its locked Wild level.
+                intensity = g.lockedIntensity ?: if (s.game.lockedIntensity != null) Intensity.CHILL else s.intensity,
+            )
+        }
+    }
+
+    /** Everyone playing confirmed they are 18+ for this run of the app. */
+    var spicyConfirmed: Boolean = false
+        private set
+    fun confirmSpicy() { spicyConfirmed = true }
+
+    /**
+     * One-tap start from Home: plays [g] right away with the names already on the phone, or
+     * placeholder names from [defaultName] (Player 1, Player 2...) when there are none yet.
+     * Returns false when the game could not start.
+     */
+    fun quickStart(g: GameId, defaultName: (Int) -> String): Boolean {
+        selectGame(g)
+        _setup.update { s ->
+            val count = if (g.couplesOnly) PlayerRules.COUPLE_PLAYERS else s.playerCount.coerceAtLeast(PlayerRules.MIN_PLAYERS)
+            val kept = (s.names + List(count) { "" }).take(count)
+            // Placeholder names are for this game only and are never saved as player names.
+            placeholderNames = kept.any { it.isBlank() }
+            val names = kept.mapIndexed { i, n -> n.ifBlank { defaultName(i + 1) } }
+            s.copy(
+                names = names,
+                intensity = g.lockedIntensity ?: Intensity.CHILL,
+                rounds = GameSession.DEFAULT_ROUNDS,
+                error = null,
+            )
+        }
+        return when {
+            g.quiz -> true
+            g.mode == GameMode.COUPLE_BINGO -> { newBingo(); true }
+            else -> startGame()
+        }
+    }
+
+    private var placeholderNames = false
+
+    private val _bingo = MutableStateFlow<BingoBoard?>(null)
+    /** The Couple Bingo board in play, or null when there are not enough squares. */
+    val bingo: StateFlow<BingoBoard?> = _bingo
+
+    /** Deals a fresh Couple Bingo board for the chosen level and card language. */
+    fun newBingo() {
+        val s = _setup.value
+        _bingo.value = BingoBoard.deal(cards.filter { it.id !in reported }, s.intensity, s.language.code)
+    }
+
+    fun toggleBingo(index: Int) = _bingo.update { it?.toggle(index) }
     fun selectIntensity(i: Intensity) = _setup.update { it.copy(intensity = i) }
     fun selectRounds(r: Int) = _setup.update { it.copy(rounds = r) }
     fun selectLanguage(l: CardLanguage) {
@@ -91,15 +199,18 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun setName(index: Int, name: String) = _setup.update { s ->
+        placeholderNames = false
         s.copy(names = s.names.toMutableList().also { it[index] = name.take(PlayerRules.MAX_NAME_LENGTH) }, error = null)
     }
 
-    fun addPlayer() = _setup.update { s ->
-        if (!couplesOnly && s.names.size < PlayerRules.MAX_PLAYERS) s.copy(names = s.names + "") else s
+    /** Sets how many people play. Names already typed are kept; extra slots start empty. */
+    fun setPlayerCount(count: Int) = _setup.update { s ->
+        val n = count.coerceIn(PlayerRules.MIN_PLAYERS, PlayerRules.MAX_PLAYERS)
+        s.copy(names = (s.names + List(n) { "" }).take(n), avatars = s.avatars.filterKeys { it < n }, error = null)
     }
 
-    fun removePlayer(index: Int) = _setup.update { s ->
-        if (s.names.size > PlayerRules.MIN_PLAYERS) s.copy(names = s.names.filterIndexed { i, _ -> i != index }) else s
+    fun setAvatar(index: Int, avatar: Avatar?) = _setup.update { s ->
+        s.copy(avatars = if (avatar == null) s.avatars - index else s.avatars + (index to avatar))
     }
 
     /** Returns true when the game started. */
@@ -112,7 +223,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         rememberSeen()
         val s = _setup.value
         return when (val v = PlayerRules.validate(s.names, if (s.spin) null else s.mode)) {
-            is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = v.reason) }; false }
+            is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = SetupError.Players(v.problem)) }; false }
             is PlayerRules.Result.Valid -> {
                 val pool = cards.filter { it.id !in reported }
                 session = try {
@@ -122,20 +233,25 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
                         chaosEnabled = settings.value.chaos,
                         language = s.language.code,
                         spin = s.spin,
+                        stakes = true,
+                        exactIntensity = s.game.lockedIntensity != null,
                     )
                 } catch (e: IllegalArgumentException) {
-                    _setup.update { it.copy(error = "No cards left for this mode and intensity.") }
+                    _setup.update { it.copy(error = SetupError.NoCards) }
                     return false
                 }
                 _game.value = session!!.state
-                viewModelScope.launch { prefs.saveNames(v.names) }
+                if (!placeholderNames) viewModelScope.launch { prefs.saveNames(v.names) }
                 true
             }
         }
     }
 
     fun complete() { session?.let { it.complete(); publish(it) } }
+    fun completeGuesses(correct: Set<Int>) { session?.let { it.completeGuesses(correct); publish(it) } }
     fun skip() { session?.let { it.skip(); publish(it) } }
+    /** The turn clock ran out on the current card. */
+    fun timeOut() { session?.let { it.timeOut(); publish(it) } }
     fun dismissChaos() { session?.let { it.dismissChaos(); _game.value = it.state } }
 
     /** Hides the current card on this device for good and skips it without penalty. */
@@ -143,7 +259,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         val id = session?.state?.card?.id ?: return
         reported = reported + id
         viewModelScope.launch { prefs.addReportedCard(id) }
-        skip()
+        // Reporting is never punished.
+        session?.let { it.skipFree(); publish(it) }
     }
 
     private fun publish(s: GameSession) {

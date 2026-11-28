@@ -1,0 +1,1451 @@
+[
+  {
+    "id": "mr-truth-chill-01",
+    "text": "{name}, खरं सांग: फोनमधलं सगळ्यात लाजिरवाणं गाणं कोणतं?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-02",
+    "text": "शेवटचं कधी विनाकारण आई-बाबांशी खोटं बोललास?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-03",
+    "text": "कोणता पदार्थ तू लपून एकटाच खातोस म्हणजे वाटून घ्यावा लागू नये?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-04",
+    "text": "{name}, शाळेत तुझं सगळ्यात मजेशीर टोपणनाव काय होतं?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-05",
+    "text": "कोणता चित्रपट पाहून तू सगळ्यात जास्त रडलास?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-06",
+    "text": "ग्रुपमध्ये सगळ्यात उशिरा कोण येतं, आणि त्याचा सगळ्यात भारी बहाणा काय होता?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-07",
+    "text": "कोणत्या ॲपवर सगळ्यात जास्त वेळ वाया घालवतोस?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-08",
+    "text": "तुझं सगळ्यात विचित्र खाण्याचं कॉम्बिनेशन कोणतं?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-09",
+    "text": "{name}, शेवटचं गूगल सर्च काय होतं? खरं खरं सांग.",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-10",
+    "text": "लग्नात नाचताना सगळ्यात वाईट क्षण कोणता होता?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-chill-11",
+    "text": "कोणता सेलिब्रिटी तुला मनातून अजिबात आवडत नाही?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-01",
+    "text": "{name}, कोणाच्या एक्सची प्रोफाइल अजूनही कधी कधी गुपचूप बघतोस?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-02",
+    "text": "या ग्रुपमध्ये कोणाच्या मेसेजला तू सगळ्यात उशिरा उत्तर देतोस, आणि का?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-03",
+    "text": "डेटवर बोललेलं सगळ्यात मोठं खोटं कोणतं?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-04",
+    "text": "{name}, {other}बद्दल तुझं पहिलं मत काय होतं?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-05",
+    "text": "कधी कोणाचा मेसेज चुकून भलत्याच माणसाला पाठवलास? काय लिहिलं होतं?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-06",
+    "text": "ऑफिस किंवा कॉलेजमध्ये कोणावर क्रश होता जो कोणालाच माहीत नाही?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-07",
+    "text": "खरंच वापरलेली सगळ्यात फालतू पिकअप लाइन कोणती?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-08",
+    "text": "कोणती गोष्ट आई-बाबांपासून आजपर्यंत लपवून ठेवली आहे?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-09",
+    "text": "{name}, तुझ्या चॅट हिस्ट्रीमधली कोणती चॅट डिलीट करायला आवडेल?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-10",
+    "text": "सगळ्यात अवघडलेली डेट कशी झाली होती?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-bold-11",
+    "text": "कोणत्या मित्राच्या लग्नाला तू फक्त जेवणासाठी गेला होतास?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-truth-wild-01",
+    "text": "{name}, या खोलीत कोणाबरोबर एक दिवस आयुष्य बदलशील आणि का?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-02",
+    "text": "क्रशला इम्प्रेस करण्यासाठी केलेली सगळ्यात धाडसी गोष्ट कोणती?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-03",
+    "text": "तुझी अशी सगळ्यात मोठी चूक सांग जी तू पुन्हाही करशील.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-04",
+    "text": "{name}, {other}ची कोणती सवय तुला मनातून आवडते?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-05",
+    "text": "कधी कोणाला अचानक उत्तर देणं बंद करून गायब झालास? का?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-06",
+    "text": "रात्री 2 वाजता पाठवलेला सगळ्यात धोकादायक मेसेज कोणता?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-07",
+    "text": "उद्या सगळ्यांची चॅट हिस्ट्री लीक झाली, तर कोणत्या गोष्टीची सगळ्यात जास्त भीती वाटेल?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-08",
+    "text": "तू स्वतः मान्य करतोस असा तुझा सगळ्यात मोठा 'रेड फ्लॅग' कोणता?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-09",
+    "text": "{name}, या ग्रुपमध्ये सगळ्यात जास्त फ्लर्ट कोण करतं? नाव घे.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-truth-wild-10",
+    "text": "असं कोणतं गुपित आहे जे फक्त एका व्यक्तीला माहीत आहे?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-chill-01",
+    "text": "{name}, चित्रपटातल्या खलनायकासारखा 30 सेकंदांचा संवाद बोल.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "mr-dare-chill-02",
+    "text": "कोणतीही जाहिरातीची जिंगल पूर्ण भावनेने गा.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-03",
+    "text": "{name}, कोणी ओळखेपर्यंत {other}ची सगळ्यात भारी नक्कल कर.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-04",
+    "text": "पुढचे दोन टर्न फक्त शुद्ध मराठीत बोल, इंग्रजीचा एकही शब्द नाही.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-05",
+    "text": "एका काल्पनिक चहाच्या टपरीची जाहिरात बनव आणि पिच कर.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-06",
+    "text": "{name}, तुझा मागचा वीकेंड न्यूज अँकरसारखा रिपोर्ट कर.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-07",
+    "text": "एक मिनिट न हसता {other}च्या डोळ्यात बघ.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-dare-chill-08",
+    "text": "खोलीतली कोणतीही वस्तू शार्क टँकवर पिच कर.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-09",
+    "text": "तुझा आवडता चित्रपटातला डायलॉग नाटकी अंदाजात बोल.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-10",
+    "text": "दहा सेकंदांत स्वतःची ओळख लग्नातल्या डीजेसारखी करून दे.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-chill-11",
+    "text": "ग्रुपसाठी नवीन हँडशेक बनव आणि सगळ्यांना शिकव.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-01",
+    "text": "{name}, {other}साठी एक फिल्मी शायरी ऐकव.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-02",
+    "text": "तुझा शेवटचा सेल्फी ग्रुपला दाखव, किंवा स्किप कर.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-03",
+    "text": "{name}, ग्रुप निवडेल त्या गाण्यावर 30 सेकंद नाच.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "mr-dare-bold-04",
+    "text": "तुझ्या क्रशचा विचार करून एक प्रपोजलचा सीन करून दाखव.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-05",
+    "text": "तुझ्या शेवटच्या तीन इमोजींवरून एक गोष्ट बनव आणि ऐकव.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-06",
+    "text": "{name}, {other}चा इन्स्टाग्राम बायो नवीन लिही आणि वाचून दाखव.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-07",
+    "text": "पुढचे तीन टर्न प्रत्येक वाक्य 'अरे यार' ने सुरू कर.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-08",
+    "text": "नाटकी टीव्ही मालिकेसारखी एंट्री घे, संगीतासकट.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-09",
+    "text": "{name}, प्रत्येकाला एक एक कौतुक कर, एकही न दोहराता.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-10",
+    "text": "ग्रुपच्या आवडीचा फिल्टर लावून सेल्फी घे, फक्त ग्रुपसाठी.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-dare-bold-11",
+    "text": "एक मिनिट स्टँड-अप कॉमेडियन हो, विषय ग्रुप देईल.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-dare-wild-01",
+    "text": "{name}, {other}बरोबर एक हळुवार रोमँटिक फिल्मी सीन पुन्हा करून दाखव.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-02",
+    "text": "तुझ्या फोनमधला कोणताही जुना मेसेज ग्रुपला वाचून दाखव, निवड तुझी.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-03",
+    "text": "{name}, ग्रुपमधल्या एका व्यक्तीला 30 सेकंद प्रेमाने रोस्ट कर.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30
+  },
+  {
+    "id": "mr-dare-wild-04",
+    "text": "पुढच्या राउंडपर्यंत {other} सांगेल ते कर, ते सुरक्षित असेल तर.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-05",
+    "text": "तुझा सगळ्यात लाजिरवाणा जुना फोटो दाखव, किंवा स्किप कर.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-06",
+    "text": "{name}, तुझ्या डेटिंग प्रोफाइलचा बायो असा बोल जणू आत्ता लिहितोयस.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-07",
+    "text": "ग्रुप तुझं नवीन टोपणनाव ठरवेल, खेळ संपेपर्यंत तेच चालेल.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-08",
+    "text": "{name}, {other}ची एक मिनिट अगदी फिल्मी स्टाइलमध्ये समजूत काढ.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-dare-wild-09",
+    "text": "एखाद्या आयटम साँगची हुक स्टेप कर, पूर्ण जोशात.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-dare-wild-10",
+    "text": "तुझी शेवटची व्हॉइस नोट ग्रुपला ऐकव, किंवा स्किप कर.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-wyr-chill-01",
+    "text": "{name}, आयुष्यभर बिर्याणी की आयुष्यभर पिझ्झा?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 29
+  },
+  {
+    "id": "mr-wyr-chill-02",
+    "text": "नेहमी 10 मिनिटं उशिरा की नेहमी 20 मिनिटं लवकर?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 28
+  },
+  {
+    "id": "mr-wyr-chill-03",
+    "text": "एसीशिवाय उन्हाळा की गिझरशिवाय हिवाळा?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 53
+  },
+  {
+    "id": "mr-wyr-chill-04",
+    "text": "एक वर्ष फोनशिवाय की एक वर्ष चहाशिवाय?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 52
+  },
+  {
+    "id": "mr-wyr-chill-05",
+    "text": "प्रत्येक लग्नात नाचावं लागेल की प्रत्येक लग्नात भाषण द्यावं लागेल?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 74
+  },
+  {
+    "id": "mr-wyr-chill-06",
+    "text": "आईने तुझ्या चॅट्स वाचाव्या की बाबांनी तुझी सर्च हिस्ट्री?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 46
+  },
+  {
+    "id": "mr-wyr-chill-07",
+    "text": "मित्रांबरोबर गोवा ट्रिप की कुटुंबाबरोबर युरोप ट्रिप?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 76
+  },
+  {
+    "id": "mr-wyr-bold-01",
+    "text": "{name}, एक्सबरोबर एक डेट की बॉसबरोबर एक सुट्टी?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 45
+  },
+  {
+    "id": "mr-wyr-bold-02",
+    "text": "तुझ्या सगळ्या चॅट्स व्हायरल व्हाव्यात की सगळे फोटो?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 45
+  },
+  {
+    "id": "mr-wyr-bold-03",
+    "text": "क्रशला चुकून 'लव्ह यू' पाठवणं की बॉसला?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 41
+  },
+  {
+    "id": "mr-wyr-bold-04",
+    "text": "ठरवून लग्न आई-बाबांच्या पसंतीने की मित्राच्या पसंतीने?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 29
+  },
+  {
+    "id": "mr-wyr-bold-05",
+    "text": "{name}, {other}बरोबर एक आठवडा खोली शेअर की एक आठवडा फोन शेअर?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 69
+  },
+  {
+    "id": "mr-wyr-bold-06",
+    "text": "प्रत्येक डेटला तुझी आई सोबत येईल की प्रत्येक डेट लाइव्ह स्ट्रीम होईल?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 72
+  },
+  {
+    "id": "mr-wyr-bold-07",
+    "text": "कधीच खोटं बोलता येणार नाही की कधीच खरं बोलता येणार नाही?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "pickA": 41
+  },
+  {
+    "id": "mr-wyr-wild-01",
+    "text": "{name}, तुझं सगळ्यात मोठं गुपित फॅमिली ग्रुपवर की ऑफिस ग्रुपवर?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 65
+  },
+  {
+    "id": "mr-wyr-wild-02",
+    "text": "क्रशने तुझे सगळे जुने मेसेज वाचावे की तुझे सगळे जुने फोटो बघावे?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 46
+  },
+  {
+    "id": "mr-wyr-wild-03",
+    "text": "एक दिवस तू {other} व्हायचं की {other} एक दिवस तू व्हायचं?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 66
+  },
+  {
+    "id": "mr-wyr-wild-04",
+    "text": "प्रत्येक गोष्टीवर खरं बोलावं लागेल की तुला काय वाटतंय ते कधीच कोणाला सांगता येणार नाही?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 27
+  },
+  {
+    "id": "mr-wyr-wild-05",
+    "text": "एक्सच्या लग्नात नाचावं लागेल की भाषण द्यावं लागेल?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 76
+  },
+  {
+    "id": "mr-wyr-wild-06",
+    "text": "तुझी सर्च हिस्ट्री सगळ्यांना दाखवायची की तुझी गॅलरी?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pickA": 44
+  },
+  {
+    "id": "mr-couple-chill-01",
+    "text": "पार्टनरची कोणती छोटीशी सवय तुला सगळ्यात गोड वाटते?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-chill-02",
+    "text": "पहिल्यांदा भेटलात तेव्हा एकमेकांबद्दल काय वाटलं होतं?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-chill-03",
+    "text": "एकमेकांसाठी एक परफेक्ट रविवार प्लॅन करा, एका मिनिटात.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-chill-04",
+    "text": "पार्टनरचा आवडता कम्फर्ट फूड ओळख. बरोबर आलं तर पॉइंट.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-bold-01",
+    "text": "पार्टनरला एका फिल्मी वाक्यात प्रपोज कर, पूर्ण नाटकासकट.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-bold-02",
+    "text": "सगळ्यात मजेशीर भांडण कोणत्या गोष्टीवरून झालं होतं?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-bold-03",
+    "text": "पार्टनरचा कोणता ड्रेस तुला सगळ्यात जास्त आवडतो?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-bold-04",
+    "text": "एकमेकांची सगळ्यात भारी नक्कल करा आणि ग्रुप निकाल देईल.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-couple-wild-01",
+    "text": "एखादा रोमँटिक फिल्मी सीन एकत्र करून दाखवा, ग्रुप डायरेक्ट करेल.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-couple-wild-02",
+    "text": "पार्टनरच्या कानात असं काहीतरी सांग जे ग्रुपला कळणार नाही.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-couple-wild-03",
+    "text": "30 सेकंद संगीताशिवाय हळू नाचा.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-couple-wild-04",
+    "text": "पार्टनरची सगळ्यात आकर्षक सवय सांग, सगळ्यांसमोर.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-nhie-001",
+    "text": "मी कधीच आईशी खोटं बोललो नाही की गृहपाठ झाला आहे.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-002",
+    "text": "मी कधीच कोणत्याही लग्नाला फक्त जेवणासाठी गेलो नाही.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-003",
+    "text": "मी कधीच रिक्षावाल्याशी 10 रुपयांसाठी 10 मिनिटं वाद घातला नाही.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-004",
+    "text": "मी कधीच कोणाचा मेसेज 'सीन' करून दुर्लक्ष केलं नाही.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-005",
+    "text": "मी कधीच घरच्यांपासून लपून पार्टी केली नाही.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-006",
+    "text": "मी कधीच रात्री 2 वाजता एक्सची प्रोफाइल पाहिली नाही.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-nhie-007",
+    "text": "मी कधीच या ग्रुपमधल्या कोणावर क्रश केला नाही.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-nhie-008",
+    "text": "मी कधीच डेटवर कंटाळून निघण्यासाठी बहाणा केला नाही.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-nhie-009",
+    "text": "मी कधीच कोणाला फ्लर्टी मेसेज पाठवून लगेच डिलीट केला नाही.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-mlt-001",
+    "text": "मॅगीसुद्धा जाळण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-002",
+    "text": "फॅमिली व्हॉट्सॲप ग्रुपवर गुड मॉर्निंग पाठवण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-003",
+    "text": "चित्रपट चालू असताना झोपण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-004",
+    "text": "आज रात्री एक्सला मेसेज करण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-005",
+    "text": "'फक्त पाच मिनिटं' म्हणून एक तास उशिरा येण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-006",
+    "text": "पगार येताच सगळा उडवण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-mlt-007",
+    "text": "लग्नात कोणावर तरी लाइन मारण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-mlt-008",
+    "text": "स्वतःच्या बेस्ट फ्रेंडवरच फिदा होण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-mlt-009",
+    "text": "सगळ्यात फिल्मी प्रपोजल करण्याची सगळ्यात जास्त शक्यता कोणाची?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-hotseat-001",
+    "text": "हॉट सीट: {name}, सगळे तुला लहानपणाबद्दल पटापट प्रश्न विचारतील.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-002",
+    "text": "हॉट सीट: {name}, प्रत्येक खेळाडू एक 'हे की ते' विचारेल. दोन सेकंदांत उत्तर दे.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-003",
+    "text": "हॉट सीट: {name}, {other} आवडतं जेवण आणि चित्रपटांवर तुझी छोटी मुलाखत घेईल.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-004",
+    "text": "हॉट सीट: {name}, सगळे तुला सगळ्यात लाजिरवाण्या क्षणांबद्दल विचारतील.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-005",
+    "text": "हॉट सीट: {name}, प्रत्येक खेळाडू विचारेल की तू खरंच त्याच्याबद्दल काय विचार करतोस.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-006",
+    "text": "हॉट सीट: {name}, ग्रुप तुला तुझ्या शेवटच्या खोट्याबद्दल विचारेल.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-007",
+    "text": "हॉट सीट: {name}, ग्रुप तुला क्रशबद्दल विचारेल. दोन वेळा पास करू शकतोस.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-008",
+    "text": "हॉट सीट: {name}, सगळे विचारतील तुझा आदर्श पार्टनर कसा असावा.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-hotseat-009",
+    "text": "हॉट सीट: {name}, {other} तीन फ्लर्टी प्रश्न विचारेल. चेहरा सरळ ठेव.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-closer-chill-01",
+    "text": "{name}, {other}ला सांग की पहिल्यांदा कधी वाटलं की तू त्यांना आवडतोस.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "mr-closer-chill-02",
+    "text": "हात धरा आणि एकमेकांच्या डोळ्यात बघा. हसायचं नाही!",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "hands"
+  },
+  {
+    "id": "mr-closer-chill-03",
+    "text": "{name}, {other}ची तीन कौतुकं कर, दिसण्याव्यतिरिक्त.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "mr-closer-chill-04",
+    "text": "{name}, {other}चं आवडतं गाणं गुणगुण आणि सोबत हळूहळू नाचा.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "mr-closer-bold-01",
+    "text": "{name}, {other}च्या कानात हळूच सांग की त्यांची कोणती गोष्ट सगळ्यात आकर्षक आहे.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "mr-closer-bold-02",
+    "text": "{name}, {other}ला खांदे आणि मानेचा मसाज दे. किती दाब हवा ते {other} सांगेल.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "mr-closer-bold-03",
+    "text": "{name}, {other}बरोबर असं फ्लर्ट कर जणू पहिल्यांदाच कॅफेत भेटताय.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "mr-closer-bold-04",
+    "text": "चेक-इन: {name}, {other}ला विचार की हल्ली त्यांना कोणत्या प्रकारचं प्रेम सगळ्यात जास्त आवडतं.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "mr-closer-wild-01",
+    "text": "{name}, आधी विचार, मग {other}च्या मानेवर हळुवार किस दे.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "mr-closer-wild-02",
+    "text": "{other}चे डोळे बंद. {name}, स्वयंपाकघरातून तीन गोष्टी भरव, {other} ओळखेल.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "mr-closer-wild-03",
+    "text": "{name}, {other}ला असा किस कर जणू रोमँटिक चित्रपटाचा शेवटचा सीन आहे.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "mr-closer-wild-04",
+    "text": "चेक-इन: {name}, {other}ला विचार की आत्ता कसं वाटतंय, आणि वातावरण अजून गरम करायचं की हळू.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "mr-tot-chill-01",
+    "text": "चहा की कॉफी?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "चहा",
+      "कॉफी"
+    ],
+    "pickA": 66
+  },
+  {
+    "id": "mr-tot-chill-02",
+    "text": "डोंगर की समुद्र?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "डोंगर",
+      "समुद्र"
+    ],
+    "pickA": 52
+  },
+  {
+    "id": "mr-tot-chill-03",
+    "text": "वडापाव की पिझ्झा?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "वडापाव",
+      "पिझ्झा"
+    ],
+    "pickA": 59
+  },
+  {
+    "id": "mr-charades-chill-01",
+    "text": "करून दाखवा: मगरीचे दात घासणं",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-chill-02",
+    "text": "करून दाखवा: पोळी लाटणं",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-chill-03",
+    "text": "करून दाखवा: रिक्षावाल्याशी घासाघीस",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-chill-01",
+    "text": "एकत्र स्वयंपाक केला",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-02",
+    "text": "आपलं स्वतःचं एक गाणं आहे",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-03",
+    "text": "पूर्ण सिरीज एकत्र पाहिली",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-04",
+    "text": "पिकनिकला गेलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-05",
+    "text": "हसून हसून डोळ्यात पाणी आलं",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-06",
+    "text": "रोड ट्रिपला गेलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-07",
+    "text": "आपला एक खास विनोद आहे",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-08",
+    "text": "व्हिडिओ कॉलवर झोपलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-09",
+    "text": "एकच गोड पदार्थ वाटून खाल्ला",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-tot-bold-01",
+    "text": "प्रेमविवाह की ठरवून लग्न?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "प्रेमविवाह",
+      "ठरवून लग्न"
+    ],
+    "pickA": 60
+  },
+  {
+    "id": "mr-tot-bold-02",
+    "text": "मेसेजवर प्रपोज की समोरासमोर प्रपोज?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "मेसेजवर प्रपोज",
+      "समोरासमोर प्रपोज"
+    ],
+    "pickA": 30
+  },
+  {
+    "id": "mr-tot-bold-03",
+    "text": "मोठं लग्न की छोटं लग्न?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "मोठं लग्न",
+      "छोटं लग्न"
+    ],
+    "pickA": 43
+  },
+  {
+    "id": "mr-charades-bold-01",
+    "text": "करून दाखवा: मालिकेतली नाटकी थप्पड",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-bold-02",
+    "text": "करून दाखवा: लग्नात झिंगाट डान्स",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-bold-03",
+    "text": "करून दाखवा: अंधारात खेळण्यावर पाय पडणं",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-bold-01",
+    "text": "आपल्यापैकी कोणीतरी आधी \"आय लव्ह यू\" म्हटलं",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-bold-02",
+    "text": "एकमेकांच्या आई-बाबांना भेटलो",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-bold-03",
+    "text": "पहाटेपर्यंत गप्पा मारल्या",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-tot-wild-01",
+    "text": "पहिल्या डेटला किस की थांबणं?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "पहिल्या डेटला किस",
+      "थांबणं"
+    ],
+    "pickA": 40
+  },
+  {
+    "id": "mr-tot-wild-02",
+    "text": "क्रशला आत्ता सांगा की कायम गुपित ठेवा?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "क्रशला आत्ता सांगा",
+      "कायम गुपित ठेवा"
+    ],
+    "pickA": 34
+  },
+  {
+    "id": "mr-tot-wild-03",
+    "text": "फ्लर्टी मेसेज की फ्लर्टी नजरा?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "फ्लर्टी मेसेज",
+      "फ्लर्टी नजरा"
+    ],
+    "pickA": 47
+  },
+  {
+    "id": "mr-charades-wild-01",
+    "text": "करून दाखवा: सर्वात वाईट पहिली डेट",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-wild-02",
+    "text": "करून दाखवा: पार्टीत फ्लर्ट करणं",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-wild-03",
+    "text": "करून दाखवा: क्रशच्या आई-बाबांना भेटणं",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-wild-01",
+    "text": "पावसात किस केलं",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-bingo-wild-02",
+    "text": "सगळ्यांपासून लपून डेटला गेलो",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-bingo-wild-03",
+    "text": "संगीताशिवाय स्लो डान्स केला",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  }
+]

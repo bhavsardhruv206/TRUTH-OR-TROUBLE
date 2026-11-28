@@ -8,6 +8,8 @@ enum class GameMode(
     val label: String,
     /** Played by exactly two partners: the setup locks to 2 players and group chaos moments are off. */
     val couplesOnly: Boolean = false,
+    /** The current player answers secretly and the others guess: points go to each correct guesser. */
+    val guessing: Boolean = false,
 ) {
     @SerialName("truth") TRUTH("Truth"),
     @SerialName("dare") DARE("Dare"),
@@ -17,6 +19,13 @@ enum class GameMode(
     @SerialName("mlt") MOST_LIKELY_TO("Most Likely To"),
     @SerialName("hotseat") HOT_SEAT("Hot Seat"),
     @SerialName("closer") CLOSER("Closer", couplesOnly = true),
+    @SerialName("knowme") KNOW_ME("How Well Do You Know Me", guessing = true),
+    /** Two quick options; everyone picks, then the card shows how other players picked. */
+    @SerialName("tot") THIS_OR_THAT("This or That"),
+    /** Act it out without words while the group guesses before the timer ends. */
+    @SerialName("charades") CHARADES("Charades"),
+    /** A 3 x 3 board of "we have..." squares for two partners. Played on its own board screen. */
+    @SerialName("bingo") COUPLE_BINGO("Couple Bingo", couplesOnly = true),
 }
 
 @Serializable
@@ -45,15 +54,49 @@ data class Card(
     val timerSeconds: Int? = null,
     /** Id of a [Pose] illustration shown on the card (couples games). */
     val pose: String? = null,
-)
-
-/** Card languages. Codes are BCP 47; Hinglish is Hindi written in Latin script. */
-enum class CardLanguage(val code: String, val label: String) {
-    ENGLISH("en", "English"),
-    HINGLISH("hi-Latn", "Hinglish"),
+    /** The two choices on a voting card (This or That, Would You Rather). */
+    val options: List<String>? = null,
+    /**
+     * Voting cards: share of players, in percent, who picked the first option.
+     * The app is offline, so these are bundled estimates, not live votes.
+     */
+    val pickA: Int? = null,
+) {
+    /** Voting cards show "X% picked this" once a player has chosen. */
+    val isVote: Boolean get() = pickA != null
 }
 
-data class Player(val id: Int, val name: String, val score: Int = 0)
+/**
+ * Languages for the app and its card packs. Codes are BCP 47.
+ * [label] is the language's own name, [englishName] helps people who share a phone.
+ */
+enum class CardLanguage(val code: String, val label: String, val englishName: String, val resource: String) {
+    ENGLISH("en", "English", "English", "cards_en.json"),
+    HINDI("hi", "हिन्दी", "Hindi", "cards_hi.json"),
+    MARATHI("mr", "मराठी", "Marathi", "cards_mr.json"),
+    GUJARATI("gu", "ગુજરાતી", "Gujarati", "cards_gu.json"),
+    SPANISH("es", "Español", "Spanish", "cards_es.json");
+
+    companion object {
+        fun fromCode(code: String?): CardLanguage? = entries.firstOrNull { it.code == code }
+
+        /** Best match for the phone's language, e.g. "hi" or "gu-IN". English when nothing fits. */
+        fun forLocale(languageTag: String): CardLanguage {
+            val lang = languageTag.substringBefore('-').substringBefore('_').lowercase()
+            return entries.firstOrNull { it.code == lang } ?: ENGLISH
+        }
+    }
+}
+
+data class Player(
+    val id: Int,
+    val name: String,
+    val score: Int = 0,
+    /** Cards this player completed in a row; a skip or a timeout resets it. */
+    val streak: Int = 0,
+    /** Longest [streak] this game. */
+    val bestStreak: Int = 0,
+)
 
 /**
  * Fills the personalisation placeholders in a card:

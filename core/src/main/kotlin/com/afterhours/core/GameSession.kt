@@ -11,18 +11,21 @@ object PlayerRules {
 
     sealed interface Result {
         data class Valid(val names: List<String>) : Result
-        data class Invalid(val reason: String) : Result
+        data class Invalid(val problem: Problem, val reason: String) : Result
     }
+
+    /** Why a list of players can't start a game. The UI shows it in the player's language. */
+    enum class Problem { COUPLE_COUNT, TOO_FEW, TOO_MANY, EMPTY_NAME, NAME_TOO_LONG, DUPLICATE_NAME }
 
     /** [mode] adds that game's own player rules, such as exactly two players for couples-only games. */
     fun validate(rawNames: List<String>, mode: GameMode? = null): Result {
         val names = rawNames.map { it.trim() }
-        if (mode?.couplesOnly == true && names.size != COUPLE_PLAYERS) return Result.Invalid("${mode.label} is for exactly $COUPLE_PLAYERS players: you and your partner.")
-        if (names.size < MIN_PLAYERS) return Result.Invalid("Add at least $MIN_PLAYERS players.")
-        if (names.size > MAX_PLAYERS) return Result.Invalid("At most $MAX_PLAYERS players can play.")
-        if (names.any { it.isEmpty() }) return Result.Invalid("Every player needs a nickname.")
-        if (names.any { it.length > MAX_NAME_LENGTH }) return Result.Invalid("Nicknames can be up to $MAX_NAME_LENGTH characters.")
-        if (names.map { it.lowercase() }.toSet().size != names.size) return Result.Invalid("Nicknames must be different.")
+        if (mode?.couplesOnly == true && names.size != COUPLE_PLAYERS) return Result.Invalid(Problem.COUPLE_COUNT, "${mode.label} is for exactly $COUPLE_PLAYERS players: you and your partner.")
+        if (names.size < MIN_PLAYERS) return Result.Invalid(Problem.TOO_FEW, "Add at least $MIN_PLAYERS players.")
+        if (names.size > MAX_PLAYERS) return Result.Invalid(Problem.TOO_MANY, "At most $MAX_PLAYERS players can play.")
+        if (names.any { it.isEmpty() }) return Result.Invalid(Problem.EMPTY_NAME, "Every player needs a nickname.")
+        if (names.any { it.length > MAX_NAME_LENGTH }) return Result.Invalid(Problem.NAME_TOO_LONG, "Nicknames can be up to $MAX_NAME_LENGTH characters.")
+        if (names.map { it.lowercase() }.toSet().size != names.size) return Result.Invalid(Problem.DUPLICATE_NAME, "Nicknames must be different.")
         return Result.Valid(names)
     }
 }
@@ -44,7 +47,23 @@ data class GameState(
     val chaos: ChaosEvent? = null,
     /** Spin-the-wheel game: a wheel picks the player and Truth or Dare each turn. */
     val spin: Boolean = false,
+    /** Streak bonuses, skip penalties and double-point final rounds are on. */
+    val stakes: Boolean = false,
+    /** The last rounds of the game, played for double points when [stakes] is on. */
+    val showdownRounds: Int = 0,
+    /** What the previous turn scored, for a short call-out on the next card. */
+    val lastTurn: TurnResult? = null,
 ) {
+    /** True while this round is one of the double-point final rounds. */
+    val showdown: Boolean get() = stakes && !finished && round > totalRounds - showdownRounds
+    /** Points the current player would win by completing the current card. */
+    val pointsOnOffer: Int
+        get() {
+            val c = card ?: return 0
+            return Stakes.completePoints(c.intensity, currentPlayer.streak + 1, showdown, stakes)
+        }
+    /** Points a skip would cost the current player right now. */
+    val skipCost: Int get() = if (stakes && !mode.couplesOnlyFor(spin)) minOf(Stakes.SKIP_PENALTY, currentPlayer.score) else 0
     val currentPlayer: Player get() = players[currentPlayerIndex]
     val scoreboard: List<Player> get() = players.sortedByDescending { it.score }
     /** Everyone sharing the top score (empty if nobody scored). */
@@ -55,9 +74,44 @@ data class GameState(
         }
 }
 
+/** How the previous turn went. [points] is negative for a penalty. */
+data class TurnResult(
+    val playerName: String,
+    val points: Int,
+    val streak: Int,
+    val timedOut: Boolean = false,
+    /** The scoring took this player into sole first place. */
+    val tookLead: Boolean = false,
+)
+
+/** Scoring rules that raise the stakes. Pure functions so they are easy to test. */
+object Stakes {
+    const val SKIP_PENALTY = 1
+    /** Streak length at which the bonus starts. */
+    const val STREAK_START = 2
+    const val MAX_STREAK_BONUS = 2
+
+    /** Extra points for completing the [streak]-th card in a row. */
+    fun streakBonus(streak: Int): Int = (streak - STREAK_START + 1).coerceIn(0, MAX_STREAK_BONUS)
+
+    fun completePoints(intensity: Intensity, streak: Int, showdown: Boolean, stakes: Boolean): Int {
+        if (!stakes) return intensity.points
+        val base = intensity.points * (if (showdown) 2 else 1)
+        return base + streakBonus(streak)
+    }
+
+    /** About a quarter of the game, at least one round and at most one per player. */
+    fun showdownRounds(totalRounds: Int, players: Int): Int = (totalRounds / 4).coerceAtMost(players).coerceAtLeast(1)
+}
+
+/** Couples games stay free of penalties: either partner can skip anything, no cost. */
+internal fun GameMode.couplesOnlyFor(spin: Boolean) = couplesOnly && !spin
+
 /**
  * One pass-the-phone game. Pure logic, no Android dependencies.
  * Completing a card awards the intensity's points; skipping awards and costs nothing.
+ * With stakes on, completions in a row earn a streak bonus, the final rounds score double,
+ * and skipping or running out of time costs a point (never in couples games).
  */
 class GameSession(
     cards: List<Card>,
@@ -71,9 +125,17 @@ class GameSession(
     language: String = CardLanguage.ENGLISH.code,
     /** Spin the wheel: [mode] is ignored, each turn picks a random player and Truth or Dare. */
     spin: Boolean = false,
+    /** Streaks, skip penalties and a double-point showdown. */
+    stakes: Boolean = false,
+    /** Only cards of exactly [intensity] (18+ Spicy games play Wild cards only). */
+    exactIntensity: Boolean = false,
 ) {
     private val modes = if (spin) SPIN_MODES else listOf(mode)
-    private val decks = modes.associateWith { CardDeck(cards, it, intensity, random, language = language, playedBefore = playedBefore) }
+    private val decks = modes.associateWith { m ->
+        // A game with no cards in the chosen language (How Well Do You Know Me is English only) plays in English.
+        val lang = if (cards.any { it.category == m && it.language == language }) language else CardLanguage.ENGLISH.code
+        CardDeck(cards, m, intensity, random, language = lang, playedBefore = playedBefore, exactIntensity = exactIntensity)
+    }
     private val picker = if (spin) FairPicker(playerNames.size, random) else null
     // Group chaos moments don't fit a game for two partners.
     private val scheduler = ChaosScheduler(random, enabled = chaosEnabled && !(mode.couplesOnly && !spin))
@@ -108,32 +170,73 @@ class GameSession(
             finished = false,
             skips = 0,
             spin = spin,
+            stakes = stakes,
+            showdownRounds = if (stakes) Stakes.showdownRounds(totalRounds, players0.size) else 0,
         )
     }
 
     private fun drawCard(): Card? = decks.getValue(if (modes.size == 1) modes[0] else modes.random(textRandom)).draw()
 
     /** Current player did the truth/dare/choice: award points, move on. */
-    fun complete() = advance(award = true)
+    fun complete() = advance(Outcome.DONE)
 
-    /** Skip without any penalty. */
-    fun skip() = advance(award = false)
+    /**
+     * Guessing games: the current player revealed their secret answer.
+     * Each player in [correctGuessers] (by index) earns the card's points (doubled in the showdown);
+     * the answerer can't score on their own card. An empty set means nobody got it: the turn counts
+     * as played, not skipped.
+     */
+    fun completeGuesses(correctGuessers: Set<Int>) =
+        advance(Outcome.DONE, guessers = correctGuessers - state.currentPlayerIndex)
+
+    /** Skip. Costs [GameState.skipCost] when stakes are on. */
+    fun skip() = advance(Outcome.SKIP)
+
+    /** Skip that never costs anything, such as after reporting a card. */
+    fun skipFree() = advance(Outcome.FREE_SKIP)
+
+    /** The turn clock ran out: counts as a skip. */
+    fun timeOut() = advance(Outcome.TIMEOUT)
 
     /** Closes the pending chaos moment and goes on to the turn. */
     fun dismissChaos() { if (state.chaos != null) state = state.copy(chaos = null) }
 
-    private fun advance(award: Boolean) {
+    private enum class Outcome { DONE, SKIP, FREE_SKIP, TIMEOUT }
+
+    private fun advance(outcome: Outcome, guessers: Set<Int>? = null) {
         val s = state
         if (s.finished || s.chaos != null) return
         val card = s.card
-        val players = if (award && card != null) {
-            s.players.mapIndexed { i, p ->
-                if (i == s.currentPlayerIndex) p.copy(score = p.score + card.intensity.points) else p
+        val award = outcome == Outcome.DONE
+        val me = s.currentPlayer
+        val delta = when {
+            guessers != null -> 0
+            award -> if (card != null) s.pointsOnOffer else 0
+            outcome == Outcome.FREE_SKIP -> 0
+            else -> -s.skipCost
+        }
+        val guessPoints = if (card == null) 0 else card.intensity.points * (if (s.showdown) 2 else 1)
+        val streak = if (award) me.streak + 1 else 0
+        val updated = me.copy(score = me.score + delta, streak = streak, bestStreak = maxOf(me.bestStreak, streak))
+        val players = s.players.mapIndexed { i, p ->
+            when {
+                p.id == me.id -> updated
+                guessers != null && i in guessers -> p.copy(score = p.score + guessPoints)
+                else -> p
             }
-        } else s.players
+        }
+        val leaderBefore = s.players.soleLeader()
+        val leaderAfter = players.soleLeader()
+        val result = TurnResult(
+            playerName = me.name,
+            points = delta,
+            streak = streak,
+            timedOut = outcome == Outcome.TIMEOUT,
+            tookLead = s.stakes && delta > 0 && leaderAfter == me.id && leaderBefore != me.id,
+        ).takeIf { s.stakes }
         val skips = if (award) s.skips else s.skips + 1
         state = if (s.round >= s.totalRounds) {
-            s.copy(players = players, card = null, cardText = null, finished = true, skips = skips)
+            s.copy(players = players, card = null, cardText = null, finished = true, skips = skips, lastTurn = result)
         } else {
             val nextIndex = picker?.next() ?: ((s.currentPlayerIndex + 1) % players.size)
             val next = drawCard()
@@ -145,8 +248,15 @@ class GameSession(
                 cardText = next?.let { CardText.render(it.text, players[nextIndex], players, textRandom) },
                 chaos = if (scheduler.tick()) ChaosEvents.pick(textRandom, usedChaos).also { usedChaos += it.id } else null,
                 skips = skips,
+                lastTurn = result,
             )
         }
+    }
+
+    private fun List<Player>.soleLeader(): Int? {
+        val top = maxOf { it.score }
+        if (top == 0) return null
+        return filter { it.score == top }.singleOrNull()?.id
     }
 
     companion object {

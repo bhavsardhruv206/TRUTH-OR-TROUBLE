@@ -13,11 +13,19 @@ import kotlinx.coroutines.flow.map
 
 private val Context.dataStore by preferencesDataStore("afterhours_prefs")
 
+/** Light, dark, or follow the phone. */
+enum class ThemeMode(val label: String) { SYSTEM("Auto"), LIGHT("Light"), DARK("Dark") }
+
 /** Local settings only. No account; nothing here leaves the device. */
 data class Settings(
     val sound: Boolean = true,
     val haptics: Boolean = true,
     val chaos: Boolean = true,
+    val theme: ThemeMode = ThemeMode.SYSTEM,
+    /** Answer-style cards get a short countdown; running out counts as a skip. */
+    val turnClock: Boolean = true,
+    /** Read each new card out loud as it appears. The speaker button works either way. */
+    val readAloud: Boolean = false,
 )
 
 class Prefs(private val context: Context) {
@@ -29,16 +37,29 @@ class Prefs(private val context: Context) {
     private val soundKey = booleanPreferencesKey("sound")
     private val hapticsKey = booleanPreferencesKey("haptics")
     private val chaosKey = booleanPreferencesKey("chaos")
+    private val turnClockKey = booleanPreferencesKey("turn_clock")
+    private val readAloudKey = booleanPreferencesKey("read_aloud")
     private val languageKey = stringPreferencesKey("card_language")
+    /** Language of menus and cards, picked on first launch. Unset until then. */
+    private val appLanguageKey = stringPreferencesKey("app_language")
     private val adsRemovedKey = booleanPreferencesKey("ads_removed")
+    private val themeKey = stringPreferencesKey("theme")
 
     val ageConfirmed: Flow<Boolean> = context.dataStore.data.map { it[ageKey] ?: false }
     val tutorialSeen: Flow<Boolean> = context.dataStore.data.map { it[tutorialKey] ?: false }
     val settings: Flow<Settings> = context.dataStore.data.map {
-        Settings(sound = it[soundKey] ?: true, haptics = it[hapticsKey] ?: true, chaos = it[chaosKey] ?: true)
+        Settings(
+            sound = it[soundKey] ?: true,
+            haptics = it[hapticsKey] ?: true,
+            chaos = it[chaosKey] ?: true,
+            theme = ThemeMode.entries.firstOrNull { m -> m.name == it[themeKey] } ?: ThemeMode.SYSTEM,
+            turnClock = it[turnClockKey] ?: true,
+            readAloud = it[readAloudKey] ?: false,
+        )
     }
     /** Cached result of the last Play Billing check, so ads stay off while offline. */
     val adsRemoved: Flow<Boolean> = context.dataStore.data.map { it[adsRemovedKey] ?: false }
+    val appLanguage: Flow<String?> = context.dataStore.data.map { it[appLanguageKey] }
     val reportedCards: Flow<Set<String>> = context.dataStore.data.map { it[reportedKey] ?: emptySet() }
 
     suspend fun setAgeConfirmed() = set(ageKey, true)
@@ -46,9 +67,17 @@ class Prefs(private val context: Context) {
     suspend fun setSound(on: Boolean) = set(soundKey, on)
     suspend fun setHaptics(on: Boolean) = set(hapticsKey, on)
     suspend fun setChaos(on: Boolean) = set(chaosKey, on)
+    suspend fun setTheme(mode: ThemeMode) = set(themeKey, mode.name)
+    suspend fun setTurnClock(on: Boolean) = set(turnClockKey, on)
+    suspend fun setReadAloud(on: Boolean) = set(readAloudKey, on)
     suspend fun setAdsRemoved(on: Boolean) = set(adsRemovedKey, on)
     suspend fun setLanguage(code: String) = set(languageKey, code)
     suspend fun language(): String? = context.dataStore.data.first()[languageKey]
+
+    /** Sets the app language and makes it the card language too. */
+    suspend fun setAppLanguage(code: String) {
+        context.dataStore.edit { it[appLanguageKey] = code; it[languageKey] = code }
+    }
 
     suspend fun savedNames(): List<String> =
         context.dataStore.data.first()[namesKey]?.split('\n')?.filter { it.isNotBlank() } ?: emptyList()

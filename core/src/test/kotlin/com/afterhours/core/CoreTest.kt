@@ -3,6 +3,8 @@ package com.afterhours.core
 import kotlin.random.Random
 import kotlin.test.*
 
+private val ENGLISH_ONLY_MODES = setOf(GameMode.KNOW_ME)
+
 class CoreTest {
     private val allCards = BundledCardRepository().allCards()
     private val cards = allCards.filter { it.language == "en" }
@@ -28,6 +30,10 @@ class CoreTest {
         assertEquals(30, counts[GameMode.MOST_LIKELY_TO])
         assertEquals(30, counts[GameMode.HOT_SEAT])
         assertEquals(60, counts[GameMode.CLOSER])
+        assertEquals(45, counts[GameMode.KNOW_ME])
+        assertEquals(45, counts[GameMode.THIS_OR_THAT])
+        assertEquals(30, counts[GameMode.CHARADES])
+        assertEquals(26, counts[GameMode.COUPLE_BINGO])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -167,7 +173,7 @@ class CoreTest {
     @Test fun timedDaresHaveSaneTimers() {
         val timed = cards.filter { it.timerSeconds != null }
         assertTrue(timed.size >= 10)
-        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT, GameMode.CLOSER) && it.timerSeconds!! in 5..120 })
+        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT, GameMode.CLOSER, GameMode.CHARADES) && it.timerSeconds!! in 5..120 })
     }
 
     @Test fun previouslyPlayedCardsComeLast() {
@@ -179,17 +185,6 @@ class CoreTest {
         assertTrue(order.take(eligible.size - played.size).none { it.id in played }, "fresh cards first")
         assertEquals(eligible.size - played.size, firstSeenIdx)
         assertEquals(eligible.size, deck.drawnIds.size)
-    }
-
-    @Test fun hinglishPackCoversEveryModeAndIntensity() {
-        val hi = allCards.filter { it.language == CardLanguage.HINGLISH.code }
-        assertTrue(hi.size >= 90)
-        assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
-        assertEquals(hi.size, hi.map { it.text }.toSet().size)
-        hi.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
-        GameMode.entries.forEach { m ->
-            Intensity.entries.forEach { i -> assertTrue(hi.any { it.category == m && it.intensity == i }, "missing hinglish $m/$i") }
-        }
     }
 
     @Test fun sessionOnlyDrawsChosenLanguage() {
@@ -210,12 +205,45 @@ class CoreTest {
     }
 
     @Test fun newModesFollowTheirFormat() {
-        allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
+        val latinScript = setOf(CardLanguage.ENGLISH.code)
+        allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER && it.language in latinScript }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
         allCards.filter { it.category == GameMode.MOST_LIKELY_TO && it.language == "en" }.forEach { assertTrue(it.text.startsWith("Who is most likely to"), it.id) }
         allCards.filter { it.category == GameMode.HOT_SEAT }.forEach {
-            assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
+            if (it.language in latinScript) assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
+            assertTrue(it.text.contains("{name}"), it.id)
             assertEquals(60, it.timerSeconds, it.id)
         }
+    }
+
+    @Test fun knowMeCardsAreAboutTheAnswerer() {
+        val knowMe = allCards.filter { it.category == GameMode.KNOW_ME }
+        knowMe.forEach { assertTrue("{name}" in it.text && "{other}" !in it.text && it.timerSeconds == null, it.id) }
+        Intensity.entries.forEach { i -> assertEquals(15, knowMe.count { it.language == "en" && it.intensity == i }, "en $i") }
+    }
+
+    @Test fun knowMeIsEnglishOnlyAndFallsBackFromHindi() {
+        assertTrue(allCards.none { it.category == GameMode.KNOW_ME && it.language != "en" })
+        val s = GameSession(allCards, GameMode.KNOW_ME, Intensity.WILD, listOf("A", "B"), random = Random(4), language = CardLanguage.HINDI.code)
+        assertEquals("en", s.state.card!!.language)
+    }
+
+    @Test fun knowMePointsGoToEachCorrectGuesser() {
+        val s = GameSession(cards, GameMode.KNOW_ME, Intensity.BOLD, listOf("Ann", "Bo", "Cy"), totalRounds = 3, random = Random(5), chaosEnabled = false)
+        assertEquals(GameMode.KNOW_ME, s.state.card!!.category)
+        val pts = s.state.card!!.intensity.points
+        // Ann answers; Bo and Cy guess right. Ann's own index is ignored.
+        s.completeGuesses(setOf(0, 1, 2))
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Bo answers; nobody gets it: no points, but not a skip.
+        s.completeGuesses(emptySet())
+        assertEquals(listOf(0, pts, pts), s.state.players.map { it.score })
+        assertEquals(0, s.state.skips)
+        // Cy answers; Ann guesses right.
+        val p3 = s.state.card!!.intensity.points
+        s.completeGuesses(setOf(0))
+        assertEquals(p3, s.state.players[0].score)
+        assertTrue(s.state.finished)
     }
 
     @Test fun wheelLandsOnRequestedSlice() {
@@ -263,7 +291,7 @@ class CoreTest {
     }
 
     @Test fun closerIsForExactlyTwoPartners() {
-        assertEquals(listOf(GameMode.CLOSER), GameMode.entries.filter { it.couplesOnly })
+        assertEquals(listOf(GameMode.CLOSER, GameMode.COUPLE_BINGO), GameMode.entries.filter { it.couplesOnly })
         assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A", "B", "C"), GameMode.CLOSER))
         assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A"), GameMode.CLOSER))
         assertIs<PlayerRules.Result.Valid>(PlayerRules.validate(listOf("A", "B"), GameMode.CLOSER))
@@ -311,5 +339,53 @@ class CoreTest {
         }
         allCards.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose ${it.pose}") }
         assertTrue(allCards.filter { it.category != GameMode.CLOSER }.all { it.pose == null })
+    }
+
+    @Test fun everyLanguageHasAFullCardPack() {
+        assertEquals(CardLanguage.entries.size, CardLanguage.entries.map { it.code }.toSet().size)
+        assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
+        CardLanguage.entries.forEach { lang ->
+            val pack = allCards.filter { it.language == lang.code }
+            assertTrue(pack.size >= 90, "${lang.code} has ${pack.size} cards")
+            assertEquals(pack.size, pack.map { it.text }.toSet().size, "${lang.code} texts unique")
+            pack.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
+            pack.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose") }
+            // Some games ship English cards only and play in English in every language.
+            GameMode.entries.filter { lang == CardLanguage.ENGLISH || it !in ENGLISH_ONLY_MODES }.forEach { m ->
+                Intensity.entries.forEach { i -> assertTrue(pack.any { it.category == m && it.intensity == i }, "missing ${lang.code} $m/$i") }
+            }
+        }
+    }
+
+    @Test fun everyLanguageHasFullAppText() {
+        CardLanguage.entries.forEach { lang ->
+            val s = com.afterhours.core.i18n.UiStrings.of(lang)
+            assertEquals(5, s.tutorial.size, lang.code)
+            assertEquals(com.afterhours.core.i18n.EnglishStrings.reportReasons.size, s.reportReasons.size, lang.code)
+            if (lang != CardLanguage.ENGLISH) {
+                assertEquals(ChaosEvents.all.map { it.id }.toSet(), s.chaos.keys, "${lang.code} chaos")
+                assertEquals(PoseLibrary.all.map { it.id }.toSet(), s.poses.keys, "${lang.code} poses")
+            }
+            ChaosEvents.all.forEach { e -> s.chaosText(e).let { assertTrue(it.title.isNotBlank() && it.text.isNotBlank()) } }
+            GameMode.entries.forEach { assertTrue(s.mode(it).isNotBlank()); assertTrue(s.game(it).howTo.isNotBlank()) }
+            PlayerRules.Problem.entries.forEach { assertTrue(s.problem(it).isNotBlank()) }
+        }
+        val hindi = com.afterhours.core.i18n.UiStrings.of(CardLanguage.HINDI)
+        assertNotEquals(com.afterhours.core.i18n.EnglishStrings.startGame, hindi.startGame)
+    }
+
+    @Test fun phoneLocalePicksMatchingLanguage() {
+        assertEquals(CardLanguage.HINDI, CardLanguage.forLocale("hi-IN"))
+        assertEquals(CardLanguage.GUJARATI, CardLanguage.forLocale("gu"))
+        assertEquals(CardLanguage.MARATHI, CardLanguage.forLocale("mr_IN"))
+        assertEquals(CardLanguage.SPANISH, CardLanguage.forLocale("es-MX"))
+        assertEquals(CardLanguage.ENGLISH, CardLanguage.forLocale("fr-FR"))
+        assertNull(CardLanguage.fromCode("hi-Latn"), "Hinglish was removed")
+        assertEquals(CardLanguage.HINDI, CardLanguage.fromCode("hi"))
+    }
+
+    @Test fun invalidPlayersExplainTheProblem() {
+        assertEquals(PlayerRules.Problem.DUPLICATE_NAME, (PlayerRules.validate(listOf("Ann", "ann")) as PlayerRules.Result.Invalid).problem)
+        assertEquals(PlayerRules.Problem.TOO_FEW, (PlayerRules.validate(listOf("Ann")) as PlayerRules.Result.Invalid).problem)
     }
 }
