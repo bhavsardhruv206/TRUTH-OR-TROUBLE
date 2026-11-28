@@ -19,9 +19,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.material3.Card
 import androidx.compose.runtime.*
@@ -43,6 +40,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.afterhours.app.AppConfig
+import com.afterhours.app.Avatar
 import com.afterhours.app.GameViewModel
 import com.afterhours.app.SetupState
 import com.afterhours.app.ads.AdManager
@@ -139,6 +137,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             WithBanner(showBanner) {
                 SetupScreen(
                     s, vm::setName, vm::selectRounds,
+                    onAvatar = vm::setAvatar,
                     onStart = { if (vm.startGame()) { feedback.tap(); nav.navigate("game") } },
                     onBack = { nav.popBackStack() },
                 )
@@ -155,7 +154,8 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     ads.onSessionCompleted(activity)
                 }
             }
-            if (!state.finished) GameScreen(
+            val setupNow by vm.setup.collectAsStateWithLifecycle()
+            if (!state.finished) CompositionLocalProvider(LocalAvatars provides setupNow.avatarsByName()) { GameScreen(
                 state, feedback,
                 onComplete = { feedback.tap(); vm.complete() },
                 onSkip = { feedback.tap(); vm.skip() },
@@ -166,14 +166,15 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     vm.reportCurrentCard()
                 },
                 onQuit = { vm.endGame(); nav.popBackStack("home", false) },
-            )
+            ) }
         }
         composable("results") {
             val g by vm.game.collectAsStateWithLifecycle()
             val state = g ?: return@composable
             val rewardedReady by ads.rewardedReady.collectAsStateWithLifecycle()
+            val setupNow by vm.setup.collectAsStateWithLifecycle()
             val startBonus: () -> Unit = { if (vm.playBonus()) nav.navigate("game") { popUpTo("results") { inclusive = true } } }
-            ResultsScreen(
+            CompositionLocalProvider(LocalAvatars provides setupNow.avatarsByName()) { ResultsScreen(
                 state,
                 bonusLabel = when {
                     adsRemoved -> "Bonus game, +5 rounds"
@@ -183,7 +184,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                 onBonus = { if (adsRemoved) startBonus() else ads.showRewarded(activity) { startBonus() } },
                 onAgain = { vm.playAgain(); nav.navigate("game") { popUpTo("results") { inclusive = true } } },
                 onHome = { vm.endGame(); nav.popBackStack("home", false) },
-            )
+            ) }
         }
     }
 }
@@ -713,15 +714,26 @@ fun SetupScreen(
     s: SetupState,
     onName: (Int, String) -> Unit,
     onRounds: (Int) -> Unit,
+    onAvatar: (Int, Avatar?) -> Unit,
     onStart: () -> Unit,
     onBack: () -> Unit,
 ) {
+    // Which player's picture is being chosen.
+    var pickingFor by rememberSaveable { mutableIntStateOf(-1) }
+    if (pickingFor in s.names.indices) {
+        val i = pickingFor
+        AvatarPicker(
+            current = s.avatars[i],
+            onPick = { onAvatar(i, it); pickingFor = -1 },
+            onDismiss = { pickingFor = -1 },
+        )
+    }
     Page {
         BackRow(onBack)
         Text("Add players", style = MaterialTheme.typography.headlineMedium)
         val couples = !s.spin && s.mode.couplesOnly
         Muted(
-            if (couples) "Just the two of you · enter both names" else "${s.playerCount} players · names are saved for next time",
+            if (couples) "Just the two of you · enter both names" else "${s.playerCount} players · tap a picture to change it",
             Modifier.padding(top = 4.dp, bottom = 12.dp),
         )
         LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -731,12 +743,11 @@ fun SetupScreen(
                         value = name, onValueChange = { onName(i, it) },
                         placeholder = { Text(if (couples) "Partner ${i + 1}" else "Player ${i + 1}", color = Stone) }, singleLine = true,
                         leadingIcon = {
-                            // Heart for partners in a couples game, a person for everyone else.
-                            Icon(
-                                if (couples) Icons.Filled.Favorite else Icons.Filled.Person,
-                                contentDescription = null,
-                                tint = if (name.isBlank()) Stone else Champagne,
-                            )
+                            // Tap to choose a profile picture. Until then: heart for partners, a person for everyone else.
+                            AvatarBadge(
+                                s.avatars[i], 36.dp, Modifier.padding(start = 6.dp),
+                                partner = couples, highlighted = name.isNotBlank(),
+                            ) { pickingFor = i }
                         },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                         modifier = Modifier.weight(1f),
@@ -802,8 +813,14 @@ fun GameScreen(
             Scoreline(g)
             return@Page
         }
-        Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
-        Muted("your turn")
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            AvatarBadge(LocalAvatars.current[g.currentPlayer.name], 48.dp, highlighted = true)
+            Spacer(Modifier.width(12.dp))
+            Column {
+                Text(g.currentPlayer.name, style = MaterialTheme.typography.headlineMedium)
+                Muted("your turn")
+            }
+        }
         Spacer(Modifier.height(16.dp))
         Card(
             Modifier.fillMaxWidth().weight(1f).graphicsLayer {
@@ -974,9 +991,13 @@ private fun ChaosDialog(event: ChaosEvent, feedback: Feedback, onDismiss: () -> 
 
 @Composable
 private fun Scoreline(g: GameState) {
-    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    Row(
+        Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically,
+    ) {
         g.players.forEachIndexed { i, p ->
             val active = i == g.currentPlayerIndex
+            LocalAvatars.current[p.name]?.let { AvatarBadge(it, 22.dp, highlighted = active) }
             Text(
                 "${p.name}  ${p.score}",
                 color = if (active) Champagne else Stone,
@@ -1004,10 +1025,16 @@ fun ResultsScreen(g: GameState, bonusLabel: String?, onBonus: () -> Unit, onAgai
         LazyColumn(Modifier.weight(1f).fillMaxWidth()) {
             itemsIndexed(g.scoreboard) { i, p ->
                 Row(
-                    Modifier.fillMaxWidth().padding(vertical = 14.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    Modifier.fillMaxWidth().padding(vertical = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("${i + 1}   ${p.name}", style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Ivory)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("${i + 1}", style = MaterialTheme.typography.bodyLarge, color = Stone)
+                        Spacer(Modifier.width(12.dp))
+                        AvatarBadge(LocalAvatars.current[p.name], 32.dp, highlighted = i == 0 && w.isNotEmpty())
+                        Spacer(Modifier.width(12.dp))
+                        Text(p.name, style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Ivory)
+                    }
                     Text("${p.score}", style = MaterialTheme.typography.bodyLarge, color = if (i == 0 && w.isNotEmpty()) Champagne else Stone)
                 }
                 HorizontalDivider(color = Hairline)

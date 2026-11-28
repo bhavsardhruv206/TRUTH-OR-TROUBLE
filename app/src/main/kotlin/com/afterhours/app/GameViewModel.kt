@@ -9,6 +9,11 @@ import com.afterhours.core.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
+/** A player's profile picture: one of the avatars that come with the app. */
+sealed interface Avatar {
+    data class Emoji(val char: String) : Avatar
+}
+
 data class SetupState(
     val mode: GameMode = GameMode.TRUTH,
     /** Spin the wheel: a wheel picks the player and Truth or Dare each turn. */
@@ -16,11 +21,17 @@ data class SetupState(
     val intensity: Intensity = Intensity.CHILL,
     val language: CardLanguage = CardLanguage.ENGLISH,
     val names: List<String> = listOf("", ""),
+    /** Profile pictures by player slot. */
+    val avatars: Map<Int, Avatar> = emptyMap(),
     val rounds: Int = GameSession.DEFAULT_ROUNDS,
     val error: String? = null,
 ) {
     /** How many people are playing, chosen right after Play game. */
     val playerCount: Int get() = names.size
+
+    /** Profile pictures keyed by the (trimmed) player name, as the game shows names. */
+    fun avatarsByName(): Map<String, Avatar> =
+        avatars.mapNotNull { (i, a) -> names.getOrNull(i)?.trim()?.takeIf { it.isNotEmpty() }?.let { it to a } }.toMap()
 }
 
 class GameViewModel(app: Application) : AndroidViewModel(app) {
@@ -82,7 +93,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun selectMode(m: GameMode) = _setup.update {
         // Couples-only games are for exactly two partners: keep the first two names.
         val names = if (m.couplesOnly) (it.names + List(PlayerRules.COUPLE_PLAYERS) { "" }).take(PlayerRules.COUPLE_PLAYERS) else it.names
-        it.copy(mode = m, spin = false, names = names, error = null)
+        it.copy(mode = m, spin = false, names = names, avatars = it.avatars.filterKeys { k -> k < names.size }, error = null)
     }
     private val couplesOnly: Boolean get() = _setup.value.let { !it.spin && it.mode.couplesOnly }
     fun selectSpin() = _setup.update { it.copy(spin = true) }
@@ -100,7 +111,11 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     /** Sets how many people play. Names already typed are kept; extra slots start empty. */
     fun setPlayerCount(count: Int) = _setup.update { s ->
         val n = count.coerceIn(PlayerRules.MIN_PLAYERS, PlayerRules.MAX_PLAYERS)
-        s.copy(names = (s.names + List(n) { "" }).take(n), error = null)
+        s.copy(names = (s.names + List(n) { "" }).take(n), avatars = s.avatars.filterKeys { it < n }, error = null)
+    }
+
+    fun setAvatar(index: Int, avatar: Avatar?) = _setup.update { s ->
+        s.copy(avatars = if (avatar == null) s.avatars - index else s.avatars + (index to avatar))
     }
 
     /** Returns true when the game started. */
