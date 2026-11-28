@@ -60,7 +60,7 @@ class Speaker(context: Context) {
     private fun finished(id: String?) { if (id == speakingKey) speakingKey = null }
 
     /**
-     * Reads [text] in the card language [languageCode] (for example "en", "hi", "hi-Latn").
+     * Reads [text] in the card language [languageCode] (for example "en" or "hi").
      * [key] identifies the text so the screen can show which card is being read.
      */
     fun speak(key: String, text: String, languageCode: String) {
@@ -85,8 +85,6 @@ class Speaker(context: Context) {
     /** Picks the closest installed voice, falling back to the phone's own language. */
     private fun voiceFor(code: String): Locale {
         val wanted = when (code) {
-            // Hindi written in English letters sounds right with an Indian English voice.
-            "hi-Latn" -> Locale.forLanguageTag("en-IN")
             "en" -> Locale.forLanguageTag("en-IN").takeIf { usable(it) } ?: Locale.ENGLISH
             else -> Locale.forLanguageTag(code)
         }
