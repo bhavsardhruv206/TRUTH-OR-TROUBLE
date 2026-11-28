@@ -37,6 +37,8 @@ class Prefs(private val context: Context) {
     private val chaosKey = booleanPreferencesKey("chaos")
     private val turnClockKey = booleanPreferencesKey("turn_clock")
     private val languageKey = stringPreferencesKey("card_language")
+    /** Language of menus and cards, picked on first launch. Unset until then. */
+    private val appLanguageKey = stringPreferencesKey("app_language")
     private val adsRemovedKey = booleanPreferencesKey("ads_removed")
     private val themeKey = stringPreferencesKey("theme")
 
@@ -53,6 +55,7 @@ class Prefs(private val context: Context) {
     }
     /** Cached result of the last Play Billing check, so ads stay off while offline. */
     val adsRemoved: Flow<Boolean> = context.dataStore.data.map { it[adsRemovedKey] ?: false }
+    val appLanguage: Flow<String?> = context.dataStore.data.map { it[appLanguageKey] }
     val reportedCards: Flow<Set<String>> = context.dataStore.data.map { it[reportedKey] ?: emptySet() }
 
     suspend fun setAgeConfirmed() = set(ageKey, true)
@@ -65,6 +68,11 @@ class Prefs(private val context: Context) {
     suspend fun setAdsRemoved(on: Boolean) = set(adsRemovedKey, on)
     suspend fun setLanguage(code: String) = set(languageKey, code)
     suspend fun language(): String? = context.dataStore.data.first()[languageKey]
+
+    /** Sets the app language and makes it the card language too. */
+    suspend fun setAppLanguage(code: String) {
+        context.dataStore.edit { it[appLanguageKey] = code; it[languageKey] = code }
+    }
 
     suspend fun savedNames(): List<String> =
         context.dataStore.data.first()[namesKey]?.split('\n')?.filter { it.isNotBlank() } ?: emptyList()

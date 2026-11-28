@@ -3,11 +3,12 @@
 Offline, pass-the-phone 18+ party game for Android. Spin the Wheel (picks the player, then Truth or Dare), plus Truth, Dare, Would You Rather, Couple, Never Have I Ever, Most Likely To and Hot Seat modes; 2–8 players; plus Closer, a romantic, non-explicit game for exactly two consenting partners, with a pink-and-blue pose illustration on every card; Chill/Bold/Wild intensity; scoring with streak bonuses, a one-point skip penalty (never in Closer or when reporting a card), double-point final rounds and a 30-second turn clock on answer cards (can be switched off); session scoreboard.
 
 - `core/` pure Kotlin (JVM) game engine, models, card loader and cards. Unit tested.
-  - `cards_en.json`: 300 English cards. `cards_hinglish.json`: 96 Hinglish cards (language `hi-Latn`).
+  - Card packs, one per `CardLanguage`: `cards_en.json` (English), `cards_hi.json` (Hindi), `cards_mr.json` (Marathi), `cards_gu.json` (Gujarati), `cards_es.json` (Spanish).
+  - App text lives in `core/.../i18n`: one `UiStrings` language pack per language. Its constructor has no defaults, so a pack that misses a string does not compile. The language is picked on first launch and can be changed in Settings.
   - Cards can address players: `{name}` is the current player, `{other}` a different random player (`CardText`).
   - `timerSeconds` on a card makes it a timed dare. `ChaosEvents` / `ChaosScheduler` drop a group moment every 4–6 turns.
   - `SeenCardMemory` remembers played cards between games so regulars see fresh cards first.
-- `app/` Android app: Jetpack Compose + Material 3, MVVM (`GameViewModel`), DataStore for settings, saved names, played and reported cards. Included in the build only when an Android SDK is found (`ANDROID_HOME` or `local.properties`).
+- `app/` Android app: Jetpack Compose + Material 3, MVVM (`GameViewModel`), DataStore for settings, language, saved names, played and reported cards. Included in the build only when an Android SDK is found (`ANDROID_HOME` or `local.properties`).
 
 Run engine tests: `gradle :core:test`. Build the app: open in Android Studio, or `gradle :app:assembleDebug` with the SDK installed.
 

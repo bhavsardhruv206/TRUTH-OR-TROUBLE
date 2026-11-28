@@ -59,10 +59,11 @@ fun AvatarPicker(
     onPick: (Avatar?) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val S = LocalStrings.current
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = Graphite,
-        title = { Text("Profile picture", style = MaterialTheme.typography.titleLarge) },
+        title = { Text(S.profilePicture, style = MaterialTheme.typography.titleLarge) },
         text = {
             Column {
                 avatarChoices.chunked(4).forEach { row ->
@@ -75,7 +76,7 @@ fun AvatarPicker(
                 }
             }
         },
-        confirmButton = { TextButton(onDismiss) { Text("Done", color = Champagne) } },
-        dismissButton = if (current != null) { { TextButton({ onPick(null) }) { Text("Remove", color = Stone) } } } else null,
+        confirmButton = { TextButton(onDismiss) { Text(S.done, color = Champagne) } },
+        dismissButton = if (current != null) { { TextButton({ onPick(null) }) { Text(S.remove, color = Stone) } } } else null,
     )
 }

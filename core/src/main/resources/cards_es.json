@@ -1,0 +1,1113 @@
+[
+  {
+    "id": "es-truth-chill-01",
+    "text": "{name}, di la verdad: ¿cuál es la canción más vergonzosa de tu móvil?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-02",
+    "text": "¿Cuándo fue la última vez que mentiste a tus padres sin motivo?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-03",
+    "text": "¿Qué comida te comes a escondidas para no tener que compartirla?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-04",
+    "text": "{name}, ¿cuál era tu apodo más gracioso en el colegio?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-05",
+    "text": "¿Con qué película has llorado más?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-06",
+    "text": "¿Quién del grupo llega siempre tarde, y cuál fue su mejor excusa?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-07",
+    "text": "¿En qué app pierdes más tiempo?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-08",
+    "text": "¿Cuál es tu combinación de comida más rara?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-09",
+    "text": "{name}, ¿qué fue lo último que buscaste en Google? Con sinceridad.",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-10",
+    "text": "¿Cuál fue tu peor momento bailando en una boda?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-chill-11",
+    "text": "¿Qué famoso no soportas en secreto?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-01",
+    "text": "{name}, ¿qué perfil de un ex sigues mirando de vez en cuando?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-02",
+    "text": "¿A quién de este grupo tardas más en contestar los mensajes, y por qué?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-03",
+    "text": "¿Cuál es la mentira más grande que has dicho en una cita?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-04",
+    "text": "{name}, ¿cuál fue tu primera impresión de {other}?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-05",
+    "text": "¿Alguna vez enviaste un mensaje a la persona equivocada? ¿Qué decía?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-06",
+    "text": "¿Quién te gustaba en el trabajo o en la universidad sin que nadie lo supiera?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-07",
+    "text": "¿Cuál es la frase para ligar más vergonzosa que has usado de verdad?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-08",
+    "text": "¿Qué les sigues ocultando a tus padres?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-09",
+    "text": "{name}, ¿qué chat de tu historial te gustaría borrar?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-10",
+    "text": "¿Cómo fue tu cita más incómoda?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-bold-11",
+    "text": "¿A la boda de qué amigo fuiste solo por la comida?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-truth-wild-01",
+    "text": "{name}, ¿con quién de esta sala cambiarías tu vida por un día, y por qué?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-02",
+    "text": "¿Qué es lo más atrevido que has hecho para impresionar a alguien que te gustaba?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-03",
+    "text": "Cuenta tu mayor error, uno que volverías a cometer.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-04",
+    "text": "{name}, ¿qué costumbre de {other} te gusta en secreto?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-05",
+    "text": "¿Alguna vez has dejado de contestar a alguien de golpe y desaparecido? ¿Por qué?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-06",
+    "text": "¿Cuál es el mensaje más arriesgado que has mandado a las 2 de la mañana?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-07",
+    "text": "Si mañana se filtraran los chats de todos, ¿qué es lo que más te asustaría?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-08",
+    "text": "¿Cuál es tu mayor 'red flag' que tú mismo reconoces?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-09",
+    "text": "{name}, ¿quién es la persona que más coquetea del grupo? Di un nombre.",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-truth-wild-10",
+    "text": "¿Qué secreto conoce solo una persona?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-chill-01",
+    "text": "{name}, suelta un monólogo de villano de película durante 30 segundos.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "es-dare-chill-02",
+    "text": "Canta la sintonía de un anuncio con toda la emoción del mundo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-03",
+    "text": "{name}, imita a {other} lo mejor que puedas hasta que alguien lo adivine.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-04",
+    "text": "Durante los próximos dos turnos, habla solo con palabras muy formales y elegantes.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-05",
+    "text": "Inventa un anuncio para un puesto de té imaginario y véndelo.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-06",
+    "text": "{name}, cuenta tu último fin de semana como si fueras presentador de noticias.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-07",
+    "text": "Mira a {other} a los ojos durante un minuto sin reírte.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-dare-chill-08",
+    "text": "Presenta cualquier objeto de la sala como si estuvieras en Shark Tank.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-09",
+    "text": "Di tu frase de película favorita con mucho drama.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-10",
+    "text": "Preséntate en diez segundos como si fueras el DJ de una boda.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-chill-11",
+    "text": "Inventa un saludo nuevo para el grupo y enséñaselo a todos.",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-01",
+    "text": "{name}, recítale a {other} un poema de película, bien cursi.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-02",
+    "text": "Enseña tu último selfie al grupo, o sáltalo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-03",
+    "text": "{name}, baila 30 segundos la canción que elija el grupo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "es-dare-bold-04",
+    "text": "Piensa en tu crush y actúa una escena de declaración.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-05",
+    "text": "Inventa una historia con tus tres últimos emojis y cuéntala.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-06",
+    "text": "{name}, escribe una nueva bio de Instagram para {other} y léela en voz alta.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-07",
+    "text": "Durante los próximos tres turnos, empieza cada frase con '¡Ay, madre!'.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-08",
+    "text": "Haz una entrada dramática de telenovela, con música incluida.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-09",
+    "text": "{name}, haz un cumplido a cada persona sin repetir ninguno.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-10",
+    "text": "Hazte un selfie con el filtro que elija el grupo, solo para el grupo.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-dare-bold-11",
+    "text": "Sé cómico de stand-up durante un minuto; el grupo elige el tema.",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-dare-wild-01",
+    "text": "{name}, recread con {other} una escena romántica lenta de película.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-02",
+    "text": "Lee al grupo cualquier mensaje antiguo de tu móvil, el que tú elijas.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-03",
+    "text": "{name}, hazle a alguien del grupo un 'roast' cariñoso de 30 segundos.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30
+  },
+  {
+    "id": "es-dare-wild-04",
+    "text": "Hasta la próxima ronda, haz lo que diga {other}, siempre que sea seguro.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-05",
+    "text": "Enseña tu foto antigua más vergonzosa, o sáltalo.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-06",
+    "text": "{name}, recita la bio de tu perfil de citas como si la estuvieras escribiendo ahora.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-07",
+    "text": "El grupo decide tu nuevo apodo, y lo llevarás hasta el final de la partida.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-08",
+    "text": "{name}, durante un minuto intenta reconciliarte con {other} como en una película.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-dare-wild-09",
+    "text": "Haz el paso estrella de alguna canción famosa, con todas tus ganas.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-dare-wild-10",
+    "text": "Pon tu última nota de voz al grupo, o sáltalo.",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-chill-01",
+    "text": "{name}, ¿biryani toda la vida o pizza toda la vida?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-02",
+    "text": "¿Llegar siempre 10 minutos tarde o siempre 20 minutos antes?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-03",
+    "text": "¿Verano sin aire acondicionado o invierno sin agua caliente?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-04",
+    "text": "¿Un año sin móvil o un año sin café?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-05",
+    "text": "¿Tener que bailar en todas las bodas o dar un discurso en todas?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-06",
+    "text": "¿Que tu madre lea tus chats o que tu padre vea tu historial de búsqueda?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-chill-07",
+    "text": "¿Viaje a la playa con amigos o viaje por Europa con la familia?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-01",
+    "text": "{name}, ¿una cita con tu ex o unas vacaciones con tu jefe?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-02",
+    "text": "¿Que se hagan virales todos tus chats o todas tus fotos?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-03",
+    "text": "¿Mandar un 'te quiero' por error a tu crush o a tu jefe?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-04",
+    "text": "¿Que tu pareja la elijan tus padres o tus amigos?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-05",
+    "text": "{name}, ¿compartir habitación con {other} una semana o compartir móvil una semana?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-06",
+    "text": "¿Que tu madre venga a todas tus citas o que todas se emitan en directo?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-bold-07",
+    "text": "¿No poder mentir nunca o no poder decir nunca la verdad?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-wyr-wild-01",
+    "text": "{name}, ¿tu mayor secreto en el grupo de la familia o en el del trabajo?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-wild-02",
+    "text": "¿Que tu crush lea todos tus mensajes antiguos o vea todas tus fotos antiguas?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-wild-03",
+    "text": "¿Ser {other} durante un día o que {other} sea tú durante un día?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-wild-04",
+    "text": "¿Tener que decir siempre la verdad o no poder contar nunca lo que sientes?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-wild-05",
+    "text": "¿Tener que bailar en la boda de tu ex o dar un discurso?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-wyr-wild-06",
+    "text": "¿Enseñar a todos tu historial de búsqueda o tu galería?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-couple-chill-01",
+    "text": "¿Qué pequeña costumbre de tu pareja te parece más tierna?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-chill-02",
+    "text": "¿Qué pensasteis el uno del otro la primera vez que os visteis?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-chill-03",
+    "text": "Planead un domingo perfecto el uno para el otro, en un minuto.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-chill-04",
+    "text": "Adivina la comida reconfortante favorita de tu pareja. Si aciertas, punto.",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-bold-01",
+    "text": "Declárate a tu pareja con una frase de película, con todo el drama.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-bold-02",
+    "text": "¿Por qué fue vuestra pelea más tonta?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-bold-03",
+    "text": "¿Qué ropa de tu pareja es la que más te gusta?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-bold-04",
+    "text": "Imitaos el uno al otro lo mejor posible y el grupo decide.",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-couple-wild-01",
+    "text": "Recread juntos una escena romántica de película; el grupo dirige.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-couple-wild-02",
+    "text": "Susurra al oído de tu pareja algo que el grupo no pueda saber.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-couple-wild-03",
+    "text": "Bailad lento durante 30 segundos sin música.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-couple-wild-04",
+    "text": "Di delante de todos la costumbre más atractiva de tu pareja.",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-nhie-001",
+    "text": "Yo nunca he mentido a mi madre diciendo que ya había hecho los deberes.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-002",
+    "text": "Yo nunca he ido a una boda solo por la comida.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-003",
+    "text": "Yo nunca he discutido 10 minutos con un taxista por un euro.",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-004",
+    "text": "Yo nunca he dejado un mensaje en 'visto' a propósito.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-005",
+    "text": "Yo nunca he ido a una fiesta a escondidas de mi familia.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-006",
+    "text": "Yo nunca he mirado el perfil de mi ex a las 2 de la mañana.",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-nhie-007",
+    "text": "Yo nunca he tenido un crush con alguien de este grupo.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-nhie-008",
+    "text": "Yo nunca me he inventado una excusa para irme de una cita aburrida.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-nhie-009",
+    "text": "Yo nunca he mandado un mensaje coqueto y lo he borrado al instante.",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-mlt-001",
+    "text": "¿Quién es más probable que queme hasta unos fideos instantáneos?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-002",
+    "text": "¿Quién es más probable que mande 'buenos días' al grupo de la familia?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-003",
+    "text": "¿Quién es más probable que se duerma en mitad de una película?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-004",
+    "text": "¿Quién es más probable que escriba a su ex esta noche?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-005",
+    "text": "¿Quién es más probable que diga 'solo cinco minutos' y llegue una hora tarde?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-006",
+    "text": "¿Quién es más probable que se gaste todo el sueldo nada más cobrarlo?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-mlt-007",
+    "text": "¿Quién es más probable que ligue con alguien en una boda?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-mlt-008",
+    "text": "¿Quién es más probable que se enamore de su mejor amigo?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-mlt-009",
+    "text": "¿Quién es más probable que haga la declaración más peliculera?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-hotseat-001",
+    "text": "Silla caliente: {name}, todos te harán preguntas rápidas sobre tu infancia.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-002",
+    "text": "Silla caliente: {name}, cada jugador te pregunta 'esto o aquello'. Responde en dos segundos.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-003",
+    "text": "Silla caliente: {name}, {other} te hace una mini entrevista sobre tu comida y tus películas favoritas.",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-004",
+    "text": "Silla caliente: {name}, todos te preguntarán por tus momentos más vergonzosos.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-005",
+    "text": "Silla caliente: {name}, cada jugador te pregunta qué piensas de verdad de él.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-006",
+    "text": "Silla caliente: {name}, el grupo te pregunta por tu última mentira.",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-007",
+    "text": "Silla caliente: {name}, el grupo te pregunta por tus crushes. Puedes pasar dos veces.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-008",
+    "text": "Silla caliente: {name}, todos te preguntan cómo sería tu pareja ideal.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-hotseat-009",
+    "text": "Silla caliente: {name}, {other} te hará tres preguntas coquetas. Aguanta la cara seria.",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-closer-chill-01",
+    "text": "{name}, cuéntale a {other} cuándo supiste por primera vez que te gustaba.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "es-closer-chill-02",
+    "text": "Cogeos de las manos y miraos a los ojos. ¡Prohibido reírse!",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "hands"
+  },
+  {
+    "id": "es-closer-chill-03",
+    "text": "{name}, dile a {other} tres cumplidos que no tengan que ver con su físico.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "es-closer-chill-04",
+    "text": "{name}, tararea la canción favorita de {other} y bailad despacio juntos.",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "es-closer-bold-01",
+    "text": "{name}, susúrrale a {other} qué es lo que más te atrae de él o ella.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "es-closer-bold-02",
+    "text": "{name}, dale a {other} un masaje en los hombros y el cuello. {other} dice cuánta presión.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "es-closer-bold-03",
+    "text": "{name}, coquetea con {other} como si os conocierais por primera vez en un café.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "es-closer-bold-04",
+    "text": "Momento de hablar: {name}, pregúntale a {other} qué tipo de cariño le gusta más últimamente.",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "es-closer-wild-01",
+    "text": "{name}, pregunta primero y luego dale a {other} un beso lento en el cuello.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "es-closer-wild-02",
+    "text": "{other} cierra los ojos. {name}, dale a probar tres cosas de la cocina y {other} las adivina.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "es-closer-wild-03",
+    "text": "{name}, besa a {other} como en la última escena de una película romántica.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "es-closer-wild-04",
+    "text": "Momento de hablar: {name}, pregúntale a {other} cómo se siente ahora, y si quiere subir o bajar la intensidad.",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  }
+]

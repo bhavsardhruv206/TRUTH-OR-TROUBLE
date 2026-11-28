@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">Truth or Trouble</string>
-    <plurals name="points">
-        <item quantity="one">%d Point</item>
-        <item quantity="other">%d Points</item>
-    </plurals>
 </resources>

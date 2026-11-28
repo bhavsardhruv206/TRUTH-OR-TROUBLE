@@ -47,10 +47,26 @@ data class Card(
     val pose: String? = null,
 )
 
-/** Card languages. Codes are BCP 47; Hinglish is Hindi written in Latin script. */
-enum class CardLanguage(val code: String, val label: String) {
-    ENGLISH("en", "English"),
-    HINGLISH("hi-Latn", "Hinglish"),
+/**
+ * Languages for the app and its card packs. Codes are BCP 47.
+ * [label] is the language's own name, [englishName] helps people who share a phone.
+ */
+enum class CardLanguage(val code: String, val label: String, val englishName: String, val resource: String) {
+    ENGLISH("en", "English", "English", "cards_en.json"),
+    HINDI("hi", "हिन्दी", "Hindi", "cards_hi.json"),
+    MARATHI("mr", "मराठी", "Marathi", "cards_mr.json"),
+    GUJARATI("gu", "ગુજરાતી", "Gujarati", "cards_gu.json"),
+    SPANISH("es", "Español", "Spanish", "cards_es.json");
+
+    companion object {
+        fun fromCode(code: String?): CardLanguage? = entries.firstOrNull { it.code == code }
+
+        /** Best match for the phone's language, e.g. "hi" or "gu-IN". English when nothing fits. */
+        fun forLocale(languageTag: String): CardLanguage {
+            val lang = languageTag.substringBefore('-').substringBefore('_').lowercase()
+            return entries.firstOrNull { it.code == lang } ?: ENGLISH
+        }
+    }
 }
 
 data class Player(
