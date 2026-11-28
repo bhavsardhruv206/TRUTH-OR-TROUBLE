@@ -181,17 +181,6 @@ class CoreTest {
         assertEquals(eligible.size, deck.drawnIds.size)
     }
 
-    @Test fun hinglishPackCoversEveryModeAndIntensity() {
-        val hi = allCards.filter { it.language == CardLanguage.HINGLISH.code }
-        assertTrue(hi.size >= 90)
-        assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
-        assertEquals(hi.size, hi.map { it.text }.toSet().size)
-        hi.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
-        GameMode.entries.forEach { m ->
-            Intensity.entries.forEach { i -> assertTrue(hi.any { it.category == m && it.intensity == i }, "missing hinglish $m/$i") }
-        }
-    }
-
     @Test fun sessionOnlyDrawsChosenLanguage() {
         CardLanguage.entries.forEach { lang ->
             val s = GameSession(allCards, GameMode.DARE, Intensity.WILD, listOf("A", "B"), totalRounds = 30, random = Random(8), language = lang.code)
@@ -210,7 +199,7 @@ class CoreTest {
     }
 
     @Test fun newModesFollowTheirFormat() {
-        val latinScript = setOf(CardLanguage.ENGLISH.code, CardLanguage.HINGLISH.code)
+        val latinScript = setOf(CardLanguage.ENGLISH.code)
         allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER && it.language in latinScript }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
         allCards.filter { it.category == GameMode.MOST_LIKELY_TO && it.language == "en" }.forEach { assertTrue(it.text.startsWith("Who is most likely to"), it.id) }
         allCards.filter { it.category == GameMode.HOT_SEAT }.forEach {
@@ -317,6 +306,7 @@ class CoreTest {
 
     @Test fun everyLanguageHasAFullCardPack() {
         assertEquals(CardLanguage.entries.size, CardLanguage.entries.map { it.code }.toSet().size)
+        assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
         CardLanguage.entries.forEach { lang ->
             val pack = allCards.filter { it.language == lang.code }
             assertTrue(pack.size >= 90, "${lang.code} has ${pack.size} cards")
@@ -352,7 +342,8 @@ class CoreTest {
         assertEquals(CardLanguage.MARATHI, CardLanguage.forLocale("mr_IN"))
         assertEquals(CardLanguage.SPANISH, CardLanguage.forLocale("es-MX"))
         assertEquals(CardLanguage.ENGLISH, CardLanguage.forLocale("fr-FR"))
-        assertEquals(CardLanguage.HINGLISH, CardLanguage.fromCode("hi-Latn"))
+        assertNull(CardLanguage.fromCode("hi-Latn"), "Hinglish was removed")
+        assertEquals(CardLanguage.HINDI, CardLanguage.fromCode("hi"))
     }
 
     @Test fun invalidPlayersExplainTheProblem() {

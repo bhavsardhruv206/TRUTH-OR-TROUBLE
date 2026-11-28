@@ -3,7 +3,7 @@
 Offline, pass-the-phone 18+ party game for Android. Spin the Wheel (picks the player, then Truth or Dare), plus Truth, Dare, Would You Rather, Couple, Never Have I Ever, Most Likely To and Hot Seat modes; 2–8 players; plus Closer, a romantic, non-explicit game for exactly two consenting partners, with a pink-and-blue pose illustration on every card; Chill/Bold/Wild intensity; skip with no penalty; session scoreboard.
 
 - `core/` pure Kotlin (JVM) game engine, models, card loader and cards. Unit tested.
-  - Card packs, one per `CardLanguage`: `cards_en.json` (English), `cards_hi.json` (Hindi), `cards_hinglish.json` (Hinglish, `hi-Latn`), `cards_mr.json` (Marathi), `cards_gu.json` (Gujarati), `cards_es.json` (Spanish).
+  - Card packs, one per `CardLanguage`: `cards_en.json` (English), `cards_hi.json` (Hindi), `cards_mr.json` (Marathi), `cards_gu.json` (Gujarati), `cards_es.json` (Spanish).
   - App text lives in `core/.../i18n`: one `UiStrings` language pack per language. Its constructor has no defaults, so a pack that misses a string does not compile. The language is picked on first launch and can be changed in Settings.
   - Cards can address players: `{name}` is the current player, `{other}` a different random player (`CardText`).
   - `timerSeconds` on a card makes it a timed dare. `ChaosEvents` / `ChaosScheduler` drop a group moment every 4–6 turns.

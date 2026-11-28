@@ -48,13 +48,12 @@ data class Card(
 )
 
 /**
- * Languages for the app and its card packs. Codes are BCP 47; Hinglish is Hindi written in
- * Latin script. [label] is the language's own name, [englishName] helps people who share a phone.
+ * Languages for the app and its card packs. Codes are BCP 47.
+ * [label] is the language's own name, [englishName] helps people who share a phone.
  */
 enum class CardLanguage(val code: String, val label: String, val englishName: String, val resource: String) {
     ENGLISH("en", "English", "English", "cards_en.json"),
     HINDI("hi", "हिन्दी", "Hindi", "cards_hi.json"),
-    HINGLISH("hi-Latn", "Hinglish", "Hindi in English letters", "cards_hinglish.json"),
     MARATHI("mr", "मराठी", "Marathi", "cards_mr.json"),
     GUJARATI("gu", "ગુજરાતી", "Gujarati", "cards_gu.json"),
     SPANISH("es", "Español", "Spanish", "cards_es.json");

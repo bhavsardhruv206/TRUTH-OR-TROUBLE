@@ -147,7 +147,6 @@ class UiStrings(
         fun of(language: CardLanguage): UiStrings = when (language) {
             CardLanguage.ENGLISH -> EnglishStrings
             CardLanguage.HINDI -> HindiStrings
-            CardLanguage.HINGLISH -> HinglishStrings
             CardLanguage.MARATHI -> MarathiStrings
             CardLanguage.GUJARATI -> GujaratiStrings
             CardLanguage.SPANISH -> SpanishStrings
