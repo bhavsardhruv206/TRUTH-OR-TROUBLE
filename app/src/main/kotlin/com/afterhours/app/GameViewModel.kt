@@ -8,6 +8,7 @@ import com.afterhours.app.data.Settings
 import com.afterhours.core.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 data class SetupState(
     val mode: GameMode = GameMode.TRUTH,
@@ -17,8 +18,14 @@ data class SetupState(
     val language: CardLanguage = CardLanguage.ENGLISH,
     val names: List<String> = listOf("", ""),
     val rounds: Int = GameSession.DEFAULT_ROUNDS,
-    val error: String? = null,
+    val error: SetupError? = null,
 )
+
+/** Why a game could not start. The screen words it in the player's language. */
+sealed interface SetupError {
+    data class Players(val problem: PlayerRules.Problem) : SetupError
+    data object NoCards : SetupError
+}
 
 class GameViewModel(app: Application) : AndroidViewModel(app) {
     private val prefs = Prefs(app)
@@ -38,6 +45,24 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         .map<Boolean, Boolean?> { it }
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+    /** null while loading, then whether a language was picked. The picker shows on first launch. */
+    val languageChosen: StateFlow<Boolean?> = prefs.appLanguage
+        .map<String?, Boolean?> { it != null }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    /** Language of menus and cards. Until one is picked, the phone's language when there is a pack for it. */
+    val appLanguage: StateFlow<CardLanguage> = prefs.appLanguage
+        .map { CardLanguage.fromCode(it) ?: phoneLanguage() }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, phoneLanguage())
+
+    private fun phoneLanguage() = CardLanguage.forLocale(Locale.getDefault().toLanguageTag())
+
+    /** Switches menus and cards to [l]. Cards can still be changed per game on the difficulty step. */
+    fun chooseLanguage(l: CardLanguage) {
+        _setup.update { it.copy(language = l) }
+        viewModelScope.launch { prefs.setAppLanguage(l.code) }
+    }
+
     val settings: StateFlow<Settings> = prefs.settings
         .stateIn(viewModelScope, SharingStarted.Eagerly, Settings())
 
@@ -56,7 +81,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     init {
         viewModelScope.launch {
             val names = prefs.savedNames()
-            val lang = CardLanguage.entries.firstOrNull { it.code == prefs.language() } ?: CardLanguage.ENGLISH
+            val lang = CardLanguage.fromCode(prefs.language()) ?: appLanguage.value
             seen = prefs.seenCards()
             _setup.update { s ->
                 s.copy(
@@ -112,7 +137,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         rememberSeen()
         val s = _setup.value
         return when (val v = PlayerRules.validate(s.names, if (s.spin) null else s.mode)) {
-            is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = v.reason) }; false }
+            is PlayerRules.Result.Invalid -> { _setup.update { it.copy(error = SetupError.Players(v.problem)) }; false }
             is PlayerRules.Result.Valid -> {
                 val pool = cards.filter { it.id !in reported }
                 session = try {
@@ -124,7 +149,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
                         spin = s.spin,
                     )
                 } catch (e: IllegalArgumentException) {
-                    _setup.update { it.copy(error = "No cards left for this mode and intensity.") }
+                    _setup.update { it.copy(error = SetupError.NoCards) }
                     return false
                 }
                 _game.value = session!!.state

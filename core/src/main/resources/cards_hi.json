@@ -1,0 +1,1113 @@
+[
+  {
+    "id": "hin-truth-chill-01",
+    "text": "{name}, सच बताओ: फ़ोन में सबसे शर्मनाक गाना कौन सा है?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-02",
+    "text": "आख़िरी बार कब बिना वजह मम्मी-पापा से झूठ बोला था?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-03",
+    "text": "कौन सा खाना तुम चुपके से अकेले खा जाते हो ताकि बाँटना न पड़े?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-04",
+    "text": "{name}, स्कूल में तुम्हारा सबसे मज़ेदार निकनेम क्या था?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-05",
+    "text": "कौन सी फ़िल्म देखकर तुम सबसे ज़्यादा रोए हो?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-06",
+    "text": "ग्रुप में सबसे ज़्यादा लेट कौन आता है, और उसका सबसे अच्छा बहाना क्या था?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-07",
+    "text": "किस ऐप पर सबसे ज़्यादा समय बर्बाद करते हो?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-08",
+    "text": "तुम्हारा सबसे अजीब खाने का कॉम्बिनेशन क्या है?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-09",
+    "text": "{name}, आख़िरी गूगल सर्च क्या थी? सच-सच बताना।",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-10",
+    "text": "शादी में डांस करते हुए सबसे बुरा पल कौन सा था?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-chill-11",
+    "text": "कौन सा सेलिब्रिटी तुम्हें चुपके से बिल्कुल पसंद नहीं?",
+    "category": "truth",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-01",
+    "text": "{name}, किस एक्स की प्रोफ़ाइल आज भी कभी-कभी चुपके से देखते हो?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-02",
+    "text": "इस ग्रुप में किसके मैसेज का जवाब तुम सबसे देर से देते हो, और क्यों?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-03",
+    "text": "सबसे बड़ा झूठ जो तुमने किसी डेट पर बोला हो?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-04",
+    "text": "{name}, {other} के बारे में तुम्हारा पहला इम्प्रेशन क्या था?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-05",
+    "text": "कभी किसी का मैसेज ग़लती से ग़लत इंसान को भेज दिया? क्या लिखा था?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-06",
+    "text": "ऑफ़िस या कॉलेज में किस पर क्रश था जो किसी को नहीं पता?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-07",
+    "text": "सबसे शर्मनाक पिकअप लाइन जो तुमने सच में इस्तेमाल की हो?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-08",
+    "text": "कौन सी बात मम्मी-पापा से अब तक छुपा कर रखी है?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-09",
+    "text": "{name}, अपनी चैट हिस्ट्री में से कौन सी चैट डिलीट करना चाहोगे?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-10",
+    "text": "सबसे अजीब डेट कैसी गई थी?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-bold-11",
+    "text": "किस दोस्त की शादी में तुम सिर्फ़ खाने के लिए गए थे?",
+    "category": "truth",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-truth-wild-01",
+    "text": "{name}, इस कमरे में किसके साथ एक दिन के लिए ज़िंदगी बदलोगे और क्यों?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-02",
+    "text": "सबसे हिम्मत वाला काम जो तुमने किसी क्रश को इम्प्रेस करने के लिए किया?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-03",
+    "text": "अपनी सबसे बड़ी ग़लती बताओ जो तुम दोबारा भी करोगे।",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-04",
+    "text": "{name}, {other} की कौन सी आदत तुम्हें चुपके से पसंद है?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-05",
+    "text": "कभी किसी को अचानक जवाब देना बंद करके गायब हुए हो? क्यों?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-06",
+    "text": "सबसे जोखिम वाला मैसेज जो तुमने रात को 2 बजे भेजा हो?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-07",
+    "text": "अगर कल सबकी चैट हिस्ट्री लीक हो जाए, तो सबसे ज़्यादा किस बात से डरोगे?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-08",
+    "text": "तुम्हारी सबसे बड़ी 'रेड फ़्लैग' आदत क्या है जो तुम ख़ुद मानते हो?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-09",
+    "text": "{name}, इस ग्रुप में सबसे ज़्यादा फ़्लर्ट कौन करता है? नाम लो।",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-truth-wild-10",
+    "text": "कौन सा राज़ है जो सिर्फ़ एक इंसान को पता है?",
+    "category": "truth",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-chill-01",
+    "text": "{name}, बॉलीवुड विलेन की तरह 30 सेकंड का डायलॉग बोलो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hin-dare-chill-02",
+    "text": "कोई भी विज्ञापन का जिंगल पूरे इमोशन के साथ गाओ।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-03",
+    "text": "{name}, {other} की सबसे अच्छी नकल करो जब तक कोई पहचान न ले।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-04",
+    "text": "अगले दो टर्न तक सिर्फ़ शुद्ध हिंदी में बात करो, अंग्रेज़ी का एक भी शब्द नहीं।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-05",
+    "text": "एक काल्पनिक चाय की दुकान का विज्ञापन बनाओ और पिच करो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-06",
+    "text": "{name}, अपने पिछले वीकेंड को न्यूज़ एंकर की तरह रिपोर्ट करो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-07",
+    "text": "एक मिनट तक बिना हँसे {other} की आँखों में देखो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-dare-chill-08",
+    "text": "कमरे की किसी भी चीज़ को शार्क टैंक पर पिच करो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-09",
+    "text": "अपना पसंदीदा बॉलीवुड डायलॉग ड्रामेटिक अंदाज़ में बोलो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-10",
+    "text": "दस सेकंड में ख़ुद को शादी के डीजे की तरह इंट्रोड्यूस करो।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-chill-11",
+    "text": "ग्रुप के लिए एक नया हैंडशेक बनाओ और सबको सिखाओ।",
+    "category": "dare",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-01",
+    "text": "{name}, {other} के लिए एक फ़िल्मी शायरी सुनाओ।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-02",
+    "text": "अपनी आख़िरी सेल्फ़ी ग्रुप को दिखाओ, या स्किप करो।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-03",
+    "text": "{name}, ग्रुप जो गाना चुने उस पर 30 सेकंड नाचो।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hin-dare-bold-04",
+    "text": "अपने क्रश को सोचकर एक प्रपोज़ल सीन एक्ट करो।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-05",
+    "text": "अपने हाल के आख़िरी तीन इमोजी से एक कहानी बनाओ और सुनाओ।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-06",
+    "text": "{name}, {other} का इंस्टाग्राम बायो नया लिखो और पढ़कर सुनाओ।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-07",
+    "text": "अगले तीन टर्न तक हर वाक्य 'अरे यार' से शुरू करो।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-08",
+    "text": "ड्रामेटिक टीवी सीरियल वाली एंट्री मारो, म्यूज़िक के साथ।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-09",
+    "text": "{name}, सबको एक-एक तारीफ़ दो, बिना दोहराए।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-10",
+    "text": "ग्रुप की पसंद का फ़िल्टर लगाकर सेल्फ़ी लो, सिर्फ़ ग्रुप के लिए।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-dare-bold-11",
+    "text": "एक मिनट के लिए स्टैंड-अप कॉमेडियन बनो, विषय ग्रुप देगा।",
+    "category": "dare",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-dare-wild-01",
+    "text": "{name}, {other} के साथ एक धीमा रोमांटिक बॉलीवुड सीन दोबारा करो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-02",
+    "text": "अपने फ़ोन का कोई भी पुराना मैसेज ग्रुप को पढ़कर सुनाओ, पसंद तुम्हारी।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-03",
+    "text": "{name}, ग्रुप के किसी एक इंसान को 30 सेकंड तक प्यार से रोस्ट करो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 30
+  },
+  {
+    "id": "hin-dare-wild-04",
+    "text": "अगले राउंड तक {other} जो बोले वही करो, अगर वो सुरक्षित हो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-05",
+    "text": "अपनी सबसे शर्मनाक पुरानी फ़ोटो दिखाओ, या स्किप करो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-06",
+    "text": "{name}, अपनी डेटिंग प्रोफ़ाइल का बायो ऐसे बोलो जैसे अभी लिख रहे हो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-07",
+    "text": "ग्रुप तुम्हारा नया निकनेम तय करेगा, गेम ख़त्म होने तक वही चलेगा।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-08",
+    "text": "{name}, {other} को एक मिनट तक एकदम फ़िल्मी अंदाज़ में मनाओ।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-dare-wild-09",
+    "text": "किसी आइटम नंबर का हुक स्टेप करो, पूरे जोश के साथ।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-dare-wild-10",
+    "text": "अपना आख़िरी वॉइस नोट ग्रुप को सुनाओ, या स्किप करो।",
+    "category": "dare",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-chill-01",
+    "text": "{name}, ज़िंदगी भर बिरयानी या ज़िंदगी भर पिज़्ज़ा?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-02",
+    "text": "हमेशा 10 मिनट लेट या हमेशा 20 मिनट जल्दी?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-03",
+    "text": "बिना एसी की गर्मी या बिना गीज़र की सर्दी?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-04",
+    "text": "एक साल बिना फ़ोन या एक साल बिना चाय?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-05",
+    "text": "हर शादी में डांस करना पड़े या हर शादी में भाषण देना पड़े?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-06",
+    "text": "मम्मी तुम्हारी चैट पढ़ लें या पापा तुम्हारी सर्च हिस्ट्री?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-chill-07",
+    "text": "दोस्तों के साथ गोवा ट्रिप या परिवार के साथ यूरोप ट्रिप?",
+    "category": "wyr",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-01",
+    "text": "{name}, एक्स के साथ एक डेट या बॉस के साथ एक छुट्टी?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-02",
+    "text": "तुम्हारी सारी चैट वायरल हो जाएँ या सारी फ़ोटो?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-03",
+    "text": "क्रश को ग़लती से 'लव यू' भेजना या बॉस को?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-04",
+    "text": "अरेंज्ड शादी मम्मी-पापा की पसंद से या दोस्त की पसंद से?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-05",
+    "text": "{name}, {other} के साथ एक हफ़्ता कमरा शेयर या एक हफ़्ता फ़ोन शेयर?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-06",
+    "text": "हर डेट पर तुम्हारी मम्मी साथ आएँ या हर डेट लाइव स्ट्रीम हो?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-bold-07",
+    "text": "कभी झूठ न बोल पाओ या कभी सच न बोल पाओ?",
+    "category": "wyr",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-wyr-wild-01",
+    "text": "{name}, अपना सबसे बड़ा राज़ फ़ैमिली ग्रुप पर या ऑफ़िस ग्रुप पर?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-wild-02",
+    "text": "क्रश तुम्हारे सारे पुराने मैसेज पढ़ ले या तुम्हारी सारी पुरानी फ़ोटो देख ले?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-wild-03",
+    "text": "एक दिन के लिए तुम {other} बन जाओ या {other} एक दिन के लिए तुम बन जाए?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-wild-04",
+    "text": "हर बात पर सच बोलना पड़े या कभी किसी को न बता पाओ कि क्या महसूस कर रहे हो?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-wild-05",
+    "text": "एक्स की शादी में डांस करना पड़े या भाषण देना पड़े?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-wyr-wild-06",
+    "text": "अपनी सर्च हिस्ट्री सबको दिखाओ या अपनी गैलरी?",
+    "category": "wyr",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-couple-chill-01",
+    "text": "पार्टनर की कौन सी छोटी सी आदत तुम्हें सबसे प्यारी लगती है?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-chill-02",
+    "text": "पहली बार मिले थे तो एक-दूसरे के बारे में क्या सोचा था?",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-chill-03",
+    "text": "एक-दूसरे के लिए एक परफ़ेक्ट रविवार प्लान करो, एक मिनट में।",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-chill-04",
+    "text": "पार्टनर का पसंदीदा कम्फ़र्ट फ़ूड बताओ। सही हुआ तो पॉइंट।",
+    "category": "couple",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-bold-01",
+    "text": "पार्टनर को एक फ़िल्मी लाइन में प्रपोज़ करो, पूरे ड्रामे के साथ।",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-bold-02",
+    "text": "सबसे मज़ेदार लड़ाई किस बात पर हुई थी?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-bold-03",
+    "text": "पार्टनर का कौन सा आउटफ़िट तुम्हें सबसे ज़्यादा पसंद है?",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-bold-04",
+    "text": "एक-दूसरे की सबसे अच्छी नकल करो और ग्रुप जज करेगा।",
+    "category": "couple",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-couple-wild-01",
+    "text": "बॉलीवुड का कोई रोमांटिक सीन साथ में दोबारा करो, ग्रुप डायरेक्ट करेगा।",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-couple-wild-02",
+    "text": "पार्टनर के कान में कुछ ऐसा बोलो जो ग्रुप को पता न चले।",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-couple-wild-03",
+    "text": "30 सेकंड तक बिना म्यूज़िक के धीमा डांस करो।",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-couple-wild-04",
+    "text": "पार्टनर की सबसे आकर्षक आदत बताओ, सबके सामने।",
+    "category": "couple",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-nhie-001",
+    "text": "मैंने कभी मम्मी से झूठ नहीं बोला कि होमवर्क हो गया है।",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-002",
+    "text": "मैं कभी किसी शादी में सिर्फ़ खाने के लिए नहीं गया।",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-003",
+    "text": "मैंने कभी ऑटो वाले से 10 रुपये के लिए 10 मिनट बहस नहीं की।",
+    "category": "nhie",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-004",
+    "text": "मैंने कभी किसी का मैसेज 'सीन' करके नज़रअंदाज़ नहीं किया।",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-005",
+    "text": "मैंने कभी घरवालों से छुपकर पार्टी नहीं की।",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-006",
+    "text": "मैंने कभी रात को 2 बजे एक्स की प्रोफ़ाइल नहीं देखी।",
+    "category": "nhie",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-nhie-007",
+    "text": "मैंने कभी इस ग्रुप में किसी पर क्रश नहीं किया।",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-nhie-008",
+    "text": "मैंने कभी डेट पर बोर होकर जाने का बहाना नहीं बनाया।",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-nhie-009",
+    "text": "मैंने कभी किसी को फ़्लर्टी मैसेज भेजकर तुरंत डिलीट नहीं किया।",
+    "category": "nhie",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-mlt-001",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि मैगी भी जला दे?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-002",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि फ़ैमिली व्हाट्सऐप ग्रुप पर गुड मॉर्निंग भेजे?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-003",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि फ़िल्म के बीच में सो जाए?",
+    "category": "mlt",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-004",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि आज रात एक्स को मैसेज करे?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-005",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि 'बस पाँच मिनट' बोलकर एक घंटा लेट आए?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-006",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि सैलरी आते ही सब उड़ा दे?",
+    "category": "mlt",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe"
+  },
+  {
+    "id": "hin-mlt-007",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि शादी में किसी पर लाइन मारे?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-mlt-008",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि अपने बेस्ट फ़्रेंड पर ही फ़िदा हो जाए?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-mlt-009",
+    "text": "किसके सबसे ज़्यादा चांस हैं कि सबसे फ़िल्मी प्रपोज़ल करे?",
+    "category": "mlt",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "hin-hotseat-001",
+    "text": "हॉट सीट: {name}, सब तुमसे बचपन के बारे में फटाफट सवाल पूछेंगे।",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-002",
+    "text": "हॉट सीट: {name}, हर खिलाड़ी एक 'ये या वो' पूछेगा। दो सेकंड में जवाब दो।",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-003",
+    "text": "हॉट सीट: {name}, {other} पसंदीदा खाने और फ़िल्मों पर तुम्हारा छोटा सा इंटरव्यू लेगा।",
+    "category": "hotseat",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-004",
+    "text": "हॉट सीट: {name}, सब तुमसे सबसे शर्मनाक पलों के बारे में पूछेंगे।",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-005",
+    "text": "हॉट सीट: {name}, हर खिलाड़ी पूछेगा कि तुम सच में उसके बारे में क्या सोचते हो।",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-006",
+    "text": "हॉट सीट: {name}, ग्रुप तुमसे तुम्हारे आख़िरी झूठ के बारे में पूछेगा।",
+    "category": "hotseat",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-007",
+    "text": "हॉट सीट: {name}, ग्रुप तुमसे क्रश के बारे में पूछेगा। दो बार पास कर सकते हो।",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-008",
+    "text": "हॉट सीट: {name}, सब पूछेंगे कि तुम्हारा आदर्श पार्टनर कैसा हो।",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-hotseat-009",
+    "text": "हॉट सीट: {name}, {other} तीन फ़्लर्टी सवाल पूछेगा। चेहरा सीधा रखना।",
+    "category": "hotseat",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "hin-closer-chill-01",
+    "text": "{name}, {other} को बताओ कि कब पहली बार लगा कि तुम उन्हें पसंद करते हो।",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "hin-closer-chill-02",
+    "text": "हाथ पकड़ो और एक-दूसरे की आँखों में देखो। हँसना मना है!",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 45,
+    "pose": "hands"
+  },
+  {
+    "id": "hin-closer-chill-03",
+    "text": "{name}, {other} की तीन तारीफ़ें करो, लुक्स के अलावा।",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "pose": "talk"
+  },
+  {
+    "id": "hin-closer-chill-04",
+    "text": "{name}, {other} का पसंदीदा गाना गुनगुनाओ और साथ में धीरे-धीरे नाचो।",
+    "category": "closer",
+    "intensity": "chill",
+    "language": "hi",
+    "safety": "safe",
+    "timerSeconds": 60,
+    "pose": "slow_dance"
+  },
+  {
+    "id": "hin-closer-bold-01",
+    "text": "{name}, {other} के कान में धीरे से बोलो कि उनकी कौन सी बात सबसे आकर्षक है।",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "whisper"
+  },
+  {
+    "id": "hin-closer-bold-02",
+    "text": "{name}, {other} को कंधे और गर्दन की मालिश दो। {other} बताएगा कितना दबाव ठीक है।",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 90,
+    "pose": "massage"
+  },
+  {
+    "id": "hin-closer-bold-03",
+    "text": "{name}, {other} के साथ ऐसे फ़्लर्ट करो जैसे पहली बार किसी कैफ़े में मिल रहे हो।",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "timerSeconds": 45,
+    "pose": "talk"
+  },
+  {
+    "id": "hin-closer-bold-04",
+    "text": "चेक-इन: {name}, {other} से पूछो कि आजकल उन्हें किस तरह का प्यार सबसे अच्छा लगता है।",
+    "category": "closer",
+    "intensity": "bold",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  },
+  {
+    "id": "hin-closer-wild-01",
+    "text": "{name}, पहले पूछो, फिर {other} की गर्दन पर एक धीमी सी किस दो।",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "kiss_cheek"
+  },
+  {
+    "id": "hin-closer-wild-02",
+    "text": "{other} की आँखें बंद। {name} किचन से तीन चीज़ें खिलाओ, {other} पहचानेगा।",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "feed"
+  },
+  {
+    "id": "hin-closer-wild-03",
+    "text": "{name}, {other} को ऐसे किस करो जैसे रोमांटिक फ़िल्म का आख़िरी सीन हो।",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "slow_dance"
+  },
+  {
+    "id": "hin-closer-wild-04",
+    "text": "चेक-इन: {name}, {other} से पूछो कि अभी कैसा महसूस हो रहा है, और माहौल और गरम करना है या धीमा।",
+    "category": "closer",
+    "intensity": "wild",
+    "language": "hi",
+    "safety": "mild_suggestive",
+    "pose": "talk"
+  }
+]

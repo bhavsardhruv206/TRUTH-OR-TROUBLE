@@ -210,10 +210,12 @@ class CoreTest {
     }
 
     @Test fun newModesFollowTheirFormat() {
-        allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
+        val latinScript = setOf(CardLanguage.ENGLISH.code, CardLanguage.HINGLISH.code)
+        allCards.filter { it.category == GameMode.NEVER_HAVE_I_EVER && it.language in latinScript }.forEach { assertTrue(it.text.startsWith("Never have I ever"), it.id) }
         allCards.filter { it.category == GameMode.MOST_LIKELY_TO && it.language == "en" }.forEach { assertTrue(it.text.startsWith("Who is most likely to"), it.id) }
         allCards.filter { it.category == GameMode.HOT_SEAT }.forEach {
-            assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
+            if (it.language in latinScript) assertTrue(it.text.startsWith("Hot seat: {name}"), it.id)
+            assertTrue(it.text.contains("{name}"), it.id)
             assertEquals(60, it.timerSeconds, it.id)
         }
     }
@@ -311,5 +313,50 @@ class CoreTest {
         }
         allCards.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose ${it.pose}") }
         assertTrue(allCards.filter { it.category != GameMode.CLOSER }.all { it.pose == null })
+    }
+
+    @Test fun everyLanguageHasAFullCardPack() {
+        assertEquals(CardLanguage.entries.size, CardLanguage.entries.map { it.code }.toSet().size)
+        CardLanguage.entries.forEach { lang ->
+            val pack = allCards.filter { it.language == lang.code }
+            assertTrue(pack.size >= 90, "${lang.code} has ${pack.size} cards")
+            assertEquals(pack.size, pack.map { it.text }.toSet().size, "${lang.code} texts unique")
+            pack.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
+            pack.filter { it.category == GameMode.CLOSER }.forEach { assertNotNull(PoseLibrary.get(it.pose), "${it.id} pose") }
+            GameMode.entries.forEach { m ->
+                Intensity.entries.forEach { i -> assertTrue(pack.any { it.category == m && it.intensity == i }, "missing ${lang.code} $m/$i") }
+            }
+        }
+    }
+
+    @Test fun everyLanguageHasFullAppText() {
+        CardLanguage.entries.forEach { lang ->
+            val s = com.afterhours.core.i18n.UiStrings.of(lang)
+            assertEquals(5, s.tutorial.size, lang.code)
+            assertEquals(com.afterhours.core.i18n.EnglishStrings.reportReasons.size, s.reportReasons.size, lang.code)
+            if (lang != CardLanguage.ENGLISH) {
+                assertEquals(ChaosEvents.all.map { it.id }.toSet(), s.chaos.keys, "${lang.code} chaos")
+                assertEquals(PoseLibrary.all.map { it.id }.toSet(), s.poses.keys, "${lang.code} poses")
+            }
+            ChaosEvents.all.forEach { e -> s.chaosText(e).let { assertTrue(it.title.isNotBlank() && it.text.isNotBlank()) } }
+            GameMode.entries.forEach { assertTrue(s.mode(it).isNotBlank()); assertTrue(s.game(it).howTo.isNotBlank()) }
+            PlayerRules.Problem.entries.forEach { assertTrue(s.problem(it).isNotBlank()) }
+        }
+        val hindi = com.afterhours.core.i18n.UiStrings.of(CardLanguage.HINDI)
+        assertNotEquals(com.afterhours.core.i18n.EnglishStrings.startGame, hindi.startGame)
+    }
+
+    @Test fun phoneLocalePicksMatchingLanguage() {
+        assertEquals(CardLanguage.HINDI, CardLanguage.forLocale("hi-IN"))
+        assertEquals(CardLanguage.GUJARATI, CardLanguage.forLocale("gu"))
+        assertEquals(CardLanguage.MARATHI, CardLanguage.forLocale("mr_IN"))
+        assertEquals(CardLanguage.SPANISH, CardLanguage.forLocale("es-MX"))
+        assertEquals(CardLanguage.ENGLISH, CardLanguage.forLocale("fr-FR"))
+        assertEquals(CardLanguage.HINGLISH, CardLanguage.fromCode("hi-Latn"))
+    }
+
+    @Test fun invalidPlayersExplainTheProblem() {
+        assertEquals(PlayerRules.Problem.DUPLICATE_NAME, (PlayerRules.validate(listOf("Ann", "ann")) as PlayerRules.Result.Invalid).problem)
+        assertEquals(PlayerRules.Problem.TOO_FEW, (PlayerRules.validate(listOf("Ann")) as PlayerRules.Result.Invalid).problem)
     }
 }

@@ -11,18 +11,21 @@ object PlayerRules {
 
     sealed interface Result {
         data class Valid(val names: List<String>) : Result
-        data class Invalid(val reason: String) : Result
+        data class Invalid(val problem: Problem, val reason: String) : Result
     }
+
+    /** Why a list of players can't start a game. The UI shows it in the player's language. */
+    enum class Problem { COUPLE_COUNT, TOO_FEW, TOO_MANY, EMPTY_NAME, NAME_TOO_LONG, DUPLICATE_NAME }
 
     /** [mode] adds that game's own player rules, such as exactly two players for couples-only games. */
     fun validate(rawNames: List<String>, mode: GameMode? = null): Result {
         val names = rawNames.map { it.trim() }
-        if (mode?.couplesOnly == true && names.size != COUPLE_PLAYERS) return Result.Invalid("${mode.label} is for exactly $COUPLE_PLAYERS players: you and your partner.")
-        if (names.size < MIN_PLAYERS) return Result.Invalid("Add at least $MIN_PLAYERS players.")
-        if (names.size > MAX_PLAYERS) return Result.Invalid("At most $MAX_PLAYERS players can play.")
-        if (names.any { it.isEmpty() }) return Result.Invalid("Every player needs a nickname.")
-        if (names.any { it.length > MAX_NAME_LENGTH }) return Result.Invalid("Nicknames can be up to $MAX_NAME_LENGTH characters.")
-        if (names.map { it.lowercase() }.toSet().size != names.size) return Result.Invalid("Nicknames must be different.")
+        if (mode?.couplesOnly == true && names.size != COUPLE_PLAYERS) return Result.Invalid(Problem.COUPLE_COUNT, "${mode.label} is for exactly $COUPLE_PLAYERS players: you and your partner.")
+        if (names.size < MIN_PLAYERS) return Result.Invalid(Problem.TOO_FEW, "Add at least $MIN_PLAYERS players.")
+        if (names.size > MAX_PLAYERS) return Result.Invalid(Problem.TOO_MANY, "At most $MAX_PLAYERS players can play.")
+        if (names.any { it.isEmpty() }) return Result.Invalid(Problem.EMPTY_NAME, "Every player needs a nickname.")
+        if (names.any { it.length > MAX_NAME_LENGTH }) return Result.Invalid(Problem.NAME_TOO_LONG, "Nicknames can be up to $MAX_NAME_LENGTH characters.")
+        if (names.map { it.lowercase() }.toSet().size != names.size) return Result.Invalid(Problem.DUPLICATE_NAME, "Nicknames must be different.")
         return Result.Valid(names)
     }
 }
