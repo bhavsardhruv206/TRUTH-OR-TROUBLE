@@ -18,7 +18,10 @@ data class SetupState(
     val names: List<String> = listOf("", ""),
     val rounds: Int = GameSession.DEFAULT_ROUNDS,
     val error: String? = null,
-)
+) {
+    /** How many people are playing, chosen right after Play game. */
+    val playerCount: Int get() = names.size
+}
 
 class GameViewModel(app: Application) : AndroidViewModel(app) {
     private val prefs = Prefs(app)
@@ -94,12 +97,10 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         s.copy(names = s.names.toMutableList().also { it[index] = name.take(PlayerRules.MAX_NAME_LENGTH) }, error = null)
     }
 
-    fun addPlayer() = _setup.update { s ->
-        if (!couplesOnly && s.names.size < PlayerRules.MAX_PLAYERS) s.copy(names = s.names + "") else s
-    }
-
-    fun removePlayer(index: Int) = _setup.update { s ->
-        if (s.names.size > PlayerRules.MIN_PLAYERS) s.copy(names = s.names.filterIndexed { i, _ -> i != index }) else s
+    /** Sets how many people play. Names already typed are kept; extra slots start empty. */
+    fun setPlayerCount(count: Int) = _setup.update { s ->
+        val n = count.coerceIn(PlayerRules.MIN_PLAYERS, PlayerRules.MAX_PLAYERS)
+        s.copy(names = (s.names + List(n) { "" }).take(n), error = null)
     }
 
     /** Returns true when the game started. */

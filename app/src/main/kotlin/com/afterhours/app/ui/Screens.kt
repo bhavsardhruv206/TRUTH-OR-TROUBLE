@@ -93,8 +93,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     adsRemoved = adsRemoved,
                     removeAdsPrice = price,
                     privacyRequired = privacyRequired,
-                    onPlay = { feedback.tap(); nav.navigate("games") },
-                    onSpin = { feedback.tap(); vm.selectSpin(); nav.navigate("difficulty") },
+                    onPlay = { feedback.tap(); nav.navigate("players") },
                     onHowToPlay = { nav.navigate("tutorial") },
                     onSound = vm::setSound,
                     onHaptics = vm::setHaptics,
@@ -103,6 +102,16 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
                     onPrivacy = { consent.showPrivacyOptions(activity) },
                     onRemoveAds = { billing.buy(activity) },
                     onRestore = { billing.refresh() },
+                )
+            }
+        }
+        composable("players") {
+            val s by vm.setup.collectAsStateWithLifecycle()
+            WithBanner(showBanner) {
+                PlayerCountScreen(
+                    s, vm::setPlayerCount,
+                    onNext = { feedback.tap(); nav.navigate("games") },
+                    onBack = { nav.popBackStack() },
                 )
             }
         }
@@ -126,7 +135,7 @@ private fun AppNav(vm: GameViewModel, ads: AdManager, consent: ConsentManager, b
             val s by vm.setup.collectAsStateWithLifecycle()
             WithBanner(showBanner) {
                 SetupScreen(
-                    s, vm::setName, vm::addPlayer, vm::removePlayer, vm::selectRounds,
+                    s, vm::setName, vm::selectRounds,
                     onStart = { if (vm.startGame()) { feedback.tap(); nav.navigate("game") } },
                     onBack = { nav.popBackStack() },
                 )
@@ -350,8 +359,8 @@ fun AgeGateScreen(onConfirm: () -> Unit) {
 private data class TutorialStep(val eyebrow: String, val title: String, val body: String)
 
 private val tutorialSteps = listOf(
-    TutorialStep("1 / 5", "Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
-    TutorialStep("2 / 5", "Pick your game", "Open Games and tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
+    TutorialStep("1 / 5", "Choose your players", "Tap Play game and choose how many people are playing, from 2 to 8. Then type everyone's name. On each turn the phone goes to the person named at the top."),
+    TutorialStep("2 / 5", "Pick your game", "Tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group.\nCloser is for couples, so it opens only when 2 are playing."),
     TutorialStep("3 / 5", "Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
     TutorialStep("4 / 5", "Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
     TutorialStep("5 / 5", "Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
@@ -391,7 +400,6 @@ fun HomeScreen(
     removeAdsPrice: String?,
     privacyRequired: Boolean,
     onPlay: () -> Unit,
-    onSpin: () -> Unit,
     onHowToPlay: () -> Unit,
     onSound: (Boolean) -> Unit,
     onHaptics: (Boolean) -> Unit,
@@ -409,9 +417,7 @@ fun HomeScreen(
         Spacer(Modifier.height(20.dp))
         Muted("${games.size - 1} games for 2 to 8 adults.\nPlus Closer, just for couples.", textAlign = TextAlign.Center)
         Spacer(Modifier.weight(1f))
-        PrimaryButton("Games", onPlay, Modifier.fillMaxWidth())
-        Spacer(Modifier.height(10.dp))
-        SecondaryButton("Spin the wheel", onSpin, Modifier.fillMaxWidth())
+        PrimaryButton("Play game", onPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(10.dp))
         SecondaryButton("How to play", onHowToPlay, Modifier.fillMaxWidth())
         Spacer(Modifier.height(4.dp))
@@ -540,23 +546,84 @@ private fun intensityDescription(i: Intensity) = when (i) {
 fun GamesScreen(s: SetupState, onPick: (GameMode?) -> Unit, onBack: () -> Unit) {
     val current = selectedGame(s)
     var gateFor by remember { mutableStateOf<GameMode?>(null) }
-    val pick: (GameMode?) -> Unit = { m -> if (m?.couplesOnly == true) gateFor = m else onPick(m) }
+    var lockedNote by remember { mutableStateOf<String?>(null) }
+    val pick: (GameMode?) -> Unit = { m ->
+        when {
+            m != null && !playableWith(m, s.playerCount) ->
+                lockedNote = "${m.label} is for exactly ${PlayerRules.COUPLE_PLAYERS} players. Go back and choose ${PlayerRules.COUPLE_PLAYERS} to play it."
+            m?.couplesOnly == true -> gateFor = m
+            else -> onPick(m)
+        }
+    }
     gateFor?.let { m -> CouplesGate(onAgree = { gateFor = null; onPick(m) }, onCancel = { gateFor = null }) }
     Page {
         BackRow(onBack)
         Text("Games", style = MaterialTheme.typography.headlineMedium)
-        Muted("${games.size} games · pick one to play", Modifier.padding(top = 4.dp, bottom = 12.dp))
+        Muted("${s.playerCount} players · pick a game", Modifier.padding(top = 4.dp, bottom = 12.dp))
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             games.groupBy { it.group }.forEach { (group, entries) ->
                 Eyebrow(group, modifier = Modifier.padding(top = 6.dp))
                 entries.chunked(2).forEach { pair ->
                     Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        pair.forEach { g -> GameTile(g, g == current, Modifier.weight(1f).fillMaxHeight(), wide = pair.size == 1 && group == "Featured") { pick(g.mode) } }
+                        pair.forEach { g -> GameTile(
+                            g, g == current, Modifier.weight(1f).fillMaxHeight(),
+                            wide = pair.size == 1 && group == "Featured",
+                            locked = g.mode != null && !playableWith(g.mode, s.playerCount),
+                        ) { pick(g.mode) } }
                         if (pair.size == 1 && group != "Featured") Spacer(Modifier.weight(1f))
                     }
                 }
             }
         }
+        lockedNote?.let { Muted(it, Modifier.padding(top = 8.dp)) }
+    }
+}
+
+/** Couples-only games need exactly two players; every other game takes any count. */
+private fun playableWith(mode: GameMode, count: Int) = !mode.couplesOnly || count == PlayerRules.COUPLE_PLAYERS
+
+/** Step after Play game: how many people are playing. Big number with minus and plus. */
+@Composable
+fun PlayerCountScreen(s: SetupState, onCount: (Int) -> Unit, onNext: () -> Unit, onBack: () -> Unit) {
+    val n = s.playerCount
+    Page {
+        BackRow(onBack)
+        Text("How many players?", style = MaterialTheme.typography.headlineMedium)
+        Muted("Pass one phone around. ${PlayerRules.MIN_PLAYERS} to ${PlayerRules.MAX_PLAYERS} people can play.", Modifier.padding(top = 4.dp))
+        Spacer(Modifier.weight(1f))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+            CountButton("−", enabled = n > PlayerRules.MIN_PLAYERS) { onCount(n - 1) }
+            Text(
+                "$n", style = MaterialTheme.typography.displayMedium.copy(fontSize = 88.sp, lineHeight = 96.sp),
+                color = Ivory, textAlign = TextAlign.Center, modifier = Modifier.width(140.dp),
+            )
+            CountButton("+", enabled = n < PlayerRules.MAX_PLAYERS) { onCount(n + 1) }
+        }
+        Eyebrow("players", Stone, Modifier.align(Alignment.CenterHorizontally))
+        Spacer(Modifier.height(28.dp))
+        Segmented((PlayerRules.MIN_PLAYERS..PlayerRules.MAX_PLAYERS).toList(), n, { "$it" }, onCount)
+        Spacer(Modifier.height(12.dp))
+        Muted(
+            if (n == PlayerRules.COUPLE_PLAYERS) "Every game is open, including Closer for couples."
+            else "Every game except Closer, which is just for 2.",
+            Modifier.align(Alignment.CenterHorizontally), textAlign = TextAlign.Center,
+        )
+        Spacer(Modifier.weight(1f))
+        PrimaryButton("Next: choose a game", onNext, Modifier.fillMaxWidth())
+    }
+}
+
+@Composable
+private fun CountButton(text: String, enabled: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(50)
+    Box(
+        Modifier.size(56.dp).clip(shape)
+            .border(1.dp, if (enabled) HairlineStrong else Hairline, shape)
+            .background(Graphite)
+            .clickable(enabled = enabled, onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text, fontSize = 28.sp, color = if (enabled) Champagne else Hairline)
     }
 }
 
@@ -582,10 +649,10 @@ private fun CouplesGate(onAgree: () -> Unit, onCancel: () -> Unit) {
 }
 
 @Composable
-private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: Boolean, onClick: () -> Unit) {
+private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: Boolean, locked: Boolean = false, onClick: () -> Unit) {
     val shape = RoundedCornerShape(16.dp)
     Column(
-        modifier.clip(shape)
+        modifier.graphicsLayer { alpha = if (locked) .45f else 1f }.clip(shape)
             .background(if (selected) GraphiteHigh else Graphite)
             .border(1.dp, if (selected || wide) Champagne.copy(alpha = if (selected) 1f else .5f) else Hairline, shape)
             .clickable(onClick = onClick)
@@ -595,6 +662,7 @@ private fun GameTile(g: GameEntry, selected: Boolean, modifier: Modifier, wide: 
         Text(g.title, style = MaterialTheme.typography.titleLarge, color = Ivory)
         Spacer(Modifier.height(4.dp))
         Text(g.blurb, style = MaterialTheme.typography.bodyMedium, color = Stone)
+        if (locked) { Spacer(Modifier.height(6.dp)); Text("2 players only", style = MaterialTheme.typography.labelSmall, color = Champagne) }
     }
 }
 
@@ -633,8 +701,6 @@ fun DifficultyScreen(
 fun SetupScreen(
     s: SetupState,
     onName: (Int, String) -> Unit,
-    onAdd: () -> Unit,
-    onRemove: (Int) -> Unit,
     onRounds: (Int) -> Unit,
     onStart: () -> Unit,
     onBack: () -> Unit,
@@ -644,7 +710,7 @@ fun SetupScreen(
         Text("Who's playing?", style = MaterialTheme.typography.headlineMedium)
         val couples = !s.spin && s.mode.couplesOnly
         Muted(
-            if (couples) "Just the two of you · enter both names" else "${s.names.size} players · names are saved for next time",
+            if (couples) "Just the two of you · enter both names" else "${s.playerCount} players · names are saved for next time",
             Modifier.padding(top = 4.dp, bottom = 12.dp),
         )
         LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -662,14 +728,10 @@ fun SetupScreen(
                             unfocusedContainerColor = Graphite, focusedContainerColor = Graphite,
                         ),
                     )
-                    if (s.names.size > PlayerRules.MIN_PLAYERS) TextButton({ onRemove(i) }) { Text("Remove", color = Stone, style = MaterialTheme.typography.bodyMedium) }
                 }
             }
             item {
-                if (!couples && s.names.size < PlayerRules.MAX_PLAYERS) TextButton(onAdd, contentPadding = PaddingValues(0.dp)) {
-                    Text("+  Add player", color = Champagne, style = MaterialTheme.typography.bodyLarge)
-                }
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(8.dp))
                 Eyebrow("Rounds")
                 Spacer(Modifier.height(8.dp))
                 Segmented(GameSession.ROUND_OPTIONS, s.rounds, { "$it" }, onRounds)
