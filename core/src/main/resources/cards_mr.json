@@ -523,7 +523,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 29
   },
   {
     "id": "mr-wyr-chill-02",
@@ -531,7 +532,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 28
   },
   {
     "id": "mr-wyr-chill-03",
@@ -539,7 +541,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 53
   },
   {
     "id": "mr-wyr-chill-04",
@@ -547,7 +550,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 52
   },
   {
     "id": "mr-wyr-chill-05",
@@ -555,7 +559,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 74
   },
   {
     "id": "mr-wyr-chill-06",
@@ -563,7 +568,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 46
   },
   {
     "id": "mr-wyr-chill-07",
@@ -571,7 +577,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 76
   },
   {
     "id": "mr-wyr-bold-01",
@@ -579,7 +586,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 45
   },
   {
     "id": "mr-wyr-bold-02",
@@ -587,7 +595,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 45
   },
   {
     "id": "mr-wyr-bold-03",
@@ -595,7 +604,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 41
   },
   {
     "id": "mr-wyr-bold-04",
@@ -603,7 +613,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 29
   },
   {
     "id": "mr-wyr-bold-05",
@@ -611,7 +622,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 69
   },
   {
     "id": "mr-wyr-bold-06",
@@ -619,7 +631,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 72
   },
   {
     "id": "mr-wyr-bold-07",
@@ -627,7 +640,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "mr",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 41
   },
   {
     "id": "mr-wyr-wild-01",
@@ -635,7 +649,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 65
   },
   {
     "id": "mr-wyr-wild-02",
@@ -643,7 +658,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 46
   },
   {
     "id": "mr-wyr-wild-03",
@@ -651,7 +667,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 66
   },
   {
     "id": "mr-wyr-wild-04",
@@ -659,7 +676,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 27
   },
   {
     "id": "mr-wyr-wild-05",
@@ -667,7 +685,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 76
   },
   {
     "id": "mr-wyr-wild-06",
@@ -675,7 +694,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "mr",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 44
   },
   {
     "id": "mr-couple-chill-01",
@@ -1109,5 +1129,323 @@
     "language": "mr",
     "safety": "mild_suggestive",
     "pose": "talk"
+  },
+  {
+    "id": "mr-tot-chill-01",
+    "text": "चहा की कॉफी?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "चहा",
+      "कॉफी"
+    ],
+    "pickA": 66
+  },
+  {
+    "id": "mr-tot-chill-02",
+    "text": "डोंगर की समुद्र?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "डोंगर",
+      "समुद्र"
+    ],
+    "pickA": 52
+  },
+  {
+    "id": "mr-tot-chill-03",
+    "text": "वडापाव की पिझ्झा?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "वडापाव",
+      "पिझ्झा"
+    ],
+    "pickA": 59
+  },
+  {
+    "id": "mr-charades-chill-01",
+    "text": "करून दाखवा: मगरीचे दात घासणं",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-chill-02",
+    "text": "करून दाखवा: पोळी लाटणं",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-chill-03",
+    "text": "करून दाखवा: रिक्षावाल्याशी घासाघीस",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-chill-01",
+    "text": "एकत्र स्वयंपाक केला",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-02",
+    "text": "आपलं स्वतःचं एक गाणं आहे",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-03",
+    "text": "पूर्ण सिरीज एकत्र पाहिली",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-04",
+    "text": "पिकनिकला गेलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-05",
+    "text": "हसून हसून डोळ्यात पाणी आलं",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-06",
+    "text": "रोड ट्रिपला गेलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-07",
+    "text": "आपला एक खास विनोद आहे",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-08",
+    "text": "व्हिडिओ कॉलवर झोपलो",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-chill-09",
+    "text": "एकच गोड पदार्थ वाटून खाल्ला",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-tot-bold-01",
+    "text": "प्रेमविवाह की ठरवून लग्न?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "प्रेमविवाह",
+      "ठरवून लग्न"
+    ],
+    "pickA": 60
+  },
+  {
+    "id": "mr-tot-bold-02",
+    "text": "मेसेजवर प्रपोज की समोरासमोर प्रपोज?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "मेसेजवर प्रपोज",
+      "समोरासमोर प्रपोज"
+    ],
+    "pickA": 30
+  },
+  {
+    "id": "mr-tot-bold-03",
+    "text": "मोठं लग्न की छोटं लग्न?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "options": [
+      "मोठं लग्न",
+      "छोटं लग्न"
+    ],
+    "pickA": 43
+  },
+  {
+    "id": "mr-charades-bold-01",
+    "text": "करून दाखवा: मालिकेतली नाटकी थप्पड",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-bold-02",
+    "text": "करून दाखवा: लग्नात झिंगाट डान्स",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-bold-03",
+    "text": "करून दाखवा: अंधारात खेळण्यावर पाय पडणं",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-bold-01",
+    "text": "आपल्यापैकी कोणीतरी आधी \"आय लव्ह यू\" म्हटलं",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-bold-02",
+    "text": "एकमेकांच्या आई-बाबांना भेटलो",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-bingo-bold-03",
+    "text": "पहाटेपर्यंत गप्पा मारल्या",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "mr",
+    "safety": "safe"
+  },
+  {
+    "id": "mr-tot-wild-01",
+    "text": "पहिल्या डेटला किस की थांबणं?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "पहिल्या डेटला किस",
+      "थांबणं"
+    ],
+    "pickA": 40
+  },
+  {
+    "id": "mr-tot-wild-02",
+    "text": "क्रशला आत्ता सांगा की कायम गुपित ठेवा?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "क्रशला आत्ता सांगा",
+      "कायम गुपित ठेवा"
+    ],
+    "pickA": 34
+  },
+  {
+    "id": "mr-tot-wild-03",
+    "text": "फ्लर्टी मेसेज की फ्लर्टी नजरा?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "options": [
+      "फ्लर्टी मेसेज",
+      "फ्लर्टी नजरा"
+    ],
+    "pickA": 47
+  },
+  {
+    "id": "mr-charades-wild-01",
+    "text": "करून दाखवा: सर्वात वाईट पहिली डेट",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-wild-02",
+    "text": "करून दाखवा: पार्टीत फ्लर्ट करणं",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-charades-wild-03",
+    "text": "करून दाखवा: क्रशच्या आई-बाबांना भेटणं",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "mr-bingo-wild-01",
+    "text": "पावसात किस केलं",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-bingo-wild-02",
+    "text": "सगळ्यांपासून लपून डेटला गेलो",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "mr-bingo-wild-03",
+    "text": "संगीताशिवाय स्लो डान्स केला",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "mr",
+    "safety": "mild_suggestive"
   }
 ]

@@ -523,7 +523,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 60
   },
   {
     "id": "es-wyr-chill-02",
@@ -531,7 +532,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 33
   },
   {
     "id": "es-wyr-chill-03",
@@ -539,7 +541,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 71
   },
   {
     "id": "es-wyr-chill-04",
@@ -547,7 +550,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 29
   },
   {
     "id": "es-wyr-chill-05",
@@ -555,7 +559,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 41
   },
   {
     "id": "es-wyr-chill-06",
@@ -563,7 +568,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 68
   },
   {
     "id": "es-wyr-chill-07",
@@ -571,7 +577,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 37
   },
   {
     "id": "es-wyr-bold-01",
@@ -579,7 +586,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 43
   },
   {
     "id": "es-wyr-bold-02",
@@ -587,7 +595,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 68
   },
   {
     "id": "es-wyr-bold-03",
@@ -595,7 +604,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 62
   },
   {
     "id": "es-wyr-bold-04",
@@ -603,7 +613,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 66
   },
   {
     "id": "es-wyr-bold-05",
@@ -611,7 +622,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 45
   },
   {
     "id": "es-wyr-bold-06",
@@ -619,7 +631,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 40
   },
   {
     "id": "es-wyr-bold-07",
@@ -627,7 +640,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "es",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 63
   },
   {
     "id": "es-wyr-wild-01",
@@ -635,7 +649,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 25
   },
   {
     "id": "es-wyr-wild-02",
@@ -643,7 +658,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 69
   },
   {
     "id": "es-wyr-wild-03",
@@ -651,7 +667,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 39
   },
   {
     "id": "es-wyr-wild-04",
@@ -659,7 +676,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 77
   },
   {
     "id": "es-wyr-wild-05",
@@ -667,7 +685,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 56
   },
   {
     "id": "es-wyr-wild-06",
@@ -675,7 +694,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "es",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 72
   },
   {
     "id": "es-couple-chill-01",
@@ -1109,5 +1129,323 @@
     "language": "es",
     "safety": "mild_suggestive",
     "pose": "talk"
+  },
+  {
+    "id": "es-tot-chill-01",
+    "text": "¿Playa o Montaña?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Playa",
+      "Montaña"
+    ],
+    "pickA": 57
+  },
+  {
+    "id": "es-tot-chill-02",
+    "text": "¿Café o Té?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Café",
+      "Té"
+    ],
+    "pickA": 64
+  },
+  {
+    "id": "es-tot-chill-03",
+    "text": "¿Tortilla con cebolla o Sin cebolla?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Tortilla con cebolla",
+      "Sin cebolla"
+    ],
+    "pickA": 52
+  },
+  {
+    "id": "es-charades-chill-01",
+    "text": "Representa: cepillarle los dientes a un cocodrilo",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-chill-02",
+    "text": "Representa: hacer churros",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-chill-03",
+    "text": "Representa: un turista perdido sin mapa",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-bingo-chill-01",
+    "text": "Cocinado juntos",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-02",
+    "text": "Tenemos una canción \"nuestra\"",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-03",
+    "text": "Visto una serie entera del tirón",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-04",
+    "text": "Hecho un pícnic",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-05",
+    "text": "Reído hasta llorar",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-06",
+    "text": "Hecho un viaje en coche",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-07",
+    "text": "Tenemos una broma privada",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-08",
+    "text": "Dormido en una videollamada",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-chill-09",
+    "text": "Compartido un postre",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-tot-bold-01",
+    "text": "¿Primera cita cenando o Primera cita de copas?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Primera cita cenando",
+      "Primera cita de copas"
+    ],
+    "pickA": 55
+  },
+  {
+    "id": "es-tot-bold-02",
+    "text": "¿Ligar por mensaje o Ligar en persona?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Ligar por mensaje",
+      "Ligar en persona"
+    ],
+    "pickA": 35
+  },
+  {
+    "id": "es-tot-bold-03",
+    "text": "¿Boda grande o Boda pequeña?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "options": [
+      "Boda grande",
+      "Boda pequeña"
+    ],
+    "pickA": 40
+  },
+  {
+    "id": "es-charades-bold-01",
+    "text": "Representa: una bofetada de telenovela",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-bold-02",
+    "text": "Representa: probarte unos vaqueros demasiado pequeños",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-bold-03",
+    "text": "Representa: pisar un juguete a oscuras",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-bingo-bold-01",
+    "text": "Uno dijo \"te quiero\" primero",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-bold-02",
+    "text": "Conocido a los padres del otro",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-bingo-bold-03",
+    "text": "Hablado hasta el amanecer",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "es",
+    "safety": "safe"
+  },
+  {
+    "id": "es-tot-wild-01",
+    "text": "¿Beso en la primera cita o Esperar?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "options": [
+      "Beso en la primera cita",
+      "Esperar"
+    ],
+    "pickA": 49
+  },
+  {
+    "id": "es-tot-wild-02",
+    "text": "¿Decírselo a tu crush ya o Llevártelo a la tumba?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "options": [
+      "Decírselo a tu crush ya",
+      "Llevártelo a la tumba"
+    ],
+    "pickA": 30
+  },
+  {
+    "id": "es-tot-wild-03",
+    "text": "¿Mensajes atrevidos o Miradas atrevidas?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "options": [
+      "Mensajes atrevidos",
+      "Miradas atrevidas"
+    ],
+    "pickA": 42
+  },
+  {
+    "id": "es-charades-wild-01",
+    "text": "Representa: la peor primera cita",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-wild-02",
+    "text": "Representa: ligar en una fiesta",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-charades-wild-03",
+    "text": "Representa: conocer a los padres de tu crush",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "es-bingo-wild-01",
+    "text": "Besado bajo la lluvia",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-bingo-wild-02",
+    "text": "Tenido una cita a escondidas",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "es-bingo-wild-03",
+    "text": "Bailado lento sin música",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "es",
+    "safety": "mild_suggestive"
   }
 ]

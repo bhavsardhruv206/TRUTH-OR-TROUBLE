@@ -20,6 +20,12 @@ enum class GameMode(
     @SerialName("hotseat") HOT_SEAT("Hot Seat"),
     @SerialName("closer") CLOSER("Closer", couplesOnly = true),
     @SerialName("knowme") KNOW_ME("How Well Do You Know Me", guessing = true),
+    /** Two quick options; everyone picks, then the card shows how other players picked. */
+    @SerialName("tot") THIS_OR_THAT("This or That"),
+    /** Act it out without words while the group guesses before the timer ends. */
+    @SerialName("charades") CHARADES("Charades"),
+    /** A 3 x 3 board of "we have..." squares for two partners. Played on its own board screen. */
+    @SerialName("bingo") COUPLE_BINGO("Couple Bingo", couplesOnly = true),
 }
 
 @Serializable
@@ -48,7 +54,17 @@ data class Card(
     val timerSeconds: Int? = null,
     /** Id of a [Pose] illustration shown on the card (couples games). */
     val pose: String? = null,
-)
+    /** The two choices on a voting card (This or That, Would You Rather). */
+    val options: List<String>? = null,
+    /**
+     * Voting cards: share of players, in percent, who picked the first option.
+     * The app is offline, so these are bundled estimates, not live votes.
+     */
+    val pickA: Int? = null,
+) {
+    /** Voting cards show "X% picked this" once a player has chosen. */
+    val isVote: Boolean get() = pickA != null
+}
 
 /**
  * Languages for the app and its card packs. Codes are BCP 47.

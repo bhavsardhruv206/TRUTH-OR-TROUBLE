@@ -4,6 +4,8 @@ import com.afterhours.core.CardLanguage
 import com.afterhours.core.ChaosEvent
 import com.afterhours.core.GameMode
 import com.afterhours.core.Intensity
+import com.afterhours.core.LoveQuizText
+import com.afterhours.core.Mood
 import com.afterhours.core.PlayerRules
 import com.afterhours.core.Pose
 
@@ -173,6 +175,51 @@ class UiStrings(
     val readAloudHint: String,
     val stopReading: String,
     val readCardAloud: String,
+    // Mood sections and 18+
+    val moodTitle: (Mood) -> String,
+    val moodBlurb: (Mood) -> String,
+    val adultBadge: String,
+    val wildAdultNote: String,
+    val spicyGateTitle: String,
+    val spicyGateBody: String,
+    val spicyAgree: String,
+    val spicySpin: String,
+    val spicySpinGame: GameText,
+    val spicyNever: String,
+    val spicyNeverGame: GameText,
+    val spicyCouple: String,
+    val spicyCoupleGame: GameText,
+    // Home
+    val suggestedTonight: String,
+    val oneTapHint: String,
+    val newHere: String,
+    // Voting cards
+    val votePrompt: String,
+    val voteFirst: String,
+    val voteSecond: String,
+    val usuallyPick: (percent: Int) -> String,
+    // Charades
+    val onlyYouLook: (name: String) -> String,
+    // Couple Bingo
+    val bingoHint: String,
+    val bingoCount: (lines: Int) -> String,
+    val bingoNone: String,
+    val bingoFull: String,
+    val newBoard: String,
+    // Love-language quiz
+    val loveQuiz: String,
+    val loveQuizGame: GameText,
+    val quizIntro: String,
+    val quizStart: String,
+    val quizQuestion: (n: Int, total: Int) -> String,
+    val quizPrompt: String,
+    val quizResultEyebrow: String,
+    val quizTie: (first: String, second: String) -> String,
+    val quizMix: String,
+    val shareResult: String,
+    val nextPerson: String,
+    val quizShareText: (result: String, percent: Int) -> String,
+    val loveQuizText: LoveQuizText,
     // Content labels
     val mode: (GameMode) -> String,
     val intensity: (Intensity) -> String,

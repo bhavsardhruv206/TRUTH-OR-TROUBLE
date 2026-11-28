@@ -2,6 +2,10 @@ package com.afterhours.core.i18n
 
 import com.afterhours.core.GameMode
 import com.afterhours.core.Intensity
+import com.afterhours.core.LoveLanguage
+import com.afterhours.core.LoveQuiz
+import com.afterhours.core.LoveQuizText
+import com.afterhours.core.Mood
 import com.afterhours.core.PlayerRules
 
 private fun enPoints(n: Int) = if (n == 1) "1 Point" else "$n Points"
@@ -22,11 +26,11 @@ val EnglishStrings = UiStrings(
     ageConfirm = "I am 18 years or older.",
     enter = "Enter",
     tutorial = listOf(
-        TutorialStep("Pass the phone", "Add 2 to 8 players. On each turn the phone goes to the person named at the top. Cards often call players by name."),
-        TutorialStep("Pick your game", "Open Games and tap any game, then choose its difficulty.\nSpin the Wheel: the wheel picks who plays, then Truth or Dare.\nTruth, Dare, Would You Rather, Couple.\nNever Have I Ever, Most Likely To and Hot Seat for the whole group."),
-        TutorialStep("Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything. Bolder cards score more: 1, 2 or 3 points."),
-        TutorialStep("Skipping is free", "Not comfortable? Skip. No points lost, no questions asked. You can also report a card and it never shows again."),
-        TutorialStep("Expect chaos", "Every few turns a group moment interrupts the game. Some dares come with a timer. Switch chaos off in Settings if you prefer."),
+        TutorialStep("Start in one tap", "Tap a suggested game on Home to start right away, and add names later. Or tap Play game, choose how many are playing, from 2 to 8, and add names and pictures. The phone goes to the person named at the top."),
+        TutorialStep("Pick a mood", "Games are grouped by mood: Party, Fun, Deep talk and Romance & couples. 18+ Spicy games are clearly marked and ask everyone to confirm they are adults. Couples games open when 2 are playing."),
+        TutorialStep("Set the heat", "Chill is light. Bold adds cheekier cards. Wild includes everything and is 18+. Bolder cards score more: 1, 2 or 3 points."),
+        TutorialStep("Skip if you want", "Not comfortable? Skip, no questions asked. In party games a skip costs one point; in couples games skipping is always free. Reporting a card never costs anything, and it never shows again."),
+        TutorialStep("Raise the stakes", "Complete cards in a row for streak bonuses. Skips cost a point, and the final rounds score double. Answers are on the clock, and chaos moments interrupt every few turns. Switch the clock or chaos off in Settings."),
     ),
     startPlaying = "Start playing",
     homeTagline = { n -> "$n games for 2 to 8 adults.\nPlus Closer, just for couples." },
@@ -68,6 +72,9 @@ val EnglishStrings = UiStrings(
             GameMode.MOST_LIKELY_TO -> GameText("Point on three", "Read the question, count to three and everyone points at who fits best. Most votes explains.")
             GameMode.HOT_SEAT -> GameText("60 seconds of questions", "The named player sits in the hot seat while the group asks rapid-fire questions until the timer ends.")
             GameMode.CLOSER -> GameText("Just the two of you", "A romantic game for two partners. Each card shows the pose and tells you what to do. Ask before any touch, and skip anything at all.")
+            GameMode.THIS_OR_THAT -> GameText("Quick picks", "Two options, no thinking. Tap your pick to see how other players usually choose, then defend it.")
+            GameMode.CHARADES -> GameText("Act it out", "Only the named player reads the card, then acts it out without words. The group shouts guesses before the timer ends.")
+            GameMode.COUPLE_BINGO -> GameText("How much have you two done?", "A board of things couples do. Tap every square that is true for you two and race for three in a line.")
             GameMode.KNOW_ME -> GameText("Guess their answer", "The named player secretly thinks of their answer about themselves. Everyone else guesses, then they reveal. Every correct guess scores the card's points.")
         }
     },
@@ -178,6 +185,82 @@ val EnglishStrings = UiStrings(
     readAloudHint = "Or tap the speaker on any card",
     stopReading = "Stop reading",
     readCardAloud = "Read card aloud",
+    moodTitle = {
+        when (it) {
+            Mood.PARTY -> "Party"
+            Mood.FUN -> "Fun"
+            Mood.DEEP -> "Deep talk"
+            Mood.COUPLES -> "Romance & couples"
+            Mood.SPICY -> "18+ Spicy"
+        }
+    },
+    moodBlurb = {
+        when (it) {
+            Mood.PARTY -> "Loud, quick and everyone in"
+            Mood.FUN -> "Easy choices and big laughs"
+            Mood.DEEP -> "Get to know each other"
+            Mood.COUPLES -> "Just the two of you"
+            Mood.SPICY -> "Adults only · Wild cards"
+        }
+    },
+    adultBadge = "18+",
+    wildAdultNote = "18+ · for adults only",
+    spicyGateTitle = "18+ Spicy",
+    spicyGateBody = "These games use only the boldest cards and are for adults.\n\n• Everyone playing must be 18 or older.\n• Skip any card at any time, no reason needed.\n• Never pressure anyone, and stop whenever someone wants to.",
+    spicyAgree = "Everyone here is 18+",
+    spicySpin = "Spicy Truth or Dare",
+    spicySpinGame = GameText("The wheel, turned up", "Spin to pick who plays, then Truth or Dare, using only Wild cards. Skip anything you like."),
+    spicyNever = "Spicy Never Have I Ever",
+    spicyNeverGame = GameText("Bold confessions", "Read the line out. Everyone who has done it raises a hand. Wild cards only, so expect cheeky stories."),
+    spicyCouple = "Spicy Couple",
+    spicyCoupleGame = GameText("Turn up the heat", "Flirty questions and dares for partners, Wild cards only. Ask first, and skip anything at all."),
+    suggestedTonight = "Suggested tonight",
+    oneTapHint = "Tap one to start now. Names can wait.",
+    newHere = "New here? See how to play",
+    votePrompt = "Tap your pick",
+    voteFirst = "First one",
+    voteSecond = "Second one",
+    usuallyPick = { n -> "$n% usually pick this" },
+    onlyYouLook = { name -> "Only $name looks at the screen" },
+    bingoHint = "Tap every square that is true for you two. Three in a line is a bingo.",
+    bingoCount = { n -> if (n == 1) "Bingo!" else "$n bingos!" },
+    bingoNone = "No line yet",
+    bingoFull = "Full house! You two have done it all.",
+    newBoard = "New board",
+    loveQuiz = "Love Language Quiz",
+    loveQuizGame = GameText("Find how you feel loved", "Ten quick choices, one person at a time. You get your love language on a card you can share."),
+    quizIntro = "Ten quick choices. Each time, pick the moment that would make you feel more loved. There are no wrong answers.",
+    quizStart = "Start quiz",
+    quizQuestion = { n, t -> "Question $n of $t" },
+    quizPrompt = "Which would make you feel more loved?",
+    quizResultEyebrow = "Your love language",
+    quizTie = { a, b -> "$a and $b" },
+    quizMix = "Your mix",
+    shareResult = "Share result",
+    nextPerson = "Next person",
+    quizShareText = { r, p -> "My love language is $r ($p%). Find yours in Truth or Trouble." },
+    loveQuizText = LoveQuizText(
+        questions = LoveQuiz.questions(listOf(
+            "My partner tells me they are proud of me" to "We spend an evening together, phones away",
+            "They bring me a little surprise that made them think of me" to "They take care of a chore I have been dreading",
+            "A big hug the moment I walk in" to "A sweet note left where I will find it",
+            "A long walk where we really talk" to "A thoughtful present for no reason at all",
+            "Breakfast made for me without asking" to "Holding hands while we are out",
+            "A compliment in front of our friends" to "They remember something I wanted and get it",
+            "A whole day planned just for us" to "Help finishing something stressful",
+            "A souvenir they picked up on a trip" to "Cuddling up together on the sofa",
+            "They fix something that has been bugging me" to "A message saying they are thinking of me",
+            "A long hug after a hard day" to "Their full attention while I talk",
+        )),
+        names = mapOf(LoveLanguage.WORDS to "Words of affirmation", LoveLanguage.TIME to "Quality time", LoveLanguage.GIFTS to "Thoughtful gifts", LoveLanguage.ACTS to "Acts of service", LoveLanguage.TOUCH to "Physical touch"),
+        descriptions = mapOf(
+            LoveLanguage.WORDS to "Kind words, praise and \"I love you\" said out loud mean the most to you.",
+            LoveLanguage.TIME to "Undivided attention and time together, just the two of you, fill your cup.",
+            LoveLanguage.GIFTS to "A small, thoughtful gift tells you someone was thinking of you.",
+            LoveLanguage.ACTS to "Help that lightens your load says \"I care\" louder than words.",
+            LoveLanguage.TOUCH to "Hugs, hand-holding and closeness make you feel safe and loved.",
+        ),
+    ),
     mode = { it.label },
     intensity = { it.label },
     // English pose text comes straight from closer_poses.json.

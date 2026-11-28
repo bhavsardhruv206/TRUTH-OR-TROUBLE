@@ -31,6 +31,9 @@ class CoreTest {
         assertEquals(30, counts[GameMode.HOT_SEAT])
         assertEquals(60, counts[GameMode.CLOSER])
         assertEquals(45, counts[GameMode.KNOW_ME])
+        assertEquals(45, counts[GameMode.THIS_OR_THAT])
+        assertEquals(30, counts[GameMode.CHARADES])
+        assertEquals(26, counts[GameMode.COUPLE_BINGO])
         assertEquals(cards.size, cards.map { it.text }.toSet().size, "duplicate card text")
     }
 
@@ -170,7 +173,7 @@ class CoreTest {
     @Test fun timedDaresHaveSaneTimers() {
         val timed = cards.filter { it.timerSeconds != null }
         assertTrue(timed.size >= 10)
-        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT, GameMode.CLOSER) && it.timerSeconds!! in 5..120 })
+        assertTrue(timed.all { it.category in setOf(GameMode.DARE, GameMode.HOT_SEAT, GameMode.CLOSER, GameMode.CHARADES) && it.timerSeconds!! in 5..120 })
     }
 
     @Test fun previouslyPlayedCardsComeLast() {
@@ -288,7 +291,7 @@ class CoreTest {
     }
 
     @Test fun closerIsForExactlyTwoPartners() {
-        assertEquals(listOf(GameMode.CLOSER), GameMode.entries.filter { it.couplesOnly })
+        assertEquals(listOf(GameMode.CLOSER, GameMode.COUPLE_BINGO), GameMode.entries.filter { it.couplesOnly })
         assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A", "B", "C"), GameMode.CLOSER))
         assertIs<PlayerRules.Result.Invalid>(PlayerRules.validate(listOf("A"), GameMode.CLOSER))
         assertIs<PlayerRules.Result.Valid>(PlayerRules.validate(listOf("A", "B"), GameMode.CLOSER))

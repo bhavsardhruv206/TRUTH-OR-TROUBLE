@@ -296,7 +296,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 62
   },
   {
     "id": "wyr-002",
@@ -304,7 +305,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 69
   },
   {
     "id": "wyr-003",
@@ -312,7 +314,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 25
   },
   {
     "id": "wyr-004",
@@ -320,7 +323,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 57
   },
   {
     "id": "wyr-005",
@@ -328,7 +332,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 55
   },
   {
     "id": "wyr-006",
@@ -336,7 +341,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 75
   },
   {
     "id": "wyr-007",
@@ -344,7 +350,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 57
   },
   {
     "id": "wyr-008",
@@ -352,7 +359,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 24
   },
   {
     "id": "wyr-009",
@@ -360,7 +368,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 78
   },
   {
     "id": "wyr-010",
@@ -368,7 +377,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 28
   },
   {
     "id": "wyr-011",
@@ -376,7 +386,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 52
   },
   {
     "id": "wyr-012",
@@ -384,7 +395,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 45
   },
   {
     "id": "wyr-013",
@@ -392,7 +404,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 26
   },
   {
     "id": "wyr-014",
@@ -400,7 +413,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 22
   },
   {
     "id": "couple-001",
@@ -1831,7 +1845,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 69
   },
   {
     "id": "wyr-016",
@@ -1839,7 +1854,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 55
   },
   {
     "id": "wyr-017",
@@ -1847,7 +1863,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 55
   },
   {
     "id": "wyr-018",
@@ -1855,7 +1872,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 68
   },
   {
     "id": "wyr-019",
@@ -1863,7 +1881,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 46
   },
   {
     "id": "wyr-020",
@@ -1871,7 +1890,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 22
   },
   {
     "id": "wyr-021",
@@ -1879,7 +1899,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 32
   },
   {
     "id": "wyr-022",
@@ -1887,7 +1908,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 78
   },
   {
     "id": "wyr-023",
@@ -1895,7 +1917,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 26
   },
   {
     "id": "wyr-024",
@@ -1903,7 +1926,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 24
   },
   {
     "id": "wyr-025",
@@ -1911,7 +1935,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 51
   },
   {
     "id": "wyr-026",
@@ -1919,7 +1944,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 63
   },
   {
     "id": "wyr-027",
@@ -1927,7 +1953,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 77
   },
   {
     "id": "wyr-028",
@@ -1935,7 +1962,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 64
   },
   {
     "id": "wyr-029",
@@ -1943,7 +1971,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 58
   },
   {
     "id": "wyr-030",
@@ -1951,7 +1980,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 77
   },
   {
     "id": "wyr-031",
@@ -1959,7 +1989,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 43
   },
   {
     "id": "wyr-032",
@@ -1967,7 +1998,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 62
   },
   {
     "id": "wyr-033",
@@ -1975,7 +2007,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 24
   },
   {
     "id": "wyr-034",
@@ -1983,7 +2016,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 43
   },
   {
     "id": "wyr-035",
@@ -1991,7 +2025,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 52
   },
   {
     "id": "wyr-036",
@@ -1999,7 +2034,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 38
   },
   {
     "id": "wyr-037",
@@ -2007,7 +2043,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 64
   },
   {
     "id": "wyr-038",
@@ -2015,7 +2052,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 62
   },
   {
     "id": "wyr-039",
@@ -2023,7 +2061,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 49
   },
   {
     "id": "wyr-040",
@@ -2031,7 +2070,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 23
   },
   {
     "id": "wyr-041",
@@ -2039,7 +2079,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 25
   },
   {
     "id": "wyr-042",
@@ -2047,7 +2088,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 56
   },
   {
     "id": "wyr-043",
@@ -2055,7 +2097,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 34
   },
   {
     "id": "wyr-044",
@@ -2063,7 +2106,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 41
   },
   {
     "id": "wyr-045",
@@ -2071,7 +2115,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 27
   },
   {
     "id": "wyr-046",
@@ -2079,7 +2124,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 54
   },
   {
     "id": "wyr-047",
@@ -2087,7 +2133,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 58
   },
   {
     "id": "wyr-048",
@@ -2095,7 +2142,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 68
   },
   {
     "id": "wyr-049",
@@ -2103,7 +2151,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 67
   },
   {
     "id": "wyr-050",
@@ -2111,7 +2160,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 65
   },
   {
     "id": "wyr-051",
@@ -2119,7 +2169,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 35
   },
   {
     "id": "wyr-052",
@@ -2127,7 +2178,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 34
   },
   {
     "id": "wyr-053",
@@ -2135,7 +2187,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 25
   },
   {
     "id": "wyr-054",
@@ -2143,7 +2196,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 50
   },
   {
     "id": "wyr-055",
@@ -2151,7 +2205,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 59
   },
   {
     "id": "wyr-056",
@@ -2159,7 +2214,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 60
   },
   {
     "id": "wyr-057",
@@ -2167,7 +2223,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 41
   },
   {
     "id": "wyr-058",
@@ -2175,7 +2232,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 73
   },
   {
     "id": "wyr-059",
@@ -2183,7 +2241,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 34
   },
   {
     "id": "wyr-060",
@@ -2191,7 +2250,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "en",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 33
   },
   {
     "id": "couple-013",
@@ -4085,5 +4145,1068 @@
     "intensity": "wild",
     "language": "en",
     "safety": "safe"
+  },
+  {
+    "id": "tot-chill-01",
+    "text": "Beach or Mountains?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Beach",
+      "Mountains"
+    ],
+    "pickA": 54
+  },
+  {
+    "id": "tot-chill-02",
+    "text": "Tea or Coffee?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Tea",
+      "Coffee"
+    ],
+    "pickA": 47
+  },
+  {
+    "id": "tot-chill-03",
+    "text": "Pizza or Burgers?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Pizza",
+      "Burgers"
+    ],
+    "pickA": 61
+  },
+  {
+    "id": "tot-chill-04",
+    "text": "Morning person or Night owl?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Morning person",
+      "Night owl"
+    ],
+    "pickA": 38
+  },
+  {
+    "id": "tot-chill-05",
+    "text": "Cats or Dogs?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Cats",
+      "Dogs"
+    ],
+    "pickA": 41
+  },
+  {
+    "id": "tot-chill-06",
+    "text": "Sweet or Salty?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Sweet",
+      "Salty"
+    ],
+    "pickA": 52
+  },
+  {
+    "id": "tot-chill-07",
+    "text": "Texting or Calling?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Texting",
+      "Calling"
+    ],
+    "pickA": 73
+  },
+  {
+    "id": "tot-chill-08",
+    "text": "Movies at home or Cinema?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Movies at home",
+      "Cinema"
+    ],
+    "pickA": 58
+  },
+  {
+    "id": "tot-chill-09",
+    "text": "Summer or Winter?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Summer",
+      "Winter"
+    ],
+    "pickA": 49
+  },
+  {
+    "id": "tot-chill-10",
+    "text": "Books or Podcasts?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Books",
+      "Podcasts"
+    ],
+    "pickA": 44
+  },
+  {
+    "id": "tot-chill-11",
+    "text": "Road trip or Flight?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Road trip",
+      "Flight"
+    ],
+    "pickA": 46
+  },
+  {
+    "id": "tot-chill-12",
+    "text": "Sunrise or Sunset?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Sunrise",
+      "Sunset"
+    ],
+    "pickA": 29
+  },
+  {
+    "id": "tot-chill-13",
+    "text": "Pancakes or Waffles?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Pancakes",
+      "Waffles"
+    ],
+    "pickA": 55
+  },
+  {
+    "id": "tot-chill-14",
+    "text": "City break or Countryside?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "City break",
+      "Countryside"
+    ],
+    "pickA": 51
+  },
+  {
+    "id": "tot-chill-15",
+    "text": "Cook at home or Order in?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Cook at home",
+      "Order in"
+    ],
+    "pickA": 43
+  },
+  {
+    "id": "charades-chill-01",
+    "text": "Act out: brushing a crocodile's teeth",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-02",
+    "text": "Act out: a penguin on ice skates",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-03",
+    "text": "Act out: making pancakes",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-04",
+    "text": "Act out: a superhero who is afraid of heights",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-05",
+    "text": "Act out: walking a very stubborn dog",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-06",
+    "text": "Act out: a robot learning to dance",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-07",
+    "text": "Act out: opening a gift you hate",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-08",
+    "text": "Act out: a chef in a tiny kitchen",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-09",
+    "text": "Act out: riding a roller coaster",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-chill-10",
+    "text": "Act out: a tourist lost without a map",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "bingo-chill-01",
+    "text": "Cooked a meal together",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-02",
+    "text": "Have a song that is \"ours\"",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-03",
+    "text": "Binge-watched a whole series",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-04",
+    "text": "Had a picnic",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-05",
+    "text": "Laughed until we cried",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-06",
+    "text": "Taken a road trip",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-07",
+    "text": "Have an inside joke",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-08",
+    "text": "Fallen asleep on a video call",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-09",
+    "text": "Shared dessert",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-10",
+    "text": "Met each other's friends",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-11",
+    "text": "Done a puzzle together",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-chill-12",
+    "text": "Matched outfits by accident",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "tot-bold-01",
+    "text": "First date at dinner or First date at a bar?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "First date at dinner",
+      "First date at a bar"
+    ],
+    "pickA": 57
+  },
+  {
+    "id": "tot-bold-02",
+    "text": "Slide into DMs or Ask in person?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Slide into DMs",
+      "Ask in person"
+    ],
+    "pickA": 34
+  },
+  {
+    "id": "tot-bold-03",
+    "text": "Big wedding or Tiny wedding?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Big wedding",
+      "Tiny wedding"
+    ],
+    "pickA": 39
+  },
+  {
+    "id": "tot-bold-04",
+    "text": "Read their texts or Never know?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Read their texts",
+      "Never know"
+    ],
+    "pickA": 45
+  },
+  {
+    "id": "tot-bold-05",
+    "text": "Matching outfits or Never?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Matching outfits",
+      "Never"
+    ],
+    "pickA": 21
+  },
+  {
+    "id": "tot-bold-06",
+    "text": "Ex as a friend or Ex as a stranger?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Ex as a friend",
+      "Ex as a stranger"
+    ],
+    "pickA": 37
+  },
+  {
+    "id": "tot-bold-07",
+    "text": "Surprise party for you or No fuss birthday?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Surprise party for you",
+      "No fuss birthday"
+    ],
+    "pickA": 42
+  },
+  {
+    "id": "tot-bold-08",
+    "text": "Spontaneous trip or Planned trip?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Spontaneous trip",
+      "Planned trip"
+    ],
+    "pickA": 59
+  },
+  {
+    "id": "tot-bold-09",
+    "text": "Cuddle or Personal space?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Cuddle",
+      "Personal space"
+    ],
+    "pickA": 64
+  },
+  {
+    "id": "tot-bold-10",
+    "text": "Love letter or Love song?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Love letter",
+      "Love song"
+    ],
+    "pickA": 56
+  },
+  {
+    "id": "tot-bold-11",
+    "text": "Dance badly or Sing badly?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Dance badly",
+      "Sing badly"
+    ],
+    "pickA": 52
+  },
+  {
+    "id": "tot-bold-12",
+    "text": "Lose your phone or Lose your wallet?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Lose your phone",
+      "Lose your wallet"
+    ],
+    "pickA": 33
+  },
+  {
+    "id": "tot-bold-13",
+    "text": "Honest feedback or White lies?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Honest feedback",
+      "White lies"
+    ],
+    "pickA": 68
+  },
+  {
+    "id": "tot-bold-14",
+    "text": "Double date or Solo date?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Double date",
+      "Solo date"
+    ],
+    "pickA": 36
+  },
+  {
+    "id": "tot-bold-15",
+    "text": "Shared playlist or Separate playlists?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "options": [
+      "Shared playlist",
+      "Separate playlists"
+    ],
+    "pickA": 62
+  },
+  {
+    "id": "charades-bold-01",
+    "text": "Act out: your morning routine in fast forward",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-02",
+    "text": "Act out: the worst haircut ever",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-03",
+    "text": "Act out: a dramatic soap opera slap",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-04",
+    "text": "Act out: trying on jeans that are too tight",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-05",
+    "text": "Act out: a cat knocking things off a table",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-06",
+    "text": "Act out: a famous movie scene",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-07",
+    "text": "Act out: a job interview going badly",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-08",
+    "text": "Act out: stepping on a toy in the dark",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-09",
+    "text": "Act out: a celebrity on the red carpet",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-bold-10",
+    "text": "Act out: your best dance move",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "bingo-bold-01",
+    "text": "Said \"I love you\" first (one of us)",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-02",
+    "text": "Had our first fight",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-03",
+    "text": "Met each other's parents",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-04",
+    "text": "Stayed up talking till sunrise",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-05",
+    "text": "Planned a surprise",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-06",
+    "text": "Danced in the kitchen",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-07",
+    "text": "Written a love note",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "bingo-bold-08",
+    "text": "Cried in front of each other",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "en",
+    "safety": "safe"
+  },
+  {
+    "id": "tot-wild-01",
+    "text": "Kiss on the first date or Wait?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Kiss on the first date",
+      "Wait"
+    ],
+    "pickA": 48
+  },
+  {
+    "id": "tot-wild-02",
+    "text": "Midnight swim or Midnight drive?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Midnight swim",
+      "Midnight drive"
+    ],
+    "pickA": 35
+  },
+  {
+    "id": "tot-wild-03",
+    "text": "Flirty texts or Flirty looks?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Flirty texts",
+      "Flirty looks"
+    ],
+    "pickA": 44
+  },
+  {
+    "id": "tot-wild-04",
+    "text": "Dance on a table or Karaoke solo?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Dance on a table",
+      "Karaoke solo"
+    ],
+    "pickA": 41
+  },
+  {
+    "id": "tot-wild-05",
+    "text": "Truth all night or Dares all night?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Truth all night",
+      "Dares all night"
+    ],
+    "pickA": 53
+  },
+  {
+    "id": "tot-wild-06",
+    "text": "Tell your crush now or Take it to the grave?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Tell your crush now",
+      "Take it to the grave"
+    ],
+    "pickA": 27
+  },
+  {
+    "id": "tot-wild-07",
+    "text": "Morning kisses or Goodnight kisses?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Morning kisses",
+      "Goodnight kisses"
+    ],
+    "pickA": 46
+  },
+  {
+    "id": "tot-wild-08",
+    "text": "Get a tattoo tonight or Dye your hair tonight?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Get a tattoo tonight",
+      "Dye your hair tonight"
+    ],
+    "pickA": 38
+  },
+  {
+    "id": "tot-wild-09",
+    "text": "Blind date or Dating app?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Blind date",
+      "Dating app"
+    ],
+    "pickA": 32
+  },
+  {
+    "id": "tot-wild-10",
+    "text": "Read your old texts out loud or Show your camera roll?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Read your old texts out loud",
+      "Show your camera roll"
+    ],
+    "pickA": 40
+  },
+  {
+    "id": "tot-wild-11",
+    "text": "Spin the bottle or Seven minutes of truth?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Spin the bottle",
+      "Seven minutes of truth"
+    ],
+    "pickA": 43
+  },
+  {
+    "id": "tot-wild-12",
+    "text": "Lips or Neck?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Lips",
+      "Neck"
+    ],
+    "pickA": 51
+  },
+  {
+    "id": "tot-wild-13",
+    "text": "Slow dance or Wild dance?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Slow dance",
+      "Wild dance"
+    ],
+    "pickA": 58
+  },
+  {
+    "id": "tot-wild-14",
+    "text": "Hot sauce shot or Lemon shot?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Hot sauce shot",
+      "Lemon shot"
+    ],
+    "pickA": 47
+  },
+  {
+    "id": "tot-wild-15",
+    "text": "Confess a crush or Confess a secret?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "options": [
+      "Confess a crush",
+      "Confess a secret"
+    ],
+    "pickA": 39
+  },
+  {
+    "id": "charades-wild-01",
+    "text": "Act out: a terrible first date",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-02",
+    "text": "Act out: flirting at a party",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-03",
+    "text": "Act out: the most awkward hug",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-04",
+    "text": "Act out: getting caught singing in the shower",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-05",
+    "text": "Act out: a breakup by text, in real life",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-06",
+    "text": "Act out: meeting your crush's parents",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-07",
+    "text": "Act out: a cheesy romance movie kiss, on your own hand",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-08",
+    "text": "Act out: waking up after a big party",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-09",
+    "text": "Act out: a love song music video",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "charades-wild-10",
+    "text": "Act out: trying to look cool and failing",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "bingo-wild-01",
+    "text": "Kissed in the rain",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "bingo-wild-02",
+    "text": "Stolen a kiss in public",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "bingo-wild-03",
+    "text": "Had a secret date night in",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "bingo-wild-04",
+    "text": "Skipped plans to stay in together",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "bingo-wild-05",
+    "text": "Sent a flirty text at work",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "bingo-wild-06",
+    "text": "Slow danced with no music",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "en",
+    "safety": "mild_suggestive"
   }
 ]

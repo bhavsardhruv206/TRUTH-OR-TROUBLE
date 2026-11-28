@@ -523,7 +523,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 52
   },
   {
     "id": "gu-wyr-chill-02",
@@ -531,7 +532,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 62
   },
   {
     "id": "gu-wyr-chill-03",
@@ -539,7 +541,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 30
   },
   {
     "id": "gu-wyr-chill-04",
@@ -547,7 +550,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 65
   },
   {
     "id": "gu-wyr-chill-05",
@@ -555,7 +559,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 27
   },
   {
     "id": "gu-wyr-chill-06",
@@ -563,7 +568,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 39
   },
   {
     "id": "gu-wyr-chill-07",
@@ -571,7 +577,8 @@
     "category": "wyr",
     "intensity": "chill",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 59
   },
   {
     "id": "gu-wyr-bold-01",
@@ -579,7 +586,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 49
   },
   {
     "id": "gu-wyr-bold-02",
@@ -587,7 +595,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 46
   },
   {
     "id": "gu-wyr-bold-03",
@@ -595,7 +604,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 76
   },
   {
     "id": "gu-wyr-bold-04",
@@ -603,7 +613,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 34
   },
   {
     "id": "gu-wyr-bold-05",
@@ -611,7 +622,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 22
   },
   {
     "id": "gu-wyr-bold-06",
@@ -619,7 +631,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 77
   },
   {
     "id": "gu-wyr-bold-07",
@@ -627,7 +640,8 @@
     "category": "wyr",
     "intensity": "bold",
     "language": "gu",
-    "safety": "safe"
+    "safety": "safe",
+    "pickA": 58
   },
   {
     "id": "gu-wyr-wild-01",
@@ -635,7 +649,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 68
   },
   {
     "id": "gu-wyr-wild-02",
@@ -643,7 +658,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 44
   },
   {
     "id": "gu-wyr-wild-03",
@@ -651,7 +667,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 57
   },
   {
     "id": "gu-wyr-wild-04",
@@ -659,7 +676,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 30
   },
   {
     "id": "gu-wyr-wild-05",
@@ -667,7 +685,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 77
   },
   {
     "id": "gu-wyr-wild-06",
@@ -675,7 +694,8 @@
     "category": "wyr",
     "intensity": "wild",
     "language": "gu",
-    "safety": "mild_suggestive"
+    "safety": "mild_suggestive",
+    "pickA": 57
   },
   {
     "id": "gu-couple-chill-01",
@@ -1109,5 +1129,323 @@
     "language": "gu",
     "safety": "mild_suggestive",
     "pose": "talk"
+  },
+  {
+    "id": "gu-tot-chill-01",
+    "text": "ચા કે કોફી?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "ચા",
+      "કોફી"
+    ],
+    "pickA": 70
+  },
+  {
+    "id": "gu-tot-chill-02",
+    "text": "પહાડ કે દરિયો?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "પહાડ",
+      "દરિયો"
+    ],
+    "pickA": 51
+  },
+  {
+    "id": "gu-tot-chill-03",
+    "text": "ઢોકળા કે પિઝા?",
+    "category": "tot",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "ઢોકળા",
+      "પિઝા"
+    ],
+    "pickA": 57
+  },
+  {
+    "id": "gu-charades-chill-01",
+    "text": "કરીને બતાવો: મગરના દાંત બ્રશ કરવા",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-chill-02",
+    "text": "કરીને બતાવો: રોટલી વણવી",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-chill-03",
+    "text": "કરીને બતાવો: રિક્ષાવાળા સાથે ભાવતાલ",
+    "category": "charades",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-chill-01",
+    "text": "સાથે મળીને રસોઈ બનાવી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-02",
+    "text": "આપણું પોતાનું એક ગીત છે",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-03",
+    "text": "આખી સિરીઝ સાથે જોઈ",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-04",
+    "text": "પિકનિક કરી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-05",
+    "text": "હસી હસીને આંખમાં પાણી આવી ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-06",
+    "text": "રોડ ટ્રિપ પર ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-07",
+    "text": "આપણો એક ખાસ જોક છે",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-08",
+    "text": "વીડિયો કૉલ પર સૂઈ ગયાં",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-chill-09",
+    "text": "એક જ મીઠાઈ વહેંચીને ખાધી",
+    "category": "bingo",
+    "intensity": "chill",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-tot-bold-01",
+    "text": "લવ મેરેજ કે એરેન્જ્ડ મેરેજ?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "લવ મેરેજ",
+      "એરેન્જ્ડ મેરેજ"
+    ],
+    "pickA": 58
+  },
+  {
+    "id": "gu-tot-bold-02",
+    "text": "મેસેજ પર પ્રપોઝ કે સામે પ્રપોઝ?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "મેસેજ પર પ્રપોઝ",
+      "સામે પ્રપોઝ"
+    ],
+    "pickA": 31
+  },
+  {
+    "id": "gu-tot-bold-03",
+    "text": "મોટાં લગ્ન કે નાનાં લગ્ન?",
+    "category": "tot",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "options": [
+      "મોટાં લગ્ન",
+      "નાનાં લગ્ન"
+    ],
+    "pickA": 46
+  },
+  {
+    "id": "gu-charades-bold-01",
+    "text": "કરીને બતાવો: સિરિયલ જેવો નાટકીય તમાચો",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-bold-02",
+    "text": "કરીને બતાવો: ગરબામાં ઝડપી ફૂદડી",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-bold-03",
+    "text": "કરીને બતાવો: અંધારામાં રમકડા પર પગ પડવો",
+    "category": "charades",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-bold-01",
+    "text": "આપણામાંથી કોઈએ પહેલાં \"આઈ લવ યુ\" કહ્યું",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-bold-02",
+    "text": "એકબીજાનાં મમ્મી-પપ્પાને મળ્યાં",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-bingo-bold-03",
+    "text": "સવાર સુધી વાતો કરી",
+    "category": "bingo",
+    "intensity": "bold",
+    "language": "gu",
+    "safety": "safe"
+  },
+  {
+    "id": "gu-tot-wild-01",
+    "text": "પહેલી ડેટ પર કિસ કે રાહ જોવી?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "પહેલી ડેટ પર કિસ",
+      "રાહ જોવી"
+    ],
+    "pickA": 39
+  },
+  {
+    "id": "gu-tot-wild-02",
+    "text": "ક્રશને હમણાં કહો કે હંમેશા ખાનગી રાખો?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "ક્રશને હમણાં કહો",
+      "હંમેશા ખાનગી રાખો"
+    ],
+    "pickA": 32
+  },
+  {
+    "id": "gu-tot-wild-03",
+    "text": "ફ્લર્ટી મેસેજ કે ફ્લર્ટી નજર?",
+    "category": "tot",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "options": [
+      "ફ્લર્ટી મેસેજ",
+      "ફ્લર્ટી નજર"
+    ],
+    "pickA": 45
+  },
+  {
+    "id": "gu-charades-wild-01",
+    "text": "કરીને બતાવો: સૌથી ખરાબ પહેલી ડેટ",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-wild-02",
+    "text": "કરીને બતાવો: પાર્ટીમાં ફ્લર્ટ કરવું",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-charades-wild-03",
+    "text": "કરીને બતાવો: ક્રશનાં મમ્મી-પપ્પાને મળવું",
+    "category": "charades",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive",
+    "timerSeconds": 60
+  },
+  {
+    "id": "gu-bingo-wild-01",
+    "text": "વરસાદમાં કિસ કરી",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-bingo-wild-02",
+    "text": "બધાથી છુપાઈને ડેટ પર ગયાં",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
+  },
+  {
+    "id": "gu-bingo-wild-03",
+    "text": "મ્યુઝિક વગર સ્લો ડાન્સ કર્યો",
+    "category": "bingo",
+    "intensity": "wild",
+    "language": "gu",
+    "safety": "mild_suggestive"
   }
 ]
