@@ -188,7 +188,8 @@ class CoreTest {
         assertEquals(allCards.size, allCards.map { it.id }.toSet().size, "ids unique across packs")
         assertEquals(hi.size, hi.map { it.text }.toSet().size)
         hi.forEach { c -> assertTrue(Regex("\\{[^}]*\\}").findAll(c.text).all { it.value in setOf("{name}", "{other}") }, c.id) }
-        GameMode.entries.forEach { m ->
+        // How Well Do You Know Me is English only.
+        GameMode.entries.filter { it != GameMode.KNOW_ME }.forEach { m ->
             Intensity.entries.forEach { i -> assertTrue(hi.any { it.category == m && it.intensity == i }, "missing hinglish $m/$i") }
         }
     }
@@ -223,6 +224,12 @@ class CoreTest {
         val knowMe = allCards.filter { it.category == GameMode.KNOW_ME }
         knowMe.forEach { assertTrue("{name}" in it.text && "{other}" !in it.text && it.timerSeconds == null, it.id) }
         Intensity.entries.forEach { i -> assertEquals(15, knowMe.count { it.language == "en" && it.intensity == i }, "en $i") }
+    }
+
+    @Test fun knowMeIsEnglishOnlyAndFallsBackFromHinglish() {
+        assertTrue(allCards.none { it.category == GameMode.KNOW_ME && it.language != "en" })
+        val s = GameSession(allCards, GameMode.KNOW_ME, Intensity.WILD, listOf("A", "B"), random = Random(4), language = CardLanguage.HINGLISH.code)
+        assertEquals("en", s.state.card!!.language)
     }
 
     @Test fun knowMePointsGoToEachCorrectGuesser() {

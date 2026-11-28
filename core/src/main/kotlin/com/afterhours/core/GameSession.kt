@@ -73,7 +73,11 @@ class GameSession(
     spin: Boolean = false,
 ) {
     private val modes = if (spin) SPIN_MODES else listOf(mode)
-    private val decks = modes.associateWith { CardDeck(cards, it, intensity, random, language = language, playedBefore = playedBefore) }
+    private val decks = modes.associateWith { m ->
+        // A game with no cards in the chosen language (How Well Do You Know Me is English only) plays in English.
+        val lang = if (cards.any { it.category == m && it.language == language }) language else CardLanguage.ENGLISH.code
+        CardDeck(cards, m, intensity, random, language = lang, playedBefore = playedBefore)
+    }
     private val picker = if (spin) FairPicker(playerNames.size, random) else null
     // Group chaos moments don't fit a game for two partners.
     private val scheduler = ChaosScheduler(random, enabled = chaosEnabled && !(mode.couplesOnly && !spin))
